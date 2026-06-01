@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Dativo Talon — Evidence-grade AI governance for European teams</title>
+  <meta
+    name="description"
+    content="Dativo Talon is an open-source gateway for AI agents and LLM traffic. Enforce PII, cost, model, and tool policies before requests reach providers — then generate signed evidence records."
+  />
+
+  <meta property="og:title" content="Dativo Talon" />
+  <meta property="og:description" content="Evidence-grade AI governance for European teams." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dativo.io" />
+
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">
+      <span class="brand-mark">T</span>
+      <span>Dativo Talon</span>
+    </a>
+
+    <nav class="nav">
+      <a href="#demo">Demo</a>
+      <a href="#use-cases">Use cases</a>
+      <a href="#why">Why Talon</a>
+      <a href="https://blog.dativo.io">Blog</a>
+      <a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Open-source • Early preview • EU-focused</div>
+
+      <h1>Evidence-grade AI governance for European teams.</h1>
+
+      <p class="hero-subtitle">
+        Dativo Talon is an open-source gateway for AI agents and LLM traffic.
+        Enforce PII, cost, model, and tool policies before requests reach providers —
+        then generate signed evidence records for audit and incident review.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button primary" href="#demo">Try the 60-second demo</a>
+        <a class="button secondary" href="https://github.com/dativo-io/talon">View on GitHub</a>
+        <a class="button ghost" href="https://github.com/dativo-io/talon/tree/main/docs">Read docs</a>
+      </div>
+
+      <div class="hero-card">
+        <div class="terminal-header">
+          <span></span><span></span><span></span>
+        </div>
+        <pre><code>git clone https://github.com/dativo-io/talon
+cd talon/examples/docker-compose
+docker compose up
+
+# Inspect evidence
+docker compose exec talon talon audit list
+
+# Verify integrity
+docker compose exec talon talon audit verify req_a1b2c3d4
+# ✓ Evidence req_a1b2c3d4: signature VALID</code></pre>
+      </div>
+    </section>
+
+    <section class="logos">
+      <span>Governed LLM traffic</span>
+      <span>PII controls</span>
+      <span>Tool governance</span>
+      <span>Cost limits</span>
+      <span>Signed evidence</span>
+    </section>
+
+    <section class="section" id="why">
+      <div class="section-heading">
+        <p class="eyebrow">Why it exists</p>
+        <h2>PII proxies and observability dashboards are not enough.</h2>
+        <p>
+          Talon is built for the operational questions European teams face when AI agents
+          touch customer data, tools, vendors, and regulated workflows.
+        </p>
+      </div>
+
+      <div class="grid three">
+        <article class="card">
+          <h3>Govern before execution</h3>
+          <p>
+            Identify callers, scan input, classify data, evaluate policy, govern tools,
+            redact when needed, and only then forward to the LLM provider.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Prove what happened</h3>
+          <p>
+            Every interaction creates signed evidence with policy decision, PII findings,
+            model, cost, hashes, and verification status.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Designed for EMEA</h3>
+          <p>
+            Self-hostable, EU-focused, and built around GDPR Article 30-style evidence,
+            NIS2 incident review, and EU AI Act governance workflows.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section split" id="demo">
+      <div>
+        <p class="eyebrow">Local demo</p>
+        <h2>Run Talon without an API key.</h2>
+        <p>
+          The Docker demo uses a mock provider, so you can see the full governance path:
+          PII scanning, policy evaluation, cost tracking, evidence creation, and signature
+          verification.
+        </p>
+
+        <div class="actions">
+          <a class="button primary" href="https://github.com/dativo-io/talon/tree/main/examples/docker-compose">
+            Open demo
+          </a>
+          <a class="button secondary" href="https://github.com/dativo-io/talon">
+            Star on GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="terminal compact">
+        <pre><code>curl -X POST http://localhost:8080/v1/proxy/openai/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gpt-4o-mini",
+    "messages": [{
+      "role": "user",
+      "content": "My email is jan@example.com and my IBAN is DE89370400440532013000."
+    }]
+  }'</code></pre>
+      </div>
+    </section>
+
+    <section class="section" id="use-cases">
+      <div class="section-heading">
+        <p class="eyebrow">Use cases</p>
+        <h2>Start with the AI traffic you already have.</h2>
+      </div>
+
+      <div class="grid three">
+        <article class="card">
+          <h3>Slack bots</h3>
+          <p>
+            Route an existing Slack bot through Talon by changing the LLM base URL
+            and using a Talon-issued caller key.
+          </p>
+          <a href="https://github.com/dativo-io/talon">Read integration notes →</a>
+        </article>
+
+        <article class="card">
+          <h3>Coding agents</h3>
+          <p>
+            Put Talon in front of coding-agent traffic to capture policy decisions,
+            costs, PII detections, and evidence for every request.
+          </p>
+          <a href="https://github.com/dativo-io/talon">View OpenClaw guide →</a>
+        </article>
+
+        <article class="card">
+          <h3>MSPs and consultants</h3>
+          <p>
+            Use tenant-scoped keys so each customer gets isolated evidence, costs,
+            and policy controls.
+          </p>
+          <a href="https://github.com/dativo-io/talon">Explore multi-tenant setup →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Comparison</p>
+        <h2>More than a body-only PII proxy.</h2>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Capability</th>
+              <th>PII proxy</th>
+              <th>LLM observability</th>
+              <th>Dativo Talon</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PII detection</td>
+              <td>Yes</td>
+              <td>Sometimes</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>Pre-call policy enforcement</td>
+              <td>Weak</td>
+              <td>Sometimes</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>Tool governance</td>
+              <td>No</td>
+              <td>Weak</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>Cost caps before spend</td>
+              <td>No</td>
+              <td>Sometimes</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>Tamper-proof evidence</td>
+              <td>No</td>
+              <td>No</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>Auditor export</td>
+              <td>No</td>
+              <td>Limited</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>Self-hosted</td>
+              <td>Sometimes</td>
+              <td>Sometimes</td>
+              <td>Yes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section cta">
+      <p class="eyebrow">Early preview</p>
+      <h2>Run it locally. Break it. Tell us what is missing.</h2>
+      <p>
+        Talon is an independent open-source project for engineers, CTOs,
+        compliance-minded teams, and MSPs exploring governed AI automation in Europe.
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href="https://github.com/dativo-io/talon">Open GitHub</a>
+        <a class="button secondary" href="https://github.com/dativo-io/talon/issues">Open an issue</a>
+        <a class="button ghost" href="https://blog.dativo.io">Read the blog</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© Dativo</span>
+    <span>Dativo Talon is an independent open-source project. Nothing on this site constitutes legal, compliance, or procurement advice.</span>
+  </footer>
+</body>
+</html>
