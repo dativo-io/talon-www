@@ -21,7 +21,27 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://dativo.io/ai-governance-evidence-store/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://dativo.io/resources/eu-ai-governance-runtime-checklist/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dativo.io/comparisons/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dativo.io/comparisons/talon-vs-pii-proxy/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dativo.io/comparisons/talon-vs-microsoft-agt/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
