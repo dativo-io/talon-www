@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/comparisons/" />
   <title>Compare AI Governance Options | Dativo Talon</title>
-  <meta name="description" content="Compare Dativo Talon with Microsoft AGT, PII proxies, and AI gateways to choose the right control layer for AI traffic, agent actions, PII, cost, sovereignty, and evidence." />
+  <meta name="description" content="Compare Talon with classes of AI governance tools: agent governance toolkits, PII proxies, and general AI gateways." />
   <meta property="og:title" content="Compare AI Governance Options" />
   <meta property="og:description" content="Choose the right control layer for AI traffic, agent actions, PII, cost, sovereignty, and evidence." />
   <meta property="og:type" content="website" />
@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Compare AI Governance Options" />
-  <meta name="twitter:description" content="When to use Talon, Microsoft AGT, PII proxies, or AI gateways." />
+  <meta name="twitter:description" content="Compare Talon with agent governance toolkits, PII proxies, and general AI gateways." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="16x16" href="/public/assets/favicon-16x16.png" />
@@ -27,13 +27,13 @@
 <body>
 <header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/ai-governance-eu/">EU governance</a><a href="/ai-governance-evidence-store/">Evidence</a><a href="/resources/eu-ai-governance-runtime-checklist/">Checklist</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
 <main>
-<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Compare by control layer</div><h1>Which AI governance layer do you need?</h1><p class="hero-subtitle">Use Talon when you need to control AI traffic at the provider boundary and produce signed evidence for review. Use other tools when the problem is action governance, generic gateway operations, or simple redaction.</p><div class="hero-actions"><a class="button primary" href="/comparisons/talon-vs-microsoft-agt/">Compare with AGT</a><a class="button secondary" href="/comparisons/talon-vs-pii-proxy/">Compare with PII proxy</a><a class="button ghost" href="/ai-governance-evidence-store/">See evidence model</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>Choose by question
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Compare by control layer</div><h1>Which AI governance layer do you need?</h1><p class="hero-subtitle">Use Talon when you need to control AI traffic at the provider boundary and produce signed evidence for review. Use other tool classes when the problem is in-process agent actions, simple redaction, or general gateway operations.</p><div class="hero-actions"><a class="button primary" href="/comparisons/talon-vs-agent-governance-toolkits/">Compare agent governance toolkits</a><a class="button secondary" href="/comparisons/talon-vs-pii-proxy/">Compare PII proxies</a><a class="button ghost" href="/ai-governance-evidence-store/">See evidence model</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>Choose by question
 
-Agent action policy?  → AGT-style controls
+Agent action policy?  → agent governance toolkit
 AI traffic evidence?  → Talon
 Only text redaction?  → PII proxy
-Gateway operations?   → AI gateway</code></pre></div></div></section>
-<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Comparisons</p><h2>Start with the decision in front of you.</h2></div><div class="grid three"><a class="card" href="/comparisons/talon-vs-microsoft-agt/"><div class="icon">🏗️</div><h3>Talon vs Microsoft AGT</h3><p>When to use agent-action controls, Talon’s traffic evidence layer, or both.</p></a><a class="card" href="/comparisons/talon-vs-pii-proxy/"><div class="icon">🔐</div><h3>Talon vs PII proxy</h3><p>Why redaction alone does not answer evidence, routing, cost, and tool questions.</p></a><a class="card" href="/llm-governance-gateway/"><div class="icon">🛡️</div><h3>LLM traffic gateway</h3><p>How Talon controls provider-boundary AI traffic before requests leave.</p></a></div></div></section>
+Gateway operations?   → general AI gateway</code></pre></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Comparisons</p><h2>Start with the decision in front of you.</h2></div><div class="grid three"><a class="card" href="/comparisons/talon-vs-agent-governance-toolkits/"><div class="icon">🏗️</div><h3>Talon vs agent governance toolkits</h3><p>When to use in-process action controls, Talon’s traffic evidence layer, or both.</p></a><a class="card" href="/comparisons/talon-vs-pii-proxy/"><div class="icon">🔐</div><h3>Talon vs PII proxies</h3><p>Why redaction alone does not answer evidence, routing, cost, and tool questions.</p></a><a class="card" href="/llm-governance-gateway/"><div class="icon">🛡️</div><h3>Talon vs general AI gateways</h3><p>How Talon differs from gateways focused mainly on routing, reliability, and operations.</p></a></div></div></section>
 <section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Rule of thumb</p><h2>Use Talon when the review asks for proof.</h2><p>Talon is the right first step when a customer, DPO, security team, or auditor asks what AI traffic left your environment, which policy allowed it, and whether you can verify the record.</p></div><div class="code-panel"><pre><code>Talon answers:
 
 - What data left?
