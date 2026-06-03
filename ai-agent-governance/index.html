@@ -4,27 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/ai-agent-governance/" />
-
-  <title>AI Agent Governance: Tools, PII, Cost, and Evidence | Dativo Talon</title>
-  <meta
-    name="description"
-    content="AI agent governance needs runtime controls for tool exposure, PII, cost, model routing, human oversight, and signed evidence. Learn how Talon governs agentic AI workflows."
-  />
-
-  <meta property="og:title" content="AI Agent Governance: Tools, PII, Cost, and Evidence" />
-  <meta
-    property="og:description"
-    content="A practical guide to governing AI agents with runtime controls: tool filtering, PII protection, cost limits, human oversight, and signed evidence."
-  />
+  <title>AI Agent Egress Governance and Evidence | Dativo Talon</title>
+  <meta name="description" content="Talon adds an EU-sovereign evidence gateway around AI agents: govern LLM egress, PII, cost, provider routing, tool exposure, and signed audit evidence without rewriting every agent." />
+  <meta property="og:title" content="AI Agent Egress Governance and Evidence" />
+  <meta property="og:description" content="Govern what AI agents send to models and tools, then prove it with signed evidence." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://dativo.io/ai-agent-governance/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
-
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="AI Agent Governance: Tools, PII, Cost, and Evidence" />
-  <meta name="twitter:description" content="Runtime governance for AI agents: tools, PII, cost, routing, oversight, and evidence." />
+  <meta name="twitter:title" content="AI Agent Egress Governance and Evidence" />
+  <meta name="twitter:description" content="EU-sovereign traffic evidence for AI agents." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
-
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="16x16" href="/public/assets/favicon-16x16.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/public/assets/favicon-32x32.png" />
@@ -32,183 +22,36 @@
   <link rel="manifest" href="/public/assets/site.webmanifest" />
   <meta name="theme-color" content="#07111f" />
   <link rel="stylesheet" href="/styles.css" />
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "AI Agent Governance: Tools, PII, Cost, and Evidence",
-    "description": "A practical guide to runtime AI agent governance for engineering and compliance teams.",
-    "author": {"@type": "Organization", "name": "Dativo"},
-    "publisher": {"@type": "Organization", "name": "Dativo"},
-    "mainEntityOfPage": "https://dativo.io/ai-agent-governance/"
-  }
-  </script>
-
-  <!-- Cloudflare Web Analytics -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
-  <!-- End Cloudflare Web Analytics -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"AI Agent Egress Governance and Evidence","description":"A Talon 2.0 guide to governing AI-agent traffic and evidence.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/ai-agent-governance/"}</script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
 </head>
-
 <body>
-  <header class="site-nav">
-    <div class="wrap nav-inner">
-      <a class="brand" href="/" aria-label="Dativo Talon home">
-        <img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" />
-        <span>Dativo Talon</span>
-      </a>
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="/ai-governance-eu/">AI governance in EU</a>
-        <a href="/llm-governance-gateway/">LLM gateway</a>
-        <a href="/#demo">Demo</a>
-        <a href="https://blog.dativo.io">Blog</a>
-        <a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow pill-eyebrow"><span class="live-dot"></span>AI agent governance · Tool calls · Runtime controls</div>
-          <h1>AI agent governance starts with tool control.</h1>
-          <p class="hero-subtitle">
-            Prompt scanning is not enough when an AI agent can call tools. Governance must
-            control which tools the model can see, which calls can execute, what data reaches
-            providers, how much the loop can spend, and what evidence exists afterwards.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key">Run the 60-second demo</a>
-            <a class="button secondary" href="/llm-governance-gateway/">Read about LLM gateways</a>
-            <a class="button ghost" href="https://github.com/dativo-io/talon">View on GitHub</a>
-          </div>
-        </div>
-        <div class="terminal-card" aria-label="AI agent governance risks">
-          <div class="terminal-header"><span></span><span></span><span></span></div>
-          <pre><code>Agent risks
-
-! dangerous tool exposed
-! bulk operation requested
-! customer PII in prompt
-! non-approved model used
-! loop spends too much
-! no human review
-! no signed evidence
-
-Talon controls the runtime path.</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <section class="strip">
-      <div class="wrap strip-inner">
-        <span>Tool governance</span><span>PII controls</span><span>Loop cost limits</span><span>Human oversight</span><span>Step evidence</span>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <div class="section-heading">
-          <p class="eyebrow">Why agents are different</p>
-          <h2>LLM apps generate text. Agents can take actions.</h2>
-          <p>
-            AI agents are more powerful because they can search, read files, update records,
-            call APIs, send messages, and orchestrate multiple steps. That makes governance
-            a runtime problem, not only a policy-document problem.
-          </p>
-        </div>
-        <div class="grid three">
-          <article class="card"><div class="icon">🛠️</div><h3>Tool exposure</h3><p>If a model sees a dangerous tool, it can attempt to call it. Governance should filter tools before the model receives them.</p></article>
-          <article class="card"><div class="icon">🔁</div><h3>Multi-step loops</h3><p>Agentic loops can call models and tools repeatedly. Governance needs iteration, cost, and tool-call limits.</p></article>
-          <article class="card"><div class="icon">🧾</div><h3>Action evidence</h3><p>Teams need to prove what the agent attempted, what was allowed, what was blocked, and why.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section split-section">
-      <div class="wrap split">
-        <div>
-          <p class="eyebrow">Gateway pattern</p>
-          <h2>Put Talon between the agent, tools, and model provider.</h2>
-          <p>
-            Talon can sit in the LLM gateway path for OpenAI-compatible traffic and in the
-            MCP/proxy path for tools. It applies policy before requests are forwarded and
-            writes evidence for allowed, filtered, blocked, or denied actions.
-          </p>
-        </div>
-        <div class="code-panel"><pre><code>Agent framework
+<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/ai-governance-eu/">EU governance</a><a href="/llm-governance-gateway/">Gateway</a><a href="/ai-governance-evidence-store/">Evidence</a><a href="/comparisons/talon-vs-microsoft-agt/">Talon vs AGT</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
+<main>
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Agents · Egress · Evidence</div><h1>Agents need action controls and traffic evidence.</h1><p class="hero-subtitle">Microsoft AGT is the right reference point for deep in-process action governance. Talon’s role is different: put an EU-sovereign evidence gateway around the agent’s LLM and tool traffic so you can prove what data left, where it went, and which policy allowed it.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key">Run the 60-second demo</a><a class="button secondary" href="/comparisons/talon-vs-microsoft-agt/">Compare vs AGT</a><a class="button ghost" href="/ai-governance-evidence-store/">Evidence model</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>Agent framework
   → proposes prompt + tools
-  → Talon gateway
+  → Talon gateway / MCP proxy
       → scan PII
-      → check model policy
-      → filter forbidden tools
-      → enforce cost caps
-      → record evidence
-  → LLM provider
-  → tool call policy check
-  → tool execution or block</code></pre></div>
-      </div>
-    </section>
+      → check sovereignty
+      → enforce budget
+      → filter or deny tools
+      → record decision
+      → sign evidence
+  → provider or tool</code></pre></div></div></section>
+<section class="strip"><div class="wrap strip-inner"><span>AGT: in-process actions</span><span>Talon: egress evidence</span><span>Use both when needed</span><span>EU reviews</span></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Layer model</p><h2>Do not confuse agent-action governance with traffic governance.</h2><p>AI agents add risk because they can reason, call tools, and run loops. Talon does not claim to replace deep in-process action governance. Talon covers the evidence-grade egress layer: LLM calls, provider routing, PII/content policy, cost, tool exposure, and exportable proof.</p></div><div class="grid three"><article class="card"><div class="icon">🏗️</div><h3>Action layer</h3><p>Use AGT-style controls when you need deterministic interception inside the agent runtime.</p></article><article class="card"><div class="icon">🛡️</div><h3>Egress layer</h3><p>Use Talon when you need a chokepoint for model/provider traffic and third-party tool access.</p></article><article class="card"><div class="icon">🧾</div><h3>Evidence layer</h3><p>Use Talon when the buyer asks for signed records, auditor exports, and integrity verification.</p></article></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Agent risks</p><h2>What Talon proves around agent workflows.</h2></div><div class="table-wrap comparison-table"><table><thead><tr><th>Risk</th><th>Example</th><th>Talon control</th></tr></thead><tbody><tr><td>PII leakage</td><td>Support ticket contains IBAN or email.</td><td>Input/output scan, redact/block/warn policy, signed evidence.</td></tr><tr><td>Non-EU egress</td><td>Confidential prompt sent to a non-approved provider.</td><td>Provider metadata, EU strict/preferred/global modes, routing evidence.</td></tr><tr><td>Runaway spend</td><td>Agent loop calls the model repeatedly.</td><td>Pre-spend budget checks and per-run / per-caller limits.</td></tr><tr><td>Tool exposure</td><td>Model sees <code>delete_records</code> or <code>export_all_customers</code>.</td><td>Allowed/forbidden tool policy, filtering/denial, evidence record.</td></tr><tr><td>No proof after review</td><td>Only app logs exist.</td><td>HMAC-signed records, hashes, CSV/JSON/signed export.</td></tr></tbody></table></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Best use</p><h2>Use Talon around existing agents first.</h2><p>Talon’s near-term wedge is strongest when an EU team already has agent or LLM traffic and needs to pass a DPO, customer, security, or audit review without rewriting every agent.</p></div><div class="code-panel"><pre><code>First workflow to govern
 
-    <section class="section">
-      <div class="wrap">
-        <div class="section-heading">
-          <p class="eyebrow">Risk map</p>
-          <h2>Common AI-agent risks and Talon controls.</h2>
-        </div>
-        <div class="table-wrap comparison-table">
-          <table>
-            <thead><tr><th>Risk</th><th>Example</th><th>Talon control</th></tr></thead>
-            <tbody>
-              <tr><td>Dangerous tool</td><td><code>delete_customer_records</code></td><td>Forbidden tools, allowed tools, filter or block mode.</td></tr>
-              <tr><td>Bulk operation</td><td>Update 10,000 records</td><td>Tool policy, row-count guard patterns, dry-run requirements, human review.</td></tr>
-              <tr><td>PII leakage</td><td>IBAN or email in support ticket</td><td>Input PII scan, redact/block/warn policy, data-tier classification.</td></tr>
-              <tr><td>Runaway spend</td><td>Agent loop keeps calling the model</td><td>Per-request, daily, monthly, and per-run cost limits.</td></tr>
-              <tr><td>Unapproved model</td><td>Confidential prompt sent to a non-approved provider</td><td>Model allowlists and EU data sovereignty routing.</td></tr>
-              <tr><td>No oversight</td><td>High-risk plan executes automatically</td><td>Plan review, approval, rejection, and modified approval flows.</td></tr>
-              <tr><td>No audit trail</td><td>No proof of what happened</td><td>Signed evidence and exportable records.</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
+- support bot
+- Slack bot
+- coding agent
+- LangGraph workflow
+- OpenClaw setup
+- vendor MCP integration
 
-    <section class="section">
-      <div class="wrap">
-        <div class="section-heading">
-          <p class="eyebrow">Frameworks</p>
-          <h2>Where Talon fits with LangGraph, OpenClaw, MCP, and custom agents.</h2>
-          <p>
-            Talon is not an agent framework. It is the governance layer around an agent
-            framework. Start by routing model traffic through the gateway, then add tool
-            governance where the agent exposes tools or MCP endpoints.
-          </p>
-        </div>
-        <div class="grid three">
-          <article class="card"><h3>LangGraph agents</h3><p>Govern LLM calls, exposed tools, cost limits, and evidence for multi-step agent workflows.</p></article>
-          <article class="card"><h3>OpenClaw and coding agents</h3><p>Route model traffic through Talon and keep records of calls, policy decisions, tools, and cost.</p></article>
-          <article class="card"><h3>MCP tools and vendors</h3><p>Use proxy patterns to govern tools/list and tools/call with allowlists, blocklists, redaction, and evidence.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section cta-section">
-      <div class="wrap">
-        <div class="cta-card">
-          <p class="eyebrow">First agent to govern</p>
-          <h2>Start with one agent that touches data or tools.</h2>
-          <p>Pick a support bot, coding agent, internal ops bot, or document workflow. Route it through Talon, add one forbidden tool, set one budget, and inspect the evidence.</p>
-          <div class="hero-actions">
-            <a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key-needed">Run the demo</a>
-            <a class="button secondary" href="/ai-governance-eu/">Read the EU governance guide</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Dativo Talon is an independent open-source project. Nothing on this site constitutes legal, compliance, or procurement advice.</span></div></footer>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
-</body>
-</html>
+Goal: signed evidence from day one</code></pre></div></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Next step</p><h2>Put Talon around one agent workflow.</h2><p>Route its LLM calls through Talon, set one PII policy, set one cost cap, and verify the evidence.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key-needed">Run the demo</a><a class="button secondary" href="/integrations/langgraph-agent-governance/">LangGraph integration</a></div></div></div></section>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Dativo Talon is an independent open-source project. Nothing on this site constitutes legal, compliance, or procurement advice.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body></html>
