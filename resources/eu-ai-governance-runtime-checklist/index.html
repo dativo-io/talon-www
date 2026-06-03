@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="canonical" href="https://dativo.io/resources/eu-ai-governance-runtime-checklist/" />
+  <title>EU AI Governance Runtime Checklist | Dativo Talon</title>
+  <meta name="description" content="A practical EU AI governance runtime checklist for LLM apps and AI agents: PII, tools, model routing, cost, oversight, evidence, and auditor export." />
+  <meta property="og:title" content="EU AI Governance Runtime Checklist" />
+  <meta property="og:description" content="Checklist for evaluating runtime controls for GDPR, EU AI Act readiness, LLM apps, AI agents, and audit evidence." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dativo.io/resources/eu-ai-governance-runtime-checklist/" />
+  <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="EU AI Governance Runtime Checklist" />
+  <meta name="twitter:description" content="Runtime controls checklist for EU LLM apps and AI agents." />
+  <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
+  <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/public/assets/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/public/assets/favicon-32x32.png" />
+  <link rel="apple-touch-icon" href="/public/assets/apple-touch-icon.png" />
+  <link rel="manifest" href="/public/assets/site.webmanifest" />
+  <meta name="theme-color" content="#07111f" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"EU AI Governance Runtime Checklist","description":"A checklist for evaluating runtime AI governance controls for LLM apps and AI agents.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/resources/eu-ai-governance-runtime-checklist/"}</script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
+</head>
+<body>
+<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/ai-governance-eu/">AI governance in EU</a><a href="/ai-governance-evidence-store/">Evidence</a><a href="/comparisons/">Comparisons</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
+<main>
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Checklist · GDPR · EU AI Act · AI agents</div><h1>EU AI governance runtime checklist.</h1><p class="hero-subtitle">Use this checklist to evaluate whether your LLM app or AI agent has runtime controls for sensitive data, model routing, tools, cost, human oversight, and auditor evidence.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key">Run the 60-second demo</a><a class="button secondary" href="/ai-governance-evidence-store/">Evidence store guide</a><a class="button ghost" href="/ai-governance-eu/">EU governance guide</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>Runtime AI governance
+
+[ ] classify request
+[ ] scan PII
+[ ] enforce policy
+[ ] govern tools
+[ ] cap cost
+[ ] route by residency
+[ ] write signed evidence
+[ ] export for auditors</code></pre></div></div></section>
+<section class="strip"><div class="wrap strip-inner"><span>Request controls</span><span>Response controls</span><span>Tool controls</span><span>Evidence controls</span><span>Audit export</span></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Request controls</p><h2>Before the request reaches a provider.</h2></div><div class="table-wrap"><table><thead><tr><th>Check</th><th>Why it matters</th><th>Talon proof</th></tr></thead><tbody><tr><td>Caller identity is known</td><td>Different apps, tenants, and teams need different policies.</td><td>Gateway caller key maps to caller and tenant.</td></tr><tr><td>Request is rate-limited</td><td>Prevents runaway workloads and abuse.</td><td>Gateway rate limits by global and caller policy.</td></tr><tr><td>Prompt and messages are parsed</td><td>Policy needs model, text, and tool metadata.</td><td>Talon extracts model, text, and tools before forwarding.</td></tr><tr><td>PII is detected</td><td>GDPR risk must be handled before data leaves.</td><td>EU recognizers such as email, IBAN, VAT, national IDs, phone, and IP.</td></tr><tr><td>Data tier is classified</td><td>Model and routing policy should depend on sensitivity.</td><td>Tier classification feeds OPA policy.</td></tr><tr><td>Model policy is evaluated</td><td>Not every model is approved for every data type.</td><td>Allowed models and provider policy per caller.</td></tr><tr><td>Provider jurisdiction is checked</td><td>EU teams need data-residency controls.</td><td>EU strict, EU preferred, or global routing modes.</td></tr><tr><td>Estimated cost is checked</td><td>Spend should be controlled before the call.</td><td>Pre-call cost caps by caller, tenant, day, or month.</td></tr><tr><td>Tool list is filtered</td><td>Agents should not see destructive or unauthorized tools.</td><td>Allowed and forbidden tool policy.</td></tr></tbody></table></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Response and evidence controls</p><h2>After the provider returns.</h2><p>Runtime governance also needs response scanning, cost attribution, hashes, signatures, and export. A dashboard is useful, but exportable evidence is what security, DPO, and audit teams need.</p></div><div class="code-panel"><pre><code>[ ] response PII scanned
+[ ] output tier recorded
+[ ] model and tokens recorded
+[ ] cost attributed
+[ ] input hash recorded
+[ ] output hash recorded
+[ ] evidence signed
+[ ] evidence exportable
+[ ] signature verifiable</code></pre></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Agent-specific controls</p><h2>Extra checks for AI agents.</h2></div><div class="grid three"><article class="card"><div class="icon">🛠️</div><h3>Tool governance</h3><p>Allowed tools, forbidden tools, bulk-operation limits, dry-run gates, and step-level evidence.</p></article><article class="card"><div class="icon">👤</div><h3>Human oversight</h3><p>Plan review for sensitive tools, high data tiers, or high-cost actions.</p></article><article class="card"><div class="icon">🔁</div><h3>Loop limits</h3><p>Maximum iterations, maximum tool calls per run, and maximum cost per run.</p></article></div></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Use the checklist</p><h2>Turn every unchecked box into a testable control.</h2><p>Start with one workflow, run it through Talon, and verify the evidence record.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key-needed">Run the demo</a><a class="button secondary" href="/comparisons/talon-vs-microsoft-agt/">Compare Talon vs Microsoft AGT</a></div></div></div></section>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Dativo Talon is an independent open-source project. Nothing on this site constitutes legal, compliance, or procurement advice.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body></html>
