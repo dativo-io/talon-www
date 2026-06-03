@@ -4,16 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/ai-governance-evidence-store/" />
-  <title>AI Governance Evidence Store for LLMs and Agents | Dativo Talon</title>
-  <meta name="description" content="Talon creates signed AI governance evidence records for LLM and AI-agent traffic: policy decisions, PII findings, model, cost, hashes, export, and verification." />
-  <meta property="og:title" content="AI Governance Evidence Store for LLMs and Agents" />
-  <meta property="og:description" content="Auditor-ready evidence for AI governance: signed records for policy, PII, model, cost, tools, hashes, export, and verification." />
+  <title>Signed Evidence for AI Governance | Dativo Talon</title>
+  <meta name="description" content="Talon creates signed evidence for AI traffic: caller, policy decision, PII findings, model, cost, hashes, export, and verification." />
+  <meta property="og:title" content="Signed Evidence for AI Governance" />
+  <meta property="og:description" content="Export and verify evidence for LLM and AI-agent traffic reviews." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://dativo.io/ai-governance-evidence-store/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="AI Governance Evidence Store for LLMs and Agents" />
-  <meta name="twitter:description" content="Signed evidence records for LLM and AI-agent governance." />
+  <meta name="twitter:title" content="Signed Evidence for AI Governance" />
+  <meta name="twitter:description" content="Signed records for AI traffic, policy decisions, PII, cost, and verification." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="16x16" href="/public/assets/favicon-16x16.png" />
@@ -22,33 +22,27 @@
   <link rel="manifest" href="/public/assets/site.webmanifest" />
   <meta name="theme-color" content="#07111f" />
   <link rel="stylesheet" href="/styles.css" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"AI Governance Evidence Store for LLMs and Agents","description":"A practical guide to signed evidence records for AI governance.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/ai-governance-evidence-store/"}</script>
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Signed Evidence for AI Governance","description":"How Talon records, exports, and verifies evidence for AI traffic.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/ai-governance-evidence-store/"}</script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
 </head>
 <body>
-  <header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/" aria-label="Dativo Talon home"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links" aria-label="Primary navigation"><a href="/ai-governance-eu/">AI governance in EU</a><a href="/llm-governance-gateway/">LLM gateway</a><a href="/ai-agent-governance/">Agents</a><a href="/comparisons/">Comparisons</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
-  <main>
-    <section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Evidence store · audit trail · verification</div><h1>AI governance needs evidence, not just dashboards.</h1><p class="hero-subtitle">Talon turns every allowed, blocked, redacted, and failed LLM or AI-agent request into a signed evidence record that can be inspected, exported, and verified.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key">Run the 60-second demo</a><a class="button secondary" href="/resources/eu-ai-governance-runtime-checklist/">Runtime checklist</a><a class="button ghost" href="/ai-governance-eu/">EU governance guide</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>talon audit list
+<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/ai-governance-eu/">EU governance</a><a href="/ai-governance-evidence-store/">Evidence</a><a href="/resources/eu-ai-governance-runtime-checklist/">Checklist</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
+<main>
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Evidence · Export · Verification</div><h1>Evidence your security and compliance teams can verify.</h1><p class="hero-subtitle">Talon turns AI traffic decisions into signed records. Each record shows who called, what policy ran, what PII was found, which model was used, what it cost, and whether the record still verifies.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key">Run the demo</a><a class="button secondary" href="/resources/eu-ai-governance-runtime-checklist/">Use the checklist</a><a class="button ghost" href="/comparisons/">Compare options</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>talon audit list
 
 talon audit show req_a1b2c3d4
 
 talon audit verify req_a1b2c3d4
 
 ✓ Evidence signature VALID</code></pre></div></div></section>
-    <section class="strip"><div class="wrap strip-inner"><span>Policy decision</span><span>PII findings</span><span>Model and cost</span><span>Input/output hashes</span><span>HMAC signature</span></div></section>
-    <section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Why evidence matters</p><h2>Logs explain. Evidence proves.</h2><p>For AI governance reviews, incident response, and auditor handoff, teams need structured records that show who called what, which policy was active, what was allowed or denied, what data tier was detected, which model was used, and whether the record was modified later.</p></div><div class="grid three"><article class="card"><div class="icon">🧾</div><h3>Every decision recorded</h3><p>Allowed, denied, redacted, filtered, and failed requests all produce reviewable records.</p></article><article class="card"><div class="icon">🔐</div><h3>Tamper-evident by design</h3><p>Evidence is signed so later changes invalidate verification.</p></article><article class="card"><div class="icon">📤</div><h3>Exportable for review</h3><p>Export CSV or JSON evidence for compliance, security, FinOps, or customer reviews.</p></article></div></div></section>
-    <section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Evidence fields</p><h2>What an AI governance evidence record should contain.</h2></div><div class="table-wrap comparison-table"><table><thead><tr><th>Field group</th><th>Purpose</th><th>Example</th></tr></thead><tbody><tr><td>Identity</td><td>Who made the request and under which tenant or agent</td><td>tenant_id, caller, agent_id, timestamp</td></tr><tr><td>Policy decision</td><td>What the governance layer decided</td><td>allowed, denied, redacted, blocked:tool</td></tr><tr><td>Classification</td><td>What sensitive data was detected</td><td>input tier, PII types, redaction action</td></tr><tr><td>Execution</td><td>What model/provider was used and what it cost</td><td>model, tokens, cost, duration</td></tr><tr><td>Tools</td><td>What tools were requested, filtered, blocked, or allowed</td><td>tools_requested, tools_filtered, tools_forwarded</td></tr><tr><td>Audit trail</td><td>Forensic linkage without storing raw prompts by default</td><td>input hash, output hash, correlation ID</td></tr><tr><td>Signature</td><td>Proof the record was not modified after creation</td><td>HMAC signature and verify command</td></tr></tbody></table></div></div></section>
-    <section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Auditor handoff</p><h2>Export, sample, verify.</h2><p>A practical evidence workflow is simple: export records for a time window, sample relevant evidence IDs, verify signatures, and attach the export plus verification note to the audit package.</p></div><div class="code-panel"><pre><code>talon audit export \
-  --format csv \
-  --from 2026-02-01 \
-  --to 2026-02-28
+<section class="strip"><div class="wrap strip-inner"><span>Caller</span><span>Policy decision</span><span>PII findings</span><span>Cost</span><span>Signature</span></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">What gets recorded</p><h2>One compact record per AI decision.</h2><p>Talon evidence is designed for review packages, not just dashboards.</p></div><div class="grid three"><article class="card"><div class="icon">🧾</div><h3>Decision context</h3><p>Caller, tenant, policy version, allow/deny/redact decision, and reason.</p></article><article class="card"><div class="icon">🔐</div><h3>Data and execution</h3><p>PII findings, input/output hashes, model, provider, tokens, duration, and cost.</p></article><article class="card"><div class="icon">✅</div><h3>Integrity check</h3><p>HMAC signature so records can be verified after export.</p></article></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Review workflow</p><h2>Export, sample, verify.</h2><p>For a customer, DPO, security, or auditor review: export a period, sample evidence IDs, verify signatures, and attach the export to the review package.</p></div><div class="code-panel"><pre><code>talon audit export --format json
 
-talon audit verify req_a1b2c3d4
+talon audit show req_a1b2c3d4
 
-# Document result:
-# req_a1b2c3d4 signature VALID</code></pre></div></div></section>
-    <section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Try it</p><h2>Generate and verify evidence in the demo.</h2><p>Run the no-key Docker demo, send a request with test PII, inspect evidence, and verify the signature.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key-needed">Run the demo</a><a class="button secondary" href="/comparisons/talon-vs-microsoft-agt/">Compare Talon vs Microsoft AGT</a></div></div></div></section>
-  </main>
-  <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Dativo Talon is an independent open-source project. Nothing on this site constitutes legal, compliance, or procurement advice.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
-</body>
-</html>
+talon audit verify req_a1b2c3d4</code></pre></div></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Try the evidence path</p><h2>Generate one signed record in minutes.</h2><p>Run the demo, send test PII, inspect the policy decision, and verify the signature.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key-needed">Run the demo</a><a class="button secondary" href="/ai-governance-eu/">Read EU governance guide</a></div></div></div></section>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Talon is self-hostable Apache-2.0 software. Product information is for technical evaluation and does not replace legal, compliance, or procurement advice.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body></html>
