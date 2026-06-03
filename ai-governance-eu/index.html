@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="canonical" href="https://dativo.io/ai-governance-eu/" />
+
+  <title>AI Governance in the EU for LLMs and AI Agents | Dativo Talon</title>
+  <meta
+    name="description"
+    content="AI governance in the EU needs runtime enforcement. Dativo Talon is an open-source AI governance gateway for GDPR, EU AI Act, LLM, and AI-agent controls."
+  />
+
+  <meta property="og:title" content="AI Governance in the EU for LLMs and AI Agents" />
+  <meta
+    property="og:description"
+    content="A practical guide to runtime AI governance for EU teams: PII controls, EU routing, tool governance, cost limits, human oversight, and signed evidence."
+  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dativo.io/ai-governance-eu/" />
+  <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Governance in the EU for LLMs and AI Agents" />
+  <meta
+    name="twitter:description"
+    content="Runtime AI governance for EU teams running LLMs and AI agents."
+  />
+  <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
+
+  <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/public/assets/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/public/assets/favicon-32x32.png" />
+  <link rel="apple-touch-icon" href="/public/assets/apple-touch-icon.png" />
+  <link rel="manifest" href="/public/assets/site.webmanifest" />
+  <meta name="theme-color" content="#07111f" />
+
+  <link rel="stylesheet" href="/styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "AI Governance in the EU for LLMs and AI Agents",
+    "description": "A practical guide to runtime AI governance for EU teams running LLMs and AI agents.",
+    "author": {
+      "@type": "Organization",
+      "name": "Dativo"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Dativo"
+    },
+    "mainEntityOfPage": "https://dativo.io/ai-governance-eu/"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is runtime AI governance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Runtime AI governance means enforcing policy while LLM and AI-agent requests are being processed: before sensitive data reaches a provider, before tools are exposed, before spend happens, and before evidence is written."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is Talon different from a PII proxy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A PII proxy mainly scans and redacts request or response text. Talon also handles caller identity, policy evaluation, model and provider routing, AI-agent tool governance, cost controls, and signed evidence records."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who is Talon for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Talon is designed for EU and EMEA teams adopting LLM applications and AI agents, especially engineering, platform, compliance, security, and FinOps teams that need runtime controls and audit evidence."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "b924ed6d708d4b6dafa7d0e34c07d7d6"}'>
+  </script>
+  <!-- End Cloudflare Web Analytics -->
+</head>
+
+<body>
+  <header class="site-nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/" aria-label="Dativo Talon home">
+        <img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" />
+        <span>Dativo Talon</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/#demo">Demo</a>
+        <a href="/#features">Features</a>
+        <a href="/#compare">Compare</a>
+        <a href="https://blog.dativo.io">Blog</a>
+        <a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow pill-eyebrow">
+            <span class="live-dot"></span>
+            Practical guide · EU AI Act · GDPR · AI agents
+          </div>
+
+          <h1>
+            AI governance in the EU
+            <span>needs runtime enforcement.</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Policy documents, risk registers, and vendor questionnaires are not enough
+            once teams deploy LLM applications and AI agents. Governance has to happen
+            in the request path: before data leaves, before tools are exposed, and before
+            auditors ask for evidence.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key">
+              Run the 60-second demo
+            </a>
+            <a class="button secondary" href="https://github.com/dativo-io/talon">
+              View Talon on GitHub
+            </a>
+            <a class="button ghost" href="/">
+              Back to homepage
+            </a>
+          </div>
+        </div>
+
+        <div class="terminal-card" aria-label="Runtime AI governance checklist">
+          <div class="terminal-header">
+            <span></span><span></span><span></span>
+          </div>
+          <pre><code>Runtime control points
+
+✓ caller identity
+✓ rate limit
+✓ PII scan
+✓ data-tier classification
+✓ model policy
+✓ EU provider routing
+✓ tool governance
+✓ cost cap
+✓ response scan
+✓ signed evidence</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="strip">
+      <div class="wrap strip-inner">
+        <span>EU AI Act readiness</span>
+        <span>GDPR controls</span>
+        <span>LLM governance gateway</span>
+        <span>AI agent governance</span>
+        <span>Auditor evidence</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">The problem</p>
+          <h2>EU teams need proof that AI systems are controlled.</h2>
+          <p>
+            The practical challenge is not only choosing an AI policy. It is proving what
+            happened when an LLM app or AI agent processed data, called tools, spent budget,
+            or routed traffic to a provider.
+          </p>
+        </div>
+
+        <div class="grid three">
+          <article class="card">
+            <div class="icon">🔐</div>
+            <h3>Sensitive data can leave silently</h3>
+            <p>Support tickets, documents, prompts, and attachments may contain emails, IBANs, phone numbers, VAT IDs, or national identifiers.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🛠️</div>
+            <h3>Agents can receive dangerous tools</h3>
+            <p>Prompt scanning alone does not protect you if the model can still see tools like delete records, bulk export, or admin actions.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🧾</div>
+            <h3>Audit logs are often too weak</h3>
+            <p>Plain logs are not enough for serious reviews. Teams need structured, exportable, tamper-evident evidence.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section split-section">
+      <div class="wrap split">
+        <div>
+          <p class="eyebrow">Runtime AI governance</p>
+          <h2>Govern the request path, not only the documentation.</h2>
+          <p>
+            Runtime AI governance means applying controls while requests are being handled.
+            A gateway can inspect caller identity, classify data, evaluate policy, filter tools,
+            enforce budgets, route providers, and write evidence for every decision.
+          </p>
+        </div>
+
+        <div class="code-panel">
+          <pre><code>App or agent
+  → Talon gateway
+      → identify caller
+      → scan PII
+      → classify tier
+      → evaluate policy
+      → filter tools
+      → enforce budget
+      → route provider
+      → sign evidence
+  → approved LLM provider</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">Control map</p>
+          <h2>What Talon enforces for EU AI governance.</h2>
+        </div>
+
+        <div class="table-wrap comparison-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Need</th>
+                <th>Runtime risk</th>
+                <th>Talon control</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>GDPR data protection</td>
+                <td>PII reaches an LLM provider unredacted</td>
+                <td>Input scanning, redact/block/warn modes, data-tier classification</td>
+              </tr>
+              <tr>
+                <td>EU data sovereignty</td>
+                <td>Requests route to non-approved jurisdictions</td>
+                <td>Provider metadata and EU strict / preferred / global routing modes</td>
+              </tr>
+              <tr>
+                <td>AI-agent safety</td>
+                <td>Model receives destructive or excessive tools</td>
+                <td>Allowed tools, forbidden tools, tool filtering, and tool decision evidence</td>
+              </tr>
+              <tr>
+                <td>Cost governance</td>
+                <td>LLM calls spend budget before anyone reacts</td>
+                <td>Per-caller budget limits and pre-call cost policy</td>
+              </tr>
+              <tr>
+                <td>Human oversight</td>
+                <td>High-risk requests execute without review</td>
+                <td>Plan review and approval workflows for sensitive actions</td>
+              </tr>
+              <tr>
+                <td>Audit readiness</td>
+                <td>Teams cannot prove what was processed or blocked</td>
+                <td>Signed evidence records with export and verification</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">Comparison</p>
+          <h2>Talon vs common AI governance approaches.</h2>
+        </div>
+
+        <div class="table-wrap comparison-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Approach</th>
+                <th>What it does well</th>
+                <th>What it misses</th>
+                <th>Where Talon fits</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>PII proxy</td>
+                <td>Detects or redacts sensitive text</td>
+                <td>Usually lacks tool governance, cost enforcement, provider routing, and signed evidence</td>
+                <td>Adds runtime policy and evidence around PII controls</td>
+              </tr>
+              <tr>
+                <td>Generic LLM gateway</td>
+                <td>Provider routing, reliability, API abstraction, budgets</td>
+                <td>Governance evidence and EU-specific controls may not be the product center</td>
+                <td>Focuses on EU governance, AI-agent tools, and auditor evidence</td>
+              </tr>
+              <tr>
+                <td>GRC platform</td>
+                <td>Policies, risk registers, approvals, documentation</td>
+                <td>Usually not in the LLM or agent runtime path</td>
+                <td>Provides technical enforcement records that can support governance workflows</td>
+              </tr>
+              <tr>
+                <td>Observability tool</td>
+                <td>Traces, debugging, latency, usage analytics</td>
+                <td>Often observes after the fact rather than enforcing before execution</td>
+                <td>Enforces controls before forwarding and writes signed governance evidence</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section split-section">
+      <div class="wrap split">
+        <div>
+          <p class="eyebrow">First implementation</p>
+          <h2>Start with one high-risk AI workflow.</h2>
+          <p>
+            Good first candidates are support bots, internal Slack bots, coding agents,
+            document summarizers, or any workflow that touches customer data, internal data,
+            provider routing, or tool calls.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key">Run the demo</a>
+            <a class="button secondary" href="https://github.com/dativo-io/talon/tree/main/docs">Read docs</a>
+          </div>
+        </div>
+
+        <div class="code-panel">
+          <pre><code># What to verify first
+
+1. Send a request with test PII
+2. Confirm policy decision
+3. Inspect evidence
+4. Verify HMAC signature
+5. Add one caller budget
+6. Add one forbidden tool
+7. Export evidence for review</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span>© <span id="year"></span> Dativo</span>
+      <span>Dativo Talon is an independent open-source project. Nothing on this site constitutes legal, compliance, or procurement advice.</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
