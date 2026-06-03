@@ -4,27 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/llm-governance-gateway/" />
-
-  <title>What Is an LLM Governance Gateway? | Dativo Talon</title>
-  <meta
-    name="description"
-    content="An LLM governance gateway enforces policy before requests reach OpenAI, Anthropic, Azure OpenAI, Bedrock, or local models. Learn how Talon adds PII, cost, routing, tool, and evidence controls."
-  />
-
-  <meta property="og:title" content="What Is an LLM Governance Gateway?" />
-  <meta
-    property="og:description"
-    content="A practical guide to LLM governance gateways: PII controls, model policy, cost governance, EU routing, tool filtering, and signed evidence."
-  />
+  <title>LLM Egress Governance Gateway | Dativo Talon</title>
+  <meta name="description" content="Talon is an EU-sovereign, evidence-grade LLM egress gateway. Enforce PII, cost, model, provider, and sovereignty policy before AI traffic leaves, then export signed evidence." />
+  <meta property="og:title" content="LLM Egress Governance Gateway" />
+  <meta property="og:description" content="Change one URL to govern LLM traffic and produce signed evidence for EU reviews." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://dativo.io/llm-governance-gateway/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
-
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="What Is an LLM Governance Gateway?" />
-  <meta name="twitter:description" content="Runtime governance for LLM traffic: policy, PII, cost, routing, tools, and evidence." />
+  <meta name="twitter:title" content="LLM Egress Governance Gateway" />
+  <meta name="twitter:description" content="EU-sovereign LLM egress controls with signed evidence." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
-
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="16x16" href="/public/assets/favicon-16x16.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/public/assets/favicon-32x32.png" />
@@ -32,165 +22,27 @@
   <link rel="manifest" href="/public/assets/site.webmanifest" />
   <meta name="theme-color" content="#07111f" />
   <link rel="stylesheet" href="/styles.css" />
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "What Is an LLM Governance Gateway?",
-    "description": "A practical guide to LLM governance gateways for teams running production LLM applications.",
-    "author": {"@type": "Organization", "name": "Dativo"},
-    "publisher": {"@type": "Organization", "name": "Dativo"},
-    "mainEntityOfPage": "https://dativo.io/llm-governance-gateway/"
-  }
-  </script>
-
-  <!-- Cloudflare Web Analytics -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
-  <!-- End Cloudflare Web Analytics -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"LLM Egress Governance Gateway","description":"A Talon 2.0 guide to governing LLM egress with signed evidence.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/llm-governance-gateway/"}</script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
 </head>
-
 <body>
-  <header class="site-nav">
-    <div class="wrap nav-inner">
-      <a class="brand" href="/" aria-label="Dativo Talon home">
-        <img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" />
-        <span>Dativo Talon</span>
-      </a>
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="/ai-governance-eu/">AI governance in EU</a>
-        <a href="/ai-agent-governance/">AI agent governance</a>
-        <a href="/#demo">Demo</a>
-        <a href="https://blog.dativo.io">Blog</a>
-        <a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow pill-eyebrow"><span class="live-dot"></span>LLM governance gateway · OpenAI-compatible · EU-ready</div>
-          <h1>What is an LLM governance gateway?</h1>
-          <p class="hero-subtitle">
-            An LLM governance gateway sits between your applications and model providers.
-            It enforces policy before requests reach OpenAI, Anthropic, Azure OpenAI,
-            Bedrock, Mistral, Ollama, or any OpenAI-compatible endpoint.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key">Run the 60-second demo</a>
-            <a class="button secondary" href="/ai-governance-eu/">Read the EU governance guide</a>
-            <a class="button ghost" href="https://github.com/dativo-io/talon">View on GitHub</a>
-          </div>
-        </div>
-        <div class="terminal-card" aria-label="LLM governance gateway flow">
-          <div class="terminal-header"><span></span><span></span><span></span></div>
-          <pre><code>App request
-  → identify caller
-  → rate limit
-  → extract model + text
-  → scan PII
-  → classify data tier
-  → evaluate policy
-  → filter tools
-  → redact if needed
-  → forward to provider
-  → scan response
-  → sign evidence</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <section class="strip">
-      <div class="wrap strip-inner">
-        <span>PII controls</span><span>Model policy</span><span>Cost governance</span><span>EU routing</span><span>Signed evidence</span>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <div class="section-heading">
-          <p class="eyebrow">Definition</p>
-          <h2>A governance gateway controls LLM traffic at runtime.</h2>
-          <p>
-            A normal LLM proxy forwards traffic. A governance gateway decides whether a
-            request is allowed, which model or provider can receive it, whether sensitive
-            data must be redacted, which tools are exposed, and what evidence is written.
-          </p>
-        </div>
-        <div class="grid three">
-          <article class="card"><div class="icon">🔐</div><h3>Before data leaves</h3><p>Scan prompts, messages, and attachments for PII and classify the request before provider routing.</p></article>
-          <article class="card"><div class="icon">💶</div><h3>Before spend happens</h3><p>Estimate and enforce per-caller request, daily, or monthly budget limits before the call is forwarded.</p></article>
-          <article class="card"><div class="icon">🧾</div><h3>Before audits arrive</h3><p>Write structured, signed evidence for allowed, redacted, blocked, and failed requests.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section split-section">
-      <div class="wrap split">
-        <div>
-          <p class="eyebrow">Architecture</p>
-          <h2>Your SDK stays. The base URL changes.</h2>
-          <p>
-            Teams can usually start by pointing an OpenAI-compatible client at Talon.
-            Talon authenticates the caller, applies policy, injects the real provider key,
-            forwards the request, and records evidence.
-          </p>
-        </div>
-        <div class="code-panel"><pre><code>from openai import OpenAI
-
-client = OpenAI(
-    base_url="http://localhost:8080/v1/proxy/openai/v1",
-    api_key="&lt;talon-caller-key&gt;"
-)
-
-client.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=[{"role": "user", "content": "Hello"}]
-)</code></pre></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <div class="section-heading">
-          <p class="eyebrow">Controls</p>
-          <h2>What an LLM governance gateway should enforce.</h2>
-        </div>
-        <div class="table-wrap comparison-table">
-          <table>
-            <thead><tr><th>Control</th><th>Why it matters</th><th>Talon capability</th></tr></thead>
-            <tbody>
-              <tr><td>Caller identity</td><td>Different apps and tenants need different policies.</td><td>Caller keys, tenant IDs, per-caller policy overrides.</td></tr>
-              <tr><td>PII policy</td><td>Requests can include customer or employee data.</td><td>Detect, warn, redact, or block before forwarding.</td></tr>
-              <tr><td>Model allowlists</td><td>Not every model is approved for every data tier.</td><td>Allowed/blocked models and data-tier-aware policy.</td></tr>
-              <tr><td>EU routing</td><td>European teams need provider and region control.</td><td>Provider metadata and EU strict/preferred/global routing modes.</td></tr>
-              <tr><td>Tool governance</td><td>Agents can expose dangerous functions to models.</td><td>Allowed tools, forbidden tools, filtering, and block modes.</td></tr>
-              <tr><td>Cost caps</td><td>Spend alerts after the fact are too late.</td><td>Pre-call budget checks and per-caller cost attribution.</td></tr>
-              <tr><td>Evidence</td><td>Compliance teams need proof, not only dashboards.</td><td>HMAC-signed evidence with export and verification.</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="section cta-section">
-      <div class="wrap">
-        <div class="cta-card">
-          <p class="eyebrow">Try it</p>
-          <h2>See an LLM governance gateway in action.</h2>
-          <p>Run the no-key Docker demo, send a request with test PII, inspect the evidence, and verify the signature.</p>
-          <div class="hero-actions">
-            <a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key-needed">Run the demo</a>
-            <a class="button secondary" href="/ai-agent-governance/">Next: AI agent governance</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Dativo Talon is an independent open-source project. Nothing on this site constitutes legal, compliance, or procurement advice.</span></div></footer>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
-</body>
-</html>
+<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/ai-governance-eu/">EU governance</a><a href="/ai-governance-evidence-store/">Evidence</a><a href="/ai-agent-governance/">Agents</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
+<main>
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Change one URL · Govern AI egress · Sign evidence</div><h1>Put governance where AI traffic leaves.</h1><p class="hero-subtitle">Talon’s gateway is the Talon 2.0 control point: a network chokepoint for LLM calls where policy runs before provider access and every decision becomes signed evidence.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key">Run the 60-second demo</a><a class="button secondary" href="/ai-governance-evidence-store/">Evidence model</a><a class="button ghost" href="/ai-governance-eu/">EU governance guide</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>App / agent
+  → Talon gateway
+      → identify caller
+      → scan PII
+      → classify data tier
+      → evaluate OPA policy
+      → enforce budget
+      → check provider region
+      → redact or deny
+      → sign evidence
+  → approved provider</code></pre></div></div></section>
+<section class="strip"><div class="wrap strip-inner"><span>PII before provider</span><span>Cost before spend</span><span>EU before egress</span><span>Evidence after decision</span></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Definition</p><h2>A Talon-style gateway is not just a proxy.</h2><p>A proxy forwards traffic. Talon decides whether the request is allowed, whether data must be redacted, which provider posture is acceptable, whether budget remains, and what signed record proves the decision later.</p></div><div class="grid three"><article class="card"><div class="icon">🔐</div><h3>Govern data before it leaves</h3><p>PII and data-tier classification happen before the provider call, not only in post-hoc logs.</p></article><article class="card"><div class="icon">🇪🇺</div><h3>Enforce sovereignty posture</h3><p>EU strict, EU preferred, and global modes make provider jurisdiction a product primitive.</p></article><article class="card"><div class="icon">🧾</div><h3>Generate evidence, not logs</h3><p>Each request produces a signed record that can be exported and verified.</p></article></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Talon 2.0 scope</p><h2>What the gateway should prove.</h2></div><div class="table-wrap comparison-table"><table><thead><tr><th>Control</th><th>Question it answers</th><th>Evidence fact</th></tr></thead><tbody><tr><td>Caller identity</td><td>Which app, tenant, or workflow made the request?</td><td>caller, tenant_id, agent_id</td></tr><tr><td>PII and data tier</td><td>Was sensitive data present?</td><td>PII findings, input/output tier, redaction action</td></tr><tr><td>Model and provider policy</td><td>Was this model/provider allowed for this data?</td><td>model, provider, jurisdiction, routing decision</td></tr><tr><td>Pre-spend cost cap</td><td>Was budget checked before spend?</td><td>estimated cost, actual cost, caller budget</td></tr><tr><td>Evidence integrity</td><td>Can this record be trusted later?</td><td>input/output hashes and HMAC signature</td></tr></tbody></table></div></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Evaluate Talon</p><h2>Start with one existing LLM workflow.</h2><p>Point one OpenAI-compatible client at Talon, send test PII, inspect the policy decision, and verify the signed evidence.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key-needed">Run the demo</a><a class="button secondary" href="/comparisons/talon-vs-microsoft-agt/">Compare vs AGT</a></div></div></div></section>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Dativo Talon is an independent open-source project. Nothing on this site constitutes legal, compliance, or procurement advice.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body></html>
