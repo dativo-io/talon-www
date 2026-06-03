@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="canonical" href="https://dativo.io/integrations/langgraph-agent-governance/" />
+
+  <title>LangGraph Agent Governance with Talon</title>
+  <meta name="description" content="Govern LangGraph agents with Talon. Add runtime controls for LLM calls, tool exposure, PII, cost, EU routing, and signed evidence." />
+  <meta property="og:title" content="LangGraph Agent Governance with Talon" />
+  <meta property="og:description" content="LangGraph makes it easy to build agents. Talon adds the governance layer around model calls, tool exposure, cost, PII, and evidence." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dativo.io/integrations/langgraph-agent-governance/" />
+  <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="LangGraph Agent Governance with Talon" />
+  <meta name="twitter:description" content="Govern LangGraph model calls, tools, PII, cost, routing, and evidence." />
+  <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
+  <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/public/assets/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/public/assets/favicon-32x32.png" />
+  <link rel="apple-touch-icon" href="/public/assets/apple-touch-icon.png" />
+  <link rel="manifest" href="/public/assets/site.webmanifest" />
+  <meta name="theme-color" content="#07111f" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"LangGraph Agent Governance with Talon","description":"A practical integration guide for governing LangGraph agents with Talon.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/integrations/langgraph-agent-governance/"}
+  </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
+</head>
+<body>
+  <header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/" aria-label="Dativo Talon home"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links" aria-label="Primary navigation"><a href="/ai-agent-governance/">AI agent governance</a><a href="/llm-governance-gateway/">LLM gateway</a><a href="/ai-governance-eu/">AI governance in EU</a><a href="https://blog.dativo.io">Blog</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
+
+  <main>
+    <section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Integration · LangGraph · AI agent governance</div><h1>Govern LangGraph agents with Talon.</h1><p class="hero-subtitle">LangGraph makes it easy to build agentic workflows. Talon adds the runtime governance layer around model calls, tool exposure, PII, cost, EU routing, and signed evidence.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key">Run the 60-second demo</a><a class="button secondary" href="/ai-agent-governance/">AI agent governance guide</a><a class="button ghost" href="https://github.com/dativo-io/talon">View on GitHub</a></div></div><div class="terminal-card" aria-label="LangGraph to Talon architecture"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>LangGraph agent
+  → ChatOpenAI / OpenAI client
+  → Talon gateway
+      → PII scan
+      → model policy
+      → tool filtering
+      → cost cap
+      → evidence
+  → LLM provider</code></pre></div></div></section>
+
+    <section class="strip"><div class="wrap strip-inner"><span>LangGraph</span><span>Tool governance</span><span>PII controls</span><span>Cost caps</span><span>Evidence</span></div></section>
+
+    <section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Problem</p><h2>LangGraph agents need controls around both prompts and tools.</h2><p>Agent frameworks help teams compose reasoning, tool calls, and stateful workflows. That power creates governance questions: which tools are exposed, which model receives sensitive data, how many steps can execute, and how can the team prove what happened?</p></div><div class="grid three"><article class="card"><div class="icon">🛠️</div><h3>Tool exposure</h3><p>Filter dangerous tools before the model sees them, or block the whole request when unsafe tools are present.</p></article><article class="card"><div class="icon">🔐</div><h3>PII in prompts</h3><p>Detect and redact customer or employee identifiers before forwarding to a provider.</p></article><article class="card"><div class="icon">💶</div><h3>Agent cost</h3><p>Attribute and control cost by caller, tenant, agent, or workflow before spend gets out of control.</p></article></div></div></section>
+
+    <section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Minimal setup</p><h2>Point the LangGraph model client at Talon.</h2><p>The first integration path is the LLM API gateway. Keep your LangGraph application logic and change the OpenAI-compatible base URL so model traffic passes through Talon.</p></div><div class="code-panel"><pre><code>from langchain_openai import ChatOpenAI
+
+llm = ChatOpenAI(
+    model="gpt-4o-mini",
+    base_url="http://localhost:8080/v1/proxy/openai/v1",
+    api_key="&lt;talon-caller-key&gt;",
+)
+
+# Use llm inside your LangGraph nodes as usual.</code></pre></div></div></section>
+
+    <section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Governance pattern</p><h2>What Talon controls for LangGraph agents.</h2></div><div class="table-wrap comparison-table"><table><thead><tr><th>LangGraph risk</th><th>Example</th><th>Talon control</th></tr></thead><tbody><tr><td>Prompt contains PII</td><td>Support ticket includes email, IBAN, or phone number</td><td>Input scan, redact/block/warn policy, data-tier classification</td></tr><tr><td>Agent exposes unsafe tool</td><td><code>delete_records</code>, <code>export_all_customers</code></td><td>Forbidden tools, allowed tools, filter/block mode</td></tr><tr><td>Unapproved model</td><td>Confidential workflow sent to a non-approved provider</td><td>Model allowlists and EU data sovereignty routing</td></tr><tr><td>Runaway loop cost</td><td>Multi-step graph triggers many model calls</td><td>Per-caller, per-request, daily, monthly, and per-run cost controls</td></tr><tr><td>No audit evidence</td><td>Only application logs exist after the run</td><td>Signed evidence records with policy decision, PII findings, model, cost, and hashes</td></tr></tbody></table></div></div></section>
+
+    <section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Verify</p><h2>Check evidence after a LangGraph run.</h2><p>After routing traffic through Talon, inspect recent evidence and verify the signature. This gives engineering, security, compliance, and FinOps a shared record of what happened.</p></div><div class="code-panel"><pre><code>talon audit list --limit 10
+
+talon audit show &lt;evidence-id&gt;
+
+talon audit verify &lt;evidence-id&gt;
+
+talon costs --tenant default</code></pre></div></div></section>
+
+    <section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Next step</p><h2>Govern one LangGraph workflow first.</h2><p>Start with a workflow that has customer data, tools, or repeated model calls. Add Talon as the gateway, define one tool policy, and verify evidence.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key-needed">Run the demo</a><a class="button secondary" href="/comparisons/talon-vs-pii-proxy/">Compare with a PII proxy</a></div></div></div></section>
+  </main>
+  <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Dativo Talon is an independent open-source project. Nothing on this site constitutes legal, compliance, or procurement advice.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
