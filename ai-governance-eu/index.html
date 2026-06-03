@@ -4,15 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/ai-governance-eu/" />
-  <title>EU AI Governance for LLM and Agent Traffic | Dativo Talon</title>
-  <meta name="description" content="A Talon 2.0 guide to EU-sovereign, evidence-grade AI governance: PII controls, sovereignty routing, pre-spend cost caps, tool policy, and signed evidence for GDPR, NIS2, DORA, and EU AI Act reviews." />
-  <meta property="og:title" content="EU AI Governance for LLM and Agent Traffic" />
+  <title>EU AI Governance for AI Traffic | Dativo Talon</title>
+  <meta name="description" content="Control LLM and AI-agent traffic before it leaves your environment, then export signed evidence for GDPR, NIS2, DORA, and EU AI Act reviews." />
+  <meta property="og:title" content="EU AI Governance for AI Traffic" />
   <meta property="og:description" content="Govern AI traffic before it leaves, then prove what happened with signed evidence." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://dativo.io/ai-governance-eu/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="EU AI Governance for LLM and Agent Traffic" />
+  <meta name="twitter:title" content="EU AI Governance for AI Traffic" />
   <meta name="twitter:description" content="EU-sovereign egress, PII controls, cost caps, and signed evidence for AI traffic." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
@@ -22,34 +22,24 @@
   <link rel="manifest" href="/public/assets/site.webmanifest" />
   <meta name="theme-color" content="#07111f" />
   <link rel="stylesheet" href="/styles.css" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"EU AI Governance for LLM and Agent Traffic","description":"A practical Talon 2.0 guide to EU-sovereign, evidence-grade governance for AI traffic.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/ai-governance-eu/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"EU AI Governance for AI Traffic","description":"A practical guide to governing AI traffic and evidence for EU reviews.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/ai-governance-eu/"}</script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
 </head>
 <body>
-<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/ai-governance-evidence-store/">Evidence</a><a href="/llm-governance-gateway/">Gateway</a><a href="/ai-agent-governance/">Agents</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
+<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/ai-governance-eu/">EU governance</a><a href="/ai-governance-evidence-store/">Evidence</a><a href="/resources/eu-ai-governance-runtime-checklist/">Checklist</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
 <main>
-<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>EU-sovereign · Evidence-grade · Talon 2.0</div><h1>EU AI governance needs proof at the traffic layer.</h1><p class="hero-subtitle">For European teams, AI governance is not only policies, questionnaires, or dashboards. Once LLM apps and agents process real data, the control point is the request path: what data leaves, where it goes, what policy allowed it, and what evidence proves it later.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key">Run the 60-second demo</a><a class="button secondary" href="/ai-governance-evidence-store/">See evidence model</a><a class="button ghost" href="/resources/eu-ai-governance-runtime-checklist/">Use checklist</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>EU control path
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>EU reviews · AI traffic · Signed evidence</div><h1>Control AI traffic before it leaves your environment.</h1><p class="hero-subtitle">Talon helps EU teams answer the questions that come up in customer, security, DPO, and auditor reviews: what data left, where it went, which policy allowed it, what it cost, and whether the record can be verified.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key">Run the 60-second demo</a><a class="button secondary" href="/ai-governance-evidence-store/">See evidence model</a><a class="button ghost" href="/resources/eu-ai-governance-runtime-checklist/">Use checklist</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>Review questions
 
-1. identify caller
-2. scan PII and classify tier
-3. evaluate policy
-4. enforce cost and routing
-5. govern tools
-6. forward or deny
-7. sign evidence
-8. export for review</code></pre></div></div></section>
-<section class="strip"><div class="wrap strip-inner"><span>GDPR</span><span>NIS2</span><span>DORA</span><span>EU AI Act</span><span>ISO 27001 evidence</span></div></section>
-<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Talon 2.0 thesis</p><h2>Evidence-grade governance is enforced before execution.</h2><p>Talon’s wedge is narrow by design: it is a self-hostable network chokepoint that turns AI traffic into signed, regulator-mapped evidence. It does not try to be the broadest AI gateway or the deepest in-process agent framework.</p></div><div class="grid three"><article class="card"><div class="icon">🔐</div><h3>PII and content controls</h3><p>Detect, redact, warn, or block sensitive data before it reaches an LLM provider, using EU-relevant recognizers such as IBAN, VAT IDs, and national IDs.</p></article><article class="card"><div class="icon">🇪🇺</div><h3>Sovereignty routing</h3><p>Use EU strict, EU preferred, or global modes to decide which providers and regions are acceptable for a given data tier.</p></article><article class="card"><div class="icon">🧾</div><h3>Signed evidence</h3><p>Record caller, tenant, policy decision, PII findings, model, cost, hashes, and signature so auditors receive artifacts, not screenshots.</p></article></div></div></section>
-<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Control mapping</p><h2>What Talon proves for EU reviews.</h2></div><div class="table-wrap comparison-table"><table><thead><tr><th>Review question</th><th>Talon 2.0 control</th><th>Evidence artifact</th></tr></thead><tbody><tr><td>What AI traffic processed personal or confidential data?</td><td>PII scan, data-tier classification, input/output hashes.</td><td>Signed evidence record and audit export.</td></tr><tr><td>Was data sent to an approved provider or region?</td><td>Provider metadata and EU sovereignty policy.</td><td>Routing decision, selected provider, rejected candidates or denial reason.</td></tr><tr><td>Was the request allowed by policy?</td><td>Embedded OPA policy evaluation.</td><td>Decision, action, policy version, and reasons.</td></tr><tr><td>Was spend controlled before the call?</td><td>Pre-spend cost caps by caller, tenant, day, or month.</td><td>Estimated cost, actual cost, caller budget context.</td></tr><tr><td>Can the record be trusted later?</td><td>HMAC-signed evidence.</td><td><code>talon audit verify &lt;id&gt;</code> result.</td></tr></tbody></table></div></div></section>
-<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Buyer positioning</p><h2>Use Talon when the buyer needs defensible evidence.</h2><p>The best-fit buyer is an EU or EMEA team that already has LLM or agent traffic and now needs to pass a customer, DPO, security, board, or auditor review without sending governance data to another managed control plane.</p></div><div class="code-panel"><pre><code>Best fit
-
-- European SMB / regulated team
-- existing LLM or agent traffic
-- GDPR / NIS2 / DORA review pressure
-- DPO or security questions
-- need self-hosted evidence
-- no appetite for agent rewrites</code></pre></div></div></section>
-<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Next step</p><h2>Run one governed request and verify the evidence.</h2><p>The fastest way to evaluate Talon is to route one workflow through the gateway and inspect the signed evidence record.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key-needed">Run the demo</a><a class="button secondary" href="/comparisons/talon-vs-microsoft-agt/">Compare Talon vs AGT</a></div></div></div></section>
+- What data left?
+- Which provider received it?
+- Was PII handled?
+- Was spend controlled?
+- Which policy allowed it?
+- Can the record be verified?</code></pre></div></div></section>
+<section class="strip"><div class="wrap strip-inner"><span>GDPR</span><span>NIS2</span><span>DORA</span><span>EU AI Act</span><span>Security reviews</span></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Controls</p><h2>What Talon adds to AI traffic.</h2><p>Talon sits at the provider boundary. It checks policy before requests are forwarded and records signed evidence after each decision.</p></div><div class="grid three"><article class="card"><div class="icon">🔐</div><h3>PII and content controls</h3><p>Detect, redact, warn, or block sensitive data before it reaches an LLM provider.</p></article><article class="card"><div class="icon">🇪🇺</div><h3>Provider and region control</h3><p>Apply EU strict, EU preferred, or global routing rules based on your data posture.</p></article><article class="card"><div class="icon">🧾</div><h3>Signed evidence</h3><p>Record policy decisions, PII findings, model, cost, hashes, and signature for later review.</p></article></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Evidence map</p><h2>From review question to proof.</h2></div><div class="table-wrap comparison-table"><table><thead><tr><th>Question</th><th>Talon control</th><th>Evidence</th></tr></thead><tbody><tr><td>What AI traffic processed personal or confidential data?</td><td>PII scan and data-tier classification.</td><td>PII findings, hashes, and signed record.</td></tr><tr><td>Was data sent to an approved provider or region?</td><td>Provider metadata and routing policy.</td><td>Provider, region, routing decision, and reason.</td></tr><tr><td>Was spend controlled?</td><td>Pre-spend cost caps.</td><td>Estimated cost, actual cost, and caller context.</td></tr><tr><td>Can the record be trusted later?</td><td>HMAC-signed evidence.</td><td><code>talon audit verify &lt;id&gt;</code>.</td></tr></tbody></table></div></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Evaluate Talon</p><h2>Run one governed request and verify the evidence.</h2><p>Route one workflow through Talon, inspect the policy decision, and verify the signed evidence record.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key-needed">Run the demo</a><a class="button secondary" href="/comparisons/">Compare options</a></div></div></div></section>
 </main>
-<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Dativo Talon is an independent open-source project. Nothing on this site constitutes legal, compliance, or procurement advice.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Talon is self-hostable Apache-2.0 software. Product information is for technical evaluation and does not replace legal, compliance, or procurement advice.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body></html>
