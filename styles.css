@@ -362,6 +362,10 @@ pre {
   gap: 18px;
 }
 
+.grid.four {
+  grid-template-columns: repeat(4, 1fr);
+}
+
 .grid.three {
   grid-template-columns: repeat(3, 1fr);
 }
@@ -535,6 +539,12 @@ td {
   max-width: 680px;
 }
 
+@media (max-width: 1060px) {
+  .grid.four {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 920px) {
   .hero-grid,
   .split,
@@ -565,7 +575,8 @@ td {
     display: none;
   }
 
-  .grid.three {
+  .grid.three,
+  .grid.four {
     grid-template-columns: 1fr;
   }
 
