@@ -1,0 +1,29 @@
+name: Build site
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build static site and Docusaurus docs
+        run: bash scripts/build-site-with-docs.sh
+
+      - name: Verify expected outputs
+        run: |
+          test -f dist/index.html
+          test -f dist/sitemap.xml
+          test -f dist/talon/docs/index.html
+          test -f dist/talon/docs/sitemap.xml
