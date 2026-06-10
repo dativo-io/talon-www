@@ -22,4 +22,5 @@ module.exports = {
   'observability.md': 'docs/OBSERVABILITY.md',
   'policy-cookbook.md': 'docs/guides/policy-cookbook.md',
   'pii-semantic-enrichment.md': 'docs/reference/pii-semantic-enrichment.md',
+  'release-notes.md': 'CHANGELOG.md',
 };
