@@ -4,7 +4,6 @@
 const config = {
   title: 'Dativo Talon Docs',
   tagline: 'Govern AI traffic before it leaves. Prove what happened with signed evidence.',
-  favicon: 'img/favicon.ico',
 
   url: 'https://dativo.io',
   baseUrl: '/talon/docs/',
@@ -63,13 +62,8 @@ const config = {
             'Dativo Talon documentation for LLM gateway governance, PII controls, tool policy, cost caps, EU data sovereignty, and signed evidence exports.',
         },
       ],
-      image: 'img/og-image.png',
       navbar: {
         title: 'Dativo Talon Docs',
-        logo: {
-          alt: 'Dativo Talon logo',
-          src: 'img/talon-logo.png',
-        },
         items: [
           {to: '/', label: 'Docs', position: 'left'},
           {to: '/quickstart/', label: 'Quickstart', position: 'left'},
