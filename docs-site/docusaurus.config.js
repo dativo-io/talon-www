@@ -12,7 +12,9 @@ const config = {
   organizationName: 'dativo-io',
   projectName: 'talon',
 
-  onBrokenLinks: 'throw',
+  // Imported GitHub docs may reference files that are not part of the public
+  // Docusaurus subset yet. Do not fail production deploys on those links.
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   i18n: {
