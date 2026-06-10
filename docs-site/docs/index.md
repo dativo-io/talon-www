@@ -8,7 +8,19 @@ slug: /
 
 Dativo Talon is a self-hostable governance gateway for LLM applications, AI agents, and vendor AI workflows. It helps teams enforce policy before provider access and produce signed evidence after each decision.
 
-Use these docs to install Talon, route existing AI traffic through the gateway, configure PII and tool controls, cap spend, enforce EU data-sovereignty rules, and export audit evidence.
+Use these docs to install Talon, route existing AI traffic through the gateway, configure PII and tool controls, cap spend, enforce EU data-sovereignty and egress rules, and export audit evidence.
+
+## Latest release highlights
+
+Talon 1.6.0 adds user-facing controls and fixes that are important for operators evaluating the gateway:
+
+- **Egress policy by data tier and destination** — configure which providers or regions each data tier may reach before upstream access.
+- **Egress evidence and telemetry** — signed evidence can include an `egress_decision` section, plus OTel metrics and structured denial logs.
+- **Named data-tier aliases** — use `public`, `internal`, and `confidential` in gateway config instead of only numeric tiers.
+- **Configuration accuracy fixes** — generated config no longer includes unused keys, YAML `log_level` / `log_format` now take effect, and schema coverage has been expanded.
+- **Cache TTL by tier** — `cache.ttl_by_tier` is now enforced instead of only documented.
+
+Read the [release notes](./release-notes.md) before upgrading or copying older configuration snippets.
 
 ## Start here
 
@@ -40,6 +52,7 @@ Use these docs to install Talon, route existing AI traffic through the gateway, 
 - [Gateway dashboard](./gateway-dashboard.md)
 - [Observability](./observability.md)
 - [Policy cookbook](./policy-cookbook.md)
+- [Release notes](./release-notes.md)
 
 ## Source of truth
 
