@@ -71,6 +71,28 @@ function normalizeLinks(markdown) {
     .replace(/PERSONA_GUIDES\.md/g, './persona-guides.md');
 }
 
+function escapeMdxJsxOutsideCode(markdown) {
+  const lines = markdown.split('\n');
+  let inFence = false;
+
+  return lines
+    .map((line) => {
+      if (/^\s*```/.test(line)) {
+        inFence = !inFence;
+        return line;
+      }
+      if (inFence) return line;
+
+      return line
+        .replace(/<([A-Z0-9_]+)>/g, '&lt;$1&gt;')
+        .replace(/<\/([A-Z0-9_]+)>/g, '&lt;/$1&gt;')
+        .replace(/<([A-Z0-9_]+)\s+([^>]*?)\/>/g, '&lt;$1 $2/&gt;')
+        .replace(/<([a-zA-Z_][\w.-]*:[^>]+)>/g, '&lt;$1&gt;')
+        .replace(/<\/([a-zA-Z_][\w.-]*:[^>]+)>/g, '&lt;/$1&gt;');
+    })
+    .join('\n');
+}
+
 function addFrontMatter(markdown, docPath) {
   if (hasFrontMatter(markdown)) return markdown;
   const title = titleFromMarkdown(markdown, docPath);
@@ -82,7 +104,7 @@ await fs.mkdir(docsDir, {recursive: true});
 
 for (const [docPath, sourcePath] of Object.entries(sourceMap)) {
   const source = await readSource(sourcePath);
-  const normalized = addFrontMatter(normalizeLinks(source), docPath);
+  const normalized = addFrontMatter(escapeMdxJsxOutsideCode(normalizeLinks(source)), docPath);
   await fs.writeFile(path.join(docsDir, docPath), normalized, 'utf8');
   console.log(`synced ${sourcePath} -> docs/${docPath}`);
 }
