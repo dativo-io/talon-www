@@ -1,0 +1,5 @@
+/talon/docs/*
+  X-Robots-Tag: index, follow
+
+/*
+  X-Content-Type-Options: nosniff
