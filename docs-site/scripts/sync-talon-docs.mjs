@@ -83,12 +83,11 @@ function escapeMdxJsxOutsideCode(markdown) {
       }
       if (inFence) return line;
 
-      return line
-        .replace(/<([A-Z0-9_]+)>/g, '&lt;$1&gt;')
-        .replace(/<\/([A-Z0-9_]+)>/g, '&lt;/$1&gt;')
-        .replace(/<([A-Z0-9_]+)\s+([^>]*?)\/>/g, '&lt;$1 $2/&gt;')
-        .replace(/<([a-zA-Z_][\w.-]*:[^>]+)>/g, '&lt;$1&gt;')
-        .replace(/<\/([a-zA-Z_][\w.-]*:[^>]+)>/g, '&lt;/$1&gt;');
+      // MDX parses raw <...> as JSX. Talon docs use angle-bracket placeholders
+      // such as <tenant_key>, <TALON_ADMIN_KEY>, <15ms>, and <provider>:<model>.
+      // Escape all inline angle-bracket spans in prose/tables while leaving fenced
+      // code blocks untouched.
+      return line.replace(/<([^>\n]+)>/g, '&lt;$1&gt;');
     })
     .join('\n');
 }
