@@ -9,7 +9,7 @@
   <meta name="description" content="Dativo Talon helps EU teams control LLM and AI-agent traffic before it leaves their environment, then produce signed evidence for GDPR, NIS2, DORA, and EU AI Act reviews." />
 
   <meta property="og:title" content="Dativo Talon — EU-sovereign evidence gateway for AI traffic" />
-  <meta property="og:description" content="Control PII, cost, model, provider, sovereignty, and tool policy for AI traffic — then prove what happened with signed evidence." />
+  <meta property="og:description" content="Control PII, cost, model, provider, sovereignty, egress destination, and tool policy for AI traffic — then prove what happened with signed evidence." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://dativo.io/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
@@ -58,16 +58,16 @@
         <div class="hero-copy">
           <div class="eyebrow pill-eyebrow"><span class="live-dot"></span>EU-sovereign · Evidence-grade · Self-hostable</div>
           <h1>Control what your AI sends. <span>Prove what happened.</span></h1>
-          <p class="hero-subtitle">Talon helps European teams put enforceable controls in front of LLM apps, AI agents, and vendor AI workflows. Route traffic through Talon, enforce PII, cost, model, provider, sovereignty, and tool policy, then export signed evidence for customer, security, DPO, and auditor reviews.</p>
+          <p class="hero-subtitle">Talon helps European teams put enforceable controls in front of LLM apps, AI agents, and vendor AI workflows. Route traffic through Talon, enforce PII, cost, model, provider, destination egress, sovereignty, and tool policy, then export signed evidence for customer, security, DPO, and auditor reviews.</p>
           <div class="hero-actions">
             <a class="button primary" href="/talon/docs/quickstart-demo/">Run the 60-second demo</a>
             <a class="button secondary" href="/ai-governance-evidence-store/">See the evidence model</a>
-            <a class="button ghost" href="/talon/docs/">Read the docs</a>
+            <a class="button ghost" href="/talon/docs/release-notes/">What changed in 1.6.0</a>
           </div>
           <div class="trust-row" aria-label="Talon outcomes">
             <span>Change one URL</span>
             <span>Control provider-boundary traffic</span>
-            <span>Keep governance evidence self-hosted</span>
+            <span>Block disallowed egress before upstream access</span>
             <span>Export signed records for review</span>
           </div>
         </div>
@@ -77,7 +77,7 @@
 ID          CALLER        PII           COST(€)  DECISION
 <span class="green">evt_a1b2c3</span>  support-bot   email(1)      0.003    <span class="green">allowed</span>
 <span class="green">evt_d4e5f6</span>  hr-bot        iban(2)       0.000    <span class="red">blocked:pii</span>
-<span class="green">evt_x9y0z1</span>  ops-agent     none          0.000    <span class="red">blocked:tool</span>
+<span class="green">evt_x9y0z1</span>  ops-agent     none          0.000    <span class="red">blocked:egress</span>
 
 <span class="muted">$</span> talon audit verify evt_a1b2c3
 <span class="green">✓ Evidence signature VALID</span></code></pre>
@@ -85,7 +85,7 @@ ID          CALLER        PII           COST(€)  DECISION
       </div>
     </section>
 
-    <section class="strip"><div class="wrap strip-inner"><span>EU-sovereign egress</span><span>PII and content controls</span><span>Pre-spend cost caps</span><span>Tool governance</span><span>Signed evidence exports</span></div></section>
+    <section class="strip"><div class="wrap strip-inner"><span>Data-tier egress controls</span><span>PII and content controls</span><span>Pre-spend cost caps</span><span>Tool governance</span><span>Signed evidence exports</span></div></section>
 
     <section class="section" id="guides">
       <div class="wrap">
@@ -105,10 +105,10 @@ ID          CALLER        PII           COST(€)  DECISION
 
     <section class="section" id="why">
       <div class="wrap">
-        <div class="section-heading"><p class="eyebrow">Why Talon</p><h2>Security and compliance teams need evidence they can defend.</h2><p>Talon sits in the request path so policy is enforced before provider access. Each decision can be tied to caller, tenant, policy, PII findings, model, provider, cost, hashes, and signature.</p></div>
+        <div class="section-heading"><p class="eyebrow">Why Talon</p><h2>Security and compliance teams need evidence they can defend.</h2><p>Talon sits in the request path so policy is enforced before provider access. Each decision can be tied to caller, tenant, policy, PII findings, egress destination, model, provider, cost, hashes, and signature.</p></div>
         <div class="grid three">
           <article class="card"><div class="icon">🔐</div><h3>Protect sensitive data before egress</h3><p>Scan input and output, classify sensitivity, redact or block PII, and keep evidence of what was detected.</p></article>
-          <article class="card"><div class="icon">🇪🇺</div><h3>Control provider and region choices</h3><p>Use EU strict, EU preferred, or global modes with provider metadata and evidence showing why traffic was allowed or denied.</p></article>
+          <article class="card"><div class="icon">🇪🇺</div><h3>Control provider, region, and destination</h3><p>Use routing modes and gateway egress rules to allow or deny destinations by data tier before secrets retrieval and upstream access.</p></article>
           <article class="card"><div class="icon">🧾</div><h3>Export evidence, not screenshots</h3><p>Every decision produces HMAC-signed evidence that can be inspected, exported, and verified with <code>talon audit verify</code>.</p></article>
         </div>
       </div>
@@ -133,21 +133,21 @@ docker compose exec talon talon audit verify req_a1b2c3d4</code></pre></div>
     <section class="section" id="how">
       <div class="wrap">
         <div class="section-heading"><p class="eyebrow">Deployment model</p><h2>Add Talon without rebuilding your AI stack.</h2><p>Your app keeps the same SDK. Point it at Talon, authenticate with a Talon caller key, and let Talon inject the approved provider credential from its vault.</p></div>
-        <div class="flow" aria-label="Application to Talon to provider flow"><div class="flow-box"><strong>App or agent</strong><span>Slack bot, LangGraph, OpenClaw, internal app, vendor workflow</span></div><div class="arrow">→</div><div class="flow-box highlight"><strong>Talon Gateway</strong><span>PII · policy · cost · sovereignty · tools · evidence</span></div><div class="arrow">→</div><div class="flow-box"><strong>Approved provider</strong><span>OpenAI · Anthropic · Azure OpenAI · Bedrock · Mistral · Ollama</span></div></div>
+        <div class="flow" aria-label="Application to Talon to provider flow"><div class="flow-box"><strong>App or agent</strong><span>Slack bot, LangGraph, OpenClaw, internal app, vendor workflow</span></div><div class="arrow">→</div><div class="flow-box highlight"><strong>Talon Gateway</strong><span>PII · policy · cost · egress · sovereignty · tools · evidence</span></div><div class="arrow">→</div><div class="flow-box"><strong>Approved provider</strong><span>OpenAI · Anthropic · Azure OpenAI · Bedrock · Mistral · Ollama</span></div></div>
         <div class="grid two code-grid"><div class="code-panel"><pre><code>export OPENAI_BASE_URL=http://127.0.0.1:8080/v1/proxy/openai/v1
-export OPENAI_API_KEY=&lt;talon-caller-key&gt;</code></pre></div><div class="code-panel"><pre><code>talon audit export --format json
+export OPENAI_API_KEY=&lt;talon-caller-key&gt;</code></pre></div><div class="code-panel"><pre><code>talon audit export --format signed-json
 
 talon report --tenant acme
 
-talon audit verify &lt;evidence-id&gt;</code></pre></div></div>
+talon audit verify --file evidence.signed.json</code></pre></div></div>
       </div>
     </section>
 
-    <section class="section" id="features"><div class="wrap"><div class="section-heading"><p class="eyebrow">Controls</p><h2>What Talon helps you prove.</h2><p>Use Talon when the AI governance conversation moves from policy documents to operational evidence.</p></div><div class="grid three"><article class="card"><div class="icon">🧾</div><h3>Evidence and compliance exports</h3><p>Signed evidence records, audit list/show/verify, CSV and JSON export, and report summaries for review packages.</p></article><article class="card"><div class="icon">🔐</div><h3>PII and content controls</h3><p>EU-focused recognizers such as IBAN, VAT IDs, national IDs, email, phone, card, passport, and IP, with warn/redact/block modes.</p></article><article class="card"><div class="icon">💶</div><h3>Pre-spend cost governance</h3><p>Per-caller budgets and cost attribution evaluated before the request is forwarded, not only after spend is logged.</p></article><article class="card"><div class="icon">🇪🇺</div><h3>EU-sovereign routing</h3><p>Provider jurisdiction metadata, EU regions, and routing modes that can allow, deny, or prefer providers based on sovereignty posture.</p></article><article class="card"><div class="icon">🛠️</div><h3>Tool and MCP governance</h3><p>Govern exposed tools and MCP/proxy traffic with allowlists, blocklists, policy checks, and evidence records.</p></article><article class="card"><div class="icon">📊</div><h3>Operational visibility</h3><p>Dashboard, metrics API, OTel, costs, PII breakdowns, blocked decisions, and budget utilization — with evidence as the source of truth.</p></article></div></div></section>
+    <section class="section" id="features"><div class="wrap"><div class="section-heading"><p class="eyebrow">Controls</p><h2>What Talon helps you prove.</h2><p>Use Talon when the AI governance conversation moves from policy documents to operational evidence.</p></div><div class="grid three"><article class="card"><div class="icon">🧾</div><h3>Evidence and compliance exports</h3><p>Signed evidence records, audit list/show/verify, CSV, JSON, signed JSON/NDJSON export, and report summaries for review packages.</p></article><article class="card"><div class="icon">🔐</div><h3>PII and content controls</h3><p>EU-focused recognizers such as IBAN, VAT IDs, national IDs, email, phone, card, passport, and IP, with warn/redact/block modes.</p></article><article class="card"><div class="icon">💶</div><h3>Pre-spend cost governance</h3><p>Per-caller budgets and cost attribution evaluated before the request is forwarded, not only after spend is logged.</p></article><article class="card"><div class="icon">🇪🇺</div><h3>EU-sovereign egress</h3><p>Provider jurisdiction metadata, EU regions, routing modes, and data-tier egress rules that can deny disallowed destinations before upstream access.</p></article><article class="card"><div class="icon">🛠️</div><h3>Tool and MCP governance</h3><p>Govern exposed tools and MCP/proxy traffic with allowlists, blocklists, policy checks, and evidence records.</p></article><article class="card"><div class="icon">📊</div><h3>Operational visibility</h3><p>Dashboard, metrics API, OTel, costs, PII breakdowns, egress denials, blocked decisions, and budget utilization — with evidence as the source of truth.</p></article></div></div></section>
 
-    <section class="section" id="compare"><div class="wrap"><div class="section-heading"><p class="eyebrow">Choose by need</p><h2>Use Talon when proof of governed AI traffic matters.</h2><p>Talon is designed for EU teams that need provider-boundary controls and signed evidence. It can also complement tool classes focused on AI operations or in-process agent action governance.</p></div><div class="table-wrap comparison-table"><table><thead><tr><th>Need</th><th>Suggested path</th><th>Why</th></tr></thead><tbody><tr><td>EU-sovereign AI traffic controls, PII policy, cost caps, and signed evidence exports</td><td><strong>Start with Talon</strong></td><td>Talon is built for provider-boundary governance and review-ready evidence.</td></tr><tr><td>Deep in-process tool/action governance for a new agent system</td><td><a href="/comparisons/talon-vs-agent-governance-toolkits/">Evaluate agent governance toolkits</a></td><td>Action-level governance belongs inside the agent runtime.</td></tr><tr><td>Both action governance and provider-boundary evidence</td><td>Use both layers</td><td>One controls what agents can do; the other proves what traffic crossed the boundary.</td></tr><tr><td>Only masking sensitive strings in prompts</td><td><a href="/comparisons/talon-vs-pii-proxy/">PII proxy may be enough</a></td><td>Useful narrow control, but not enough when evidence, routing, tools, and spend matter.</td></tr></tbody></table></div></div></section>
+    <section class="section" id="compare"><div class="wrap"><div class="section-heading"><p class="eyebrow">Choose by need</p><h2>Use Talon when proof of governed AI traffic matters.</h2><p>Talon is designed for EU teams that need provider-boundary controls and signed evidence. It can also complement tool classes focused on AI operations or in-process agent action governance.</p></div><div class="table-wrap comparison-table"><table><thead><tr><th>Need</th><th>Suggested path</th><th>Why</th></tr></thead><tbody><tr><td>EU-sovereign AI traffic controls, PII policy, cost caps, data-tier egress rules, and signed evidence exports</td><td><strong>Start with Talon</strong></td><td>Talon is built for provider-boundary governance and review-ready evidence.</td></tr><tr><td>Deep in-process tool/action governance for a new agent system</td><td><a href="/comparisons/talon-vs-agent-governance-toolkits/">Evaluate agent governance toolkits</a></td><td>Action-level governance belongs inside the agent runtime.</td></tr><tr><td>Both action governance and provider-boundary evidence</td><td>Use both layers</td><td>One controls what agents can do; the other proves what traffic crossed the boundary.</td></tr><tr><td>Only masking sensitive strings in prompts</td><td><a href="/comparisons/talon-vs-pii-proxy/">PII proxy may be enough</a></td><td>Useful narrow control, but not enough when evidence, routing, tools, egress, and spend matter.</td></tr></tbody></table></div></div></section>
 
-    <section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Start with one workflow</p><h2>Put Talon in front of AI traffic you already run.</h2><p>Choose one workflow with customer data, regulated data, model spend, or agent tools. Route it through Talon, inspect the policy decision, and verify the signed evidence.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Try the demo</a><a class="button secondary" href="/talon/docs/evidence-store/">Read evidence docs</a><a class="button ghost" href="https://blog.dativo.io">Read the blog</a></div></div></div></section>
+    <section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Start with one workflow</p><h2>Put Talon in front of AI traffic you already run.</h2><p>Choose one workflow with customer data, regulated data, model spend, destination-transfer risk, or agent tools. Route it through Talon, inspect the policy decision, and verify the signed evidence.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Try the demo</a><a class="button secondary" href="/talon/docs/evidence-store/">Read evidence docs</a><a class="button ghost" href="https://blog.dativo.io">Read the blog</a></div></div></div></section>
   </main>
 
   <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Talon is self-hostable Apache-2.0 software. Product information is for technical evaluation and does not replace legal, compliance, or procurement advice.</span></div></footer>
