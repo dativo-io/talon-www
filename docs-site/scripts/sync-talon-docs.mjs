@@ -83,11 +83,10 @@ function escapeMdxJsxOutsideCode(markdown) {
       }
       if (inFence) return line;
 
-      // MDX parses raw <...> as JSX. Talon docs use angle-bracket placeholders
-      // such as <tenant_key>, <TALON_ADMIN_KEY>, <15ms>, and <provider>:<model>.
-      // Escape all inline angle-bracket spans in prose/tables while leaving fenced
-      // code blocks untouched.
-      return line.replace(/<([^>\n]+)>/g, '&lt;$1&gt;');
+      // MDX treats any raw '<' as possible JSX, including prose like '<15ms'
+      // and placeholders like '<tenant_key>'. Imported GitHub markdown should
+      // render these literally, so escape bare '<' outside fenced code blocks.
+      return line.replace(/</g, '&lt;');
     })
     .join('\n');
 }
