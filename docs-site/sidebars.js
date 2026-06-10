@@ -49,6 +49,7 @@ const sidebars = {
         'observability',
         'policy-cookbook',
         'pii-semantic-enrichment',
+        'release-notes',
       ],
     },
   ],
