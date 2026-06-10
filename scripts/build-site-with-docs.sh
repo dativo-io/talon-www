@@ -20,7 +20,7 @@ rsync -a \
 
 # Build Docusaurus and mount it under /talon/docs/.
 cd "$DOCS_DIR"
-npm ci
+npm install
 npm run build
 
 mkdir -p "$OUT_DIR/talon/docs"
