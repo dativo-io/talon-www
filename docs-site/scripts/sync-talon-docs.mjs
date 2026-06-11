@@ -11,6 +11,7 @@ const talonRoot = process.env.TALON_REPO_PATH
   ? path.resolve(process.env.TALON_REPO_PATH)
   : path.resolve(siteRoot, '..', '..', 'talon');
 const rawBase = 'https://raw.githubusercontent.com/dativo-io/talon/main';
+const githubBase = 'https://github.com/dativo-io/talon/blob/main';
 
 async function exists(filePath) {
   try {
@@ -51,6 +52,22 @@ function hasFrontMatter(markdown) {
 
 function normalizeLinks(markdown) {
   return markdown
+    // Cross-repo docs links from examples/ and root-level docs.
+    .replace(/\.\.\/\.\.\/docs\/reference\//g, './')
+    .replace(/\.\.\/\.\.\/docs\/guides\//g, './')
+    .replace(/\.\.\/\.\.\/docs\/explanation\//g, './')
+    .replace(/\.\.\/\.\.\/docs\/tutorials\//g, './')
+    .replace(/\.\.\/\.\.\/docs\/VENDOR_INTEGRATION_GUIDE\.md/g, './vendor-integration-guide.md')
+    .replace(/\.\.\/\.\.\/docs\/ADOPTION_SCENARIOS\.md/g, './adoption-scenarios.md')
+    .replace(/\.\.\/\.\.\/docs\/ARCHITECTURE_MCP_PROXY\.md/g, './architecture-mcp-proxy.md')
+    .replace(/\.\.\/\.\.\/examples\/auditor-pack\/README\.md/g, './sample-auditor-pack.md')
+    .replace(/\.\.\/\.\.\/examples\/auditor-pack\//g, `${githubBase}/examples/auditor-pack/`)
+    .replace(/\.\.\/\.\.\/examples\/gateway\/talon\.config\.gateway\.yaml/g, `${githubBase}/examples/gateway/talon.config.gateway.yaml`)
+    .replace(/\.\.\/\.\.\/examples\/policies\/README\.md/g, `${githubBase}/examples/policies/README.md`)
+    .replace(/\.\.\/\.\.\/LIMITATIONS\.md/g, `${githubBase}/LIMITATIONS.md`)
+    .replace(/\.\.\/\.\.\/ROADMAP\.md/g, `${githubBase}/ROADMAP.md`)
+    .replace(/\.\.\/\.\.\/scripts\//g, `${githubBase}/scripts/`)
+    // Neighboring docs directories.
     .replace(/\.\.\/reference\//g, './')
     .replace(/\.\.\/guides\//g, './')
     .replace(/\.\.\/explanation\//g, './')
@@ -59,16 +76,30 @@ function normalizeLinks(markdown) {
     .replace(/reference\//g, './')
     .replace(/explanation\//g, './')
     .replace(/tutorials\//g, './')
+    // Root-level docs copied into flat Docusaurus docs IDs.
+    .replace(/\.\.\/QUICKSTART\.md/g, './quickstart.md')
     .replace(/\.\.\/MEMORY_GOVERNANCE\.md/g, './memory-governance.md')
     .replace(/\.\.\/AGENT_PLANNING\.md/g, './agent-planning.md')
     .replace(/\.\.\/ARCHITECTURE_MCP_PROXY\.md/g, './architecture-mcp-proxy.md')
     .replace(/\.\.\/ADOPTION_SCENARIOS\.md/g, './adoption-scenarios.md')
     .replace(/\.\.\/PERSONA_GUIDES\.md/g, './persona-guides.md')
+    .replace(/\.\.\/VENDOR_INTEGRATION_GUIDE\.md/g, './vendor-integration-guide.md')
+    .replace(/QUICKSTART\.md/g, './quickstart.md')
     .replace(/MEMORY_GOVERNANCE\.md/g, './memory-governance.md')
     .replace(/AGENT_PLANNING\.md/g, './agent-planning.md')
     .replace(/ARCHITECTURE_MCP_PROXY\.md/g, './architecture-mcp-proxy.md')
     .replace(/ADOPTION_SCENARIOS\.md/g, './adoption-scenarios.md')
-    .replace(/PERSONA_GUIDES\.md/g, './persona-guides.md');
+    .replace(/PERSONA_GUIDES\.md/g, './persona-guides.md')
+    .replace(/VENDOR_INTEGRATION_GUIDE\.md/g, './vendor-integration-guide.md')
+    // Example files that should stay on GitHub rather than becoming broken local docs links.
+    .replace(/\(manifest\.json\)/g, `(${githubBase}/examples/auditor-pack/manifest.json)`)
+    .replace(/\(evidence\.signed\.json\)/g, `(${githubBase}/examples/auditor-pack/evidence.signed.json)`)
+    .replace(/\(compliance-report\.html\)/g, `(${githubBase}/examples/auditor-pack/compliance-report.html)`)
+    .replace(/\(compliance-report\.json\)/g, `(${githubBase}/examples/auditor-pack/compliance-report.json)`)
+    .replace(/\(ropa\.html\)/g, `(${githubBase}/examples/auditor-pack/ropa.html)`)
+    .replace(/\(ropa\.json\)/g, `(${githubBase}/examples/auditor-pack/ropa.json)`)
+    .replace(/\(annex-iv\.html\)/g, `(${githubBase}/examples/auditor-pack/annex-iv.html)`)
+    .replace(/\(annex-iv\.json\)/g, `(${githubBase}/examples/auditor-pack/annex-iv.json)`);
 }
 
 function escapeMdxJsxOutsideCode(markdown) {
