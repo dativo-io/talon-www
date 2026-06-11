@@ -9,9 +9,21 @@ const sidebars = {
       label: 'Start here',
       items: [
         'quickstart-demo',
+        'evidence-integrity-demo',
         'quickstart',
         'first-governed-agent',
         'add-talon-to-existing-app',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Auditor handoff',
+      items: [
+        'sample-auditor-pack',
+        'compliance-export-runbook',
+        'ropa-declarations',
+        'evidence-integrity-spec',
+        'governance-control-matrix',
       ],
     },
     {
@@ -21,7 +33,6 @@ const sidebars = {
         'slack-bot-integration',
         'openclaw-integration',
         'multi-tenant-msp',
-        'compliance-export-runbook',
       ],
     },
     {
@@ -46,6 +57,11 @@ const sidebars = {
         'authentication-and-key-scopes',
         'provider-registry',
         'gateway-dashboard',
+        'governance-control-matrix',
+        'evidence-integrity-spec',
+        'threat-model',
+        'conformance',
+        'benchmarks',
         'observability',
         'policy-cookbook',
         'pii-semantic-enrichment',
