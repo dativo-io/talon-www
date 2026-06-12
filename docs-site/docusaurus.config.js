@@ -3,7 +3,7 @@
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Dativo Talon Docs',
-  tagline: 'Govern AI traffic before it leaves. Prove what happened with signed evidence.',
+  tagline: 'Open-source AI governance gateway for European SMBs.',
 
   url: 'https://dativo.io',
   baseUrl: '/talon/docs/',
@@ -46,7 +46,7 @@ const config = {
         },
         sitemap: {
           changefreq: 'weekly',
-          priority: 0.7,
+          priority: 0.8,
           ignorePatterns: [],
           filename: 'sitemap.xml',
         },
@@ -61,15 +61,34 @@ const config = {
         {
           name: 'description',
           content:
-            'Dativo Talon documentation for LLM gateway governance, PII controls, tool policy, cost caps, EU data sovereignty, and signed evidence exports.',
+            'Learn Dativo Talon, an open-source AI governance gateway for European SMBs. Govern LLM traffic, PII, tools, costs, EU routing, and signed audit evidence.',
         },
+        {
+          name: 'keywords',
+          content:
+            'AI governance, EU AI governance, LLM gateway, AI agent governance, GDPR AI, EU AI Act, PII redaction, AI audit evidence, AI cost control, MCP proxy, OpenAI gateway, European SMB compliance',
+        },
+        {property: 'og:type', content: 'website'},
+        {property: 'og:site_name', content: 'Dativo Talon'},
+        {
+          property: 'og:title',
+          content: 'Dativo Talon Docs — AI governance gateway for European SMBs',
+        },
+        {
+          property: 'og:description',
+          content:
+            'Govern LLM and AI-agent traffic with PII controls, tool policy, cost caps, EU routing, and signed evidence exports.',
+        },
+        {name: 'twitter:card', content: 'summary_large_image'},
       ],
       navbar: {
         title: 'Dativo Talon Docs',
         items: [
-          {to: '/', label: 'Docs', position: 'left'},
-          {to: '/quickstart/', label: 'Quickstart', position: 'left'},
-          {to: '/evidence-store/', label: 'Evidence', position: 'left'},
+          {to: '/', label: 'Overview', position: 'left'},
+          {to: '/quickstart-demo/', label: 'Demo', position: 'left'},
+          {to: '/choosing-integration-path/', label: 'Integrate', position: 'left'},
+          {to: '/governance-control-matrix/', label: 'EU governance', position: 'left'},
+          {to: '/sample-auditor-pack/', label: 'Evidence', position: 'left'},
           {href: 'https://dativo.io/', label: 'Website', position: 'right'},
           {href: 'https://github.com/dativo-io/talon', label: 'GitHub', position: 'right'},
         ],
@@ -78,19 +97,30 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Start',
+            title: 'Evaluate',
             items: [
               {label: '60-second demo', to: '/quickstart-demo/'},
-              {label: 'First governed agent', to: '/first-governed-agent/'},
-              {label: 'Add Talon to an app', to: '/add-talon-to-existing-app/'},
+              {label: 'Choose integration path', to: '/choosing-integration-path/'},
+              {label: 'Why not just a PII proxy?', to: '/why-not-a-pii-proxy/'},
+              {label: 'Adoption scenarios', to: '/adoption-scenarios/'},
             ],
           },
           {
-            title: 'Understand',
+            title: 'Governance',
             items: [
-              {label: 'What Talon does to a request', to: '/what-talon-does-to-your-request/'},
+              {label: 'Governance control matrix', to: '/governance-control-matrix/'},
+              {label: 'Sample auditor pack', to: '/sample-auditor-pack/'},
+              {label: 'Export evidence for auditors', to: '/compliance-export-runbook/'},
               {label: 'Evidence store', to: '/evidence-store/'},
-              {label: 'Why not just a PII proxy?', to: '/why-not-a-pii-proxy/'},
+            ],
+          },
+          {
+            title: 'Operate',
+            items: [
+              {label: 'Gateway dashboard', to: '/gateway-dashboard/'},
+              {label: 'Cost governance', to: '/cost-governance-by-caller/'},
+              {label: 'Configuration', to: '/configuration/'},
+              {label: 'Authentication and key scopes', to: '/authentication-and-key-scopes/'},
             ],
           },
           {
