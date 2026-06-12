@@ -34,9 +34,24 @@ Output directory:
 dist
 ```
 
-The build script copies the static marketing site, builds Docusaurus, mounts docs under `/talon/docs/`, injects Plausible analytics into every generated HTML page, and fails the build if any generated page is missing the Plausible script.
+The build script copies the static marketing site, builds Docusaurus, mounts docs under `/talon/docs/`, generates root SEO files, injects Plausible analytics into every generated HTML page, and fails the build if any generated page is missing the Plausible script.
 
 The compatibility route `/docs/talon/` redirects users to `/talon/docs/` and is included in the same analytics verification.
+
+## Search Console / SEO files
+
+The production build generates:
+
+- `/sitemap.xml` from every generated HTML page in `dist/`
+- `/robots.txt` with `Allow: /` and `Sitemap: https://dativo.io/sitemap.xml`
+
+Defaults:
+
+```bash
+SITE_URL=https://dativo.io
+```
+
+After deployment, submit `https://dativo.io/sitemap.xml` in Google Search Console.
 
 ## Analytics
 
