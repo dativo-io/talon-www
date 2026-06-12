@@ -4,8 +4,8 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DOCS_DIR="$ROOT_DIR/docs-site"
 OUT_DIR="$ROOT_DIR/dist"
-PLAUSIBLE_DOMAIN="${PLAUSIBLE_DOMAIN:-dativo.io}"
-PLAUSIBLE_SCRIPT_SRC="${PLAUSIBLE_SCRIPT_SRC:-https://plausible.io/js/script.js}"
+PLAUSIBLE_ENABLED="${PLAUSIBLE_ENABLED:-true}"
+PLAUSIBLE_SCRIPT_SRC="${PLAUSIBLE_SCRIPT_SRC:-https://plausible.io/js/pa-XmB1x7I_rYllpvVLPcVfs.js}"
 
 rm -rf "$OUT_DIR"
 mkdir -p "$OUT_DIR"
@@ -29,22 +29,21 @@ cp -R "$DOCS_DIR/build/." "$OUT_DIR/talon/docs/"
 
 # Inject Plausible into the final static artifact so both the marketing pages
 # and generated Docusaurus docs are tracked consistently. Set
-# PLAUSIBLE_DOMAIN="" to disable in non-production builds, or override
-# PLAUSIBLE_SCRIPT_SRC for a self-hosted/proxied Plausible script.
-if [ -n "$PLAUSIBLE_DOMAIN" ]; then
-  OUT_DIR="$OUT_DIR" PLAUSIBLE_DOMAIN="$PLAUSIBLE_DOMAIN" PLAUSIBLE_SCRIPT_SRC="$PLAUSIBLE_SCRIPT_SRC" node <<'NODE'
+# PLAUSIBLE_ENABLED="false" to disable in non-production builds, or override
+# PLAUSIBLE_SCRIPT_SRC if the Plausible script changes later.
+if [ "$PLAUSIBLE_ENABLED" = "true" ]; then
+  OUT_DIR="$OUT_DIR" PLAUSIBLE_SCRIPT_SRC="$PLAUSIBLE_SCRIPT_SRC" node <<'NODE'
 const fs = require('fs');
 const path = require('path');
 
 const outDir = process.env.OUT_DIR;
-const domain = process.env.PLAUSIBLE_DOMAIN;
 const scriptSrc = process.env.PLAUSIBLE_SCRIPT_SRC;
 const marker = 'data-talon-analytics="plausible"';
-const snippet = `  <script defer data-domain="${domain}" src="${scriptSrc}" ${marker}></script>
+const snippet = `  <!-- Privacy-friendly analytics by Plausible -->
+  <script async src="${scriptSrc}" ${marker}></script>
   <script>
-    window.plausible = window.plausible || function() {
-      (window.plausible.q = window.plausible.q || []).push(arguments);
-    };
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init();
 
     document.addEventListener('click', function(event) {
       var link = event.target && event.target.closest ? event.target.closest('a') : null;
