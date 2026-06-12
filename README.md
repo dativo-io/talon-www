@@ -38,21 +38,26 @@ The build script copies the static marketing site, builds Docusaurus, mounts doc
 
 ## Analytics
 
-Plausible is injected at build time through `scripts/build-site-with-docs.sh`.
+Plausible is injected at build time through `scripts/build-site-with-docs.sh` using the site-specific Plausible script.
 
 Defaults:
 
 ```bash
-PLAUSIBLE_DOMAIN=dativo.io
-PLAUSIBLE_SCRIPT_SRC=https://plausible.io/js/script.js
+PLAUSIBLE_ENABLED=true
+PLAUSIBLE_SCRIPT_SRC=https://plausible.io/js/pa-XmB1x7I_rYllpvVLPcVfs.js
 ```
 
-Set `PLAUSIBLE_DOMAIN=""` to disable Plausible in a non-production build, or override `PLAUSIBLE_SCRIPT_SRC` if we later proxy/self-host the Plausible script.
+Set `PLAUSIBLE_ENABLED="false"` to disable Plausible in a non-production build, or override `PLAUSIBLE_SCRIPT_SRC` if Plausible generates a new script URL later.
 
 After deployment, verify the script appears in the page source:
 
 ```html
-<script defer data-domain="dativo.io" src="https://plausible.io/js/script.js" data-talon-analytics="plausible"></script>
+<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-XmB1x7I_rYllpvVLPcVfs.js" data-talon-analytics="plausible"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init();
+</script>
 ```
 
 The injected helper also emits these buyer-intent events:
