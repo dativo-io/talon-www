@@ -34,7 +34,9 @@ Output directory:
 dist
 ```
 
-The build script copies the static marketing site, builds Docusaurus, mounts docs under `/talon/docs/`, and injects Plausible analytics into all generated HTML pages.
+The build script copies the static marketing site, builds Docusaurus, mounts docs under `/talon/docs/`, injects Plausible analytics into every generated HTML page, and fails the build if any generated page is missing the Plausible script.
+
+The compatibility route `/docs/talon/` redirects users to `/talon/docs/` and is included in the same analytics verification.
 
 ## Analytics
 
