@@ -39,7 +39,30 @@ const path = require('path');
 const outDir = process.env.OUT_DIR;
 const domain = process.env.PLAUSIBLE_DOMAIN;
 const scriptSrc = process.env.PLAUSIBLE_SCRIPT_SRC;
-const snippet = `  <script defer data-domain="${domain}" src="${scriptSrc}"></script>\n`;
+const marker = 'data-talon-analytics="plausible"';
+const snippet = `  <script defer data-domain="${domain}" src="${scriptSrc}" ${marker}></script>
+  <script>
+    window.plausible = window.plausible || function() {
+      (window.plausible.q = window.plausible.q || []).push(arguments);
+    };
+
+    document.addEventListener('click', function(event) {
+      var link = event.target && event.target.closest ? event.target.closest('a') : null;
+      if (!link) return;
+
+      var href = link.getAttribute('href') || '';
+      var eventName = null;
+
+      if (href.indexOf('/quickstart-demo/') !== -1) eventName = 'Quickstart Demo Click';
+      else if (href.indexOf('/sample-auditor-pack/') !== -1 || href.indexOf('/ai-governance-evidence-store/') !== -1) eventName = 'Evidence Click';
+      else if (href.indexOf('/resources/eu-ai-governance-runtime-checklist/') !== -1) eventName = 'Checklist Click';
+      else if (href.indexOf('github.com/dativo-io/talon') !== -1) eventName = 'GitHub Click';
+      else if (href.indexOf('/talon/docs/') !== -1) eventName = 'Docs Click';
+
+      if (eventName) window.plausible(eventName);
+    });
+  </script>
+`;
 
 function walk(dir) {
   for (const entry of fs.readdirSync(dir, {withFileTypes: true})) {
@@ -51,7 +74,7 @@ function walk(dir) {
     if (!entry.isFile() || !entry.name.endsWith('.html')) continue;
 
     const html = fs.readFileSync(fullPath, 'utf8');
-    if (html.includes(`data-domain="${domain}"`) && html.includes(scriptSrc)) continue;
+    if (html.includes(marker)) continue;
     if (!/<\/head>/i.test(html)) continue;
 
     fs.writeFileSync(fullPath, html.replace(/<\/head>/i, `${snippet}</head>`));
