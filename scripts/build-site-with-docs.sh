@@ -6,6 +6,7 @@ DOCS_DIR="$ROOT_DIR/docs-site"
 OUT_DIR="$ROOT_DIR/dist"
 PLAUSIBLE_ENABLED="${PLAUSIBLE_ENABLED:-true}"
 PLAUSIBLE_SCRIPT_SRC="${PLAUSIBLE_SCRIPT_SRC:-https://plausible.io/js/pa-XmB1x7I_rYllpvVLPcVfs.js}"
+SITE_URL="${SITE_URL:-https://dativo.io}"
 
 rm -rf "$OUT_DIR"
 mkdir -p "$OUT_DIR"
@@ -26,6 +27,9 @@ npm run build
 
 mkdir -p "$OUT_DIR/talon/docs"
 cp -R "$DOCS_DIR/build/." "$OUT_DIR/talon/docs/"
+
+# Generate the root SEO files after all pages exist.
+node "$ROOT_DIR/scripts/generate-seo-files.cjs" "$OUT_DIR" "$SITE_URL"
 
 # Inject and verify Plausible in the final static artifact so both the marketing
 # pages and generated Docusaurus docs are tracked consistently.
