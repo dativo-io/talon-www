@@ -52,7 +52,17 @@ Set `PLAUSIBLE_DOMAIN=""` to disable Plausible in a non-production build, or ove
 After deployment, verify the script appears in the page source:
 
 ```html
-<script defer data-domain="dativo.io" src="https://plausible.io/js/script.js"></script>
+<script defer data-domain="dativo.io" src="https://plausible.io/js/script.js" data-talon-analytics="plausible"></script>
 ```
+
+The injected helper also emits these buyer-intent events:
+
+- `Quickstart Demo Click`
+- `Evidence Click`
+- `Checklist Click`
+- `GitHub Click`
+- `Docs Click`
+
+Create matching custom event goals in Plausible so they appear as conversions.
 
 Cloudflare Web Analytics is still present on the static marketing pages and can stay as a secondary infrastructure-level signal.
