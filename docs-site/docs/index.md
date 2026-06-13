@@ -21,9 +21,7 @@ Talon is useful when a SaaS, fintech, healthtech, e-commerce, or support team al
 | Control EU data movement | Understand which controls run on each entry path and where limitations are explicit. | [Governance control matrix](./governance-control-matrix.md) |
 | Keep spend predictable | Set hard daily and monthly cost caps per caller, app, or tenant. | [Cost governance by caller](./cost-governance-by-caller.md) |
 
-## Follow the Diátaxis path
-
-These docs are organized around Diátaxis, but the navigation is optimized for a buyer and operator journey.
+## Find the right guide
 
 ### Tutorials — learn by doing
 
