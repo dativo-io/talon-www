@@ -1,15 +1,12 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "talon-www",
-  "main": "src/index.js",
   "compatibility_date": "2026-06-01",
   "observability": {
     "enabled": true
   },
   "assets": {
-    "directory": "./dist",
-    "binding": "ASSETS",
-    "run_worker_first": true
+    "directory": "./dist"
   },
   "compatibility_flags": [
     "nodejs_compat"
