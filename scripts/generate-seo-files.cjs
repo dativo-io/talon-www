@@ -26,7 +26,11 @@ function routeFromHtml(filePath, rootDir, prefix = '') {
 
   const normalizedPrefix = prefix.replace(/^\/+|\/+$/g, '');
   const normalizedRoute = route.replace(/^\/+/, '');
-  const fullRoute = [normalizedPrefix, normalizedRoute].filter(Boolean).join('/');
+  const fullRoute = normalizedRoute
+    ? [normalizedPrefix, normalizedRoute].filter(Boolean).join('/')
+    : normalizedPrefix
+      ? `${normalizedPrefix}/`
+      : '';
 
   if (fullRoute === 'docs/talon/') return null;
   return `/${fullRoute}`.replace(/\/\//g, '/');
