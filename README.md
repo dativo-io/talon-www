@@ -43,7 +43,18 @@ The compatibility route `/docs/talon/` redirects users to `/talon/docs/` and is 
 The production build generates:
 
 - `/sitemap.xml` from every generated HTML page in `dist/`
-- `/robots.txt` with `Allow: /` and `Sitemap: https://dativo.io/sitemap.xml`
+- `/talon/docs/sitemap.xml` from the generated Docusaurus HTML pages under `dist/talon/docs/`
+- `/robots.txt` with `Allow: /` and both sitemap entries:
+  - `https://dativo.io/sitemap.xml`
+  - `https://dativo.io/talon/docs/sitemap.xml`
+
+The docs sitemap is generated from the final built routes, not from the source folder layout. That means canonical docs URLs stay flat under `/talon/docs/`, for example:
+
+```text
+https://dativo.io/talon/docs/add-talon-to-existing-app/
+```
+
+and source-folder-style paths such as `/talon/docs/guides/add-talon-to-existing-app/` are not emitted into the sitemap.
 
 Defaults:
 
@@ -51,7 +62,7 @@ Defaults:
 SITE_URL=https://dativo.io
 ```
 
-After deployment, submit `https://dativo.io/sitemap.xml` in Google Search Console.
+After deployment, submit both `https://dativo.io/sitemap.xml` and `https://dativo.io/talon/docs/sitemap.xml` in Google Search Console.
 
 ## Analytics
 
