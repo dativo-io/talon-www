@@ -64,8 +64,13 @@ function normalizeLinks(markdown) {
     .replace(/\.\.\/\.\.\/examples\/auditor-pack\//g, `${githubBase}/examples/auditor-pack/`)
     .replace(/\.\.\/\.\.\/examples\/gateway\/talon\.config\.gateway\.yaml/g, `${githubBase}/examples/gateway/talon.config.gateway.yaml`)
     .replace(/\.\.\/\.\.\/examples\/policies\/README\.md/g, `${githubBase}/examples/policies/README.md`)
+    .replace(/\.\.\/\.\.\/policies\/README\.md/g, `${githubBase}/policies/README.md`)
     .replace(/\.\.\/\.\.\/LIMITATIONS\.md/g, `${githubBase}/LIMITATIONS.md`)
     .replace(/\.\.\/\.\.\/ROADMAP\.md/g, `${githubBase}/ROADMAP.md`)
+    .replace(/\.\.\/\.\.\/README\.md/g, `${githubBase}/README.md`)
+    .replace(/\.\.\/\.\.\/\.github\//g, `${githubBase}/.github/`)
+    .replace(/\.\.\/\.\.\/internal\//g, `${githubBase}/internal/`)
+    .replace(/\.\.\/\.\.\/tests\//g, `${githubBase}/tests/`)
     .replace(/\.\.\/\.\.\/scripts\//g, `${githubBase}/scripts/`)
     // Neighboring docs directories.
     .replace(/\.\.\/reference\//g, './')

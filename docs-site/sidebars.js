@@ -1,15 +1,17 @@
-// @ts-check
-
-/** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
-  docs: [
-    'index',
+  docsSidebar: [
+    {
+      type: 'doc',
+      id: 'index',
+      label: 'Overview',
+    },
     {
       type: 'category',
       label: 'Evaluate Talon',
       collapsed: false,
       items: [
         'quickstart-demo',
+        'turnkey-compliance-reports',
         'quickstart',
         'choosing-integration-path',
         'adoption-scenarios',
@@ -38,7 +40,10 @@ const sidebars = {
       collapsed: false,
       items: [
         'governance-control-matrix',
+        'turnkey-compliance-reports',
+        'policy-packs',
         'sample-auditor-pack',
+        'verify-turnkey-compliance-reports',
         'compliance-export-runbook',
         'ropa-declarations',
         'evidence-store',
@@ -67,7 +72,9 @@ const sidebars = {
     {
       type: 'category',
       label: 'Compliance and technical reference',
+      collapsed: false,
       items: [
+        'presidio-compatibility-matrix',
         'threat-model',
         'conformance',
         'benchmarks',
@@ -80,4 +87,4 @@ const sidebars = {
   ],
 };
 
-module.exports = sidebars;
+export default sidebars;
