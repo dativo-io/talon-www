@@ -22,6 +22,7 @@ const config = {
       'classic',
       {
         docs: {
+          routeBasePath: '/',
           sidebarPath: './sidebars.js',
           editUrl: ({docPath}) => {
             const sourceMap = require('./src/source-map.cjs');
