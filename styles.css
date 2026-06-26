@@ -5,7 +5,7 @@
   --card: rgba(15, 23, 42, 0.78);
   --card-strong: rgba(15, 23, 42, 0.94);
   --card-border: rgba(148, 163, 184, 0.18);
-  --card-border-strong: rgba(148, 163, 184, 0.28);
+  --card-border-strong: rgba(148, 163, 184, 0.30);
   --text: #f8fafc;
   --muted: #b6c2d2;
   --muted-2: #7d8aa0;
@@ -35,8 +35,9 @@ body {
     "Segoe UI", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at 50% -12rem, rgba(59, 130, 246, 0.18), transparent 36rem),
-    linear-gradient(180deg, #070a12 0%, #090d18 42%, #070a12 100%);
+    radial-gradient(circle at 45% -14rem, rgba(59, 130, 246, 0.18), transparent 34rem),
+    radial-gradient(circle at 92% 12rem, rgba(20, 184, 166, 0.08), transparent 22rem),
+    linear-gradient(180deg, #070a12 0%, #090d18 44%, #070a12 100%);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -120,13 +121,17 @@ pre {
 }
 
 .hero {
-  padding: 96px 0 56px;
+  padding: 82px 0 42px;
+}
+
+.hero-dense {
+  padding-top: 84px;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.03fr) minmax(360px, 0.97fr);
-  gap: 56px;
+  grid-template-columns: minmax(0, 1.02fr) minmax(370px, 0.98fr);
+  gap: 48px;
   align-items: center;
 }
 
@@ -172,8 +177,8 @@ h3 {
 
 h1 {
   margin-top: 24px;
-  max-width: 900px;
-  font-size: clamp(48px, 6.8vw, 82px);
+  max-width: 960px;
+  font-size: clamp(48px, 6.4vw, 80px);
   line-height: 0.98;
   letter-spacing: -0.07em;
 }
@@ -186,7 +191,7 @@ h1 span {
 }
 
 h2 {
-  font-size: clamp(32px, 4.4vw, 52px);
+  font-size: clamp(31px, 4.1vw, 50px);
   line-height: 1.04;
 }
 
@@ -197,10 +202,10 @@ h3 {
 
 .hero-subtitle {
   max-width: 760px;
-  margin: 24px 0 0;
+  margin: 22px 0 0;
   color: var(--muted);
-  font-size: clamp(18px, 1.7vw, 21px);
-  line-height: 1.62;
+  font-size: clamp(18px, 1.65vw, 21px);
+  line-height: 1.58;
 }
 
 .hero-actions,
@@ -208,7 +213,7 @@ h3 {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  margin-top: 32px;
+  margin-top: 30px;
 }
 
 .button {
@@ -279,7 +284,10 @@ h3 {
 .card,
 .table-wrap,
 .cta-card,
-.flow-box {
+.flow-box,
+.proof-flow,
+.feature-column,
+.proof-panel {
   border: 1px solid var(--card-border);
   background: var(--card);
   border-radius: var(--radius);
@@ -287,10 +295,16 @@ h3 {
   backdrop-filter: blur(16px);
 }
 
-.terminal-card {
+.terminal-card,
+.code-panel,
+.proof-panel {
   overflow: hidden;
   background:
     linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(12, 18, 32, 0.96));
+}
+
+.hero-terminal {
+  align-self: stretch;
 }
 
 .terminal-header {
@@ -307,27 +321,16 @@ h3 {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-}
-
-.terminal-header span:nth-child(1) {
-  background: #64748b;
-}
-
-.terminal-header span:nth-child(2) {
-  background: #64748b;
-}
-
-.terminal-header span:nth-child(3) {
   background: #64748b;
 }
 
 pre {
   margin: 0;
-  padding: 24px;
+  padding: 23px;
   overflow-x: auto;
   color: #d9e6f7;
   font-size: 13px;
-  line-height: 1.72;
+  line-height: 1.68;
 }
 
 .green {
@@ -343,7 +346,7 @@ pre {
 }
 
 .strip {
-  padding: 8px 0 46px;
+  padding: 6px 0 34px;
 }
 
 .strip-inner {
@@ -356,26 +359,37 @@ pre {
 }
 
 .section {
-  padding: 76px 0;
+  padding: 62px 0;
+}
+
+.compact-section {
+  padding: 54px 0;
 }
 
 .section-heading {
   max-width: 790px;
-  margin-bottom: 32px;
+  margin-bottom: 30px;
+}
+
+.wide-heading {
+  max-width: 920px;
 }
 
 .section-heading p,
 .split p,
 .cta-card p,
 .card p,
-.flow-box span {
+.flow-box span,
+.flow-step span,
+.feature-column li,
+.proof-panel span {
   color: var(--muted);
 }
 
 .section-heading > p:not(.eyebrow) {
   font-size: 18px;
   margin: 16px 0 0;
-  line-height: 1.68;
+  line-height: 1.66;
 }
 
 .grid {
@@ -396,7 +410,7 @@ pre {
 }
 
 .card {
-  padding: 24px;
+  padding: 22px;
   transition:
     transform 0.16s ease,
     border-color 0.16s ease,
@@ -422,11 +436,28 @@ a.card:hover,
 }
 
 .card h3 {
-  margin-bottom: 11px;
+  margin-bottom: 10px;
 }
 
 .card p {
   margin: 0;
+  font-size: 14.5px;
+  line-height: 1.62;
+}
+
+.card-label {
+  width: fit-content;
+  display: inline-flex;
+  margin-bottom: 14px;
+  padding: 5px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(147, 197, 253, 0.22);
+  background: rgba(59, 130, 246, 0.08);
+  color: #bfdbfe;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .split-section {
@@ -442,13 +473,172 @@ a.card:hover,
   align-items: center;
 }
 
-.code-panel {
-  overflow: hidden;
-  background: rgba(15, 23, 42, 0.9);
+.proof-split {
+  grid-template-columns: minmax(0, 0.86fr) minmax(360px, 1.14fr);
 }
 
 .code-panel pre {
   background: rgba(2, 6, 23, 0.18);
+}
+
+.proof-flow {
+  padding: 18px;
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.86), rgba(8, 13, 25, 0.86));
+}
+
+.flow-step {
+  padding: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 15px;
+  background: rgba(2, 6, 23, 0.28);
+}
+
+.flow-step strong {
+  display: block;
+  margin-bottom: 5px;
+  letter-spacing: -0.02em;
+}
+
+.flow-step span {
+  display: block;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.flow-step.highlight {
+  border-color: rgba(110, 231, 183, 0.28);
+  background: rgba(20, 184, 166, 0.08);
+}
+
+.flow-arrow {
+  text-align: center;
+  color: #718096;
+  padding: 7px 0;
+  font-size: 20px;
+}
+
+.feature-matrix {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.feature-column {
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.feature-column h3 {
+  margin-bottom: 18px;
+}
+
+.feature-column ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature-column li {
+  padding: 11px 0;
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+  font-size: 14.5px;
+  line-height: 1.45;
+}
+
+.feature-column li:first-child {
+  border-top: 0;
+}
+
+.feature-column a,
+.link-row a,
+.mini-links a,
+td a,
+.footer a {
+  color: #bfdbfe;
+}
+
+.feature-column a:hover,
+.link-row a:hover,
+.mini-links a:hover,
+td a:hover,
+.footer a:hover {
+  color: #e0f2fe;
+}
+
+.link-row,
+.mini-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.link-row a,
+.mini-links a {
+  padding: 7px 10px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.62);
+  font-size: 13px;
+  font-weight: 680;
+}
+
+.proof-grid {
+  align-items: stretch;
+}
+
+.proof-panel {
+  padding: 0;
+}
+
+.proof-panel .card-label {
+  margin: 22px 22px 0;
+}
+
+.proof-panel pre {
+  padding-top: 18px;
+}
+
+.proof-panel .mini-links {
+  margin: 0;
+  padding: 0 22px 22px;
+}
+
+.dashboard-panel {
+  padding-bottom: 22px;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 20px 22px;
+}
+
+.metric-grid div {
+  min-height: 92px;
+  padding: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 15px;
+  background: rgba(2, 6, 23, 0.28);
+}
+
+.metric-grid strong {
+  display: block;
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.metric-grid span {
+  display: block;
+  margin-top: 9px;
+  font-size: 13px;
+}
+
+.compact-cards .card {
+  min-height: 210px;
 }
 
 .flow {
@@ -544,7 +734,7 @@ td {
 
 .cta-card {
   text-align: center;
-  padding: 50px 28px;
+  padding: 46px 28px;
   border-color: rgba(147, 197, 253, 0.22);
   background:
     linear-gradient(180deg, rgba(30, 41, 59, 0.82), rgba(15, 23, 42, 0.86));
@@ -574,18 +764,23 @@ td {
 }
 
 .footer-inner span:last-child {
-  max-width: 680px;
+  max-width: 720px;
 }
 
 @media (max-width: 1060px) {
   .grid.four {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .feature-matrix {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 920px) {
   .hero-grid,
   .split,
+  .proof-split,
   .grid.two {
     grid-template-columns: 1fr;
   }
@@ -623,13 +818,19 @@ td {
   }
 }
 
+@media (max-width: 620px) {
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 560px) {
   .wrap {
     width: min(100% - 28px, var(--max));
   }
 
   h1 {
-    font-size: 44px;
+    font-size: 43px;
   }
 
   h2 {
