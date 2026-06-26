@@ -27,6 +27,7 @@
   <link rel="manifest" href="/public/assets/site.webmanifest" />
   <meta name="theme-color" content="#07111f" />
   <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/homepage-overrides.css" />
 
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Dativo Talon","applicationCategory":"SecurityApplication","operatingSystem":"Linux, macOS, Windows, Docker","description":"Open-source AI governance gateway for European teams. Enforce PII, tool, cost, model, and EU-routing policies before LLM and AI-agent traffic reaches providers, then export signed evidence.","url":"https://dativo.io/","codeRepository":"https://github.com/dativo-io/talon","license":"https://www.apache.org/licenses/LICENSE-2.0","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"audience":{"@type":"Audience","audienceType":"European SMB CTOs, engineering leaders, security, DPO, compliance and platform teams"}}
@@ -58,8 +59,8 @@
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Open-source · Self-hostable · Built for European teams</div>
-          <h1>Runtime policy and signed evidence for AI traffic.</h1>
-          <p class="hero-subtitle">Put Talon in front of LLM apps, agents, Slack bots, and vendor AI workflows. Block risky requests before provider access, cap spend per caller, and export verifiable evidence when customers, DPOs, security, or auditors ask what happened.</p>
+          <h1>Govern AI traffic at the provider boundary.</h1>
+          <p class="hero-subtitle">Talon sits in front of LLM apps, agents, Slack bots, and vendor AI workflows. It blocks risky requests before provider access, caps spend per caller, and exports signed evidence when customers, DPOs, security, or auditors ask what happened.</p>
           <div class="hero-actions">
             <a class="button primary" href="/talon/docs/quickstart-demo/">Run the 60-second demo</a>
             <a class="button secondary" href="/talon/docs/">Read the docs</a>
@@ -75,7 +76,7 @@
         <div class="terminal-card hero-terminal" aria-label="Talon evidence terminal example">
           <div class="terminal-header"><span></span><span></span><span></span></div>
           <pre><code><span class="muted"># Existing app keeps its SDK</span>
-OPENAI_BASE_URL=https://talon.your-company.eu/v1/proxy/openai/v1
+OPENAI_BASE_URL=https://talon.acme.eu/v1/openai
 OPENAI_API_KEY=&lt;talon-caller-key&gt;
 
 <span class="muted">$</span> talon audit list
