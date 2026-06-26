@@ -1,0 +1,170 @@
+/* Homepage visual correction after the dense-layout redesign.
+   Keep the same SEO/content surface, but remove the oversized/empty hero feel. */
+
+.hero {
+  padding: 56px 0 22px;
+}
+
+.hero-dense {
+  padding-top: 58px;
+}
+
+.hero-grid {
+  grid-template-columns: minmax(0, 0.95fr) minmax(500px, 1.05fr);
+  gap: 42px;
+  align-items: start;
+}
+
+.hero-copy {
+  padding-top: 0;
+}
+
+h1 {
+  max-width: 650px;
+  font-size: clamp(44px, 4.9vw, 64px);
+  line-height: 1.03;
+  letter-spacing: -0.058em;
+}
+
+.hero-subtitle {
+  max-width: 650px;
+  margin-top: 18px;
+  font-size: clamp(17px, 1.35vw, 19px);
+  line-height: 1.56;
+}
+
+.hero-actions,
+.actions {
+  margin-top: 24px;
+}
+
+.trust-row {
+  max-width: 650px;
+  margin-top: 18px;
+  gap: 7px;
+}
+
+.trust-row span,
+.strip-inner span {
+  padding: 6px 9px;
+  font-size: 12px;
+}
+
+.terminal-card {
+  border-radius: 16px;
+}
+
+.hero-terminal {
+  align-self: start;
+  min-height: 0;
+  max-width: 610px;
+  justify-self: end;
+}
+
+.terminal-header {
+  height: 34px;
+}
+
+.terminal-card pre {
+  padding: 18px 20px 20px;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 12.5px;
+  line-height: 1.58;
+}
+
+.strip {
+  padding: 18px 0 30px;
+}
+
+.strip-inner {
+  justify-content: flex-start;
+}
+
+.section {
+  padding: 50px 0;
+}
+
+.compact-section {
+  padding: 46px 0;
+}
+
+.section-heading {
+  margin-bottom: 24px;
+}
+
+.section-heading > p:not(.eyebrow) {
+  font-size: 17px;
+  line-height: 1.58;
+}
+
+h2 {
+  font-size: clamp(30px, 3.4vw, 44px);
+  line-height: 1.08;
+}
+
+.feature-matrix,
+.grid {
+  gap: 14px;
+}
+
+.feature-column,
+.card {
+  padding: 20px;
+}
+
+.feature-column h3 {
+  margin-bottom: 12px;
+}
+
+.feature-column li {
+  padding: 9px 0;
+  font-size: 14px;
+}
+
+.proof-flow {
+  padding: 14px;
+}
+
+.flow-step {
+  padding: 15px;
+}
+
+.flow-arrow {
+  padding: 4px 0;
+}
+
+.metric-grid div {
+  min-height: 76px;
+  padding: 14px;
+}
+
+.metric-grid strong {
+  font-size: 24px;
+}
+
+.compact-cards .card {
+  min-height: 176px;
+}
+
+@media (max-width: 1080px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-terminal {
+    justify-self: stretch;
+    max-width: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    padding-top: 42px;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+}
