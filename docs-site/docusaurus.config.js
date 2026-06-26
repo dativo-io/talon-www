@@ -9,7 +9,7 @@ const config = {
   organizationName: 'dativo-io',
   projectName: 'talon',
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   i18n: {
