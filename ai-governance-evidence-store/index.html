@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/ai-governance-evidence-store/" />
   <title>Signed Evidence for AI Governance | Dativo Talon</title>
-  <meta name="description" content="Talon creates signed evidence for AI traffic: caller, policy decision, PII findings, model, cost, hashes, export, and verification." />
+  <meta name="description" content="Talon creates signed evidence for AI traffic: caller, policy decision, PII findings, model, cost, destination region, egress decision, sovereignty posture reports, export, and verification." />
   <meta property="og:title" content="Signed Evidence for AI Governance" />
-  <meta property="og:description" content="Export and verify evidence for LLM and AI-agent traffic reviews." />
+  <meta property="og:description" content="Export and verify evidence for LLM and AI-agent traffic reviews, including sovereignty posture reports." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://dativo.io/ai-governance-evidence-store/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Signed Evidence for AI Governance" />
-  <meta name="twitter:description" content="Signed records for AI traffic, policy decisions, PII, cost, and verification." />
+  <meta name="twitter:description" content="Signed records for AI traffic, policy decisions, PII, cost, destination region, egress, and verification." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="16x16" href="/public/assets/favicon-16x16.png" />
@@ -22,27 +22,34 @@
   <link rel="manifest" href="/public/assets/site.webmanifest" />
   <meta name="theme-color" content="#07111f" />
   <link rel="stylesheet" href="/styles.css" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Signed Evidence for AI Governance","description":"How Talon records, exports, and verifies evidence for AI traffic.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/ai-governance-evidence-store/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Signed Evidence for AI Governance","description":"How Talon records, exports, verifies, and turns AI traffic evidence into sovereignty posture reports.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/ai-governance-evidence-store/"}</script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
 </head>
 <body>
-<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/ai-governance-eu/">EU governance</a><a href="/ai-governance-evidence-store/">Evidence</a><a href="/resources/eu-ai-governance-runtime-checklist/">Checklist</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
+<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/ai-governance-eu/">EU governance</a><a href="/ai-sovereignty-posture-report/">Sovereignty</a><a href="/ai-governance-evidence-store/">Evidence</a><a href="/resources/eu-ai-governance-runtime-checklist/">Checklist</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
 <main>
-<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Evidence · Export · Verification</div><h1>Evidence your security and compliance teams can verify.</h1><p class="hero-subtitle">Talon turns AI traffic decisions into signed records. Each record shows who called, what policy ran, what PII was found, which model was used, what it cost, and whether the record still verifies.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key">Run the demo</a><a class="button secondary" href="/resources/eu-ai-governance-runtime-checklist/">Use the checklist</a><a class="button ghost" href="/comparisons/">Compare options</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>talon audit list
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Evidence · Export · Verification · Sovereignty</div><h1>Evidence your security and compliance teams can verify.</h1><p class="hero-subtitle">Talon turns AI traffic decisions into signed records. Each record shows who called, what policy ran, what PII was found, which model and provider were used, where data went, what it cost, and whether the record still verifies.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the demo</a><a class="button secondary" href="/ai-sovereignty-posture-report/">See sovereignty report</a><a class="button ghost" href="/comparisons/">Compare options</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>talon audit list
 
 talon audit show req_a1b2c3d4
 
 talon audit verify req_a1b2c3d4
 
-✓ Evidence signature VALID</code></pre></div></div></section>
-<section class="strip"><div class="wrap strip-inner"><span>Caller</span><span>Policy decision</span><span>PII findings</span><span>Cost</span><span>Signature</span></div></section>
-<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">What gets recorded</p><h2>One compact record per AI decision.</h2><p>Talon evidence is designed for review packages, not just dashboards.</p></div><div class="grid three"><article class="card"><div class="icon">🧾</div><h3>Decision context</h3><p>Caller, tenant, policy version, allow/deny/redact decision, and reason.</p></article><article class="card"><div class="icon">🔐</div><h3>Data and execution</h3><p>PII findings, input/output hashes, model, provider, tokens, duration, and cost.</p></article><article class="card"><div class="icon">✅</div><h3>Integrity check</h3><p>HMAC signature so records can be verified after export.</p></article></div></div></section>
-<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Review workflow</p><h2>Export, sample, verify.</h2><p>For a customer, DPO, security, or auditor review: export a period, sample evidence IDs, verify signatures, and attach the export to the review package.</p></div><div class="code-panel"><pre><code>talon audit export --format json
+✓ Evidence signature VALID
 
-talon audit show req_a1b2c3d4
+talon compliance sovereignty --format html</code></pre></div></div></section>
+<section class="strip"><div class="wrap strip-inner"><span>Caller</span><span>Policy decision</span><span>PII findings</span><span>Destination region</span><span>Egress decision</span><span>Cost</span><span>Signature</span></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">What gets recorded</p><h2>One compact record per AI decision.</h2><p>Talon evidence is designed for review packages, not just dashboards.</p></div><div class="grid three"><article class="card"><div class="icon">🧾</div><h3>Decision context</h3><p>Caller, tenant, policy version, allow/deny/redact decision, and reason.</p></article><article class="card"><div class="icon">🌍</div><h3>Data movement context</h3><p>Provider, destination region, routing decision, egress decision, denied candidates, and observed data-flow destinations.</p></article><article class="card"><div class="icon">✅</div><h3>Integrity check</h3><p>HMAC signature so records can be verified after export and used in customer, DPO, or auditor review packages.</p></article></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Sovereignty posture report</p><h2>Turn evidence into a reviewable data-residency artifact.</h2><p>The sovereignty report combines declared config — routing mode, deployment mode, gateway providers, and allowed egress — with runtime evidence such as observed destinations, egress denials, and routing rejections. It is supporting evidence, not a legal determination.</p><div class="link-row"><a href="/ai-sovereignty-posture-report/">Report overview</a><a href="/talon/docs/air-gapped-deployment/">Air-gap guide</a><a href="/talon/docs/compliance-export-runbook/">Export runbook</a></div></div><div class="code-panel"><pre><code>talon compliance sovereignty \
+  --format json \
+  --tenant acme \
+  --gateway-config talon.config.yaml \
+  --output sovereignty.acme.json
 
-talon audit verify req_a1b2c3d4</code></pre></div></div></section>
-<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Try the evidence path</p><h2>Generate one signed record in minutes.</h2><p>Run the demo, send test PII, inspect the policy decision, and verify the signature.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key-needed">Run the demo</a><a class="button secondary" href="/ai-governance-eu/">Read EU governance guide</a></div></div></div></section>
+talon compliance sovereignty \
+  --format html \
+  --output sovereignty.acme.html</code></pre></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Review workflow</p><h2>Export, sample, verify, explain posture.</h2><p>For a customer, DPO, security, or auditor review: export a period, sample evidence IDs, verify signatures, and attach the sovereignty posture report to show configured controls and observed runtime destinations.</p></div><div class="table-wrap comparison-table"><table><thead><tr><th>Review need</th><th>Command or artifact</th><th>What it proves</th></tr></thead><tbody><tr><td>Show individual decision facts</td><td><code>talon audit show &lt;evidence-id&gt;</code></td><td>Caller, policy, PII, model, destination, cost, and reason.</td></tr><tr><td>Verify integrity</td><td><code>talon audit verify &lt;evidence-id&gt;</code></td><td>The evidence record still matches its HMAC signature.</td></tr><tr><td>Export a period</td><td><code>talon audit export --format json</code></td><td>Portable evidence for a review package.</td></tr><tr><td>Explain data-residency posture</td><td><code>talon compliance sovereignty --format html</code></td><td>Configured sovereignty controls plus observed destinations and egress denials.</td></tr></tbody></table></div></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Try the evidence path</p><h2>Generate one signed record and one sovereignty report.</h2><p>Run the demo, send a governed request, inspect the policy decision, verify the signature, and generate the HTML posture report.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the demo</a><a class="button secondary" href="/ai-governance-eu/">Read EU governance guide</a></div></div></div></section>
 </main>
 <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Talon is self-hostable Apache-2.0 software. Product information is for technical evaluation and does not replace legal, compliance, or procurement advice.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body></html>
