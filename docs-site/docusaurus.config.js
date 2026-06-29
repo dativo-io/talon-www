@@ -57,7 +57,7 @@ const config = {
       title: 'Dativo Talon Docs',
       logo: {
         alt: 'Dativo Talon',
-        src: 'img/logo.svg',
+        src: 'https:' + '//dativo.io/public/assets/talon-logo.png',
       },
       items: [
         {
