@@ -39,6 +39,7 @@ const sidebars = {
       label: 'EU governance and auditor evidence',
       collapsed: false,
       items: [
+        'air-gapped-deployment',
         'governance-control-matrix',
         'turnkey-compliance-reports',
         'policy-packs',
@@ -53,10 +54,22 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'PII detection and scanner engines',
+      collapsed: false,
+      items: [
+        'external-scanners',
+        'local-scanner-engines',
+        'presidio-compatibility-matrix',
+        'pii-semantic-enrichment',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Operate in production',
       collapsed: false,
       items: [
         'gateway-dashboard',
+        'operational-control-plane',
         'observability',
         'authentication-and-key-scopes',
         'configuration',
@@ -64,8 +77,9 @@ const sidebars = {
         'policy-cookbook',
         'cost-governance-by-caller',
         'agent-planning',
+        'plan-review-operators',
+        'plan-review-e2e-testcase',
         'memory-governance',
-        'pii-semantic-enrichment',
         'incident-response-playbook',
       ],
     },
@@ -74,7 +88,6 @@ const sidebars = {
       label: 'Compliance and technical reference',
       collapsed: false,
       items: [
-        'presidio-compatibility-matrix',
         'threat-model',
         'conformance',
         'benchmarks',
