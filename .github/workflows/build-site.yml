@@ -27,3 +27,7 @@ jobs:
           test -f dist/sitemap.xml
           test -f dist/talon/docs/index.html
           test -f dist/talon/docs/sitemap.xml
+          test -f dist/talon/docs/air-gapped-deployment/index.html
+          test -f dist/talon/docs/external-scanners/index.html
+          test -f dist/talon/docs/local-scanner-engines/index.html
+          test -f dist/talon/docs/operational-control-plane/index.html
