@@ -1,105 +1,126 @@
 ---
 title: Dativo Talon documentation
-description: Learn Dativo Talon, an open-source AI governance gateway for European SMBs. Govern LLM traffic, PII, tools, costs, provider fallback, EU routing, local scanner engines, and signed audit evidence.
+description: Learn Dativo Talon, an open-source AI governance gateway for European SMBs. Govern coding-agent sessions, LLM traffic, PII, tools, costs, provider fallback, EU routing, local scanner engines, and signed evidence.
 slug: /
 ---
 
 # Dativo Talon documentation
 
-Dativo Talon is an open-source AI governance gateway for European SMBs that need to control LLM and AI-agent traffic before it reaches providers, then prove what happened with signed evidence.
+Dativo Talon is an open-source AI governance gateway for teams that need to control LLM and AI-agent traffic before it reaches providers, then prove what happened with signed evidence.
 
-Talon is useful when a SaaS, fintech, healthtech, e-commerce, or support team already has AI features in production and needs practical governance without rebuilding the product. It covers PII controls, external and local scanner engines, tool governance, cost caps, sovereignty-aware provider fallback, EU data-sovereignty routing, dashboard visibility, tenant isolation, compliance exports, and auditor-ready evidence.
+Talon governs provider-bound traffic without becoming the agent runtime. That now includes coding-agent fleets: Claude Code, Codex CLI, and custom orchestrators can share caller-scoped sessions across provider routes, with per-subagent attribution, cache-aware cost, session soft caps, dashboard drill-down, and signed session evidence.
 
 ## What Talon helps you do
 
 | Capability | What you get | Start here |
 |---|---|---|
+| Govern coding-agent fleets | One session across Claude Code, Codex CLI, and custom orchestrators; per-subagent attribution, session budgets, and signed session evidence. | [Govern coding agents](./governing-coding-agents.md) |
+| Govern Claude Code | Route Anthropic Messages API traffic through a caller-authenticated gateway with session/subagent evidence. | [Claude Code integration](./claude-code-integration.md) |
+| Govern Codex CLI | Route Responses API traffic through Talon with correct streaming usage, cache-aware cost, retention semantics, and session evidence. | [Codex CLI integration](./codex-cli-integration.md) |
 | Evaluate quickly | Run a no-key Docker demo and inspect PII, cost, policy, and signed evidence. | [60-second demo](./quickstart-demo.md) |
-| Produce compliance reports | Initialize EU policy packs, add declarations, and export signed RoPA, Annex IV, and framework reports. | [Turnkey compliance reports](./turnkey-compliance-reports.md) |
-| Govern existing LLM traffic | Put Talon in front of OpenAI-compatible clients with a base URL and caller key change. | [Add Talon to your existing app](./add-talon-to-existing-app.md) |
 | Keep traffic available without bypassing policy | Configure transient-error fallback chains; every candidate is re-checked against sovereignty, model, tool, and budget policy. | [Configuration](./configuration.md) |
-| Keep scanning in your environment | Use the built-in regex scanner, a Presidio-compatible HTTP/UDS service, or a local LLM such as Ollama. | [External scanners](./external-scanners.md) |
+| Keep scanning in your environment | Use regex, a Presidio-compatible HTTP/UDS service, or a local LLM such as Ollama. | [External scanners](./external-scanners.md) |
 | Control EU or local-only data movement | Enforce `eu_strict` or air-gap posture and inspect configured versus observed destinations. | [Air-gapped deployment](./air-gapped-deployment.md) |
-| Prove governance | Export signed evidence, compliance reports, RoPA, Annex IV, sovereignty, failover, and scanner facts. | [Sample auditor pack](./sample-auditor-pack.md) |
-| Keep spend predictable | Set hard daily and monthly cost caps per caller, app, or tenant. | [Cost governance by caller](./cost-governance-by-caller.md) |
+| Prove governance | Export and verify signed evidence, including session, failover, scanner, destination, and cost facts. | [Evidence store](./evidence-store.md) |
 
-## Best path for an EU SMB evaluator
+## Start here by job
 
-1. Run the [60-second demo](./quickstart-demo.md) to see governed traffic and signed evidence without an API key.
-2. Walk through [turnkey compliance reports](./turnkey-compliance-reports.md) to generate RoPA, Annex IV, and framework exports.
-3. Review [air-gapped deployment](./air-gapped-deployment.md) if local-only or EU-only operation matters.
-4. Review [external scanners](./external-scanners.md) and [local scanner engines](./local-scanner-engines.md) if regex-only PII detection is not enough.
-5. Check the [governance control matrix](./governance-control-matrix.md) and [sample auditor pack](./sample-auditor-pack.md).
-6. Choose an integration path: [existing app](./add-talon-to-existing-app.md), [vendor AI](./vendor-integration-guide.md), or [new governed agent](./first-governed-agent.md).
+### "I need to govern coding tools used by engineers"
+
+1. Read [How to govern a coding-agent fleet](./governing-coding-agents.md).
+2. Run the offline coding-agents demo from that guide.
+3. Configure the real tool: [Claude Code](./claude-code-integration.md) or [Codex CLI](./codex-cli-integration.md).
+4. Start in shadow mode, inspect the Coding Sessions dashboard, then enable enforcement.
+
+### "I need one audit trail for a multi-model coding session"
+
+Use the session surfaces:
+
+```bash
+talon audit list --session <id>
+talon audit export --session <id>
+talon audit verify --session <id>
+talon costs --session <id> --json
+```
+
+The CLI and dashboard use the same session aggregation, so they cannot drift into different totals.
+
+### "I need EU/local-only provider governance"
+
+Start with [Air-gapped deployment](./air-gapped-deployment.md), [Provider registry](./provider-registry.md), and [Configuration](./configuration.md).
+
+### "I need stronger PII detection"
+
+Review [External scanners](./external-scanners.md), [Local scanner engines](./local-scanner-engines.md), and the [Presidio compatibility matrix](./presidio-compatibility-matrix.md).
+
+## Coding-agent governance: what actually shipped on `main`
+
+Epic #192 added a complete provider-bound governance surface for coding-agent orchestration. These changes are currently in Talon `main` and the changelog's **Unreleased** section; do not treat them as a tagged release until a release is cut.
+
+- **Neutral orchestration metadata.** Generic `X-Talon-Session-ID`, `X-Talon-Agent-ID`, `X-Talon-Parent-Agent-ID`, and `X-Talon-Client` headers work across provider routes. Claude Code and Codex adapters map vendor headers into the same contract. Identity is client-asserted attribution, not authentication, and never a policy input.
+- **Cross-provider session audit.** A caller-scoped session can span Anthropic and OpenAI routes. `audit list/export/verify --session` and `costs --session` operate on the whole session with a per-subagent rollup.
+- **Cache-aware, provider-aware cost.** Anthropic cache creation/read and OpenAI cached input are normalized correctly, including terminal usage from streamed Responses traffic. Evidence records `pricing_basis` and whether pricing was known.
+- **Session soft caps.** `max_session_cost` denies a new request once accumulated session spend plus the pre-request estimate exceeds the limit, across provider routes. It is intentionally documented as a soft cap: in-flight and concurrent requests can overshoot.
+- **Coding Sessions dashboard.** Recent asserted sessions show requests, models/providers, tokens, cost, denials by reason, and per-subagent drill-down.
+- **Coding-agents pack and offline demo.** `talon init --pack coding-agents` creates a shadow-mode starting point with coding-tuned timeouts, session budget defaults, and high-precision credential recognizers. The offline demo exercises two wire families, subagent attribution, a PII warning, a session-budget denial, and signed export verification.
+- **Retention semantics fixed for Responses clients.** `responses_store_mode: preserve` is the default, so explicit client `store:false` is not silently reversed. `force_if_absent` and `force_true` are explicit operator choices.
+
+## Honest boundaries for coding agents
+
+- Talon sees model API traffic, not local file edits, shell commands, or other tool execution that never crosses the gateway.
+- Claude Code and Codex subscription/OAuth billing cannot be governed; the supported model is Talon caller key in, vault-stored provider API key out.
+- Client-asserted subagent identity is attribution, not workload attestation.
+- Session budgets are soft caps; atomic reservation remains separate work.
+- Coding callers default `response_pii_action: allow` because other response-PII actions currently buffer the entire SSE stream before first token.
 
 ## Find the right guide
 
-### Tutorials — learn by doing
+### Coding agents
 
-- [60-second demo](./quickstart-demo.md) — no API key; send a request with PII and inspect signed evidence.
-- [Turnkey compliance reports](./turnkey-compliance-reports.md) — start from an empty directory and generate signed RoPA, Annex IV, and framework exports.
-- [Your first governed agent](./first-governed-agent.md) — install Talon, initialize a project, run a governed agent, trigger a denial, and inspect evidence.
-- [Evidence integrity demo](./evidence-integrity-demo.md) — verify a record, tamper with it, and see signature validation fail.
+- [Govern a coding-agent fleet](./governing-coding-agents.md)
+- [Govern Claude Code](./claude-code-integration.md)
+- [Govern Codex CLI](./codex-cli-integration.md)
+- [Govern OpenClaw](./openclaw-integration.md)
 
-### How-to guides — solve a concrete problem
+### Other how-to guides
 
 - [Add Talon to an existing app](./add-talon-to-existing-app.md)
-- [Deploy Talon in air-gap / local-only mode](./air-gapped-deployment.md)
+- [Deploy in air-gap / local-only mode](./air-gapped-deployment.md)
 - [Run a local PII scanner engine](./local-scanner-engines.md)
 - [Test and operate Plan Review](./plan-review-operators.md)
 - [Add compliance to a Slack bot](./slack-bot-integration.md)
-- [Govern OpenClaw with Talon](./openclaw-integration.md)
-- [Run a first-line support agent](./internal-support-agent.md)
 - [Govern third-party AI vendors](./vendor-integration-guide.md)
 - [Offer Talon to multiple customers](./multi-tenant-msp.md)
 - [Run governed LLM calls in CI/CD](./cicd-pipeline-governance.md)
-- [Use EU compliance policy packs](./policy-packs.md)
-- [Verify turnkey compliance reports end-to-end](./verify-turnkey-compliance-reports.md)
 - [Export evidence for auditors](./compliance-export-runbook.md)
-- [Clear DECLARATION MISSING blocks in RoPA](./ropa-declarations.md)
 - [Respond to incidents](./incident-response-playbook.md)
 
-### Reference — look up exact behavior
+### Reference
 
-- [Configuration](./configuration.md) — includes gateway and native provider fallback chains.
-- [External scanners](./external-scanners.md) — scanner engine selection, adapter contract, fail-closed behavior, and evidence fields.
+- [Configuration](./configuration.md)
+- [Gateway dashboard](./gateway-dashboard.md)
 - [Authentication and key scopes](./authentication-and-key-scopes.md)
 - [Provider registry](./provider-registry.md)
-- [Gateway dashboard](./gateway-dashboard.md)
 - [Operational control plane](./operational-control-plane.md)
-- [Governance control matrix](./governance-control-matrix.md)
 - [Evidence integrity specification](./evidence-integrity-spec.md)
-- [Presidio compatibility matrix](./presidio-compatibility-matrix.md)
-- [Policy cookbook](./policy-cookbook.md)
-- [PII semantic enrichment](./pii-semantic-enrichment.md)
+- [Governance control matrix](./governance-control-matrix.md)
+- [External scanners](./external-scanners.md)
 - [Threat model](./threat-model.md)
 - [Conformance](./conformance.md)
 - [Benchmarks](./benchmarks.md)
 
-### Explanation — understand the product
+## Tagged release highlights
 
-- [What Talon does to your request](./what-talon-does-to-your-request.md)
-- [Why not just a PII proxy?](./why-not-a-pii-proxy.md)
-- [Evidence store](./evidence-store.md)
-- [Adoption scenarios](./adoption-scenarios.md)
-- [Persona guides](./persona-guides.md)
-- [Agent planning](./agent-planning.md)
-- [Memory governance](./memory-governance.md)
-- [Architecture: MCP proxy](./architecture-mcp-proxy.md)
-- [Observability](./observability.md)
+The latest tagged release line documented by the previous site update is **v1.6.8 (2026-07-04)**:
 
-## Latest release highlights
+- **v1.6.8 — external and local scanner engines**
+- **v1.6.7 — sovereignty-respecting provider fallback chains**
+- **v1.6.6 — air-gap mode and sovereignty posture reports**
 
-The public docs now track the current Talon release line through **v1.6.8 (2026-07-04)**:
+The coding-agent work above is newer and currently belongs to **Unreleased** in the Talon changelog.
 
-- **v1.6.8 — external and local scanner engines.** Replace the zero-config regex scanner with Microsoft Presidio, a custom Presidio-compatible HTTP/Unix-socket detector, or a local LLM engine such as Ollama. Enforcement stays fail-closed, scanner identity and typed failures are signed into evidence, and startup probes refuse dead engines. Start with [External scanners](./external-scanners.md) or [Local scanner engines](./local-scanner-engines.md).
-- **v1.6.7 — sovereignty-respecting provider fallback chains.** Retry transient provider failures through an ordered same-API-family chain without turning failover into a policy bypass. Each candidate re-runs sovereignty, provider/model allowlists, tool policy, budgets, and session context; non-EU candidates under `eu_strict` are never dispatched. Configuration and signed failover evidence are documented in [Configuration](./configuration.md) and [Release notes](./release-notes.md).
-- **v1.6.6 — air-gap mode and sovereignty posture reports.** Enforce local/EU-only egress, reject surprise destinations, run `talon doctor` against the effective posture, and export configured-versus-observed sovereignty facts in HTML or JSON. Start with [Air-gapped deployment](./air-gapped-deployment.md).
-
-Earlier releases added turnkey compliance reports, EU policy packs, auditor handoff artifacts, RoPA/Annex IV exports, data-flow evidence, and the Presidio-compatible scanner boundary.
-
-Read the [release notes](./release-notes.md) before upgrading or copying older configuration snippets.
+Read the [release notes](./release-notes.md) before upgrading or copying configuration snippets.
 
 ## Source of truth
 
-The source markdown lives in the [dativo-io/talon](https://github.com/dativo-io/talon) repository. This site is the canonical public documentation surface for indexing, navigation, and customer evaluation.
+The source markdown lives in the [dativo-io/talon](https://github.com/dativo-io/talon) repository. This site is the public documentation surface for indexing, navigation, and customer evaluation.
