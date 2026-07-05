@@ -1,6 +1,6 @@
 ---
 title: Dativo Talon documentation
-description: Learn Dativo Talon, an open-source AI governance gateway for European SMBs. Govern LLM traffic, PII, tools, costs, EU routing, and signed audit evidence.
+description: Learn Dativo Talon, an open-source AI governance gateway for European SMBs. Govern LLM traffic, PII, tools, costs, provider fallback, EU routing, local scanner engines, and signed audit evidence.
 slug: /
 ---
 
@@ -8,7 +8,7 @@ slug: /
 
 Dativo Talon is an open-source AI governance gateway for European SMBs that need to control LLM and AI-agent traffic before it reaches providers, then prove what happened with signed evidence.
 
-Talon is useful when a SaaS, fintech, healthtech, e-commerce, or support team already has AI features in production and needs practical governance without rebuilding the product. It covers PII controls, tool governance, cost caps, EU data-sovereignty routing, dashboard visibility, tenant isolation, compliance exports, and auditor-ready evidence.
+Talon is useful when a SaaS, fintech, healthtech, e-commerce, or support team already has AI features in production and needs practical governance without rebuilding the product. It covers PII controls, external and local scanner engines, tool governance, cost caps, sovereignty-aware provider fallback, EU data-sovereignty routing, dashboard visibility, tenant isolation, compliance exports, and auditor-ready evidence.
 
 ## What Talon helps you do
 
@@ -17,18 +17,20 @@ Talon is useful when a SaaS, fintech, healthtech, e-commerce, or support team al
 | Evaluate quickly | Run a no-key Docker demo and inspect PII, cost, policy, and signed evidence. | [60-second demo](./quickstart-demo.md) |
 | Produce compliance reports | Initialize EU policy packs, add declarations, and export signed RoPA, Annex IV, and framework reports. | [Turnkey compliance reports](./turnkey-compliance-reports.md) |
 | Govern existing LLM traffic | Put Talon in front of OpenAI-compatible clients with a base URL and caller key change. | [Add Talon to your existing app](./add-talon-to-existing-app.md) |
-| Choose the right architecture | Pick LLM gateway, MCP proxy, or native Talon based on your situation. | [Choose your integration path](./choosing-integration-path.md) |
-| Prove governance | Export signed evidence, compliance reports, RoPA, and Annex IV artifacts. | [Sample auditor pack](./sample-auditor-pack.md) |
-| Control EU data movement | Understand which controls run on each entry path and where limitations are explicit. | [Governance control matrix](./governance-control-matrix.md) |
+| Keep traffic available without bypassing policy | Configure transient-error fallback chains; every candidate is re-checked against sovereignty, model, tool, and budget policy. | [Configuration](./configuration.md) |
+| Keep scanning in your environment | Use the built-in regex scanner, a Presidio-compatible HTTP/UDS service, or a local LLM such as Ollama. | [External scanners](./external-scanners.md) |
+| Control EU or local-only data movement | Enforce `eu_strict` or air-gap posture and inspect configured versus observed destinations. | [Air-gapped deployment](./air-gapped-deployment.md) |
+| Prove governance | Export signed evidence, compliance reports, RoPA, Annex IV, sovereignty, failover, and scanner facts. | [Sample auditor pack](./sample-auditor-pack.md) |
 | Keep spend predictable | Set hard daily and monthly cost caps per caller, app, or tenant. | [Cost governance by caller](./cost-governance-by-caller.md) |
 
 ## Best path for an EU SMB evaluator
 
 1. Run the [60-second demo](./quickstart-demo.md) to see governed traffic and signed evidence without an API key.
 2. Walk through [turnkey compliance reports](./turnkey-compliance-reports.md) to generate RoPA, Annex IV, and framework exports.
-3. Review the [EU compliance policy packs](./policy-packs.md) to understand GDPR, NIS2, DORA, and EU AI Act starting controls.
-4. Check the [governance control matrix](./governance-control-matrix.md) and [sample auditor pack](./sample-auditor-pack.md).
-5. Choose an integration path: [existing app](./add-talon-to-existing-app.md), [vendor AI](./vendor-integration-guide.md), or [new governed agent](./first-governed-agent.md).
+3. Review [air-gapped deployment](./air-gapped-deployment.md) if local-only or EU-only operation matters.
+4. Review [external scanners](./external-scanners.md) and [local scanner engines](./local-scanner-engines.md) if regex-only PII detection is not enough.
+5. Check the [governance control matrix](./governance-control-matrix.md) and [sample auditor pack](./sample-auditor-pack.md).
+6. Choose an integration path: [existing app](./add-talon-to-existing-app.md), [vendor AI](./vendor-integration-guide.md), or [new governed agent](./first-governed-agent.md).
 
 ## Find the right guide
 
@@ -42,6 +44,9 @@ Talon is useful when a SaaS, fintech, healthtech, e-commerce, or support team al
 ### How-to guides — solve a concrete problem
 
 - [Add Talon to an existing app](./add-talon-to-existing-app.md)
+- [Deploy Talon in air-gap / local-only mode](./air-gapped-deployment.md)
+- [Run a local PII scanner engine](./local-scanner-engines.md)
+- [Test and operate Plan Review](./plan-review-operators.md)
 - [Add compliance to a Slack bot](./slack-bot-integration.md)
 - [Govern OpenClaw with Talon](./openclaw-integration.md)
 - [Run a first-line support agent](./internal-support-agent.md)
@@ -56,10 +61,12 @@ Talon is useful when a SaaS, fintech, healthtech, e-commerce, or support team al
 
 ### Reference — look up exact behavior
 
-- [Configuration](./configuration.md)
+- [Configuration](./configuration.md) — includes gateway and native provider fallback chains.
+- [External scanners](./external-scanners.md) — scanner engine selection, adapter contract, fail-closed behavior, and evidence fields.
 - [Authentication and key scopes](./authentication-and-key-scopes.md)
 - [Provider registry](./provider-registry.md)
 - [Gateway dashboard](./gateway-dashboard.md)
+- [Operational control plane](./operational-control-plane.md)
 - [Governance control matrix](./governance-control-matrix.md)
 - [Evidence integrity specification](./evidence-integrity-spec.md)
 - [Presidio compatibility matrix](./presidio-compatibility-matrix.md)
@@ -83,16 +90,13 @@ Talon is useful when a SaaS, fintech, healthtech, e-commerce, or support team al
 
 ## Latest release highlights
 
-Recent Talon development added user-facing controls and proof artifacts that matter for CTOs, operators, DPOs, and security reviewers:
+The public docs now track the current Talon release line through **v1.6.8 (2026-07-04)**:
 
-- **Turnkey compliance reports** — initialize EU policy packs, add declared organizational facts, and export GDPR Art. 30 RoPA, EU AI Act Annex IV, and framework reports.
-- **EU compliance policy packs** — GDPR, NIS2, DORA, and EU AI Act starter controls with explicit support annotations and claims discipline.
-- **Auditor handoff pack** — generated sample package with signed evidence, compliance report, GDPR Art. 30 RoPA, and EU AI Act Annex IV technical-documentation output.
-- **RoPA and Annex IV exports** — `talon compliance ropa` and `talon compliance annex-iv` merge declared organisational facts with runtime facts from signed evidence.
-- **Declaration-missing workflow** — exports flag missing controller, processing, retention, or system facts instead of pretending the record is complete.
-- **Egress and data-flow evidence** — signed records can show where classified data moved, which destinations were blocked, and where transfer gaps remain unresolved.
-- **Governance control matrix** — one reference page maps controls across runner, gateway, MCP server/proxy, and graph-adapter entry paths.
-- **Presidio-compatible scanner boundary** — Talon keeps byte offsets canonical, validates external scanner results, and fails closed before egress when residual sensitive data remains.
+- **v1.6.8 — external and local scanner engines.** Replace the zero-config regex scanner with Microsoft Presidio, a custom Presidio-compatible HTTP/Unix-socket detector, or a local LLM engine such as Ollama. Enforcement stays fail-closed, scanner identity and typed failures are signed into evidence, and startup probes refuse dead engines. Start with [External scanners](./external-scanners.md) or [Local scanner engines](./local-scanner-engines.md).
+- **v1.6.7 — sovereignty-respecting provider fallback chains.** Retry transient provider failures through an ordered same-API-family chain without turning failover into a policy bypass. Each candidate re-runs sovereignty, provider/model allowlists, tool policy, budgets, and session context; non-EU candidates under `eu_strict` are never dispatched. Configuration and signed failover evidence are documented in [Configuration](./configuration.md) and [Release notes](./release-notes.md).
+- **v1.6.6 — air-gap mode and sovereignty posture reports.** Enforce local/EU-only egress, reject surprise destinations, run `talon doctor` against the effective posture, and export configured-versus-observed sovereignty facts in HTML or JSON. Start with [Air-gapped deployment](./air-gapped-deployment.md).
+
+Earlier releases added turnkey compliance reports, EU policy packs, auditor handoff artifacts, RoPA/Annex IV exports, data-flow evidence, and the Presidio-compatible scanner boundary.
 
 Read the [release notes](./release-notes.md) before upgrading or copying older configuration snippets.
 
