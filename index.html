@@ -99,13 +99,13 @@
             <span>Signed evidence</span>
           </div>
         </div>
-        <div class="terminal-card hero-terminal" aria-label="One governed Talon engineering session">
+        <div class="terminal-card hero-terminal" aria-label="One Claude Code session governed by Talon">
           <div class="terminal-header"><span></span><span></span><span></span></div>
-          <pre><code><span class="muted"># one governed engineering session</span>
+          <pre><code><span class="muted"># one Claude Code session, governed end to end</span>
 <span class="muted">$</span> talon costs --session sess-release-4711
 
 Session sess-release-4711
-  Caller:    engineering-agent
+  Caller:    claude-code
   Requests:  8 <span class="muted">(4 allowed, 4 denied, 0 error)</span>
   Providers: anthropic, openai
   Cost:      €9.74
@@ -125,8 +125,8 @@ Data Flow:
 <span class="muted">$</span> talon audit show gw_tool_403
 <span class="red">Allowed:         false</span>
 Tool Governance (gateway)
-  Requested:     read_file, shell_exec, delete_database
-  Filtered:      shell_exec, delete_database
+  Requested:     read_file, network_access, production_deploy
+  Filtered:      network_access, production_deploy
   Forwarded:     <span class="green">read_file</span>
 
 <span class="muted">$</span> talon audit show gw_budget_403
