@@ -62,6 +62,8 @@ function normalizeLinks(markdown) {
     .replace(/\.\.\/\.\.\/docs\/ARCHITECTURE_MCP_PROXY\.md/g, './architecture-mcp-proxy.md')
     .replace(/\.\.\/\.\.\/examples\/auditor-pack\/README\.md/g, './sample-auditor-pack.md')
     .replace(/\.\.\/\.\.\/examples\/auditor-pack\//g, `${githubBase}/examples/auditor-pack/`)
+    .replace(/\.\.\/\.\.\/examples\/coding-agents-demo\/README\.md/g, `${githubBase}/examples/coding-agents-demo/README.md`)
+    .replace(/\.\.\/\.\.\/examples\/coding-agents-demo\//g, `${githubBase}/examples/coding-agents-demo/`)
     .replace(/\.\.\/\.\.\/examples\/gateway\/talon\.config\.gateway\.yaml/g, `${githubBase}/examples/gateway/talon.config.gateway.yaml`)
     .replace(/\.\.\/\.\.\/examples\/policies\/README\.md/g, `${githubBase}/examples/policies/README.md`)
     .replace(/\.\.\/\.\.\/policies\/README\.md/g, `${githubBase}/policies/README.md`)

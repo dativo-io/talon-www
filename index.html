@@ -6,18 +6,18 @@
   <link rel="canonical" href="https://dativo.io/" />
 
   <title>Dativo Talon — Open-source AI governance gateway for European teams</title>
-  <meta name="description" content="Dativo Talon governs LLM and AI-agent traffic before provider access. Enforce PII scanning, tool, cost, model, sovereignty-safe provider fallback, EU/local routing, and air-gap policies, then export signed evidence for every decision." />
-  <meta name="keywords" content="AI governance gateway, EU AI governance, LLM gateway, AI agent governance, provider fallback, LLM failover, Presidio proxy, local PII scanner, Ollama PII scanner, GDPR AI, EU AI Act, AI sovereignty report, air-gapped AI, AI audit evidence, AI cost control" />
+  <meta name="description" content="Dativo Talon governs LLM, AI-agent, and coding-agent traffic before provider access. Control PII, tools, model access, costs, coding sessions, provider fallback, EU/local routing, and signed evidence." />
+  <meta name="keywords" content="AI governance gateway, AI agent governance, coding agent governance, LLM gateway, Claude Code governance, Codex CLI governance, AI cost control, AI audit evidence, EU AI governance, provider fallback, Presidio proxy, local PII scanner" />
 
-  <meta property="og:title" content="Dativo Talon — Open-source AI governance gateway for European teams" />
-  <meta property="og:description" content="Control AI traffic before provider access. Enforce PII scanning, policy-safe fallback, EU/local routing, cost and tool controls — then produce signed evidence." />
+  <meta property="og:title" content="Dativo Talon — Govern AI traffic before provider access" />
+  <meta property="og:description" content="Govern LLM apps, agents, and coding tools with PII controls, cost and model policy, provider fallback, EU/local routing, coding sessions, and signed evidence." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://dativo.io/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Dativo Talon — Open-source AI governance gateway for European teams" />
-  <meta name="twitter:description" content="Govern AI traffic at the provider boundary with local/external PII scanners, sovereignty-safe provider fallback, EU/local egress rules, and signed evidence." />
+  <meta name="twitter:title" content="Dativo Talon — Open-source AI governance gateway" />
+  <meta name="twitter:description" content="Policy before provider access. Signed evidence after every decision — across apps, agents, coding tools, and providers." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
 
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="/homepage-overrides.css" />
 
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Dativo Talon","applicationCategory":"SecurityApplication","operatingSystem":"Linux, macOS, Windows, Docker","description":"Open-source AI governance gateway for European teams. Enforce PII scanning, tool, cost, model, provider fallback, EU/local routing, and air-gap policies before LLM and AI-agent traffic reaches providers, then export signed evidence.","url":"https://dativo.io/","codeRepository":"https://github.com/dativo-io/talon","license":"https://www.apache.org/licenses/LICENSE-2.0","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"audience":{"@type":"Audience","audienceType":"European SMB CTOs, engineering leaders, security, DPO, compliance and platform teams"}}
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Dativo Talon","softwareVersion":"1.7.0","applicationCategory":"SecurityApplication","operatingSystem":"Linux, macOS, Windows, Docker","description":"Open-source AI governance gateway for European teams. Govern LLM, AI-agent, and coding-agent traffic with PII, tool, cost, model, provider fallback, EU/local routing, session controls, and signed evidence.","url":"https://dativo.io/","codeRepository":"https://github.com/dativo-io/talon","license":"https://www.apache.org/licenses/LICENSE-2.0","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"audience":{"@type":"Audience","audienceType":"European SMB CTOs, platform teams, engineering leaders, security, DPO, compliance and FinOps teams"}}
   </script>
 
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
@@ -43,6 +43,7 @@
         <span>Dativo Talon</span>
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/coding-agent-governance/">Coding agents</a>
         <a href="/ai-governance-eu/">EU governance</a>
         <a href="/ai-sovereignty-posture-report/">Sovereignty</a>
         <a href="/ai-governance-evidence-store/">Evidence</a>
@@ -58,88 +59,115 @@
     <section class="hero hero-dense">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Open-source · Self-hostable · Current release line: v1.6.8</div>
+          <div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Open-source · Self-hostable · Current release: v1.7.0</div>
           <h1>Govern AI traffic at the provider boundary.</h1>
-          <p class="hero-subtitle">Talon sits in front of LLM apps, agents, Slack bots, and vendor AI workflows. It scans sensitive data with built-in, Presidio-compatible, or local engines; blocks risky requests before provider access; preserves policy during provider fallback; caps spend; enforces EU/local egress; and exports signed evidence for review.</p>
+          <p class="hero-subtitle">Talon sits in front of LLM apps, agents, coding tools, Slack bots, and vendor AI workflows. It scans sensitive data with built-in, external, or local engines; enforces tool, model, cost, session, and sovereignty policy; preserves those controls during provider fallback; and exports signed evidence for review.</p>
           <div class="hero-actions">
             <a class="button primary" href="/talon/docs/quickstart-demo/">Run the 60-second demo</a>
-            <a class="button secondary" href="/talon/docs/release-notes/">See release notes</a>
-            <a class="button ghost" href="https://github.com/dativo-io/talon">View GitHub</a>
+            <a class="button secondary" href="/coding-agent-governance/">What’s new: coding agents</a>
+            <a class="button ghost" href="/talon/docs/">Read the docs</a>
           </div>
           <div class="trust-row" aria-label="Talon outcomes">
             <span>Change one base URL</span>
-            <span>Presidio / local scanner engines</span>
+            <span>Coding-agent sessions</span>
+            <span>Presidio / local scanners</span>
             <span>Policy-safe provider fallback</span>
-            <span>Air-gap / local-only mode</span>
+            <span>EU / local-only controls</span>
             <span>HMAC-signed evidence</span>
-            <span>Apache-2.0</span>
           </div>
         </div>
-        <div class="terminal-card hero-terminal" aria-label="Talon governance terminal example">
+        <div class="terminal-card hero-terminal" aria-label="Talon coding session terminal example">
           <div class="terminal-header"><span></span><span></span><span></span></div>
-          <pre><code><span class="muted"># Primary provider times out</span>
-<span class="red">primary → timeout</span>
-<span class="green">backup-eu → allowed by policy → 200</span>
+          <pre><code><span class="muted">$</span> talon audit list --session sess-feature-4711
+SESSION              REQUESTS  COST
+sess-feature-4711    18        €4.23
 
-<span class="muted">$</span> talon audit verify --failover
-<span class="green">✓ failover evidence chain VALID</span>
+SUBAGENT              PROVIDER   COST
+claude:generator      anthropic  €2.41
+codex:executor        openai     €1.18
+claude:reviewer       anthropic  €0.64
 
-<span class="muted">$</span> talon audit export --format json |
-  jq '.records[-1].scanner_engine'
-<span class="green">"presidio-analyzer"</span></code></pre>
+<span class="muted">$</span> talon audit verify --session sess-feature-4711
+<span class="green">✓ every signed record VALID</span></code></pre>
         </div>
       </div>
     </section>
 
-    <section class="strip"><div class="wrap strip-inner"><span>PII controls</span><span>External/local scanners</span><span>Tool governance</span><span>Cost caps</span><span>Provider fallback</span><span>EU routing</span><span>Air-gap mode</span><span>Signed evidence</span></div></section>
+    <section class="strip"><div class="wrap strip-inner"><span>Coding sessions</span><span>PII controls</span><span>Tool governance</span><span>Session + caller budgets</span><span>Provider fallback</span><span>EU routing</span><span>Air-gap mode</span><span>Signed evidence</span></div></section>
 
     <section class="section outcomes-section" id="outcomes">
       <div class="wrap">
         <div class="section-heading wide-heading">
           <p class="eyebrow">Why teams install Talon</p>
-          <h2>One gateway. Concrete controls before provider access.</h2>
-          <p>Most teams do not need another AI policy document. They need a small enforcement point that protects data, controls spend, survives provider outages without bypassing rules, respects data-residency requirements, and creates proof automatically.</p>
+          <h2>One control point for provider-bound AI traffic.</h2>
+          <p>Most teams do not need another AI policy document. They need runtime enforcement, cost control, data-movement discipline, resilient routing that does not bypass policy, and evidence that survives the review.</p>
         </div>
         <div class="outcome-grid">
+          <a class="outcome-card" href="/coding-agent-governance/">
+            <div class="outcome-visual"><span>🧑‍💻</span><i></i><i></i><i></i></div>
+            <h3>Govern coding-agent fleets</h3>
+            <p>Group Claude Code, Codex CLI, and custom subagents into caller-scoped sessions across provider routes.</p>
+            <strong>Coding-agent governance →</strong>
+          </a>
           <a class="outcome-card" href="/talon/docs/external-scanners/">
             <div class="outcome-visual"><span>🔎</span><i></i><i></i><i></i></div>
             <h3>Choose how PII is detected</h3>
-            <p>Use zero-config regex, Microsoft Presidio, a custom Presidio-compatible service, or a local LLM scanner such as Ollama.</p>
+            <p>Use built-in regex, Microsoft Presidio, a custom compatible service, or a local LLM scanner such as Ollama.</p>
             <strong>Scanner engines →</strong>
           </a>
           <a class="outcome-card" href="/talon/docs/configuration/">
             <div class="outcome-visual euro"><span>🔁</span><i></i><i></i><i></i></div>
             <h3>Keep traffic available without policy bypass</h3>
-            <p>Retry transient provider failures through an ordered fallback chain; re-run sovereignty, model, tool, budget, and caller policy for every candidate.</p>
+            <p>Retry transient provider failures through policy-checked fallback chains.</p>
             <strong>Fallback configuration →</strong>
-          </a>
-          <a class="outcome-card" href="/ai-sovereignty-posture-report/">
-            <div class="outcome-visual globe"><span>🇪🇺</span><i></i><i></i><i></i></div>
-            <h3>Enforce EU or local-only egress</h3>
-            <p>Use eu_strict and air_gap modes to reject surprise non-EU provider access and local-only misconfiguration.</p>
-            <strong>Sovereignty controls →</strong>
           </a>
           <a class="outcome-card" href="/ai-governance-evidence-store/">
             <div class="outcome-visual proof"><span>🧾</span><i></i><i></i><i></i></div>
             <h3>Produce signed evidence</h3>
-            <p>Record decisions, scanner identity, failover attempts, destinations, costs, caller identity, and HMAC signatures for review.</p>
+            <p>Record policy decisions, PII and scanner facts, sessions, failover, destination, cost, caller, and signatures.</p>
             <strong>Evidence store →</strong>
           </a>
         </div>
       </div>
     </section>
 
-    <section class="section" id="latest-releases">
+    <section class="section split-section" id="coding-agents">
+      <div class="wrap split">
+        <div>
+          <p class="eyebrow">New in v1.7.0 · epic #192</p>
+          <h2>One coding session across Claude Code and Codex.</h2>
+          <p>Talon does not orchestrate subagents. It governs the model API traffic they produce. A caller-scoped session can span Anthropic and OpenAI routes, with per-subagent attribution, cache-aware cost, session soft caps, signed session export, and one dashboard drill-down.</p>
+          <div class="link-row">
+            <a href="/coding-agent-governance/">Coding-agent overview</a>
+            <a href="/talon/docs/coding-agents-demo/">Reproducible demo</a>
+            <a href="/talon/docs/claude-code-integration/">Claude Code</a>
+            <a href="/talon/docs/codex-cli-integration/">Codex CLI</a>
+          </div>
+        </div>
+        <div class="code-panel"><pre><code>talon init --pack coding-agents
+
+# One session, multiple provider routes
+talon audit list --session sess-feature-4711
+
+# Cache-aware session cost
+talon costs --session sess-feature-4711 --json
+
+# Verify every signed record
+talon audit verify --session sess-feature-4711</code></pre></div>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="wrap">
         <div class="section-heading wide-heading">
-          <p class="eyebrow">Latest releases</p>
-          <h2>Three releases moved Talon from static controls to governed resilience and pluggable detection.</h2>
-          <p>The public site and docs track the current release line through v1.6.8.</p>
+          <p class="eyebrow">What changed in v1.7.0</p>
+          <h2>Governance that follows the session across providers.</h2>
+          <p>The release adds a neutral orchestration contract and session-level proof without teaching Talon how to spawn, schedule, or reason about agents.</p>
         </div>
         <div class="grid three compact-cards">
-          <article class="card"><div class="card-label">v1.6.8 · 2026-07-04</div><h3>External and local scanner engines</h3><p>Replace regex-only detection with Presidio-compatible HTTP/UDS services or a local LLM engine. Enforcement stays fail-closed and evidence records scanner identity and typed failures.</p><a href="/talon/docs/external-scanners/">External scanners →</a></article>
-          <article class="card"><div class="card-label">v1.6.7 · 2026-07-03</div><h3>Sovereignty-respecting provider fallback</h3><p>Retry transient failures through same-API-family chains. Every candidate re-runs the caller policy; eu_strict candidates outside EU/LOCAL are never dispatched.</p><a href="/talon/docs/configuration/">Fallback configuration →</a></article>
-          <article class="card"><div class="card-label">v1.6.6 · 2026-06-30</div><h3>Air-gap mode and sovereignty reports</h3><p>Enforce deny-by-default local/EU egress and export configured-versus-observed sovereignty posture in HTML or JSON.</p><a href="/talon/docs/air-gapped-deployment/">Air-gap guide →</a></article>
+          <article class="card"><div class="card-label">Attribution</div><h3>Neutral orchestration metadata</h3><p>Generic <code>X-Talon-*</code> headers plus vendor mappings for Claude Code and Codex. Identity is client-asserted attribution, never authentication or a policy input.</p><a href="/talon/docs/governing-coding-agents/">Metadata contract →</a></article>
+          <article class="card"><div class="card-label">FinOps</div><h3>Cache-aware provider cost</h3><p>Anthropic cache creation/read and OpenAI cached input are priced correctly, including streamed Responses usage. Evidence records the pricing basis.</p><a href="/talon/docs/governing-coding-agents/">Session cost →</a></article>
+          <article class="card"><div class="card-label">Control</div><h3>Session soft caps</h3><p>New requests are denied once accumulated session spend plus the pre-request estimate exceeds the limit, even across provider routes. In-flight concurrency can still overshoot.</p><a href="/talon/docs/governing-coding-agents/">Budget semantics →</a></article>
         </div>
       </div>
     </section>
@@ -149,48 +177,18 @@
         <div>
           <p class="eyebrow">Governed resilience</p>
           <h2>Outages do not get a policy exception.</h2>
-          <p>On a transient provider failure, Talon can walk an ordered fallback chain. Before dispatch, every candidate is checked against provider and model allowlists, target tool policy, budgets, session context, and sovereignty. Under eu_strict, a non-EU/LOCAL candidate is skipped and recorded rather than silently used.</p>
-          <div class="link-row">
-            <a href="/talon/docs/configuration/">Fallback configuration</a>
-            <a href="/ai-governance-eu/">EU governance</a>
-            <a href="/ai-governance-evidence-store/">Failover evidence</a>
-            <a href="/talon/docs/release-notes/">Release notes</a>
-          </div>
+          <p>On a transient provider failure, Talon can walk an ordered fallback chain. Every candidate is checked against provider and model allowlists, tool policy, budgets, session context, and sovereignty. Under <code>eu_strict</code>, a non-EU/LOCAL candidate is skipped rather than silently used.</p>
+          <div class="link-row"><a href="/talon/docs/configuration/">Fallback configuration</a><a href="/ai-governance-eu/">EU governance</a><a href="/ai-governance-evidence-store/">Failover evidence</a></div>
         </div>
         <div class="code-panel"><pre><code>gateway:
   providers:
     primary:
       fallback:
         - provider: backup-eu
-          model: approved-model
 
 # timeout / 429 / 5xx → evaluate candidate
 # eu_strict + non-EU candidate → skip
 # exhausted chain → fail closed + signed evidence</code></pre></div>
-      </div>
-    </section>
-
-    <section class="section split-section">
-      <div class="wrap split">
-        <div>
-          <p class="eyebrow">Detection where you need it</p>
-          <h2>Keep the governance pipeline. Swap the scanner engine.</h2>
-          <p>The built-in regex scanner remains the zero-config default. When you need names, addresses, fuzzy identifiers, or local-only scanning, select a Presidio-compatible service or a local LLM engine. Talon validates adapter output, normalizes offsets, blocks unverifiable scans in enforcement paths, and records scanner facts in signed evidence.</p>
-          <div class="link-row">
-            <a href="/talon/docs/external-scanners/">External scanner reference</a>
-            <a href="/talon/docs/local-scanner-engines/">Local scanner cookbook</a>
-            <a href="/talon/docs/presidio-compatibility-matrix/">Boundary contract</a>
-          </div>
-        </div>
-        <div class="code-panel"><pre><code>scanner:
-  type: presidio   # regex | presidio | http | llm
-  endpoint: http://presidio:5001/analyze
-
-# Or keep scanning local
-scanner:
-  type: llm
-  llm:
-    base_url: http://127.0.0.1:11434</code></pre></div>
       </div>
     </section>
 
@@ -199,14 +197,14 @@ scanner:
         <div class="section-heading wide-heading centered-heading">
           <p class="eyebrow">How it works</p>
           <h2>Policy before provider access. Evidence after every decision.</h2>
-          <p>Talon is not a dashboard you check after the damage is done. It sits on the request path and records allowed, denied, redacted, filtered, failed-over, and fail-closed outcomes as audit evidence.</p>
+          <p>Talon sits on the request path and records allowed, denied, redacted, failed-over, session-budgeted, and fail-closed outcomes.</p>
         </div>
         <div class="visual-flow" aria-label="Talon request lifecycle summary">
-          <div class="visual-step"><div class="step-icon">🤖</div><strong>App / agent / bot</strong><span>OpenAI-compatible SDK, MCP client, native agent run, Slack bot, or vendor AI workflow.</span></div>
+          <div class="visual-step"><div class="step-icon">🤖</div><strong>App / agent / coding tool</strong><span>OpenAI-compatible app, Claude Code, Codex CLI, MCP client, Slack bot, or vendor workflow.</span></div>
           <div class="visual-arrow">→</div>
-          <div class="visual-step highlight"><div class="step-icon">🛡️</div><strong>Talon gateway</strong><span>Caller · scanner · PII · tool policy · model · budget · sovereignty · fallback candidate checks.</span></div>
+          <div class="visual-step highlight"><div class="step-icon">🛡️</div><strong>Talon gateway</strong><span>Caller · session · scanner · PII · tools · model · budget · sovereignty · fallback checks.</span></div>
           <div class="visual-arrow">→</div>
-          <div class="visual-step"><div class="step-icon">✅</div><strong>Provider + evidence</strong><span>Forward safe traffic, fail over only when policy allows, block risky calls, and sign the runtime facts.</span></div>
+          <div class="visual-step"><div class="step-icon">✅</div><strong>Provider + evidence</strong><span>Forward allowed traffic, deny risky calls, fail over only when policy allows, and sign the runtime facts.</span></div>
         </div>
         <div class="flow-actions"><a class="button secondary" href="/talon/docs/what-talon-does-to-your-request/">See request lifecycle</a><a class="button ghost" href="/talon/docs/governance-control-matrix/">Open control matrix</a></div>
       </div>
@@ -214,142 +212,51 @@ scanner:
 
     <section class="section" id="features">
       <div class="wrap">
-        <div class="section-heading wide-heading">
-          <p class="eyebrow">Batteries included</p>
-          <h2>Everything needed to govern one real AI workflow.</h2>
-          <p>Start with the highest-risk bot, internal assistant, support workflow, or vendor integration. Talon gives engineering, platform, security, FinOps, and DPO teams one runtime control point without forcing a product rewrite.</p>
-        </div>
+        <div class="section-heading wide-heading"><p class="eyebrow">Batteries included</p><h2>Everything needed to govern one real AI workflow.</h2><p>Start with the workflow where provider access, sensitive data, spend, regional constraints, or customer review matters most.</p></div>
         <div class="feature-matrix illustrated-features">
-          <article class="feature-column">
-            <div class="feature-visual"><span>🛑</span><b></b><b></b><b></b></div>
-            <div class="card-label">Runtime controls</div>
-            <h3>Stop bad traffic before it leaves.</h3>
-            <ul>
-              <li><a href="/talon/docs/external-scanners/">Regex, Presidio-compatible, or local LLM PII scanning</a></li>
-              <li><a href="/talon/docs/configuration/">Provider fallback that re-runs policy per candidate</a></li>
-              <li><a href="/talon/docs/provider-registry/">Model allowlists and EU routing modes</a></li>
-              <li><a href="/talon/docs/air-gapped-deployment/">Air-gap mode for local-only or in-region deployments</a></li>
-              <li><a href="/talon/docs/cost-governance-by-caller/">Daily and monthly cost caps by caller</a></li>
-            </ul>
-          </article>
-          <article class="feature-column">
-            <div class="feature-visual"><span>🔏</span><b></b><b></b><b></b></div>
-            <div class="card-label">Evidence and compliance</div>
-            <h3>Turn runtime facts into reviewable proof.</h3>
-            <ul>
-              <li><a href="/talon/docs/evidence-store/">HMAC-signed evidence records</a></li>
-              <li><a href="/ai-governance-evidence-store/">Scanner and failover evidence</a></li>
-              <li><a href="/ai-sovereignty-posture-report/">Sovereignty posture reports in HTML/JSON</a></li>
-              <li><a href="/talon/docs/compliance-export-runbook/">CSV and JSON evidence export</a></li>
-              <li><a href="/talon/docs/turnkey-compliance-reports/">RoPA, Annex IV, and framework reports</a></li>
-            </ul>
-          </article>
-          <article class="feature-column">
-            <div class="feature-visual"><span>📊</span><b></b><b></b><b></b></div>
-            <div class="card-label">Operations</div>
-            <h3>Run it like infrastructure.</h3>
-            <ul>
-              <li><a href="/talon/docs/gateway-dashboard/">Gateway dashboard and metrics API</a></li>
-              <li><a href="/talon/docs/operational-control-plane/">Operational control plane</a></li>
-              <li><a href="/talon/docs/multi-tenant-msp/">Tenant-scoped keys and evidence</a></li>
-              <li><a href="/talon/docs/observability/">OpenTelemetry traces and metrics</a></li>
-              <li><a href="/talon/docs/configuration/">Two-file policy and infrastructure configuration</a></li>
-            </ul>
-          </article>
+          <article class="feature-column"><div class="feature-visual"><span>🛑</span><b></b><b></b><b></b></div><div class="card-label">Runtime controls</div><h3>Stop bad traffic before it leaves.</h3><ul><li><a href="/talon/docs/governing-coding-agents/">Coding-session attribution and budgets</a></li><li><a href="/talon/docs/external-scanners/">Regex, Presidio, custom, or local LLM scanning</a></li><li><a href="/talon/docs/configuration/">Provider fallback with policy re-check</a></li><li><a href="/talon/docs/provider-registry/">Model allowlists and EU routing</a></li><li><a href="/talon/docs/cost-governance-by-caller/">Daily and monthly caller caps</a></li></ul></article>
+          <article class="feature-column"><div class="feature-visual"><span>🔏</span><b></b><b></b><b></b></div><div class="card-label">Evidence</div><h3>Turn runtime facts into reviewable proof.</h3><ul><li><a href="/talon/docs/evidence-store/">HMAC-signed evidence records</a></li><li><a href="/talon/docs/governing-coding-agents/">Session-scoped export and verification</a></li><li><a href="/ai-sovereignty-posture-report/">Sovereignty posture reports</a></li><li><a href="/talon/docs/compliance-export-runbook/">CSV and JSON evidence export</a></li><li><a href="/talon/docs/turnkey-compliance-reports/">RoPA, Annex IV, and framework reports</a></li></ul></article>
+          <article class="feature-column"><div class="feature-visual"><span>📊</span><b></b><b></b><b></b></div><div class="card-label">Operations</div><h3>Run it like infrastructure.</h3><ul><li><a href="/talon/docs/gateway-dashboard/">Coding Sessions and gateway dashboard</a></li><li><a href="/talon/docs/operational-control-plane/">Operational control plane</a></li><li><a href="/talon/docs/multi-tenant-msp/">Tenant-scoped keys and evidence</a></li><li><a href="/talon/docs/observability/">OpenTelemetry traces and metrics</a></li><li><a href="/talon/docs/configuration/">Policy and infrastructure configuration</a></li></ul></article>
         </div>
-      </div>
-    </section>
-
-    <section class="section split-section" id="integration">
-      <div class="wrap split">
-        <div>
-          <p class="eyebrow">Fast integration</p>
-          <h2>Start with one base URL change.</h2>
-          <p>Your application can keep using the same OpenAI-compatible SDK. Point the base URL at Talon, send a Talon caller key, and let Talon inject the approved provider credential from its vault. Add fallback and scanner configuration later without changing the application SDK.</p>
-          <div class="link-row"><a href="/talon/docs/add-talon-to-existing-app/">Existing app</a><a href="/talon/docs/air-gapped-deployment/">Local Ollama / air-gap</a><a href="/talon/docs/slack-bot-integration/">Slack bot</a><a href="/talon/docs/vendor-integration-guide/">Vendor AI</a></div>
-        </div>
-        <div class="code-panel"><pre><code># Before
-OPENAI_BASE_URL=https://api.openai.com/v1
-OPENAI_API_KEY=sk-provider-key
-
-# After
-OPENAI_BASE_URL=http://talon:8080/v1/proxy/openai/v1
-OPENAI_API_KEY=&lt;talon-caller-key&gt;
-
-# Then inspect proof
-talon audit list
-talon audit verify --failover</code></pre></div>
       </div>
     </section>
 
     <section class="section proof-band" id="proof">
       <div class="wrap">
-        <div class="section-heading wide-heading centered-heading">
-          <p class="eyebrow">Proof surfaces</p>
-          <h2>Not just policy. Runtime facts you can inspect.</h2>
-          <p>Evidence is the product surface: signed records, scanner facts, failover chains, dashboard metrics, exports, compliance reports, sovereignty posture reports, and control mappings.</p>
-        </div>
+        <div class="section-heading wide-heading centered-heading"><p class="eyebrow">Proof surfaces</p><h2>Not just policy. Runtime facts you can inspect.</h2><p>Evidence is the product surface: signed decision and session records, scanner facts, failover chains, dashboard drill-down, exports, and sovereignty reports.</p></div>
         <div class="grid two proof-grid">
-          <article class="proof-panel">
-            <div class="card-label">Failover evidence</div>
-            <pre><code>{
-  "type": "gateway_failover_attempt",
-  "provider": "primary",
-  "failure": "timeout",
-  "correlation_id": "req-123",
-  "failover_group_id": "fo-456"
-}
-
-terminal: backup-eu selected</code></pre>
-            <div class="mini-links"><a href="/talon/docs/configuration/">Fallback config</a><a href="/talon/docs/release-notes/">Release notes</a><a href="/ai-governance-evidence-store/">Evidence model</a></div>
-          </article>
-          <article class="proof-panel">
-            <div class="card-label">Scanner evidence</div>
-            <pre><code>{
-  "scanner_type": "presidio",
-  "scanner_engine": "presidio-analyzer",
-  "scanner_version": "...",
-  "scanner_failure": null,
-  "pii_detected": ["person", "email"],
+          <article class="proof-panel"><div class="card-label">Coding session evidence</div><pre><code>{
+  "session_id": "sess-feature-4711",
+  "orch_agent_id": "executor",
+  "orch_parent_agent_id": "generator",
+  "provider": "openai",
+  "cache_read_tokens": 12000,
+  "pricing_basis": "table",
   "signature": "hmac-sha256:..."
-}</code></pre>
-            <div class="mini-links"><a href="/talon/docs/external-scanners/">External scanners</a><a href="/talon/docs/local-scanner-engines/">Local engines</a><a href="/talon/docs/evidence-integrity-spec/">Integrity spec</a></div>
-          </article>
+}</code></pre><div class="mini-links"><a href="/coding-agent-governance/">Coding agents</a><a href="/talon/docs/coding-agents-demo/">Demo</a><a href="/talon/docs/evidence-integrity-spec/">Integrity spec</a></div></article>
+          <article class="proof-panel"><div class="card-label">Failover + scanner evidence</div><pre><code>{
+  "scanner_engine": "presidio-analyzer",
+  "scanner_failure": null,
+  "failover_group_id": "fo-456",
+  "provider_selected": "backup-eu",
+  "signature": "hmac-sha256:..."
+}</code></pre><div class="mini-links"><a href="/talon/docs/external-scanners/">Scanner engines</a><a href="/talon/docs/configuration/">Fallback config</a><a href="/ai-governance-evidence-store/">Evidence model</a></div></article>
         </div>
       </div>
     </section>
 
     <section class="section compact-section" id="buyers">
-      <div class="wrap">
-        <div class="section-heading wide-heading">
-          <p class="eyebrow">Who it is for</p>
-          <h2>Built for European SMB teams putting AI into production.</h2>
-          <p>Talon is strongest when a team already has an AI feature, support bot, internal agent, or vendor AI workflow and needs practical runtime controls without rebuilding the product.</p>
-        </div>
-        <div class="grid four compact-cards">
-          <a class="card" href="/ai-governance-eu/"><div class="card-label">EU SaaS</div><h3>Customer-facing AI features</h3><p>Show customers and security reviewers how LLM traffic, failover, and data movement are governed.</p></a>
-          <a class="card" href="/talon/docs/local-scanner-engines/"><div class="card-label">Data sensitivity</div><h3>Scanning on your own hardware</h3><p>Keep detection local with an Ollama scanner or connect an in-region Presidio service.</p></a>
-          <a class="card" href="/talon/docs/cost-governance-by-caller/"><div class="card-label">FinOps</div><h3>Platform and AI spend</h3><p>Attribute cost by caller, tenant, model, and workflow with hard caps.</p></a>
-          <a class="card" href="/talon/docs/multi-tenant-msp/"><div class="card-label">MSP / ISV</div><h3>Per-customer governance</h3><p>Offer tenant-scoped AI governance with keys, evidence, exports, and policy.</p></a>
-        </div>
-      </div>
+      <div class="wrap"><div class="section-heading wide-heading"><p class="eyebrow">Who it is for</p><h2>Built for teams putting AI into production.</h2><p>Talon is strongest when a team already has an AI feature, coding-agent rollout, support bot, internal agent, or vendor AI workflow and needs practical runtime controls.</p></div><div class="grid four compact-cards"><a class="card" href="/coding-agent-governance/"><div class="card-label">Platform engineering</div><h3>Coding-agent fleets</h3><p>Track multi-model sessions, subagents, cache-aware cost, and session budget denials.</p></a><a class="card" href="/ai-governance-eu/"><div class="card-label">EU SaaS</div><h3>Customer-facing AI</h3><p>Show how provider access, fallback, and data movement are governed.</p></a><a class="card" href="/talon/docs/local-scanner-engines/"><div class="card-label">Sensitive data</div><h3>Scanning on your hardware</h3><p>Keep detection local with Ollama or an in-region Presidio service.</p></a><a class="card" href="/talon/docs/multi-tenant-msp/"><div class="card-label">MSP / ISV</div><h3>Per-customer governance</h3><p>Offer tenant-scoped AI governance with keys, evidence, exports, and policy.</p></a></div></div>
     </section>
 
     <section class="section" id="compare">
-      <div class="wrap">
-        <div class="section-heading wide-heading">
-          <p class="eyebrow">Choose by need</p>
-          <h2>Use Talon when proof of governed AI traffic matters.</h2>
-          <p>Talon focuses on provider-boundary controls and evidence. It can complement tools focused on in-process agent design, observability, or broader security posture.</p>
-        </div>
-        <div class="table-wrap comparison-table"><table><thead><tr><th>Need</th><th>Suggested path</th><th>Why</th></tr></thead><tbody><tr><td>Runtime AI governance for PII, tools, cost, model routing, provider fallback, EU/local data movement, air-gap mode, and signed evidence</td><td><strong>Start with Talon</strong></td><td>Talon is built as a governance gateway in front of provider-bound traffic and records the policy and runtime facts around each decision.</td></tr><tr><td>Only detect or mask sensitive strings in prompts</td><td><a href="/comparisons/talon-vs-pii-proxy/">PII proxy may be enough</a></td><td>Useful narrow control, but it does not cover cost, tools, routing, fallback policy, tenant evidence, air-gap egress, or signed audit records.</td></tr><tr><td>Deep in-process action governance for a new agent runtime</td><td><a href="/comparisons/talon-vs-agent-governance-toolkits/">Evaluate agent governance toolkits</a></td><td>Agent-runtime controls and gateway evidence solve related but different problems.</td></tr><tr><td>General LLM routing and observability only</td><td><a href="/comparisons/">Compare AI gateway classes</a></td><td>Talon now has governed fallback, but its design center remains policy enforcement and evidence rather than traffic optimization alone.</td></tr></tbody></table></div>
-      </div>
+      <div class="wrap"><div class="section-heading wide-heading"><p class="eyebrow">Choose by need</p><h2>Use Talon when proof of governed AI traffic matters.</h2><p>Talon focuses on provider-boundary controls and evidence. It can complement tools focused on in-process agent design, endpoint security, or traffic optimization.</p></div><div class="table-wrap comparison-table"><table><thead><tr><th>Need</th><th>Suggested path</th><th>Why</th></tr></thead><tbody><tr><td>Runtime governance for AI apps, agents, and coding tools</td><td><strong>Start with Talon</strong></td><td>PII, tool, model, cost, session, routing, fallback, sovereignty, and signed evidence at the provider boundary.</td></tr><tr><td>Govern coding-agent model traffic across sessions and providers</td><td><a href="/coding-agent-governance/">Use the coding-agent path</a></td><td>Session attribution, cache-aware cost, session soft caps, dashboard drill-down, and signed verification without becoming the orchestrator.</td></tr><tr><td>Only detect or mask sensitive strings</td><td><a href="/comparisons/talon-vs-pii-proxy/">PII proxy may be enough</a></td><td>Talon adds caller, session, cost, tools, routing, fallback, evidence, and export.</td></tr><tr><td>General traffic optimization and observability only</td><td><a href="/comparisons/">Compare gateway classes</a></td><td>Talon has governed fallback, but its design center is policy enforcement and evidence.</td></tr></tbody></table></div></div>
     </section>
 
-    <section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Start practical</p><h2>Put Talon in front of one AI workflow this week.</h2><p>Pick a workflow that touches customer data, regulated data, model spend, provider reliability, regions, or tools. Route it through Talon, generate the first signed evidence record, then test the failure case you actually worry about.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Try the demo</a><a class="button secondary" href="/talon/docs/external-scanners/">Choose a scanner</a><a class="button ghost" href="/talon/docs/configuration/">Configure fallback</a></div></div></div></section>
+    <section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Start practical</p><h2>Put Talon in front of one AI workflow.</h2><p>Start with the 60-second demo, then choose the real workflow that touches sensitive data, model spend, provider reliability, regional constraints, or coding-agent sessions.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the 60-second demo</a><a class="button secondary" href="/talon/docs/coding-agents-demo/">Run coding-agent demo</a><a class="button ghost" href="/talon/docs/release-notes/">Release notes</a></div></div></div></section>
   </main>
 
-  <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Talon is self-hostable Apache-2.0 software. Product information is for technical evaluation and does not replace legal, compliance, or procurement advice. Source: <a href="https://github.com/dativo-io/talon">GitHub</a>.</span></div></footer>
+  <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Talon is self-hostable Apache-2.0 software. It governs provider-bound AI traffic; it does not orchestrate agents or observe local tool execution. Product information is for technical evaluation and does not replace legal, compliance, or procurement advice. Source: <a href="https://github.com/dativo-io/talon">GitHub</a>.</span></div></footer>
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>

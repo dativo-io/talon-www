@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/ai-governance-evidence-store/" />
   <title>Signed Evidence for AI Governance | Dativo Talon</title>
-  <meta name="description" content="Talon creates signed evidence for AI traffic: caller, policy decision, PII findings, scanner engine, provider failover, model, cost, destination region, egress decision, sovereignty posture reports, export, and verification." />
+  <meta name="description" content="Talon creates signed evidence for AI traffic: caller, policy decision, PII findings, coding sessions and subagents, scanner engine, provider failover, cache-aware cost, destination region, export, and verification." />
   <meta property="og:title" content="Signed Evidence for AI Governance" />
-  <meta property="og:description" content="Export and verify evidence for LLM and AI-agent traffic reviews, including scanner identity, provider failover, and sovereignty posture." />
+  <meta property="og:description" content="Export and verify evidence for LLM, AI-agent, and coding-agent traffic, including policy decisions, PII findings, sessions, scanner identity, provider failover, cost, and data movement." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://dativo.io/ai-governance-evidence-store/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Signed Evidence for AI Governance" />
-  <meta name="twitter:description" content="Signed records for AI traffic, scanner decisions, provider failover, PII, cost, destination region, egress, and verification." />
+  <meta name="twitter:description" content="Signed records for AI traffic: policy decisions, PII findings, coding sessions, scanner identity, provider failover, cost, destination, and verification." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="16x16" href="/public/assets/favicon-16x16.png" />
@@ -22,24 +22,37 @@
   <link rel="manifest" href="/public/assets/site.webmanifest" />
   <meta name="theme-color" content="#07111f" />
   <link rel="stylesheet" href="/styles.css" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Signed Evidence for AI Governance","description":"How Talon records, exports, and verifies AI traffic evidence, including scanner identity, provider failover, and sovereignty posture.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/ai-governance-evidence-store/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Signed Evidence for AI Governance","description":"How Talon records, exports, and verifies AI traffic evidence, including policy decisions, coding sessions, PII and scanner findings, provider failover, cost, and sovereignty posture.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/ai-governance-evidence-store/"}</script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
 </head>
 <body>
-<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/ai-governance-eu/">EU governance</a><a href="/ai-sovereignty-posture-report/">Sovereignty</a><a href="/ai-governance-evidence-store/">Evidence</a><a href="/resources/eu-ai-governance-runtime-checklist/">Checklist</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
+<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/coding-agent-governance/">Coding agents</a><a href="/ai-governance-eu/">EU governance</a><a href="/ai-sovereignty-posture-report/">Sovereignty</a><a href="/ai-governance-evidence-store/">Evidence</a><a href="/talon/docs/">Docs</a><a href="https://blog.dativo.io">Blog</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
 <main>
-<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Evidence · Export · Verification · Runtime facts</div><h1>Evidence your security and compliance teams can verify.</h1><p class="hero-subtitle">Talon turns AI traffic decisions into signed records. Each record can show who called, what policy ran, what PII was found, which scanner evaluated it, whether provider failover occurred, where data went, what it cost, and whether the record still verifies.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the demo</a><a class="button secondary" href="/talon/docs/release-notes/">Read release notes</a><a class="button ghost" href="/comparisons/">Compare options</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>talon audit list
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Evidence · Export · Verification · Runtime facts</div><h1>Evidence your security and platform teams can verify.</h1><p class="hero-subtitle">Talon turns AI traffic decisions into signed records. Each record can show who called, what policy ran, what PII was found, which scanner evaluated it, whether a coding session or provider failover was involved, where data went, how cost was calculated, and whether the record still verifies.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the demo</a><a class="button secondary" href="/talon/docs/evidence-store/">Read evidence docs</a><a class="button ghost" href="/coding-agent-governance/">See session evidence</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>talon audit list
 
 talon audit show req_a1b2c3d4
 
 talon audit verify req_a1b2c3d4
 
-✓ Evidence signature VALID
+✓ Evidence signature VALID</code></pre></div></div></section>
+<section class="strip"><div class="wrap strip-inner"><span>Caller</span><span>Policy decision</span><span>PII findings</span><span>Session + subagent</span><span>Scanner engine</span><span>Failover chain</span><span>Destination</span><span>Cost</span><span>Signature</span></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">What gets recorded</p><h2>Compact records for the decisions that matter.</h2><p>Talon evidence is designed for incident review, customer security questions, coding-agent rollouts, sovereignty reviews, and auditor handoff — not just dashboard charts.</p></div><div class="grid three"><article class="card"><div class="icon">🧾</div><h3>Decision context</h3><p>Caller, tenant, policy version, allow/deny/redact decision, reason, runtime path, model, destination, and session budget detail when applicable.</p></article><article class="card"><div class="icon">🔎</div><h3>Data and scanner context</h3><p>PII findings, tool-related request findings, scanner identity, version, duration, and typed scanner failures.</p></article><article class="card"><div class="icon">🧑‍💻</div><h3>Session and cost context</h3><p>Session, subagent and parent attribution, input/output/cache tokens, provider-aware amount, pricing basis, and whether pricing was known.</p></article></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Coding-session evidence</p><h2>Audit a multi-model session as one unit.</h2><p>A caller-scoped session can span Anthropic and OpenAI routes. Talon aggregates requests, providers, models, tokens, cost, denials, and per-subagent attribution from signed evidence. The same aggregation powers the CLI and Coding Sessions dashboard.</p><div class="link-row"><a href="/coding-agent-governance/">Coding-agent overview</a><a href="/talon/docs/governing-coding-agents/">Fleet guide</a><a href="/talon/docs/gateway-dashboard/">Dashboard reference</a></div></div><div class="code-panel"><pre><code>talon audit list --session &lt;id&gt;
+talon audit export --session &lt;id&gt;
+talon audit verify --session &lt;id&gt;
+talon costs --session &lt;id&gt; --json
 
-talon audit verify --failover</code></pre></div></div></section>
-<section class="strip"><div class="wrap strip-inner"><span>Caller</span><span>Policy decision</span><span>PII findings</span><span>Scanner engine</span><span>Failover chain</span><span>Destination region</span><span>Cost</span><span>Signature</span></div></section>
-<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">What gets recorded</p><h2>Compact records for the decisions that matter.</h2><p>Talon evidence is designed for incident review, customer security questions, and auditor handoff — not just dashboard charts.</p></div><div class="grid three"><article class="card"><div class="icon">🧾</div><h3>Decision context</h3><p>Caller, tenant, policy version, allow/deny/redact decision, reason, and the runtime path that produced it.</p></article><article class="card"><div class="icon">🔎</div><h3>Scanner context</h3><p>PII findings plus scanner type, engine identity, version, scan duration, and typed failure kind when an external or local engine is used.</p></article><article class="card"><div class="icon">🔁</div><h3>Failover context</h3><p>Failed provider attempts, selected fallback or fail-closed outcome, policy-skipped candidates, correlation ID, and failover group ID.</p></article></div></div></section>
-<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Provider failover evidence</p><h2>Show that reliability did not bypass governance.</h2><p>When a transient provider failure engages a fallback chain, Talon writes one signed attempt record per failed provider and exactly one terminal record for the selected fallback or the fail-closed result. Candidate policy skips are distinct from runtime failures, so a review can see whether sovereignty or caller policy prevented dispatch.</p><div class="link-row"><a href="/talon/docs/configuration/">Configure fallback</a><a href="/talon/docs/release-notes/">v1.6.7 notes</a><a href="/talon/docs/evidence-integrity-spec/">Integrity spec</a></div></div><div class="code-panel"><pre><code>{
+# one summary across providers
+# per-subagent rollup
+# HMAC verification of every record</code></pre></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Agentic-content evidence</p><h2>See sensitive data that moves through tool-related request content.</h2><p>Talon scans tool-use inputs, tool-result outputs, and function-call arguments and writes findings into signed evidence. The Responses API <code>instructions</code> field is governed as prompt text.</p><p><strong>Boundary:</strong> tool-content scanning is evidence-only today. Talon does not redact or block based on that signal yet. Local file edits, shell commands, and tool execution remain invisible when they never cross the gateway.</p><div class="link-row"><a href="/talon/docs/evidence-store/">Evidence model</a><a href="/coding-agent-governance/">Coding-agent boundary</a></div></div><div class="code-panel"><pre><code>signed evidence can record:
+
+- tool content scanned
+- PII found or not found
+- entity types observed
+
+# evidence-only signal today</code></pre></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Provider failover evidence</p><h2>Show that reliability did not bypass governance.</h2><p>When a transient provider failure engages a fallback chain, Talon writes one signed attempt record per failed provider and one terminal record for the selected fallback or the fail-closed result. Candidate policy skips remain distinct from runtime failures.</p><div class="link-row"><a href="/talon/docs/configuration/">Configure fallback</a><a href="/talon/docs/evidence-integrity-spec/">Integrity spec</a></div></div><div class="code-panel"><pre><code>{
   "type": "gateway_failover_attempt",
   "provider": "primary",
   "failure": "timeout",
@@ -49,30 +62,23 @@ talon audit verify --failover</code></pre></div></div></section>
 
 # Then one terminal record:
 # selected fallback OR fail_closed</code></pre></div></div></section>
-<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Scanner evidence</p><h2>Know which detection engine made the decision.</h2><p>External and local scanner engines stay behind the same governed Talon paths. Evidence records the engine identity and typed scanner failures instead of silently pretending a scan succeeded. In enforce mode, an unverifiable scan blocks egress rather than falling back to a weaker hidden path.</p><div class="link-row"><a href="/talon/docs/external-scanners/">External scanners</a><a href="/talon/docs/local-scanner-engines/">Local scanner engines</a><a href="/talon/docs/presidio-compatibility-matrix/">Boundary contract</a></div></div><div class="code-panel"><pre><code>{
-  "classification": {
-    "scanner": {
-      "type": "presidio",
-      "engine": "presidio-analyzer",
-      "version": "...",
-      "failure": null
-    }
-  }
-}
-
-# Export fields include scanner_engine,
-# scanner_type, scanner_version, scanner_failure</code></pre></div></div></section>
-<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Sovereignty posture report</p><h2>Turn evidence into a reviewable data-residency artifact.</h2><p>The sovereignty report combines declared config — routing mode, deployment mode, gateway providers, and allowed egress — with runtime evidence such as observed destinations, egress denials, and routing rejections. It is supporting evidence, not a legal determination.</p><div class="link-row"><a href="/ai-sovereignty-posture-report/">Report overview</a><a href="/talon/docs/air-gapped-deployment/">Air-gap guide</a><a href="/talon/docs/compliance-export-runbook/">Export runbook</a></div></div><div class="code-panel"><pre><code>talon compliance sovereignty \
-  --format json \
-  --tenant acme \
-  --gateway-config talon.config.yaml \
-  --output sovereignty.acme.json
-
-talon compliance sovereignty \
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Scanner evidence</p><h2>Know which detection engine made the decision.</h2><p>Built-in, external, and local scanner engines stay behind the same governed Talon paths. Evidence records engine identity and typed scanner failures instead of silently pretending a scan succeeded.</p><div class="link-row"><a href="/talon/docs/external-scanners/">External scanners</a><a href="/talon/docs/local-scanner-engines/">Local scanner engines</a><a href="/talon/docs/presidio-compatibility-matrix/">Boundary contract</a></div></div><div class="code-panel"><pre><code>{
+  "scanner_type": "presidio",
+  "scanner_engine": "presidio-analyzer",
+  "scanner_version": "...",
+  "scanner_failure": null
+}</code></pre></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Sovereignty posture</p><h2>Turn data-movement facts into a reviewable artifact.</h2><p>The sovereignty report combines declared configuration with observed destinations, egress denials, and routing rejections. It is supporting evidence, not a legal determination.</p><div class="link-row"><a href="/ai-sovereignty-posture-report/">Report overview</a><a href="/talon/docs/air-gapped-deployment/">Air-gap guide</a><a href="/talon/docs/compliance-export-runbook/">Export runbook</a></div></div><div class="code-panel"><pre><code>talon compliance sovereignty \
   --format html \
-  --output sovereignty.acme.html</code></pre></div></div></section>
-<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Review workflow</p><h2>Export, sample, verify, and explain runtime posture.</h2><p>For a customer, DPO, security, or auditor review: export a period, sample evidence IDs, verify signatures, verify linked failover chains when relevant, and attach the sovereignty posture report.</p></div><div class="table-wrap comparison-table"><table><thead><tr><th>Review need</th><th>Command or artifact</th><th>What it proves</th></tr></thead><tbody><tr><td>Show individual decision facts</td><td><code>talon audit show &lt;evidence-id&gt;</code></td><td>Caller, policy, PII, scanner, model, destination, cost, and reason.</td></tr><tr><td>Verify integrity</td><td><code>talon audit verify &lt;evidence-id&gt;</code></td><td>The evidence record still matches its HMAC signature.</td></tr><tr><td>Verify failover linkage</td><td><code>talon audit verify --failover</code></td><td>Failover attempts and terminal outcome form a valid signed chain.</td></tr><tr><td>Export a period</td><td><code>talon audit export --format json</code></td><td>Portable evidence including scanner and failover fields where present.</td></tr><tr><td>Explain data-residency posture</td><td><code>talon compliance sovereignty --format html</code></td><td>Configured sovereignty controls plus observed destinations and egress denials.</td></tr></tbody></table></div></div></section>
-<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Try the evidence path</p><h2>Generate one signed record, one scanner fact, and one failover chain.</h2><p>Run the demo, send a governed request, inspect the policy decision, verify the signature, then test a transient primary-provider failure against a configured fallback.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the demo</a><a class="button secondary" href="/talon/docs/external-scanners/">Choose a scanner</a><a class="button ghost" href="/talon/docs/configuration/">Configure fallback</a></div></div></div></section>
+  --output sovereignty.html</code></pre></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Cost evidence</p><h2>Signed spend tells you how the number was derived.</h2><p>Talon records input, output, cache read/write tokens, pricing basis, and whether pricing was known. Provider-specific usage semantics are normalized so the evidence explains the cost rather than hiding how it was estimated.</p><div class="link-row"><a href="/talon/docs/cost-governance-by-caller/">Cost governance</a><a href="/coding-agent-governance/">Session cost</a></div></div><div class="code-panel"><pre><code>cache-aware evidence includes:
+
+- cache read tokens
+- cache write tokens
+- pricing basis
+- whether pricing was known</code></pre></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Review workflow</p><h2>Export, sample, verify, and explain runtime posture.</h2></div><div class="table-wrap comparison-table"><table><thead><tr><th>Review need</th><th>Command or artifact</th><th>What it proves</th></tr></thead><tbody><tr><td>Show one decision</td><td><code>talon audit show &lt;evidence-id&gt;</code></td><td>Caller, policy, PII, scanner, model, destination, cost, and reason.</td></tr><tr><td>Review one coding session</td><td><code>talon audit list --session &lt;id&gt;</code></td><td>Session totals, providers/models, denials, and per-subagent attribution.</td></tr><tr><td>Verify integrity</td><td><code>talon audit verify &lt;id&gt;</code></td><td>The selected record or every record in a session still matches its HMAC signature.</td></tr><tr><td>Verify failover linkage</td><td><code>talon audit verify --failover</code></td><td>Failover attempts and terminal outcome form a valid signed chain.</td></tr><tr><td>Explain data-residency posture</td><td><code>talon compliance sovereignty --format html</code></td><td>Configured controls plus observed destinations and denials.</td></tr></tbody></table></div></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Try the evidence path</p><h2>Generate evidence from the workflow you actually need to govern.</h2><p>Start with the general demo, a coding-agent session, a scanner engine, or a provider failover test. Then inspect and verify the signed records Talon produced.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the demo</a><a class="button secondary" href="/talon/docs/coding-agents-demo/">Run coding-agent demo</a><a class="button ghost" href="/talon/docs/evidence-store/">Evidence docs</a></div></div></div></section>
 </main>
-<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Talon is self-hostable Apache-2.0 software. Product information is for technical evaluation and does not replace legal, compliance, or procurement advice.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Talon is self-hostable Apache-2.0 software. Client-asserted coding-agent identity is attribution, not authentication. Tool-content findings are evidence-only today.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body></html>
