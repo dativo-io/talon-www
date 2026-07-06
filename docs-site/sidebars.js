@@ -11,7 +11,7 @@ const sidebars = {
       type: 'category',
       label: 'Govern coding agents',
       collapsed: false,
-      items: ['governing-coding-agents','claude-code-integration','codex-cli-integration','openclaw-integration'],
+      items: ['governing-coding-agents','coding-agents-demo','claude-code-integration','codex-cli-integration','openclaw-integration'],
     },
     {
       type: 'category',
