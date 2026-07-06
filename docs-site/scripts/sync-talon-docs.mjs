@@ -7,9 +7,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const siteRoot = path.resolve(__dirname, '..');
 const docsDir = path.join(siteRoot, 'docs');
-const talonRoot = process.env.TALON_REPO_PATH
+const explicitTalonRepoPath = process.env.TALON_REPO_PATH
   ? path.resolve(process.env.TALON_REPO_PATH)
-  : path.resolve(siteRoot, '..', '..', 'talon');
+  : null;
+const talonRoot = explicitTalonRepoPath
+  ?? path.resolve(siteRoot, '..', '..', 'talon');
 const rawBase = 'https://raw.githubusercontent.com/dativo-io/talon/main';
 const githubBase = 'https://github.com/dativo-io/talon/blob/main';
 
@@ -26,6 +28,10 @@ async function readSource(sourcePath) {
   const localPath = path.join(talonRoot, sourcePath);
   if (await exists(localPath)) {
     return fs.readFile(localPath, 'utf8');
+  }
+
+  if (explicitTalonRepoPath) {
+    throw new Error(`Mapped Talon source not found in local checkout: ${sourcePath} (${localPath})`);
   }
 
   const url = `${rawBase}/${sourcePath}`;
