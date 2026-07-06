@@ -28,6 +28,29 @@
   <meta name="theme-color" content="#07111f" />
   <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/homepage-overrides.css" />
+  <style>
+    @media (min-width: 1081px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 0.82fr) minmax(620px, 1.18fr);
+        gap: 50px;
+      }
+
+      .hero-terminal {
+        width: 100%;
+        max-width: 720px;
+        min-height: 570px;
+      }
+
+      .hero-terminal pre {
+        padding: 26px 28px 30px;
+        overflow-x: auto;
+        white-space: pre;
+        word-break: normal;
+        font-size: 13.5px;
+        line-height: 1.62;
+      }
+    }
+  </style>
 
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Dativo Talon","softwareVersion":"1.7.0","applicationCategory":"SecurityApplication","operatingSystem":"Linux, macOS, Windows, Docker","description":"Open-source, self-hostable AI governance gateway for European SMBs. Enforce data, model, tool, cost, session, fallback, and EU/local routing policy before provider access, then export and verify signed evidence.","url":"https://dativo.io/","codeRepository":"https://github.com/dativo-io/talon","license":"https://www.apache.org/licenses/LICENSE-2.0","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"audience":{"@type":"Audience","audienceType":"European SMB CTOs, platform teams, engineering leaders, security, DPO, compliance and FinOps teams"}}
@@ -76,20 +99,43 @@
             <span>Signed evidence</span>
           </div>
         </div>
-        <div class="terminal-card hero-terminal" aria-label="Talon end-to-end governance example">
+        <div class="terminal-card hero-terminal" aria-label="One governed Talon engineering session">
           <div class="terminal-header"><span></span><span></span><span></span></div>
-          <pre><code><span class="muted"># one governed AI workflow</span>
-PII → detected + evidenced
-primary → timeout
-backup-us → skipped by eu_strict
-<span class="green">backup-eu → allowed</span>
+          <pre><code><span class="muted"># one governed engineering session</span>
+<span class="muted">$</span> talon costs --session sess-release-4711
 
-session → €9.74 / €10.00 <span class="muted">(cache-aware)</span>
-<span class="red">next request → HTTP 403</span>
-session_budget_exceeded
+Session sess-release-4711
+  Caller:    engineering-agent
+  Requests:  8 <span class="muted">(4 allowed, 4 denied, 0 error)</span>
+  Providers: anthropic, openai
+  Cost:      €9.74
 
-<span class="muted">$</span> talon audit verify --session sess-4711
-<span class="green">✓ every signed record VALID</span></code></pre>
+  Per-agent:
+    planner                   3 req  €6.12
+    executor ←planner         5 req  €3.62
+
+<span class="muted">$</span> talon audit show gw_egress_403
+<span class="green">HMAC Signature:  ✓ VALID</span>
+<span class="red">Allowed:         false</span>
+PII Detected:    EMAIL_ADDRESS, IBAN
+  Reason:        egress_tier_destination_disallowed
+Data Flow:
+  gateway → provider:openai region=US | <span class="red">denied</span> | tier 2
+
+<span class="muted">$</span> talon audit show gw_tool_403
+<span class="red">Allowed:         false</span>
+Tool Governance (gateway)
+  Requested:     read_file, shell_exec, delete_database
+  Filtered:      shell_exec, delete_database
+  Forwarded:     <span class="green">read_file</span>
+
+<span class="muted">$</span> talon audit show gw_budget_403
+<span class="red">Allowed:         false</span>
+  Reason:        session_budget_exceeded
+                 spend €9.74 + estimate €0.41 &gt; limit €10.00
+
+<span class="muted">$</span> talon audit verify --session sess-release-4711
+<span class="green">Session sess-release-4711: 8 record(s), 8 valid, 0 invalid</span></code></pre>
         </div>
       </div>
     </section>
