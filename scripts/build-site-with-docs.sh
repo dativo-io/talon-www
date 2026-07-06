@@ -70,6 +70,11 @@ find "$ROOT_DIR" -mindepth 1 -maxdepth 1 \
   ! -name 'scripts' \
   -exec cp -R {} "$OUT_DIR/" \;
 
+# Marketing pages historically carried independent hard-coded nav variants.
+# Normalize every .site-nav in the built artifact from one canonical definition
+# so adding or editing a page cannot silently reintroduce menu drift.
+node "$ROOT_DIR/scripts/normalize-site-nav.cjs" "$OUT_DIR"
+
 # Fetch the Talon source once. The docs sync script reads every mapped source
 # file from this local checkout instead of making dozens of anonymous requests
 # to raw.githubusercontent.com, which can be rate-limited during production builds.
