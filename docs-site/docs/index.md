@@ -1,6 +1,6 @@
 ---
 title: Dativo Talon documentation
-description: Learn Dativo Talon v1.7.0, an open-source AI governance gateway for coding-agent sessions, LLM traffic, PII, tools, costs, provider fallback, EU routing, local scanners, and signed evidence.
+description: Learn Dativo Talon, an open-source AI governance gateway for LLM apps, agents, and coding tools. Govern PII, tools, costs, provider fallback, EU/local routing, coding sessions, scanner engines, and signed evidence.
 slug: /
 ---
 
@@ -8,7 +8,9 @@ slug: /
 
 Dativo Talon is an open-source AI governance gateway for teams that need to control LLM and AI-agent traffic before it reaches providers, then prove what happened with signed evidence.
 
-**Current release: v1.7.0 (2026-07-06).** The release turns coding-agent governance into a complete adoption surface: Claude Code, Codex CLI, and custom orchestrators can participate in caller-scoped sessions across provider routes, with per-subagent attribution, cache-aware cost, session soft caps, dashboard drill-down, and signed session evidence.
+Talon is useful when a SaaS, fintech, healthtech, e-commerce, support, or platform team already has AI workflows in production and needs practical governance without rebuilding the product. It covers PII controls, external and local scanner engines, tool and model policy, cost caps, coding-agent sessions, sovereignty-aware provider fallback, EU/local routing, dashboard visibility, tenant isolation, compliance exports, and signed evidence.
+
+**Current release: v1.7.0 (2026-07-06).** Its main addition is coding-agent governance: Claude Code, Codex CLI, and custom orchestrators can participate in caller-scoped sessions across provider routes, with per-subagent attribution, cache-aware cost, session soft caps, dashboard drill-down, and signed session evidence.
 
 Talon governs provider-bound traffic without becoming the agent runtime. It does not spawn agents, schedule subagents, or observe local file/shell execution that never crosses the gateway.
 
@@ -16,16 +18,26 @@ Talon governs provider-bound traffic without becoming the agent runtime. It does
 
 | Capability | What you get | Start here |
 |---|---|---|
-| Govern coding-agent fleets | One session across Anthropic and OpenAI routes, with per-subagent attribution, session budgets, and signed session evidence. | [Govern coding agents](./governing-coding-agents.md) |
-| Prove the coding-agent path offline | Run the same two-wire, cross-provider session scenario with Docker or through the CI-identical Go integration test. | [Coding-agents demo](./coding-agents-demo.md) |
-| Govern Claude Code | Route Anthropic Messages traffic through a caller-authenticated gateway with session/subagent evidence. | [Claude Code integration](./claude-code-integration.md) |
-| Govern Codex CLI | Route Responses traffic through Talon with streaming usage, cache-aware cost, retention semantics, and session evidence. | [Codex CLI integration](./codex-cli-integration.md) |
-| Keep traffic available without bypassing policy | Configure transient-error fallback chains; every candidate is re-checked against sovereignty, model, tool, and budget policy. | [Configuration](./configuration.md) |
-| Keep scanning in your environment | Use regex, a Presidio-compatible HTTP/UDS service, or a local LLM such as Ollama. | [External scanners](./external-scanners.md) |
+| Evaluate quickly | Run a no-key demo and inspect PII, cost, policy, and signed evidence. | [60-second demo](./quickstart-demo.md) |
+| Govern an existing app or agent | Put Talon in front of provider-bound traffic with a base URL and caller key change. | [Add Talon to an existing app](./add-talon-to-existing-app.md) |
+| Govern coding-agent fleets | One caller-scoped session across Anthropic and OpenAI routes, with subagent attribution, session budgets, and signed session evidence. | [Govern coding agents](./governing-coding-agents.md) |
+| Keep sensitive-data detection in your environment | Use built-in regex, a Presidio-compatible HTTP/UDS service, or a local LLM such as Ollama. | [External scanners](./external-scanners.md) |
+| Keep spend predictable | Apply caller budgets, session soft caps, and provider-aware cost accounting. | [Cost governance by caller](./cost-governance-by-caller.md) |
+| Keep traffic available without bypassing policy | Configure transient-error fallback chains; every candidate is re-checked against sovereignty, model, tool, budget, and session policy. | [Configuration](./configuration.md) |
 | Control EU or local-only data movement | Enforce `eu_strict` or air-gap posture and inspect configured versus observed destinations. | [Air-gapped deployment](./air-gapped-deployment.md) |
-| Prove governance | Export and verify signed evidence, including session, failover, scanner, destination, tool-content, and cost facts. | [Evidence store](./evidence-store.md) |
+| Produce reviewable proof | Export and verify signed evidence, compliance reports, sovereignty facts, failover chains, scanner facts, and coding sessions. | [Evidence store](./evidence-store.md) |
+| Produce compliance artifacts | Initialize policy packs and export RoPA, Annex IV, and framework reports. | [Turnkey compliance reports](./turnkey-compliance-reports.md) |
 
 ## Start here by job
+
+### "I am evaluating Talon for an EU team"
+
+1. Run the [60-second demo](./quickstart-demo.md).
+2. Review [What Talon does to your request](./what-talon-does-to-your-request.md).
+3. Check [EU/local-only deployment](./air-gapped-deployment.md) and the [governance control matrix](./governance-control-matrix.md).
+4. Review [external scanners](./external-scanners.md) if built-in regex detection is not enough.
+5. Inspect the [Evidence store](./evidence-store.md) and [sample auditor pack](./sample-auditor-pack.md).
+6. Choose an integration path: [existing app](./add-talon-to-existing-app.md), [coding agents](./governing-coding-agents.md), [vendor AI](./vendor-integration-guide.md), or [new governed agent](./first-governed-agent.md).
 
 ### "I need to govern coding tools used by engineers"
 
@@ -43,54 +55,43 @@ talon audit verify --session <id>
 talon costs --session <id> --json
 ```
 
-Without `--tenant` or `--caller`, the session forms are unscoped. The v1.7.0 post-epic fix also makes `talon costs --session` follow the same rule instead of silently defaulting to tenant `default`.
-
-The CLI and dashboard use the same session aggregation over signed evidence, so they cannot compute different session totals.
-
-### "I need EU/local-only provider governance"
-
-Start with [Air-gapped deployment](./air-gapped-deployment.md), [Provider registry](./provider-registry.md), and [Configuration](./configuration.md).
+Without `--tenant` or `--caller`, the session forms are unscoped. The CLI and dashboard use the same session aggregation over signed evidence, so they cannot compute different session totals.
 
 ### "I need stronger PII detection"
 
 Review [External scanners](./external-scanners.md), [Local scanner engines](./local-scanner-engines.md), and the [Presidio compatibility matrix](./presidio-compatibility-matrix.md).
 
-## v1.7.0: coding-agent governance, released
+## What is new in the current release
 
-Epic #192 and its acceptance-run fixes are now the **v1.7.0 release**, not unreleased work.
+### Coding-agent sessions and orchestration metadata
 
-### Session and orchestration model
-
-- **Neutral orchestration metadata.** Generic `X-Talon-Session-ID`, `X-Talon-Agent-ID`, `X-Talon-Parent-Agent-ID`, and `X-Talon-Client` headers work across provider routes. Claude Code and Codex adapters map vendor headers into the same contract.
-- **Roles are labels.** `orchestrator`, `planner`, `generator`, `reviewer`, `executor`, and `judge` are examples only. Agent/client values are free-form attribution. The only enforced stage vocabulary is `generation`, `judge`, or `commit`.
-- **Caller ≠ tenant ≠ agent.** Policy and budgets bind to authenticated callers/tenants, never to the client-asserted agent label.
-- **Cross-provider session audit.** `audit list/export/verify --session` and `costs --session` operate on the whole caller-scoped session with a per-subagent rollup.
-- **Coding Sessions dashboard.** Recent asserted sessions show requests, models/providers, tokens, cost, denials by reason, and per-subagent drill-down.
+- Generic `X-Talon-Session-ID`, `X-Talon-Agent-ID`, `X-Talon-Parent-Agent-ID`, and `X-Talon-Client` headers work across provider routes.
+- Claude Code and Codex adapters map vendor headers into the same neutral contract.
+- Role names such as `orchestrator`, `planner`, `generator`, `reviewer`, and `executor` are examples only. Agent/client values are free-form attribution. The only enforced stage vocabulary is `generation`, `judge`, or `commit`.
+- Policy and budgets bind to authenticated callers and tenants, never to the client-asserted agent label.
+- Session audit, export, verification, cost rollups, and the Coding Sessions dashboard operate on the same aggregation over signed evidence.
 
 ### Cost and budget correctness
 
-- **Cache-aware, provider-aware cost.** Anthropic cache creation/read and OpenAI cached input are normalized correctly, including terminal usage from streamed Responses traffic.
-- **Anthropic streamed output is counted.** v1.7.0 fixes output usage that was previously missed in `message_delta` events.
-- **`count_tokens` costs zero.** The free Anthropic endpoint is still PII-scanned, policy-checked, and evidenced, but no fabricated spend reaches budgets.
-- **Pricing derivation is explicit.** Evidence records `pricing_basis` and `pricing_known`.
-- **Session soft caps.** `max_session_cost` denies a new request once accumulated session spend plus the pre-request estimate exceeds the limit across provider routes. In-flight and concurrent requests can overshoot.
-- **Session-store failure is explicit.** The budget check fails open and signed evidence carries `session_budget_unavailable`.
+- Anthropic cache creation/read and OpenAI cached input are normalized for provider-aware cost.
+- Streamed Responses usage and Anthropic streamed output are captured.
+- The free Anthropic `count_tokens` endpoint remains governed but records cost 0 and zero budget impact.
+- Evidence records `pricing_basis` and `pricing_known`.
+- `max_session_cost` is a soft cap across provider routes; in-flight and concurrent requests can overshoot before the next request is denied.
 
 ### Agentic traffic coverage
 
-- **Responses `instructions` are governed prompt text.** PII there is scanned and can be redacted.
-- **Tool-related request content is observed.** Tool-use inputs, tool-result outputs, and function-call arguments are scanned and written to signed `classification.tool_content` evidence.
-- **Tool-content scanning is evidence-only today.** Talon does not redact or block based on that signal yet because per-block-type tool redaction is not implemented. This is intentionally different from local tool execution, which remains invisible when it never crosses the gateway.
+- Responses `instructions` is governed as prompt text.
+- Tool-use inputs, tool-result outputs, and function-call arguments are scanned and written to signed tool-content evidence.
+- Tool-content scanning is evidence-only today; Talon does not redact or block based on that signal yet.
 
-### Protocol and retention correctness
+### Protocol and deployment hardening
 
-- **Responses retention intent is preserved by default.** `responses_store_mode: preserve` honors explicit `store:false`; `force_if_absent` and `force_true` are explicit operator choices.
-- **Client backoff headers are forwarded.** Retry and rate-limit headers needed by coding clients survive the gateway.
-- **Long reasoning calls no longer inherit a 10-second response-header ceiling.** `connect_timeout` now bounds connection establishment; `response_header_timeout` defaults to `request_timeout`. The coding-agents pack only needs its raised `request_timeout: 600s`.
-
-### Multi-tenant secret isolation
-
-v1.7.0 adds repeatable `talon secrets set --tenant` and `--agent` flags. In multi-tenant/MSP deployments, use them to scope CLI-set provider secrets. The backward-compatible default remains allow-all and now prints a warning.
+- `responses_store_mode: preserve` honors explicit `store:false` by default.
+- Client retry and rate-limit headers survive the gateway.
+- `connect_timeout` bounds connection establishment; response-header wait defaults to `request_timeout`.
+- CLI-set secrets can be scoped with repeatable `--tenant` and `--agent` flags for multi-tenant deployments.
+- The coding-agents scenario has both Docker and no-Docker verification paths.
 
 ## Honest boundaries for coding agents
 
@@ -102,6 +103,16 @@ v1.7.0 adds repeatable `talon secrets set --tenant` and `--agent` flags. In mult
 - Coding callers default `response_pii_action: allow` because other response-PII actions currently buffer the entire SSE stream before first token.
 
 ## Find the right guide
+
+### Evaluate Talon
+
+- [60-second demo](./quickstart-demo.md)
+- [Turnkey compliance reports](./turnkey-compliance-reports.md)
+- [Quickstart](./quickstart.md)
+- [Choosing an integration path](./choosing-integration-path.md)
+- [Adoption scenarios](./adoption-scenarios.md)
+- [Persona guides](./persona-guides.md)
+- [Why not just a PII proxy?](./why-not-a-pii-proxy.md)
 
 ### Coding agents
 
@@ -116,7 +127,6 @@ v1.7.0 adds repeatable `talon secrets set --tenant` and `--agent` flags. In mult
 - [Add Talon to an existing app](./add-talon-to-existing-app.md)
 - [Deploy in air-gap / local-only mode](./air-gapped-deployment.md)
 - [Run a local PII scanner engine](./local-scanner-engines.md)
-- [Test and operate Plan Review](./plan-review-operators.md)
 - [Add compliance to a Slack bot](./slack-bot-integration.md)
 - [Govern third-party AI vendors](./vendor-integration-guide.md)
 - [Offer Talon to multiple customers](./multi-tenant-msp.md)
@@ -134,6 +144,7 @@ v1.7.0 adds repeatable `talon secrets set --tenant` and `--agent` flags. In mult
 - [Evidence integrity specification](./evidence-integrity-spec.md)
 - [Governance control matrix](./governance-control-matrix.md)
 - [External scanners](./external-scanners.md)
+- [Presidio compatibility matrix](./presidio-compatibility-matrix.md)
 - [Threat model](./threat-model.md)
 - [Conformance](./conformance.md)
 - [Benchmarks](./benchmarks.md)
