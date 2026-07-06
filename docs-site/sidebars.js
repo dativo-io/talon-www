@@ -5,7 +5,7 @@ const sidebars = {
       type: 'category',
       label: 'Evaluate Talon',
       collapsed: false,
-      items: ['quickstart-demo','turnkey-compliance-reports','quickstart','choosing-integration-path','adoption-scenarios','persona-guides','why-not-a-pii-proxy'],
+      items: ['quickstart-demo','turnkey-compliance-reports','quickstart','proxy-quickstart','choosing-integration-path','adoption-scenarios','persona-guides','why-not-a-pii-proxy'],
     },
     {
       type: 'category',
@@ -17,13 +17,13 @@ const sidebars = {
       type: 'category',
       label: 'Integrate with apps and agents',
       collapsed: false,
-      items: ['add-talon-to-existing-app','first-governed-agent','slack-bot-integration','desktop-app-governance','multi-tenant-msp','vendor-integration-guide','architecture-mcp-proxy'],
+      items: ['add-talon-to-existing-app','first-governed-agent','slack-bot-integration','copaw-integration','desktop-app-governance','multi-tenant-msp','vendor-integration-guide','architecture-mcp-proxy'],
     },
     {
       type: 'category',
       label: 'EU governance and auditor evidence',
       collapsed: false,
-      items: ['air-gapped-deployment','governance-control-matrix','turnkey-compliance-reports','policy-packs','sample-auditor-pack','verify-turnkey-compliance-reports','compliance-export-runbook','ropa-declarations','evidence-store','evidence-integrity-demo','evidence-integrity-spec'],
+      items: ['air-gapped-deployment','governance-control-matrix','turnkey-compliance-reports','policy-packs','sample-auditor-pack','verify-turnkey-compliance-reports','compliance-export-runbook','ropa-declarations','evidence-store','explanation-catalog','evidence-integrity-demo','evidence-integrity-spec'],
     },
     {
       type: 'category',
