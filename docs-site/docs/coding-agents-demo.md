@@ -1,7 +1,7 @@
 ---
 title: Coding-agents demo
 slug: /coding-agents-demo/
-description: Run Talon's reproducible coding-agent governance scenario with or without Docker: one session, two providers, subagent attribution, cache-aware cost, a session-budget denial, and signed evidence.
+description: "Run Talon's reproducible coding-agent governance scenario with or without Docker: one session, two providers, subagent attribution, cache-aware cost, a session-budget denial, and signed evidence."
 ---
 
 # Coding-agents demo
