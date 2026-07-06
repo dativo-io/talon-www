@@ -2,6 +2,9 @@
   "name": "dativo-talon-docs",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "sync:talon-docs": "node ./scripts/sync-talon-docs.mjs",
     "start": "docusaurus start --host 0.0.0.0",
@@ -19,5 +22,10 @@
   },
   "devDependencies": {},
   "resolutions": {},
-  "overrides": {}
+  "overrides": {
+    "serialize-javascript": "7.0.7",
+    "sockjs": {
+      "uuid": "11.1.1"
+    }
+  }
 }
