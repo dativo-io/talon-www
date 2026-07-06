@@ -1,12 +1,12 @@
 ---
 title: Coding-agents demo
 slug: /coding-agents-demo/
-description: Run Talon v1.7.0's reproducible coding-agent governance scenario with or without Docker: one session, two providers, subagent attribution, cache-aware cost, a session-budget denial, and signed evidence.
+description: Run Talon's reproducible coding-agent governance scenario with or without Docker: one session, two providers, subagent attribution, cache-aware cost, a session-budget denial, and signed evidence.
 ---
 
 # Coding-agents demo
 
-Talon v1.7.0 ships a reproducible scenario for the coding-agent governance surface: one caller-scoped session spans Anthropic and OpenAI wire families, subagents are attributed, cache-token usage affects cost, a session soft cap denies the next request, and the session export verifies.
+Talon ships a reproducible scenario for the coding-agent governance surface: one caller-scoped session spans Anthropic and OpenAI wire families, subagents are attributed, cache-token usage affects cost, a session soft cap denies the next request, and the session export verifies.
 
 No real provider API key is required. The mock provider speaks both Anthropic Messages and OpenAI Responses, including SSE usage events.
 
