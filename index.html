@@ -6,18 +6,18 @@
   <link rel="canonical" href="https://dativo.io/" />
 
   <title>Dativo Talon — Open-source AI governance gateway for European teams</title>
-  <meta name="description" content="Dativo Talon v1.7.0 governs LLM, AI-agent, and coding-agent traffic before provider access. Control PII, tools, costs, provider fallback, EU/local routing, coding sessions, and signed evidence." />
-  <meta name="keywords" content="AI governance gateway, coding agent governance, Claude Code governance, Codex CLI governance, AI agent governance, LLM gateway, session budget, AI audit evidence, EU AI governance, provider fallback, Presidio proxy, local PII scanner" />
+  <meta name="description" content="Dativo Talon governs LLM, AI-agent, and coding-agent traffic before provider access. Control PII, tools, model access, costs, coding sessions, provider fallback, EU/local routing, and signed evidence." />
+  <meta name="keywords" content="AI governance gateway, AI agent governance, coding agent governance, LLM gateway, Claude Code governance, Codex CLI governance, AI cost control, AI audit evidence, EU AI governance, provider fallback, Presidio proxy, local PII scanner" />
 
-  <meta property="og:title" content="Dativo Talon v1.7.0 — Govern AI traffic before provider access" />
-  <meta property="og:description" content="Govern LLM apps, agents, and coding-agent fleets with policy, session cost controls, EU/local routing, and signed evidence." />
+  <meta property="og:title" content="Dativo Talon — Govern AI traffic before provider access" />
+  <meta property="og:description" content="Govern LLM apps, agents, and coding tools with PII controls, cost and model policy, provider fallback, EU/local routing, coding sessions, and signed evidence." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://dativo.io/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Dativo Talon v1.7.0 — Open-source AI governance gateway" />
-  <meta name="twitter:description" content="Policy before provider access. Signed evidence after every decision — including multi-model coding-agent sessions." />
+  <meta name="twitter:title" content="Dativo Talon — Open-source AI governance gateway" />
+  <meta name="twitter:description" content="Policy before provider access. Signed evidence after every decision — across apps, agents, coding tools, and providers." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
 
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="/homepage-overrides.css" />
 
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Dativo Talon","softwareVersion":"1.7.0","applicationCategory":"SecurityApplication","operatingSystem":"Linux, macOS, Windows, Docker","description":"Open-source AI governance gateway for European teams. Govern LLM, AI-agent, and coding-agent traffic with PII, cost, model, provider fallback, EU/local routing, session controls, and signed evidence.","url":"https://dativo.io/","codeRepository":"https://github.com/dativo-io/talon","license":"https://www.apache.org/licenses/LICENSE-2.0","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"audience":{"@type":"Audience","audienceType":"European SMB CTOs, platform teams, engineering leaders, security, DPO, compliance and FinOps teams"}}
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Dativo Talon","softwareVersion":"1.7.0","applicationCategory":"SecurityApplication","operatingSystem":"Linux, macOS, Windows, Docker","description":"Open-source AI governance gateway for European teams. Govern LLM, AI-agent, and coding-agent traffic with PII, tool, cost, model, provider fallback, EU/local routing, session controls, and signed evidence.","url":"https://dativo.io/","codeRepository":"https://github.com/dativo-io/talon","license":"https://www.apache.org/licenses/LICENSE-2.0","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"audience":{"@type":"Audience","audienceType":"European SMB CTOs, platform teams, engineering leaders, security, DPO, compliance and FinOps teams"}}
   </script>
 
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
@@ -59,21 +59,21 @@
     <section class="hero hero-dense">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Current release: v1.7.0 · Coding-agent governance</div>
+          <div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Open-source · Self-hostable · Current release: v1.7.0</div>
           <h1>Govern AI traffic at the provider boundary.</h1>
-          <p class="hero-subtitle">Talon sits in front of LLM apps, agents, coding tools, Slack bots, and vendor AI workflows. It enforces policy before provider access, tracks multi-model coding sessions, controls spend and data movement, and exports signed evidence for review.</p>
+          <p class="hero-subtitle">Talon sits in front of LLM apps, agents, coding tools, Slack bots, and vendor AI workflows. It scans sensitive data with built-in, external, or local engines; enforces tool, model, cost, session, and sovereignty policy; preserves those controls during provider fallback; and exports signed evidence for review.</p>
           <div class="hero-actions">
-            <a class="button primary" href="/coding-agent-governance/">Govern coding agents</a>
-            <a class="button secondary" href="/talon/docs/coding-agents-demo/">Run the v1.7.0 demo</a>
-            <a class="button ghost" href="/talon/docs/release-notes/">Release notes</a>
+            <a class="button primary" href="/talon/docs/quickstart-demo/">Run the 60-second demo</a>
+            <a class="button secondary" href="/coding-agent-governance/">What’s new: coding agents</a>
+            <a class="button ghost" href="/talon/docs/">Read the docs</a>
           </div>
           <div class="trust-row" aria-label="Talon outcomes">
-            <span>Claude Code + Codex sessions</span>
-            <span>Per-subagent cost attribution</span>
+            <span>Change one base URL</span>
+            <span>Coding-agent sessions</span>
+            <span>Presidio / local scanners</span>
             <span>Policy-safe provider fallback</span>
             <span>EU / local-only controls</span>
             <span>HMAC-signed evidence</span>
-            <span>Apache-2.0</span>
           </div>
         </div>
         <div class="terminal-card hero-terminal" aria-label="Talon coding session terminal example">
@@ -100,7 +100,7 @@ claude:reviewer       anthropic  €0.64
         <div class="section-heading wide-heading">
           <p class="eyebrow">Why teams install Talon</p>
           <h2>One control point for provider-bound AI traffic.</h2>
-          <p>Most teams do not need another AI policy document. They need runtime enforcement, cost control, data-movement discipline, and evidence that survives the review.</p>
+          <p>Most teams do not need another AI policy document. They need runtime enforcement, cost control, data-movement discipline, resilient routing that does not bypass policy, and evidence that survives the review.</p>
         </div>
         <div class="outcome-grid">
           <a class="outcome-card" href="/coding-agent-governance/">
@@ -112,7 +112,7 @@ claude:reviewer       anthropic  €0.64
           <a class="outcome-card" href="/talon/docs/external-scanners/">
             <div class="outcome-visual"><span>🔎</span><i></i><i></i><i></i></div>
             <h3>Choose how PII is detected</h3>
-            <p>Use regex, Microsoft Presidio, a custom compatible service, or a local LLM scanner such as Ollama.</p>
+            <p>Use built-in regex, Microsoft Presidio, a custom compatible service, or a local LLM scanner such as Ollama.</p>
             <strong>Scanner engines →</strong>
           </a>
           <a class="outcome-card" href="/talon/docs/configuration/">
@@ -124,7 +124,7 @@ claude:reviewer       anthropic  €0.64
           <a class="outcome-card" href="/ai-governance-evidence-store/">
             <div class="outcome-visual proof"><span>🧾</span><i></i><i></i><i></i></div>
             <h3>Produce signed evidence</h3>
-            <p>Record session, subagent, scanner, failover, destination, cost, caller, and decision facts.</p>
+            <p>Record policy decisions, PII and scanner facts, sessions, failover, destination, cost, caller, and signatures.</p>
             <strong>Evidence store →</strong>
           </a>
         </div>
@@ -134,7 +134,7 @@ claude:reviewer       anthropic  €0.64
     <section class="section split-section" id="coding-agents">
       <div class="wrap split">
         <div>
-          <p class="eyebrow">v1.7.0 · epic #192</p>
+          <p class="eyebrow">New in v1.7.0 · epic #192</p>
           <h2>One coding session across Claude Code and Codex.</h2>
           <p>Talon does not orchestrate subagents. It governs the model API traffic they produce. A caller-scoped session can span Anthropic and OpenAI routes, with per-subagent attribution, cache-aware cost, session soft caps, signed session export, and one dashboard drill-down.</p>
           <div class="link-row">
@@ -204,7 +204,7 @@ talon audit verify --session sess-feature-4711</code></pre></div>
           <div class="visual-arrow">→</div>
           <div class="visual-step highlight"><div class="step-icon">🛡️</div><strong>Talon gateway</strong><span>Caller · session · scanner · PII · tools · model · budget · sovereignty · fallback checks.</span></div>
           <div class="visual-arrow">→</div>
-          <div class="visual-step"><div class="step-icon">✅</div><strong>Provider + evidence</strong><span>Forward allowed traffic, deny risky calls, and sign the runtime facts.</span></div>
+          <div class="visual-step"><div class="step-icon">✅</div><strong>Provider + evidence</strong><span>Forward allowed traffic, deny risky calls, fail over only when policy allows, and sign the runtime facts.</span></div>
         </div>
         <div class="flow-actions"><a class="button secondary" href="/talon/docs/what-talon-does-to-your-request/">See request lifecycle</a><a class="button ghost" href="/talon/docs/governance-control-matrix/">Open control matrix</a></div>
       </div>
@@ -212,7 +212,7 @@ talon audit verify --session sess-feature-4711</code></pre></div>
 
     <section class="section" id="features">
       <div class="wrap">
-        <div class="section-heading wide-heading"><p class="eyebrow">Batteries included</p><h2>Everything needed to govern one real AI workflow.</h2><p>Start with the workflow where provider access, sensitive data, spend, or customer review matters most.</p></div>
+        <div class="section-heading wide-heading"><p class="eyebrow">Batteries included</p><h2>Everything needed to govern one real AI workflow.</h2><p>Start with the workflow where provider access, sensitive data, spend, regional constraints, or customer review matters most.</p></div>
         <div class="feature-matrix illustrated-features">
           <article class="feature-column"><div class="feature-visual"><span>🛑</span><b></b><b></b><b></b></div><div class="card-label">Runtime controls</div><h3>Stop bad traffic before it leaves.</h3><ul><li><a href="/talon/docs/governing-coding-agents/">Coding-session attribution and budgets</a></li><li><a href="/talon/docs/external-scanners/">Regex, Presidio, custom, or local LLM scanning</a></li><li><a href="/talon/docs/configuration/">Provider fallback with policy re-check</a></li><li><a href="/talon/docs/provider-registry/">Model allowlists and EU routing</a></li><li><a href="/talon/docs/cost-governance-by-caller/">Daily and monthly caller caps</a></li></ul></article>
           <article class="feature-column"><div class="feature-visual"><span>🔏</span><b></b><b></b><b></b></div><div class="card-label">Evidence</div><h3>Turn runtime facts into reviewable proof.</h3><ul><li><a href="/talon/docs/evidence-store/">HMAC-signed evidence records</a></li><li><a href="/talon/docs/governing-coding-agents/">Session-scoped export and verification</a></li><li><a href="/ai-sovereignty-posture-report/">Sovereignty posture reports</a></li><li><a href="/talon/docs/compliance-export-runbook/">CSV and JSON evidence export</a></li><li><a href="/talon/docs/turnkey-compliance-reports/">RoPA, Annex IV, and framework reports</a></li></ul></article>
@@ -223,7 +223,7 @@ talon audit verify --session sess-feature-4711</code></pre></div>
 
     <section class="section proof-band" id="proof">
       <div class="wrap">
-        <div class="section-heading wide-heading centered-heading"><p class="eyebrow">Proof surfaces</p><h2>Not just policy. Runtime facts you can inspect.</h2><p>Evidence is the product surface: signed session records, scanner facts, failover chains, dashboard drill-down, exports, and sovereignty reports.</p></div>
+        <div class="section-heading wide-heading centered-heading"><p class="eyebrow">Proof surfaces</p><h2>Not just policy. Runtime facts you can inspect.</h2><p>Evidence is the product surface: signed decision and session records, scanner facts, failover chains, dashboard drill-down, exports, and sovereignty reports.</p></div>
         <div class="grid two proof-grid">
           <article class="proof-panel"><div class="card-label">Coding session evidence</div><pre><code>{
   "session_id": "sess-feature-4711",
@@ -250,10 +250,10 @@ talon audit verify --session sess-feature-4711</code></pre></div>
     </section>
 
     <section class="section" id="compare">
-      <div class="wrap"><div class="section-heading wide-heading"><p class="eyebrow">Choose by need</p><h2>Use Talon when proof of governed AI traffic matters.</h2><p>Talon focuses on provider-boundary controls and evidence. It does not spawn subagents, schedule work, or observe local tool execution.</p></div><div class="table-wrap comparison-table"><table><thead><tr><th>Need</th><th>Suggested path</th><th>Why</th></tr></thead><tbody><tr><td>Govern coding-agent model traffic across sessions and providers</td><td><strong>Start with Talon</strong></td><td>Session attribution, cache-aware cost, session soft caps, dashboard drill-down, and signed evidence without becoming the orchestrator.</td></tr><tr><td>Deep local tool execution governance</td><td><a href="/comparisons/talon-vs-agent-governance-toolkits/">Evaluate runtime/tooling controls</a></td><td>Local file edits and shell execution that never cross Talon are outside the gateway boundary.</td></tr><tr><td>Only detect or mask sensitive strings</td><td><a href="/comparisons/talon-vs-pii-proxy/">PII proxy may be enough</a></td><td>Talon adds caller, session, cost, tools, routing, fallback, evidence, and export.</td></tr><tr><td>General traffic optimization and observability only</td><td><a href="/comparisons/">Compare gateway classes</a></td><td>Talon has governed fallback, but its design center is policy enforcement and evidence.</td></tr></tbody></table></div></div>
+      <div class="wrap"><div class="section-heading wide-heading"><p class="eyebrow">Choose by need</p><h2>Use Talon when proof of governed AI traffic matters.</h2><p>Talon focuses on provider-boundary controls and evidence. It can complement tools focused on in-process agent design, endpoint security, or traffic optimization.</p></div><div class="table-wrap comparison-table"><table><thead><tr><th>Need</th><th>Suggested path</th><th>Why</th></tr></thead><tbody><tr><td>Runtime governance for AI apps, agents, and coding tools</td><td><strong>Start with Talon</strong></td><td>PII, tool, model, cost, session, routing, fallback, sovereignty, and signed evidence at the provider boundary.</td></tr><tr><td>Govern coding-agent model traffic across sessions and providers</td><td><a href="/coding-agent-governance/">Use the coding-agent path</a></td><td>Session attribution, cache-aware cost, session soft caps, dashboard drill-down, and signed verification without becoming the orchestrator.</td></tr><tr><td>Only detect or mask sensitive strings</td><td><a href="/comparisons/talon-vs-pii-proxy/">PII proxy may be enough</a></td><td>Talon adds caller, session, cost, tools, routing, fallback, evidence, and export.</td></tr><tr><td>General traffic optimization and observability only</td><td><a href="/comparisons/">Compare gateway classes</a></td><td>Talon has governed fallback, but its design center is policy enforcement and evidence.</td></tr></tbody></table></div></div>
     </section>
 
-    <section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Start practical</p><h2>Run the v1.7.0 coding-agent scenario first.</h2><p>Use the Docker or no-Docker path, then route one real Claude Code or Codex caller through Talon in shadow mode and inspect the session evidence.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/coding-agents-demo/">Run the demo</a><a class="button secondary" href="/coding-agent-governance/">Govern coding agents</a><a class="button ghost" href="/talon/docs/release-notes/">Read v1.7.0 notes</a></div></div></div></section>
+    <section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Start practical</p><h2>Put Talon in front of one AI workflow.</h2><p>Start with the 60-second demo, then choose the real workflow that touches sensitive data, model spend, provider reliability, regional constraints, or coding-agent sessions.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the 60-second demo</a><a class="button secondary" href="/talon/docs/coding-agents-demo/">Run coding-agent demo</a><a class="button ghost" href="/talon/docs/release-notes/">Release notes</a></div></div></div></section>
   </main>
 
   <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Talon is self-hostable Apache-2.0 software. It governs provider-bound AI traffic; it does not orchestrate agents or observe local tool execution. Product information is for technical evaluation and does not replace legal, compliance, or procurement advice. Source: <a href="https://github.com/dativo-io/talon">GitHub</a>.</span></div></footer>
