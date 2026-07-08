@@ -11,8 +11,8 @@ const fixes = [
   },
   {
     file: 'release-notes.md',
-    from: '/talon/docs/configuration/#gateway-egress-rules-destination--classification-allowdeny',
-    to: '/talon/docs/configuration/',
+    from: '#gateway-egress-rules-destination--classification-allowdeny',
+    to: '',
   },
 ];
 
