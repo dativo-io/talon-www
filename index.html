@@ -82,7 +82,7 @@
   </style>
 
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Dativo Talon","softwareVersion":"1.7.0","applicationCategory":"SecurityApplication","operatingSystem":"Linux, macOS, Windows, Docker","description":"Open-source, self-hostable AI governance gateway for European SMBs. Enforce data, model, tool, cost, session, fallback, and EU/local routing policy before provider access, then export and verify signed evidence.","url":"https://dativo.io/","codeRepository":"https://github.com/dativo-io/talon","license":"https://www.apache.org/licenses/LICENSE-2.0","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"audience":{"@type":"Audience","audienceType":"European SMB CTOs, platform teams, engineering leaders, security, DPO, compliance and FinOps teams"}}
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Dativo Talon","applicationCategory":"SecurityApplication","operatingSystem":"Linux, macOS, Windows, Docker","description":"Open-source, self-hostable AI governance gateway for European SMBs. Enforce data, model, tool, cost, session, fallback, and EU/local routing policy before provider access, then export and verify signed evidence.","url":"https://dativo.io/","codeRepository":"https://github.com/dativo-io/talon","license":"https://www.apache.org/licenses/LICENSE-2.0","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"audience":{"@type":"Audience","audienceType":"European SMB CTOs, platform teams, engineering leaders, security, DPO, compliance and FinOps teams"}}
   </script>
 
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
@@ -111,7 +111,7 @@
     <section class="hero hero-dense">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Open-source · Self-hostable · Built for European SMBs · v1.7.0</div>
+          <div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Open-source · Self-hostable · Built for European SMBs</div>
           <h1>The AI governance gateway for European teams.</h1>
           <p class="hero-subtitle">Put one enforceable boundary in front of LLM apps, agents, coding tools, Slack bots, and vendor AI. Talon controls what data leaves, which models and tools may run, how much callers and sessions may spend, and where fallback may go — then signs the decision evidence.</p>
           <div class="hero-actions">
@@ -182,7 +182,7 @@
     <section class="section split-section" id="coding-agents">
       <div class="wrap split">
         <div>
-          <p class="eyebrow">New in v1.7.0 · epic #192</p>
+          <p class="eyebrow">Coding-agent governance · epic #192</p>
           <h2>The same governance boundary now follows a coding session across providers.</h2>
           <p>Claude Code, Codex CLI, and custom orchestrators can share one caller-scoped session across Anthropic and OpenAI routes. Talon adds per-subagent attribution, cache-aware cost, session soft caps, dashboard drill-down, and signed session export without becoming the orchestrator.</p>
           <div class="link-row">
@@ -208,9 +208,9 @@ talon audit verify --session sess-feature-4711</code></pre></div>
     <section class="section">
       <div class="wrap">
         <div class="section-heading wide-heading">
-          <p class="eyebrow">What changed in v1.7.0</p>
+          <p class="eyebrow">Multi-model agent governance</p>
           <h2>More accurate governance for multi-model agent traffic.</h2>
-          <p>The release adds a neutral orchestration contract and session-level proof without teaching Talon how to spawn, schedule, or reason about agents.</p>
+          <p>Talon adds a neutral orchestration contract and session-level proof without teaching the gateway how to spawn, schedule, or reason about agents.</p>
         </div>
         <div class="grid three compact-cards">
           <article class="card"><div class="card-label">Attribution</div><h3>Neutral orchestration metadata</h3><p>Generic <code>X-Talon-*</code> headers plus vendor mappings for Claude Code and Codex. Identity is client-asserted attribution, never authentication or a policy input.</p><a href="/talon/docs/governing-coding-agents/">Metadata contract →</a></article>
