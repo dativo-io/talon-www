@@ -1,3 +1,5 @@
+const doc = (id, label) => ({type: 'doc', id, label});
+
 const sidebars = {
   docsSidebar: [
     { type: 'doc', id: 'index', label: 'Overview' },
@@ -23,7 +25,16 @@ const sidebars = {
       type: 'category',
       label: 'Integrate with apps and agents',
       collapsed: true,
-      items: ['add-talon-to-existing-app','first-governed-agent','slack-bot-integration','copaw-integration','desktop-app-governance','multi-tenant-msp','vendor-integration-guide','architecture-mcp-proxy'],
+      items: [
+        'add-talon-to-existing-app',
+        'first-governed-agent',
+        'slack-bot-integration',
+        'copaw-integration',
+        'desktop-app-governance',
+        'multi-tenant-msp',
+        doc('vendor-integration-guide', 'Govern third-party AI vendors'),
+        doc('architecture-mcp-proxy', 'MCP proxy architecture'),
+      ],
     },
     {
       type: 'category',
@@ -47,7 +58,19 @@ const sidebars = {
       type: 'category',
       label: 'More guides and reference',
       collapsed: true,
-      items: ['quickstart','proxy-quickstart','adoption-scenarios','persona-guides','threat-model','conformance','benchmarks','cicd-pipeline-governance','internal-support-agent','memory-verification','release-notes'],
+      items: [
+        'quickstart',
+        'proxy-quickstart',
+        doc('adoption-scenarios', 'Adoption scenarios'),
+        doc('persona-guides', 'Guides by role'),
+        'threat-model',
+        'conformance',
+        'benchmarks',
+        'cicd-pipeline-governance',
+        'internal-support-agent',
+        'memory-verification',
+        'release-notes',
+      ],
     },
   ],
 };
