@@ -76,12 +76,12 @@ const config = {
           position: 'left',
         },
         {
-          to: '/turnkey-compliance-reports/',
-          label: 'Compliance',
+          to: '/governing-coding-agents/',
+          label: 'Coding agents',
           position: 'left',
         },
         {
-          to: '/add-talon-to-existing-app/',
+          to: '/choosing-integration-path/',
           label: 'Integrate',
           position: 'left',
         },
@@ -91,7 +91,7 @@ const config = {
           position: 'left',
         },
         {
-          to: '/sample-auditor-pack/',
+          to: '/evidence-store/',
           label: 'Evidence',
           position: 'left',
         },
@@ -114,26 +114,26 @@ const config = {
           title: 'Evaluate',
           items: [
             {label: '60-second demo', to: '/quickstart-demo/'},
+            {label: 'Reproduce the governed session', to: '/manual-governed-session/'},
+            {label: 'Attack evidence integrity', to: '/evidence-integrity-demo/'},
             {label: 'Choose integration path', to: '/choosing-integration-path/'},
-            {label: 'Why not just a PII proxy?', to: '/why-not-a-pii-proxy/'},
           ],
         },
         {
           title: 'Governance',
           items: [
+            {label: 'EU control matrix', to: '/governance-control-matrix/'},
             {label: 'Turnkey compliance reports', to: '/turnkey-compliance-reports/'},
-            {label: 'EU policy packs', to: '/policy-packs/'},
-            {label: 'Control matrix', to: '/governance-control-matrix/'},
             {label: 'Auditor pack', to: '/sample-auditor-pack/'},
             {label: 'Evidence integrity', to: '/evidence-integrity-spec/'},
           ],
         },
         {
-          title: 'Operate',
+          title: 'Adopt',
           items: [
-            {label: 'Configuration', to: '/configuration/'},
-            {label: 'Provider registry', to: '/provider-registry/'},
-            {label: 'Gateway dashboard', to: '/gateway-dashboard/'},
+            {label: 'Add Talon to an existing app', to: '/add-talon-to-existing-app/'},
+            {label: 'Govern coding agents', to: '/governing-coding-agents/'},
+            {label: 'Pilot one workload', href: 'https://github.com/dativo-io/talon/issues/new?title=Pilot%3A%20%3Cyour%20stack%3E&body=Current%20stack%3A%0AFirst%20control%20I%20need%20%28PII%20%2F%20spend%20%2F%20tools%20%2F%20data%20residency%29%3A'},
           ],
         },
         {
