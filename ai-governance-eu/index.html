@@ -4,61 +4,63 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/ai-governance-eu/" />
-  <title>EU AI Governance for AI Traffic | Dativo Talon</title>
-  <meta name="description" content="Control LLM and AI-agent traffic before it leaves your environment. Enforce EU/local routing, sovereignty-safe provider fallback, air-gap egress, local PII scanning, cost caps, and signed evidence for GDPR, NIS2, DORA, EU AI Act, and customer reviews." />
-  <meta property="og:title" content="EU AI Governance for AI Traffic" />
-  <meta property="og:description" content="Govern AI traffic before it leaves, enforce EU/local egress and sovereignty-safe fallback, then prove what happened with signed evidence." />
-  <meta property="og:type" content="article" />
+  <title>EU AI Governance at the Provider Boundary | Dativo Talon</title>
+  <meta name="description" content="Govern AI traffic before provider access: classify sensitive data, enforce EU/local destination policy, reject disallowed routing candidates, select allowed local execution, and verify signed runtime evidence." />
+  <meta name="keywords" content="EU AI governance, AI data residency, EU LLM routing, local LLM governance, AI sovereignty, GDPR AI gateway, signed AI evidence" />
+  <meta property="og:title" content="EU AI Governance at the Provider Boundary" />
+  <meta property="og:description" content="Classify the request, enforce where it may go, record rejected and selected destinations, then compare runtime evidence with declared posture." />
+  <meta property="og:type" content="website" />
   <meta property="og:url" content="https://dativo.io/ai-governance-eu/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="EU AI Governance for AI Traffic" />
-  <meta name="twitter:description" content="EU-sovereign egress, policy-preserving failover, local scanner engines, air-gap mode, and signed evidence for AI traffic." />
-  <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/public/assets/favicon-16x16.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/public/assets/favicon-32x32.png" />
-  <link rel="apple-touch-icon" href="/public/assets/apple-touch-icon.png" />
-  <link rel="manifest" href="/public/assets/site.webmanifest" />
-  <meta name="theme-color" content="#07111f" />
   <link rel="stylesheet" href="/styles.css" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"EU AI Governance for AI Traffic","description":"A practical guide to governing AI traffic, EU/local egress, sovereignty-safe provider fallback, local PII scanning, and evidence for EU reviews.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/ai-governance-eu/"}</script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
 </head>
 <body>
-<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/ai-governance-eu/">EU governance</a><a href="/ai-sovereignty-posture-report/">Sovereignty</a><a href="/ai-governance-evidence-store/">Evidence</a><a href="/resources/eu-ai-governance-runtime-checklist/">Checklist</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
+<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/coding-agent-governance/">Coding agents</a><a href="/ai-governance-eu/">EU governance</a><a href="/ai-sovereignty-posture-report/">Sovereignty</a><a href="/ai-governance-evidence-store/">Evidence</a><a href="/talon/docs/">Docs</a><a href="/comparisons/">Compare</a><a href="https://blog.dativo.io">Blog</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
 <main>
-<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>EU reviews · AI traffic · Egress evidence</div><h1>Control AI traffic before it leaves your environment.</h1><p class="hero-subtitle">Talon helps EU teams answer the questions that come up in customer, security, DPO, and auditor reviews: what data left, where it went, whether fallback stayed inside policy, which scanner evaluated it, what it cost, and whether the record can be verified.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the demo</a><a class="button secondary" href="/ai-sovereignty-posture-report/">See sovereignty report</a><a class="button ghost" href="/resources/eu-ai-governance-runtime-checklist/">Use checklist</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>Review questions
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Classify · Enforce · Route · Prove · Check consistency</div><h1>Control where AI traffic may go — and prove where it actually went.</h1><p class="hero-subtitle">Talon governs provider-bound AI traffic before dispatch. It can block sensitive data, deny a chosen destination, or — on the policy-aware runner path — reject a US candidate and select an EU or LOCAL alternative. Signed evidence records the decision so declared posture can be compared with observed runtime destinations.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/manual-governed-session/">Reproduce the full proof</a><a class="button secondary" href="/talon/docs/quickstart-demo/">Run the 60-second demo</a><a class="button ghost" href="https://github.com/dativo-io/talon/issues/new?title=Pilot%3A%20%3Cyour%20stack%3E&body=Current%20stack%3A%0AFirst%20control%20I%20need%20%28PII%20%2F%20spend%20%2F%20tools%20%2F%20data%20residency%29%3A">Pilot one workload</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>Input: confidential (IBAN)
 
-- What data left?
-- Which provider received it?
-- Did failover re-run policy?
-- Was the destination EU, LOCAL, or third-country?
-- Which PII scanner produced the decision?
-- Can the record be verified?</code></pre></div></div></section>
-<section class="strip"><div class="wrap strip-inner"><span>GDPR</span><span>NIS2</span><span>DORA</span><span>EU AI Act</span><span>Air-gap mode</span><span>Policy-safe fallback</span><span>Local scanners</span><span>Signed evidence</span></div></section>
-<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Controls</p><h2>What Talon adds to AI traffic.</h2><p>Talon sits at the provider boundary. It checks policy before requests are forwarded and records signed evidence after each decision.</p></div><div class="grid three"><article class="card"><div class="icon">🔐</div><h3>PII and scanner controls</h3><p>Detect, redact, warn, or block sensitive data with built-in regex, Presidio-compatible services, or a local LLM scanner such as Ollama. Scanner failures stay fail-closed in enforcement paths.</p></article><article class="card"><div class="icon">🇪🇺</div><h3>Provider, region, and fallback control</h3><p>Use eu_strict, eu_preferred, or global routing rules. On transient failures, ordered fallback candidates re-run sovereignty, provider/model, tool, budget, and session policy before dispatch.</p></article><article class="card"><div class="icon">🧾</div><h3>Signed evidence and reports</h3><p>Record policy decisions, PII findings, scanner identity, failover attempts, model, cost, destination, signature, and sovereignty posture.</p></article></div></div></section>
-<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Policy-safe reliability</p><h2>Provider fallback without turning an outage into a policy bypass.</h2><p>Talon v1.6.7 walks an ordered fallback chain only for transient upstream failures such as timeouts, connection errors, HTTP 429, and 5xx responses. Every candidate is re-evaluated against the full caller policy surface. Under <code>eu_strict</code>, a non-EU/LOCAL candidate is not dispatched, even when it could restore availability.</p><div class="link-row"><a href="/talon/docs/configuration/">Fallback configuration</a><a href="/talon/docs/release-notes/">Release notes</a><a href="/talon/docs/evidence-store/">Evidence store</a></div></div><div class="code-panel"><pre><code>gateway:
-  providers:
-    primary:
-      fallback:
-        - provider: backup-eu
-          model: approved-model
+Candidate: openai / US
+Decision: REJECTED before dispatch
+  • cloud providers blocked for confidential data
+  • LOCAL provider required
 
-# Transient failure → re-check policy → fallback
-# eu_strict + US candidate → skip, never dispatch</code></pre></div></div></section>
-<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Air-gap / local-only</p><h2>For teams that need stronger than “prefer EU”.</h2><p>Air-gap mode is a stricter deployment posture: it implies eu_strict, requires explicit crypto keys, applies deny-by-default EU/LOCAL egress when no custom egress policy is set, and guards upstream HTTP against surprise destinations. Pair it with a local Ollama scanner when detection must also stay on your own hardware.</p><div class="link-row"><a href="/talon/docs/air-gapped-deployment/">Air-gap guide</a><a href="/talon/docs/local-scanner-engines/">Local scanner engines</a><a href="/ai-sovereignty-posture-report/">Posture report</a><a href="/talon/docs/provider-registry/">Provider registry</a></div></div><div class="code-panel"><pre><code>sovereignty:
-  mode: eu_strict
-  deployment_mode: air_gap
+Candidate: ollama / LOCAL
+Decision: SELECTED
 
-scanner:
-  type: llm
-  llm:
-    base_url: http://127.0.0.1:11434
+Evidence: rejected + selected candidates signed</code></pre></div></div></section>
+<section class="strip"><div class="wrap strip-inner"><span>PII before egress</span><span>EU / LOCAL policy</span><span>Candidate rejection</span><span>Local selection</span><span>Observed destinations</span><span>Signed evidence</span></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">The real governance sequence</p><h2>Do more than declare “EU preferred.”</h2><p>A useful control must connect request sensitivity, destination policy, actual execution, and reviewable evidence.</p></div><div class="grid three"><article class="card"><div class="icon">🔎</div><h3>Classify</h3><p>Detect sensitive input before provider access and determine the data tier that policy will evaluate.</p></article><article class="card"><div class="icon">🛡️</div><h3>Enforce and route</h3><p>Deny a disallowed destination, or evaluate candidates and select an allowed EU/LOCAL destination on the policy-aware runner path.</p></article><article class="card"><div class="icon">🔏</div><h3>Prove and check</h3><p>Sign rejected and selected routing facts, then compare observed destinations with the declared sovereignty posture.</p></article></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Two provider-control paths</p><h2>Chosen destination and policy-selected destination are different problems.</h2><p><strong>Gateway proxy:</strong> the provider is encoded in the route the client called. Talon can allow or deny that provider-bound request. It does not silently turn an OpenAI proxy request into an Ollama request.</p><p><strong>Policy-aware runner:</strong> Talon owns candidate selection. It can classify the request, reject OpenAI/US before dispatch, select Ollama/LOCAL, and record both outcomes.</p><div class="link-row"><a href="/talon/docs/manual-governed-session/">Reproduce both outcomes</a><a href="/talon/docs/what-talon-does-to-your-request/">Request lifecycle</a></div></div><div class="code-panel"><pre><code># proxy path
+client chose OpenAI
+→ allow OpenAI OR deny OpenAI
 
-# LLM provider and PII scanning can stay LOCAL</code></pre></div></div></section>
-<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Evidence map</p><h2>From review question to proof.</h2></div><div class="table-wrap comparison-table"><table><thead><tr><th>Question</th><th>Talon control</th><th>Evidence</th></tr></thead><tbody><tr><td>What AI traffic processed personal or confidential data?</td><td>PII scan and data-tier classification.</td><td>PII findings, scanner engine identity/version, hashes, and signed record.</td></tr><tr><td>Was data sent to an approved provider or region?</td><td>Provider metadata, routing policy, eu_strict mode, and optional air-gap egress guard.</td><td>Provider, region, routing decision, egress decision, and reason.</td></tr><tr><td>Did provider failover preserve policy?</td><td>Transient-only fallback chain with per-candidate policy evaluation.</td><td>Linked failover-attempt records, selected provider or fail-closed terminal record, correlation ID, and failover group ID.</td></tr><tr><td>Can we prove the configured posture?</td><td>Sovereignty posture report.</td><td><code>talon compliance sovereignty --format html</code> with gateway providers and observed destinations.</td></tr><tr><td>Was spend controlled?</td><td>Pre-spend cost caps.</td><td>Estimated cost, actual cost, and caller context.</td></tr><tr><td>Can the record be trusted later?</td><td>HMAC-signed evidence.</td><td><code>talon audit verify &lt;id&gt;</code>.</td></tr></tbody></table></div></div></section>
-<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Evaluate Talon</p><h2>Run one governed request, break the primary provider, and inspect the proof.</h2><p>Route one workflow through Talon, inspect the policy decision, verify the signed evidence record, test a transient provider failure against an EU-safe fallback, and export the configured-vs-observed sovereignty posture.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the demo</a><a class="button secondary" href="/talon/docs/configuration/">Configure fallback</a><a class="button ghost" href="/talon/docs/external-scanners/">Choose a scanner</a></div></div></div></section>
+# runner path
+classify request
+→ evaluate OpenAI/US
+→ reject by policy
+→ select Ollama/LOCAL</code></pre></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Same sensitive data, different policy outcome</p><h2>Block it — or process it under a stricter execution constraint.</h2><p>In the governed-session proof, an IBAN sent through an enforcing gateway caller is blocked before any provider call. The same type of confidential data sent through the policy-aware runner is allowed to be processed, but only after the US candidate is rejected and a LOCAL model is selected.</p><p>The difference is explicit policy context, not a hidden exception.</p></div><div class="code-panel"><pre><code>IBAN + gateway enforcement
+→ HTTP 400
+→ provider tokens: 0
+→ provider cost: 0
+
+IBAN + runner policy
+→ OpenAI/US rejected
+→ Ollama/LOCAL selected
+→ RoutingDecision signed</code></pre></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">EU and local posture</p><h2>Enforce before execution, then review observed behavior.</h2></div><div class="grid three"><article class="card"><h3>EU strict</h3><p>Reject non-EU/LOCAL candidates where Talon controls routing and fail closed when no allowed candidate remains.</p></article><article class="card"><h3>Air-gap / local-only</h3><p>Use explicit LOCAL/EU providers and deny-by-default egress posture for private or disconnected deployments.</p></article><article class="card"><h3>Runtime consistency</h3><p>Compare declared residency with signed observed destinations and surface non-EU flows that require stricter policy or documented transfer mechanisms.</p></article></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">The receipt</p><h2>Rejected candidates are part of the evidence.</h2><p>A successful local response is not enough. Talon records why a candidate was rejected, which provider and model were selected, the session and correlation context, and the signed runtime facts needed for later review.</p><div class="link-row"><a href="/ai-governance-evidence-store/">Evidence model</a><a href="/ai-sovereignty-posture-report/">Sovereignty report</a><a href="/talon/docs/evidence-integrity-demo/">Attack the evidence</a></div></div><div class="code-panel"><pre><code>Routing Decision
+Selected: ollama / llama3.2:1b
+
+Rejected: openai
+  • confidential tier blocks cloud providers
+  • confidential tier requires LOCAL provider only
+
+18/18 session records VALID</code></pre></div></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Evaluate practically</p><h2>Reproduce the routing proof, then pilot one workload.</h2><p>Use raw requests and Talon commands to rebuild the proof without a demo script. Then put one dev or internal workload behind Talon in shadow mode and turn on the first control you actually need.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/manual-governed-session/">Reproduce the governed session</a><a class="button secondary" href="/talon/docs/choosing-integration-path/">Choose an integration path</a><a class="button ghost" href="https://github.com/dativo-io/talon/issues/new?title=Pilot%3A%20%3Cyour%20stack%3E&body=Current%20stack%3A%0AFirst%20control%20I%20need%20%28PII%20%2F%20spend%20%2F%20tools%20%2F%20data%20residency%29%3A">Pilot one workload</a></div></div></div></section>
 </main>
-<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Talon is self-hostable Apache-2.0 software. Product information is for technical evaluation and does not replace legal, compliance, or procurement advice.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Talon governs provider-bound AI traffic. It does not observe local execution that never crosses the gateway. Product information supports technical evaluation and does not replace legal or compliance advice.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body></html>
