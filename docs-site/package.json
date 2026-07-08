@@ -8,7 +8,7 @@
   "scripts": {
     "sync:talon-docs": "node ./scripts/sync-talon-docs.mjs",
     "start": "docusaurus start --host 0.0.0.0",
-    "build": "npm run sync:talon-docs && docusaurus build",
+    "build": "npm run sync:talon-docs && node ./scripts/fix-synced-doc-links.cjs && docusaurus build",
     "serve": "docusaurus serve build"
   },
   "dependencies": {

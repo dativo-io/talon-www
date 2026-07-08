@@ -88,6 +88,12 @@ npm run build
 mkdir -p "$OUT_DIR/talon/docs"
 cp -R "$DOCS_DIR/build/." "$OUT_DIR/talon/docs/"
 
+# The manual governed-session proof is the primary deep evaluator route.
+test -f "$OUT_DIR/talon/docs/manual-governed-session/index.html"
+
+# Prevent historical repo-relative link mistakes from becoming public web routes.
+node "$ROOT_DIR/scripts/verify-internal-link-shapes.cjs" "$OUT_DIR"
+
 # Generate the root SEO files after all pages exist.
 node "$ROOT_DIR/scripts/generate-seo-files.cjs" "$OUT_DIR" "$SITE_URL"
 

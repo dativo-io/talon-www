@@ -10,6 +10,7 @@ const config = {
   projectName: 'talon',
 
   onBrokenLinks: 'warn',
+  onBrokenAnchors: 'throw',
   markdown: {
     hooks: {
       onBrokenMarkdownLinks: 'warn',
