@@ -1,5 +1,6 @@
 module.exports = {
   'quickstart-demo.md': 'docs/tutorials/quickstart-demo.md',
+  'manual-governed-session.md': 'docs/tutorials/manual-governed-session.md',
   'evidence-integrity-demo.md': 'docs/tutorials/evidence-integrity-demo.md',
   'turnkey-compliance-reports.md': 'docs/tutorials/turnkey-compliance-reports.md',
   'quickstart.md': 'docs/QUICKSTART.md',
