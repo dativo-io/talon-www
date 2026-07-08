@@ -19,9 +19,12 @@ const fixes = [
 for (const fix of fixes) {
   const filePath = path.join(docsDir, fix.file);
   const source = fs.readFileSync(filePath, 'utf8');
+
   if (!source.includes(fix.from)) {
-    throw new Error(`Expected stale link not found in ${fix.file}: ${fix.from}`);
+    console.log(`stale generated link already absent in ${fix.file}`);
+    continue;
   }
+
   fs.writeFileSync(filePath, source.replaceAll(fix.from, fix.to));
   console.log(`fixed stale generated link in ${fix.file}`);
 }
