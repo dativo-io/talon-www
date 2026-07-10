@@ -15,6 +15,11 @@ const explicitTalonRepoPath = process.env.TALON_REPO_PATH
 const siblingTalonRepoPath = path.resolve(siteRoot, '..', '..', 'talon');
 const talonRoot = explicitTalonRepoPath ?? siblingTalonRepoPath;
 
+const localOwnedDocs = new Map([
+  ['index', 'index.md'],
+  ['coding-agents-demo', 'coding-agents-demo.md'],
+]);
+
 async function exists(filePath) {
   try {
     await fs.access(filePath);
@@ -65,15 +70,15 @@ if (await exists(talonRoot)) {
 }
 
 if (!sourcesOnly) {
-  const knownDocIds = new Set(['index']);
+  const knownDocIds = new Set(localOwnedDocs.keys());
   for (const [docPath] of mappedEntries) knownDocIds.add(docIdFromPath(docPath));
 
-  if (await exists(docsDir)) {
-    for (const entry of await fs.readdir(docsDir, {withFileTypes: true})) {
-      if (entry.isFile() && entry.name.endsWith('.md')) {
-        knownDocIds.add(docIdFromPath(entry.name));
-      }
-    }
+  const missingLocalOwnedDocs = [];
+  for (const [docId, filename] of localOwnedDocs) {
+    if (!(await exists(path.join(docsDir, filename)))) missingLocalOwnedDocs.push(`${docId} (${filename})`);
+  }
+  if (missingLocalOwnedDocs.length > 0) {
+    errors.push(`local docs owned by talon-www are missing: ${missingLocalOwnedDocs.join(', ')}`);
   }
 
   const sidebarsSource = await fs.readFile(path.join(siteRoot, 'sidebars.js'), 'utf8');
@@ -90,7 +95,7 @@ if (!sourcesOnly) {
     .filter((docId) => !knownDocIds.has(docId))
     .sort();
   if (unresolvedSidebarIds.length > 0) {
-    errors.push(`sidebar doc IDs do not resolve: ${unresolvedSidebarIds.join(', ')}`);
+    errors.push(`sidebar doc IDs do not resolve to a mapped or explicitly local doc: ${unresolvedSidebarIds.join(', ')}`);
   }
 
   const missingSyncedOutputs = [];
