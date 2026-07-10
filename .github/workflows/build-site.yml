@@ -25,6 +25,7 @@ jobs:
         run: |
           test -f dist/index.html
           test -f dist/sitemap.xml
+          test -f dist/ai-cost-control/index.html
           test -f dist/coding-agent-governance/index.html
           test -f dist/talon/docs/index.html
           test -f dist/talon/docs/sitemap.xml
