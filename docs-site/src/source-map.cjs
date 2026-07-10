@@ -28,6 +28,7 @@ module.exports = {
   'plan-review-operators.md': 'docs/guides/plan-review-operators.md',
   'plan-review-e2e-testcase.md': 'docs/guides/plan-review-e2e-testcase.md',
   'sample-auditor-pack.md': 'examples/auditor-pack/README.md',
+  'control-plane.md': 'docs/explanation/control-plane.md',
   'what-talon-does-to-your-request.md': 'docs/explanation/what-talon-does-to-your-request.md',
   'why-not-a-pii-proxy.md': 'docs/explanation/why-not-a-pii-proxy.md',
   'evidence-store.md': 'docs/explanation/evidence-store.md',
