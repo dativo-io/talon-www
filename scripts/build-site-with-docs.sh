@@ -80,6 +80,10 @@ node "$ROOT_DIR/scripts/normalize-site-nav.cjs" "$OUT_DIR"
 # to raw.githubusercontent.com, which can be rate-limited during production builds.
 prepare_talon_checkout
 
+# Fail fast, before npm install and Docusaurus compilation, if talon/main changed
+# a mapped docs path without the corresponding talon-www publication update.
+node "$DOCS_DIR/scripts/validate-docs-contract.mjs" --sources-only
+
 # Build Docusaurus and mount it under /talon/docs/.
 cd "$DOCS_DIR"
 npm install
@@ -88,8 +92,14 @@ npm run build
 mkdir -p "$OUT_DIR/talon/docs"
 cp -R "$DOCS_DIR/build/." "$OUT_DIR/talon/docs/"
 
-# The manual governed-session proof is the primary deep evaluator route.
+# Keep the primary evaluator route and the four control-plane journeys present in
+# every production artifact.
 test -f "$OUT_DIR/talon/docs/manual-governed-session/index.html"
+test -f "$OUT_DIR/talon/docs/control-plane/index.html"
+test -f "$OUT_DIR/talon/docs/cost-governance-by-caller/index.html"
+test -f "$OUT_DIR/talon/docs/configuration/index.html"
+test -f "$OUT_DIR/talon/docs/policy-cookbook/index.html"
+test -f "$OUT_DIR/talon/docs/governing-coding-agents/index.html"
 
 # Prevent historical repo-relative link mistakes from becoming public web routes.
 node "$ROOT_DIR/scripts/verify-internal-link-shapes.cjs" "$OUT_DIR"
