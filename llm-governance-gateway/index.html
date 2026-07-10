@@ -4,45 +4,60 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/llm-governance-gateway/" />
-  <title>LLM Egress Governance Gateway | Dativo Talon</title>
-  <meta name="description" content="Talon is an EU-sovereign, evidence-grade LLM egress gateway. Enforce PII, cost, model, provider, and sovereignty policy before AI traffic leaves, then export signed evidence." />
-  <meta property="og:title" content="LLM Egress Governance Gateway" />
-  <meta property="og:description" content="Change one URL to govern LLM traffic and produce signed evidence for EU reviews." />
+  <title>Shared Policy for Company AI Use Cases | Dativo Talon</title>
+  <meta name="description" content="Apply shared runtime policy across company AI use cases with Dativo Talon: model, provider, cost, PII, tool and regional controls on the governed path, with signed evidence." />
+  <meta property="og:title" content="Shared Policy for Company AI Use Cases" />
+  <meta property="og:description" content="One runtime control layer for common organizational intent and use-case-specific needs." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://dativo.io/llm-governance-gateway/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="LLM Egress Governance Gateway" />
-  <meta name="twitter:description" content="EU-sovereign LLM egress controls with signed evidence." />
+  <meta name="twitter:title" content="Shared Policy for Company AI Use Cases" />
+  <meta name="twitter:description" content="Apply model, provider, cost, PII, tool and regional policy on the same governed path." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/public/assets/favicon-16x16.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/public/assets/favicon-32x32.png" />
-  <link rel="apple-touch-icon" href="/public/assets/apple-touch-icon.png" />
-  <link rel="manifest" href="/public/assets/site.webmanifest" />
-  <meta name="theme-color" content="#07111f" />
   <link rel="stylesheet" href="/styles.css" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"LLM Egress Governance Gateway","description":"A Talon 2.0 guide to governing LLM egress with signed evidence.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/llm-governance-gateway/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Shared Policy for Company AI Use Cases","description":"How Dativo Talon applies shared runtime policy to company AI use cases without becoming an agent orchestrator or general GRC suite.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/llm-governance-gateway/"}</script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
 </head>
 <body>
-<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/ai-governance-eu/">EU governance</a><a href="/ai-governance-evidence-store/">Evidence</a><a href="/ai-agent-governance/">Agents</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
+<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/">Operate</a><a href="/ai-cost-control/">Cost</a><a href="/#reliability">Reliability</a><a href="/llm-governance-gateway/">Policy</a><a href="/coding-agent-governance/">Sessions</a><a href="/talon/docs/">Docs</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
 <main>
-<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Change one URL · Govern AI egress · Sign evidence</div><h1>Put governance where AI traffic leaves.</h1><p class="hero-subtitle">Talon’s gateway is the Talon 2.0 control point: a network chokepoint for LLM calls where policy runs before provider access and every decision becomes signed evidence.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key">Run the 60-second demo</a><a class="button secondary" href="/ai-governance-evidence-store/">Evidence model</a><a class="button ghost" href="/ai-governance-eu/">EU governance guide</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>App / agent
-  → Talon gateway
-      → identify caller
-      → scan PII
-      → classify data tier
-      → evaluate OPA policy
-      → enforce budget
-      → check provider region
-      → redact or deny
-      → sign evidence
-  → approved provider</code></pre></div></div></section>
-<section class="strip"><div class="wrap strip-inner"><span>PII before provider</span><span>Cost before spend</span><span>EU before egress</span><span>Evidence after decision</span></div></section>
-<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Definition</p><h2>A Talon-style gateway is not just a proxy.</h2><p>A proxy forwards traffic. Talon decides whether the request is allowed, whether data must be redacted, which provider posture is acceptable, whether budget remains, and what signed record proves the decision later.</p></div><div class="grid three"><article class="card"><div class="icon">🔐</div><h3>Govern data before it leaves</h3><p>PII and data-tier classification happen before the provider call, not only in post-hoc logs.</p></article><article class="card"><div class="icon">🇪🇺</div><h3>Enforce sovereignty posture</h3><p>EU strict, EU preferred, and global modes make provider jurisdiction a product primitive.</p></article><article class="card"><div class="icon">🧾</div><h3>Generate evidence, not logs</h3><p>Each request produces a signed record that can be exported and verified.</p></article></div></div></section>
-<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Talon 2.0 scope</p><h2>What the gateway should prove.</h2></div><div class="table-wrap comparison-table"><table><thead><tr><th>Control</th><th>Question it answers</th><th>Evidence fact</th></tr></thead><tbody><tr><td>Caller identity</td><td>Which app, tenant, or workflow made the request?</td><td>caller, tenant_id, agent_id</td></tr><tr><td>PII and data tier</td><td>Was sensitive data present?</td><td>PII findings, input/output tier, redaction action</td></tr><tr><td>Model and provider policy</td><td>Was this model/provider allowed for this data?</td><td>model, provider, jurisdiction, routing decision</td></tr><tr><td>Pre-spend cost cap</td><td>Was budget checked before spend?</td><td>estimated cost, actual cost, caller budget</td></tr><tr><td>Evidence integrity</td><td>Can this record be trusted later?</td><td>input/output hashes and HMAC signature</td></tr></tbody></table></div></div></section>
-<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Evaluate Talon</p><h2>Start with one existing LLM workflow.</h2><p>Point one OpenAI-compatible client at Talon, send test PII, inspect the policy decision, and verify the signed evidence.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon#60-second-demo-no-api-key-needed">Run the demo</a><a class="button secondary" href="/comparisons/talon-vs-microsoft-agt/">Compare vs AGT</a></div></div></div></section>
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Control-plane pillar · Shared policy</div><h1>Stop rebuilding policy inside every AI use case.</h1><p class="hero-subtitle">Talon puts shared runtime controls on the governed path. Company intent can cover models, providers, cost, sensitive data, tools and region; individual use cases can keep their own explicit needs without becoming separate policy systems.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the 60-second demo</a><a class="button secondary" href="/talon/docs/configuration/">Read configuration</a><a class="button ghost" href="/ai-governance-eu/">See EU/local controls</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>company intent
+→ models / providers
+→ cost limits
+→ PII handling
+→ tool exposure
+→ regional constraints
+
+AI use case
+→ concrete identity and needs
+→ traffic crosses Talon
+→ effective decision + signed evidence</code></pre></div></div></section>
+<section class="strip"><div class="wrap strip-inner"><span>Models</span><span>Providers</span><span>Cost</span><span>PII</span><span>Tools</span><span>Region</span><span>Evidence</span></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">The operating problem</p><h2>Independent AI apps create independent policy drift.</h2><p>A support bot, coding agent and internal assistant should not each invent their own answer to sensitive data, model access, budget and egress. Talon centralizes enforcement on paths it can actually intercept.</p></div><div class="grid three"><article class="card"><h3>Shared intent</h3><p>Use common runtime defaults for provider/model access, cost, PII, tools and regional posture.</p></article><article class="card"><h3>Explicit use-case needs</h3><p>Keep differences visible instead of hiding them in application code or ad-hoc gateway keys.</p></article><article class="card"><h3>One decision history</h3><p>Record policy reasons in the same evidence model used for cost, sessions, routing and incident review.</p></article></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Current implementation</p><h2>Configuration is not fully normalized yet—and the website does not pretend otherwise.</h2><p>Current Talon capabilities are split across <code>agent.talon.yaml</code>, <code>talon.config.yaml</code>, gateway callers and provider settings. The product direction is simpler: one AI use case should have one operational identity and one effective policy. The site does not claim the final baseline-plus-override contract is fully shipped.</p><div class="link-row"><a href="/talon/docs/configuration/">Current configuration reference</a><a href="/talon/docs/authentication-and-key-scopes/">Current key scopes</a></div></div><div class="code-panel"><pre><code>desired product semantics
+
+organization baseline
+        ↓
+one explicit AI-use-case override
+        ↓
+effective policy
+
+current code may still expose
+caller / tenant / agent naming separately</code></pre></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Current policy domains</p><h2>Controls that already matter across use cases.</h2></div><div class="table-wrap comparison-table"><table><thead><tr><th>Domain</th><th>Current Talon behavior</th><th>Operator question</th></tr></thead><tbody><tr><td>Model/provider</td><td>Allow/block policy and policy-aware provider decisions on supported paths.</td><td>May this use case call this model or destination?</td></tr><tr><td>Cost</td><td>Per-request and caller limits; asserted-session soft caps where configured.</td><td>Should the next call be allowed to spend?</td></tr><tr><td>PII/data</td><td>Scan and apply configured allow/warn/redact/block behavior on governed request paths.</td><td>May this data leave in this form?</td></tr><tr><td>Tools/actions</td><td>Filter/block provider-bound tool schemas and govern intercepted MCP/tool paths.</td><td>Should this action surface be exposed or executed?</td></tr><tr><td>Region/sovereignty</td><td>EU/local posture, candidate rejection and air-gap controls on supported paths.</td><td>May this traffic go there?</td></tr><tr><td>Reliability</td><td>Explicit fallback candidates are re-checked against policy after supported transient failures.</td><td>Can availability recover without bypassing controls?</td></tr></tbody></table></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Tool boundary</p><h2>Govern only actions Talon can actually intercept.</h2><p>Tool schemas visible in LLM requests can be filtered or blocked. MCP calls routed through Talon can be governed. Local shell commands, file edits, browser actions and direct APIs that bypass Talon are outside the control plane.</p><div class="link-row"><a href="/talon/docs/openclaw-integration/">Gateway tool governance</a><a href="/talon/docs/policy-cookbook/">Policy examples</a></div></div><div class="code-panel"><pre><code>organization blocks: delete_*
+AI use case declares: search, update, delete_customer
+
+through Talon:
+search          → allowed
+update          → allowed if policy passes
+delete_customer → blocked
+
+local shell bypass → invisible to Talon</code></pre></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Evidence under policy</p><h2>Prove how the control plane behaved.</h2><p>Evidence is not the entire product category. It is the proof layer under operation: the reason a request was allowed, denied, redacted, routed, failed over or stopped by budget can be inspected and verified later.</p></div><div class="grid three"><article class="card"><h3>Decision</h3><p>Allow, deny, redact, filter, route or fail-closed outcome with reasons.</p></article><article class="card"><h3>Context</h3><p>Caller/agent attribution, model/provider, session, cost, PII and destination facts where present.</p></article><article class="card"><h3>Integrity</h3><p>HMAC signatures make stored records tamper-evident and verifiable.</p></article></div></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Start small</p><h2>Apply one shared rule to one real AI use case.</h2><p>Route one application through Talon, set the first control you genuinely need, and inspect the resulting decision. Add broader organizational defaults when the second and third use cases arrive.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/add-talon-to-existing-app/">Add Talon to an app</a><a class="button secondary" href="/ai-cost-control/">Start with cost</a><a class="button ghost" href="/ai-governance-eu/">Start with egress policy</a></div></div></div></section>
 </main>
-<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Dativo Talon is an independent open-source project. Nothing on this site constitutes legal, compliance, or procurement advice.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Talon is a runtime control layer for intercepted AI paths, not an agent orchestrator, endpoint-security product or general GRC suite.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body></html>
