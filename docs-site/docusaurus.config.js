@@ -1,6 +1,6 @@
 const config = {
   title: 'Dativo Talon Docs',
-  tagline: 'Open-source AI governance gateway for European SMBs.',
+  tagline: 'Control cost, reliability, policy, and sessions across company AI use cases.',
   favicon: 'img/favicon.ico',
 
   url: 'https://dativo.io',
@@ -50,12 +50,12 @@ const config = {
       {
         name: 'description',
         content:
-          'Dativo Talon documentation for European SMBs: govern LLM traffic, AI agents, PII, tools, costs, EU routing, and signed audit evidence.',
+          'Dativo Talon is the open-source control plane for company AI use cases: control LLM spend, reliability, shared policy, sessions, intercepted actions, EU routing, and signed evidence.',
       },
       {
         name: 'keywords',
         content:
-          'AI governance, EU AI governance, LLM gateway, AI agent governance, GDPR AI, EU data sovereignty, audit evidence, Dativo Talon, European SMB AI',
+          'AI control plane, AI agent operations, LLM cost control, AI budget enforcement, LLM retries, provider fallback, AI session debugging, AI agent session visibility, AI tool call governance, self-hosted AI gateway, EU AI routing, signed audit evidence, Dativo Talon',
       },
     ],
     navbar: {
@@ -73,27 +73,27 @@ const config = {
         },
         {
           to: '/quickstart-demo/',
-          label: 'Demo',
+          label: 'Get started',
+          position: 'left',
+        },
+        {
+          to: '/cost-governance-by-caller/',
+          label: 'Cost',
+          position: 'left',
+        },
+        {
+          to: '/configuration/#provider-fallback-chains-error-driven-failover',
+          label: 'Reliability',
+          position: 'left',
+        },
+        {
+          to: '/policy-cookbook/',
+          label: 'Policy',
           position: 'left',
         },
         {
           to: '/governing-coding-agents/',
-          label: 'Coding agents',
-          position: 'left',
-        },
-        {
-          to: '/choosing-integration-path/',
-          label: 'Integrate',
-          position: 'left',
-        },
-        {
-          to: '/governance-control-matrix/',
-          label: 'EU governance',
-          position: 'left',
-        },
-        {
-          to: '/evidence-store/',
-          label: 'Evidence',
+          label: 'Sessions',
           position: 'left',
         },
         {
@@ -112,29 +112,44 @@ const config = {
       style: 'dark',
       links: [
         {
-          title: 'Evaluate',
+          title: 'Get started',
           items: [
             {label: '60-second demo', to: '/quickstart-demo/'},
-            {label: 'Reproduce the governed session', to: '/manual-governed-session/'},
-            {label: 'Attack evidence integrity', to: '/evidence-integrity-demo/'},
-            {label: 'Choose integration path', to: '/choosing-integration-path/'},
-          ],
-        },
-        {
-          title: 'Governance',
-          items: [
-            {label: 'EU control matrix', to: '/governance-control-matrix/'},
-            {label: 'Turnkey compliance reports', to: '/turnkey-compliance-reports/'},
-            {label: 'Auditor pack', to: '/sample-auditor-pack/'},
-            {label: 'Evidence integrity', to: '/evidence-integrity-spec/'},
-          ],
-        },
-        {
-          title: 'Adopt',
-          items: [
             {label: 'Add Talon to an existing app', to: '/add-talon-to-existing-app/'},
-            {label: 'Govern coding agents', to: '/governing-coding-agents/'},
-            {label: 'Pilot one workload', href: 'https://github.com/dativo-io/talon/issues/new?title=Pilot%3A%20%3Cyour%20stack%3E&body=Current%20stack%3A%0AFirst%20control%20I%20need%20%28PII%20%2F%20spend%20%2F%20tools%20%2F%20data%20residency%29%3A'},
+            {label: 'Choose an integration path', to: '/choosing-integration-path/'},
+          ],
+        },
+        {
+          title: 'Operate',
+          items: [
+            {label: 'What the control plane does', to: '/control-plane/'},
+            {label: 'Reproduce a governed session', to: '/manual-governed-session/'},
+            {label: 'Gateway dashboard', to: '/gateway-dashboard/'},
+          ],
+        },
+        {
+          title: 'Control',
+          items: [
+            {label: 'Cost and budgets', to: '/cost-governance-by-caller/'},
+            {label: 'Retries and fallback', to: '/configuration/#provider-fallback-chains-error-driven-failover'},
+            {label: 'Shared policy', to: '/policy-cookbook/'},
+            {label: 'Request lifecycle', to: '/what-talon-does-to-your-request/'},
+          ],
+        },
+        {
+          title: 'Understand',
+          items: [
+            {label: 'Coding-agent sessions', to: '/governing-coding-agents/'},
+            {label: 'Incident response', to: '/incident-response-playbook/'},
+            {label: 'Observability', to: '/observability/'},
+          ],
+        },
+        {
+          title: 'Trust and evidence',
+          items: [
+            {label: 'Evidence store', to: '/evidence-store/'},
+            {label: 'Verify evidence integrity', to: '/evidence-integrity-demo/'},
+            {label: 'EU and privacy controls', to: '/governance-control-matrix/'},
           ],
         },
         {
@@ -142,6 +157,7 @@ const config = {
           items: [
             {label: 'GitHub', href: 'https://github.com/dativo-io/talon'},
             {label: 'Website', href: '/'},
+            {label: 'Pilot one AI use case', href: 'https://github.com/dativo-io/talon/issues/new?title=Pilot%3A%20%3Cyour%20AI%20use%20case%3E&body=Current%20stack%3A%0AFirst%20control%20I%20need%20%28cost%20%2F%20reliability%20%2F%20policy%20%2F%20sessions%29%3A'},
           ],
         },
       ],
