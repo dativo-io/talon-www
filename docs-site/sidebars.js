@@ -61,7 +61,6 @@ const sidebars = {
       items: [
         'quickstart',
         'proxy-quickstart',
-        doc('adoption-scenarios', 'Adoption scenarios'),
         doc('persona-guides', 'Guides by role'),
         'threat-model',
         'conformance',
