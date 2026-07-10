@@ -34,7 +34,6 @@ module.exports = {
   'explanation-catalog.md': 'docs/explanation/explanation-catalog.md',
   'agent-planning.md': 'docs/AGENT_PLANNING.md',
   'memory-governance.md': 'docs/MEMORY_GOVERNANCE.md',
-  'adoption-scenarios.md': 'docs/ADOPTION_SCENARIOS.md',
   'persona-guides.md': 'docs/PERSONA_GUIDES.md',
   'architecture-mcp-proxy.md': 'docs/ARCHITECTURE_MCP_PROXY.md',
   'configuration.md': 'docs/reference/configuration.md',
