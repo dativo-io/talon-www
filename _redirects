@@ -12,6 +12,7 @@
 /talon/docs/configuration/operational-control-plane.md/ /talon/docs/operational-control-plane/ 301
 /talon/internal/classifier/pii.go/ https://github.com/dativo-io/talon/blob/main/internal/classifier/pii.go 301
 /talon/docs/quickstart/proxy-quickstart.md/ /talon/docs/proxy-quickstart/ 301
+/talon/docs/adoption-scenarios/ /talon/docs/choosing-integration-path/ 301
 /talon/docs/adoption-scenarios/QUICKSTART.md/ /talon/docs/quickstart/ 301
 /talon/docs/policy-cookbook/cost-governance-by-caller.md/ /talon/docs/cost-governance-by-caller/ 301
 /talon/docs/quickstart/evidence-integrity-spec.md/ /talon/docs/evidence-integrity-spec/ 301
