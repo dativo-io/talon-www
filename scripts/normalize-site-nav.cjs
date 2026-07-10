@@ -10,13 +10,13 @@ const canonicalHeader = `<header class="site-nav">
         <span>Dativo Talon</span>
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="/coding-agent-governance/">Coding agents</a>
-        <a href="/ai-governance-eu/">EU governance</a>
-        <a href="/ai-sovereignty-posture-report/">Sovereignty</a>
-        <a href="/ai-governance-evidence-store/">Evidence</a>
+        <a href="/">Operate</a>
+        <a href="/ai-cost-control/">Cost</a>
+        <a href="/#reliability">Reliability</a>
+        <a href="/llm-governance-gateway/">Policy</a>
+        <a href="/coding-agent-governance/">Sessions</a>
         <a href="/talon/docs/">Docs</a>
         <a href="/comparisons/">Compare</a>
-        <a href="https://blog.dativo.io">Blog</a>
         <a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a>
       </nav>
     </div>
@@ -24,13 +24,13 @@ const canonicalHeader = `<header class="site-nav">
 
 const headerPattern = /<header class="site-nav">[\s\S]*?<\/header>/;
 const expectedLabels = [
-  'Coding agents',
-  'EU governance',
-  'Sovereignty',
-  'Evidence',
+  'Operate',
+  'Cost',
+  'Reliability',
+  'Policy',
+  'Sessions',
   'Docs',
   'Compare',
-  'Blog',
   'GitHub',
 ];
 
