@@ -14,6 +14,11 @@ const fixes = [
     from: '#gateway-egress-rules-destination--classification-allowdeny',
     to: '',
   },
+  {
+    file: 'configuration.md',
+    from: '#enable-governed-semantic-cache-infrastructure',
+    to: '#experimental-governed-semantic-cache-not-verified-end-to-end',
+  },
 ];
 
 for (const fix of fixes) {
