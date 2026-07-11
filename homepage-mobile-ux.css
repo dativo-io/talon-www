@@ -1,0 +1,510 @@
+/* Responsive storytelling for the homepage.
+   One semantic page serves desktop and mobile; smaller screens progressively
+   disclose implementation detail instead of receiving a stacked desktop page. */
+
+.hero-github-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  padding: 0 6px;
+  color: #bfdbfe;
+  font-size: 14px;
+  font-weight: 720;
+}
+
+.hero-github-link:hover {
+  color: #e0f2fe;
+}
+
+.compact-problem-grid .card,
+.proof-story-grid .card {
+  min-height: 0;
+}
+
+.proof-story-grid .card a {
+  display: inline-block;
+  margin-top: 14px;
+  color: #bfdbfe;
+  font-size: 13px;
+  font-weight: 720;
+}
+
+.outcome-card {
+  min-height: 250px;
+}
+
+.outcome-card summary {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  list-style: none;
+  cursor: default;
+}
+
+.outcome-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.outcome-card summary > span:last-child {
+  min-width: 0;
+}
+
+.outcome-card summary strong {
+  display: block;
+  margin: 0;
+  color: var(--text);
+  font-size: 19px;
+  line-height: 1.2;
+}
+
+.outcome-card summary small {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted-2);
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+.outcome-symbol {
+  display: grid;
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid rgba(248, 250, 252, 0.14);
+  border-radius: 15px;
+  background: rgba(248, 250, 252, 0.07);
+  font-size: 25px;
+}
+
+.outcome-detail {
+  margin-top: 20px;
+}
+
+.outcome-detail p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.58;
+}
+
+.outcome-detail a {
+  display: inline-block;
+  margin-top: 16px;
+  color: #bfdbfe;
+  font-size: 13px;
+  font-weight: 720;
+}
+
+.operator-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.operator-card {
+  padding: 20px;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow-soft);
+}
+
+.operator-card h3 {
+  margin-bottom: 12px;
+}
+
+.operator-card code {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  padding: 7px 9px;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 9px;
+  background: rgba(2, 6, 23, 0.34);
+  color: #dbeafe;
+  font-size: 12.5px;
+}
+
+.operator-card p {
+  margin: 13px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.mobile-disclosure {
+  border: 0;
+}
+
+.mobile-disclosure > summary {
+  display: none;
+}
+
+.technical-disclosure-body {
+  display: block;
+}
+
+.boundary-section {
+  border-bottom: 0;
+}
+
+@media (max-width: 1080px) {
+  .hero-grid {
+    gap: 30px;
+  }
+
+  .hero-copy {
+    max-width: 760px;
+  }
+
+  .hero-terminal {
+    width: 100%;
+  }
+}
+
+@media (max-width: 860px) {
+  .hero {
+    padding-top: 44px;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-copy {
+    max-width: none;
+  }
+
+  .hero-terminal {
+    margin-top: 8px;
+  }
+
+  .operator-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .hero {
+    padding: 34px 0 16px;
+  }
+
+  .hero-dense {
+    padding-top: 36px;
+  }
+
+  h1 {
+    max-width: 100%;
+    font-size: clamp(37px, 10.5vw, 44px);
+    line-height: 1.01;
+    letter-spacing: -0.062em;
+  }
+
+  h2 {
+    font-size: clamp(28px, 8vw, 34px);
+    line-height: 1.07;
+  }
+
+  .hero-subtitle {
+    margin-top: 17px;
+    font-size: 17px;
+    line-height: 1.52;
+  }
+
+  .hero-actions {
+    gap: 9px;
+    margin-top: 22px;
+  }
+
+  .hero-actions .button {
+    width: 100%;
+  }
+
+  .hero-github-link {
+    width: auto;
+    min-height: 36px;
+    padding: 0;
+  }
+
+  .trust-row,
+  .strip-inner {
+    flex-wrap: nowrap;
+    gap: 7px;
+    overflow-x: auto;
+    padding-bottom: 3px;
+    scrollbar-width: none;
+  }
+
+  .trust-row {
+    margin-top: 14px;
+  }
+
+  .trust-row::-webkit-scrollbar,
+  .strip-inner::-webkit-scrollbar {
+    display: none;
+  }
+
+  .trust-row span,
+  .strip-inner span {
+    flex: 0 0 auto;
+  }
+
+  .hero-terminal {
+    border-radius: 14px;
+  }
+
+  .hero-demo-caption {
+    padding: 10px 12px 12px;
+  }
+
+  .strip {
+    padding: 12px 0 22px;
+  }
+
+  .section {
+    padding: 42px 0;
+  }
+
+  .section-heading {
+    margin-bottom: 21px;
+  }
+
+  .section-heading > p:not(.eyebrow) {
+    margin-top: 13px;
+    font-size: 16px;
+    line-height: 1.56;
+  }
+
+  .compact-problem-grid,
+  .proof-story-grid {
+    gap: 10px;
+  }
+
+  .compact-problem-grid .card,
+  .proof-story-grid .card {
+    padding: 17px;
+  }
+
+  .compact-problem-grid .icon,
+  .proof-story-grid .icon {
+    float: left;
+    margin: 0 12px 4px 0;
+  }
+
+  .compact-problem-grid .card h3,
+  .proof-story-grid .card h3 {
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .outcome-grid {
+    gap: 9px;
+  }
+
+  .outcome-card {
+    min-height: 0;
+    padding: 0;
+    border-radius: 15px;
+  }
+
+  .outcome-card:hover {
+    transform: none;
+  }
+
+  .outcome-card summary {
+    position: relative;
+    padding: 14px 44px 14px 14px;
+    cursor: pointer;
+  }
+
+  .outcome-card summary::after {
+    content: "+";
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #93c5fd;
+    font-size: 23px;
+    font-weight: 400;
+  }
+
+  .outcome-card[open] summary::after {
+    content: "−";
+  }
+
+  .outcome-card summary strong {
+    font-size: 17px;
+  }
+
+  .outcome-card summary small {
+    margin-top: 3px;
+    font-size: 12px;
+  }
+
+  .outcome-symbol {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+    font-size: 22px;
+  }
+
+  .outcome-detail {
+    margin: 0;
+    padding: 0 16px 16px 69px;
+  }
+
+  .outcome-detail p {
+    font-size: 13.5px;
+  }
+
+  .outcome-detail a {
+    margin-top: 11px;
+  }
+
+  .visual-flow {
+    gap: 7px;
+  }
+
+  .visual-step {
+    min-height: 0;
+    padding: 17px;
+    border-radius: 15px;
+  }
+
+  .step-icon {
+    float: left;
+    width: 42px;
+    height: 42px;
+    margin: 0 12px 0 0;
+    border-radius: 13px;
+    font-size: 22px;
+  }
+
+  .visual-step strong {
+    margin-bottom: 4px;
+    font-size: 17px;
+  }
+
+  .visual-step span {
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .visual-arrow {
+    min-height: 22px;
+    font-size: 19px;
+  }
+
+  .flow-actions {
+    justify-content: stretch;
+    margin-top: 18px;
+  }
+
+  .flow-actions .button {
+    width: 100%;
+  }
+
+  .technical-disclosure {
+    margin: 18px 14px 0;
+    overflow: hidden;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 17px;
+    background: rgba(15, 23, 42, 0.64);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .mobile-disclosure > summary {
+    position: relative;
+    display: block;
+    padding: 17px 48px 17px 17px;
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .mobile-disclosure > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-disclosure > summary::after {
+    content: "+";
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #93c5fd;
+    font-size: 25px;
+  }
+
+  .mobile-disclosure[open] > summary::after {
+    content: "−";
+  }
+
+  .mobile-disclosure > summary span,
+  .mobile-disclosure > summary small {
+    display: block;
+  }
+
+  .mobile-disclosure > summary span {
+    color: var(--text);
+    font-weight: 760;
+  }
+
+  .mobile-disclosure > summary small {
+    margin-top: 4px;
+    color: var(--muted-2);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .technical-disclosure-body {
+    border-top: 1px solid rgba(148, 163, 184, 0.14);
+  }
+
+  .technical-disclosure .section {
+    padding: 38px 0;
+  }
+
+  .technical-disclosure .wrap {
+    width: calc(100% - 28px);
+  }
+
+  .technical-disclosure .split-section {
+    background: transparent;
+  }
+
+  .technical-disclosure .code-panel {
+    margin-top: 8px;
+  }
+
+  .operator-card {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .cta-card {
+    padding: 34px 18px;
+    text-align: left;
+  }
+
+  .cta-card p {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 16px;
+  }
+
+  .cta-card .hero-actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .card,
+  .outcome-card {
+    transition: none;
+  }
+}

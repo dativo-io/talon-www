@@ -9,7 +9,10 @@ const canonicalHeader = `<header class="site-nav">
         <img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" />
         <span>Dativo Talon</span>
       </a>
-      <nav class="nav-links" aria-label="Primary navigation">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="primary-navigation" aria-label="Primary navigation">
         <a href="/">Operate</a>
         <a href="/ai-cost-control/">Cost</a>
         <a href="/#reliability">Reliability</a>
@@ -23,6 +26,8 @@ const canonicalHeader = `<header class="site-nav">
   </header>`;
 
 const headerPattern = /<header class="site-nav">[\s\S]*?<\/header>/;
+const navStylesheet = '<link rel="stylesheet" href="/site-nav.css" />';
+const navScript = '<script defer src="/site-nav.js"></script>';
 const expectedLabels = [
   'Operate',
   'Cost',
@@ -49,6 +54,12 @@ function listHtmlFiles(dir) {
   return files;
 }
 
+function ensureHeadAsset(html, marker, tag) {
+  if (html.includes(marker)) return html;
+  if (!html.includes('</head>')) throw new Error('Marketing page is missing </head>');
+  return html.replace('</head>', `  ${tag}\n</head>`);
+}
+
 if (!fs.existsSync(root)) {
   throw new Error(`Output directory does not exist: ${root}`);
 }
@@ -61,7 +72,9 @@ for (const file of listHtmlFiles(root)) {
   if (!headerPattern.test(html)) continue;
 
   pagesWithSiteNav.push(file);
-  const updated = html.replace(headerPattern, canonicalHeader);
+  let updated = html.replace(headerPattern, canonicalHeader);
+  updated = ensureHeadAsset(updated, 'href="/site-nav.css"', navStylesheet);
+  updated = ensureHeadAsset(updated, 'src="/site-nav.js"', navScript);
   fs.writeFileSync(file, updated, 'utf8');
   normalized += 1;
 }
@@ -86,6 +99,13 @@ for (const file of pagesWithSiteNav) {
       throw new Error(`Canonical nav order is wrong in ${file}`);
     }
     previousIndex = currentIndex;
+  }
+
+  if (!header.includes('class="nav-toggle"') || !header.includes('id="primary-navigation"')) {
+    throw new Error(`Responsive navigation controls missing from ${file}`);
+  }
+  if (!html.includes('href="/site-nav.css"') || !html.includes('src="/site-nav.js"')) {
+    throw new Error(`Responsive navigation assets missing from ${file}`);
   }
 }
 
