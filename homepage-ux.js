@@ -44,6 +44,7 @@
       if (!animation || loading || demoMedia.classList.contains('is-playing')) return;
 
       loading = true;
+      observer?.disconnect();
       demoMedia.setAttribute('aria-busy', 'true');
       if (playButton) playButton.textContent = 'Loading demo…';
 
@@ -54,14 +55,16 @@
 
       animation.addEventListener('error', () => {
         loading = false;
+        animation.removeAttribute('src');
         demoMedia.removeAttribute('aria-busy');
-        if (playButton) playButton.textContent = 'Demo unavailable';
+        if (playButton) playButton.textContent = 'Retry demo';
       }, {once: true});
 
       animation.src = demoMedia.dataset.demoSrc;
     };
 
     const scheduleDesktopPlayback = () => {
+      observer?.disconnect();
       if (compactDemo.matches || reducedMotion.matches || loading || demoMedia.classList.contains('is-playing')) return;
 
       if (!('IntersectionObserver' in window)) {
@@ -69,7 +72,6 @@
         return;
       }
 
-      observer?.disconnect();
       observer = new IntersectionObserver((entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
           observer.disconnect();
