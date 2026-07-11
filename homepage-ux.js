@@ -8,7 +8,7 @@
       card.open = !isCompact || index === 0;
     });
 
-    document.querySelectorAll('.mobile-disclosure').forEach((disclosure) => {
+    document.querySelectorAll('.responsive-technical').forEach((disclosure) => {
       disclosure.open = !isCompact;
     });
   };
