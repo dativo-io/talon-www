@@ -31,6 +31,60 @@
     }
   }
 
+  const demoMedia = document.querySelector('.hero-demo-media[data-demo-src]');
+  if (demoMedia) {
+    const animation = demoMedia.querySelector('.hero-demo-animation');
+    const playButton = demoMedia.querySelector('.hero-demo-play');
+    const compactDemo = window.matchMedia('(max-width: 720px)');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let observer;
+    let loading = false;
+
+    const playDemo = () => {
+      if (!animation || loading || demoMedia.classList.contains('is-playing')) return;
+
+      loading = true;
+      demoMedia.setAttribute('aria-busy', 'true');
+      if (playButton) playButton.textContent = 'Loading demo…';
+
+      animation.addEventListener('load', () => {
+        demoMedia.classList.add('is-playing');
+        demoMedia.removeAttribute('aria-busy');
+      }, {once: true});
+
+      animation.addEventListener('error', () => {
+        loading = false;
+        demoMedia.removeAttribute('aria-busy');
+        if (playButton) playButton.textContent = 'Demo unavailable';
+      }, {once: true});
+
+      animation.src = demoMedia.dataset.demoSrc;
+    };
+
+    const scheduleDesktopPlayback = () => {
+      if (compactDemo.matches || reducedMotion.matches || loading || demoMedia.classList.contains('is-playing')) return;
+
+      if (!('IntersectionObserver' in window)) {
+        playDemo();
+        return;
+      }
+
+      observer?.disconnect();
+      observer = new IntersectionObserver((entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          observer.disconnect();
+          playDemo();
+        }
+      }, {rootMargin: '160px'});
+      observer.observe(demoMedia);
+    };
+
+    playButton?.addEventListener('click', playDemo);
+    compactDemo.addEventListener('change', scheduleDesktopPlayback);
+    reducedMotion.addEventListener('change', scheduleDesktopPlayback);
+    scheduleDesktopPlayback();
+  }
+
   const year = document.querySelector('#year');
   if (year) year.textContent = String(new Date().getFullYear());
 })();
