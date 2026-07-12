@@ -5,57 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/comparisons/talon-vs-pii-proxy/" />
   <title>Talon vs PII Proxy: One Data Control vs an AI Use Case Control Plane</title>
-  <meta name="description" content="Compare a PII/redaction layer with Dativo Talon. PII handling is one policy domain; Talon combines it with cost, reliability, model/provider policy, intercepted tools, sessions and signed evidence." />
+  <meta name="description" content="Compare a PII/redaction layer with Dativo Talon. PII handling is one policy domain; Talon combines it with authenticated agent identity, cost, reliability, model/provider policy, intercepted tools, sessions and signed evidence." />
   <meta property="og:title" content="Talon vs PII Proxy" />
-  <meta property="og:description" content="PII handling is one control. Talon operates and controls AI use cases across cost, policy, reliability, sessions and runtime proof." />
+  <meta property="og:description" content="PII handling is one control. Talon authenticates and operates AI use cases across cost, policy, reliability, sessions and runtime proof." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://dativo.io/comparisons/talon-vs-pii-proxy/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Talon vs PII Proxy" />
-  <meta name="twitter:description" content="Choose a PII layer for narrow detection/redaction; choose Talon when multiple AI use cases need a common operating and policy layer." />
+  <meta name="twitter:description" content="Choose a PII layer for narrow detection/redaction; choose Talon when each AI use case needs an authenticated identity and a common operating policy." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/styles.css" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Talon vs PII Proxy: One Data Control vs an AI Use Case Control Plane","description":"A comparison of narrow PII/redaction layers with Dativo Talon’s wider runtime operating and policy scope.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/comparisons/talon-vs-pii-proxy/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Talon vs PII Proxy: One Data Control vs an AI Use Case Control Plane","description":"A comparison of narrow PII/redaction layers with Dativo Talon’s wider authenticated runtime operating and policy scope.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/comparisons/talon-vs-pii-proxy/"}</script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
 </head>
 <body>
 <header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/">Operate</a><a href="/ai-cost-control/">Cost</a><a href="/#reliability">Reliability</a><a href="/llm-governance-gateway/">Policy</a><a href="/coding-agent-governance/">Sessions</a><a href="/talon/docs/">Docs</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
 <main>
-<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Comparison · PII layer vs control plane</div><h1>PII handling is one control. Talon operates the wider AI use case.</h1><p class="hero-subtitle">A PII proxy can be the right narrow answer when the job is detection or redaction. Talon is useful when multiple AI use cases also need shared budgets, policy-constrained reliability, model/provider/tool/region policy, session understanding and verifiable runtime decisions.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the 60-second demo</a><a class="button secondary" href="/">See the control-plane story</a><a class="button ghost" href="/talon/docs/external-scanners/">See scanner options</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>PII layer
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Comparison · PII layer vs control plane</div><h1>PII handling is one control. Talon operates the wider AI use case.</h1><p class="hero-subtitle">A PII proxy can be the right narrow answer when the job is detection or redaction. Talon is useful when every governed AI use case also needs an authenticated identity, one effective policy, shared budgets, policy-constrained reliability, session understanding and verifiable runtime decisions.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the 60-second demo</a><a class="button secondary" href="/">See the control-plane story</a><a class="button ghost" href="/talon/docs/external-scanners/">See scanner options</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>PII layer
 → detect sensitive text
 → redact / mask / block
 
 Talon control plane
-→ can use PII findings
-→ also checks cost, model/provider, tools, region
-→ records session/runtime path
-→ signs the decision evidence</code></pre></div></div></section>
-<section class="strip"><div class="wrap strip-inner"><span>PII is one policy domain</span><span>Cost</span><span>Reliability</span><span>Shared policy</span><span>Sessions</span><span>Evidence</span></div></section>
-<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Core difference</p><h2>Choose by primary job, not by which product has the longer checklist.</h2></div><div class="grid three"><article class="card"><h3>PII / redaction layer</h3><p>Best when the main requirement is to detect and transform sensitive content before or after an LLM call.</p></article><article class="card"><h3>Talon control plane</h3><p>Best when the company needs a common runtime operating layer across several AI use cases.</p></article><article class="card"><h3>Use both</h3><p>Talon can use built-in, Presidio-compatible and local scanner engines on supported paths, so a specialist detection service can remain part of the design.</p></article></div></div></section>
-<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Comparison</p><h2>Narrow data control vs broader AI-use-case operation.</h2></div><div class="table-wrap comparison-table"><table><thead><tr><th>Need</th><th>PII / redaction layer</th><th>Talon</th></tr></thead><tbody><tr><td>Detect and transform sensitive text</td><td>Design center</td><td>Supported policy domain with selectable scanner paths.</td></tr><tr><td>Stop the next request by budget</td><td>Usually outside design center</td><td>Per-request/caller controls and session soft caps where configured.</td></tr><tr><td>Preserve policy during supported fallback</td><td>Usually outside design center</td><td>Fallback candidates are re-checked against effective policy.</td></tr><tr><td>Apply model/provider/tool/region policy</td><td>Usually outside design center</td><td>Core shared-policy scope on governed paths.</td></tr><tr><td>Understand asserted sessions</td><td>Usually outside design center</td><td>Session list/export/cost/verification on supported paths.</td></tr><tr><td>Verify runtime decision integrity</td><td>Depends on implementation</td><td>HMAC-signed, tamper-evident evidence records.</td></tr></tbody></table></div></div></section>
-<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Scanner choices</p><h2>Talon does not require regex-only detection.</h2><p>Current Talon supports built-in detection plus external Presidio-compatible and local scanner engines on documented paths. Scanner identity and failures can become runtime evidence, and enforcement-path failures can fail closed rather than silently weakening policy.</p><div class="link-row"><a href="/talon/docs/external-scanners/">External scanners</a><a href="/talon/docs/local-scanner-engines/">Local scanners</a><a href="/ai-governance-evidence-store/">Evidence layer</a></div></div><div class="code-panel"><pre><code>request
+→ authenticate agent identity
+→ resolve effective policy
+→ use PII findings
+→ also check cost, model/provider, tools, region
+→ record session/runtime path
+→ sign the decision evidence</code></pre></div></div></section>
+<section class="strip"><div class="wrap strip-inner"><span>PII is one policy domain</span><span>Agent identity</span><span>Cost</span><span>Reliability</span><span>Effective policy</span><span>Sessions</span><span>Evidence</span></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Core difference</p><h2>Choose by primary job, not by which product has the longer checklist.</h2></div><div class="grid three"><article class="card"><h3>PII / redaction layer</h3><p>Best when the main requirement is to detect and transform sensitive content before or after an LLM call.</p></article><article class="card"><h3>Talon control plane</h3><p>Best when the company needs a common authenticated runtime operating layer across several AI use cases.</p></article><article class="card"><h3>Use both</h3><p>Talon can use built-in, Presidio-compatible and local scanner engines on supported paths, so a specialist detection service can remain part of the design.</p></article></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Comparison</p><h2>Narrow data control vs broader AI-use-case operation.</h2></div><div class="table-wrap comparison-table"><table><thead><tr><th>Need</th><th>PII / redaction layer</th><th>Talon</th></tr></thead><tbody><tr><td>Detect and transform sensitive text</td><td>Design center</td><td>Supported policy domain with selectable scanner paths.</td></tr><tr><td>Authenticate the AI use case</td><td>Usually outside design center</td><td>One vault-bound agent key resolves the agent, tenant and policy principal.</td></tr><tr><td>Stop the next request by budget</td><td>Usually outside design center</td><td>Per-request and per-agent controls plus agent-scoped session soft caps.</td></tr><tr><td>Preserve policy during supported fallback</td><td>Usually outside design center</td><td>Every fallback candidate is re-checked against the resolved effective policy.</td></tr><tr><td>Apply model/provider/tool/region policy</td><td>Usually outside design center</td><td>Organization constraints plus one explicit agent override on governed paths.</td></tr><tr><td>Understand asserted sessions</td><td>Usually outside design center</td><td>Session list, export, cost and verification inside the authenticated agent boundary.</td></tr><tr><td>Verify runtime decision integrity</td><td>Depends on implementation</td><td>HMAC-signed evidence with identity and policy digests.</td></tr></tbody></table></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Scanner choices</p><h2>Talon does not require regex-only detection.</h2><p>Current Talon supports built-in detection plus external Presidio-compatible and local scanner engines on documented paths. Scanner identity and failures can become runtime evidence, and enforcement-path failures can fail closed rather than silently weakening policy.</p><div class="link-row"><a href="/talon/docs/external-scanners/">External scanners</a><a href="/talon/docs/local-scanner-engines/">Local scanners</a><a href="/ai-governance-evidence-store/">Evidence layer</a></div></div><div class="code-panel"><pre><code>authenticated request
 → scanner boundary
 → PII/data facts
-→ effective policy
+→ resolved effective policy
 → allow / warn / redact / block
 → signed runtime evidence
 
 # scanner is an input to policy
 # not the whole product category</code></pre></div></div></section>
-<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">When to choose which</p><h2>Pick a narrow proxy when the problem is genuinely narrow.</h2><p>Use a dedicated PII layer when the primary requirement is detection/redaction and the rest of the operating stack already exists. Use Talon when teams are separately rebuilding budgets, reliability behavior, policy and session history across multiple AI use cases.</p></div><div class="code-panel"><pre><code>Need only:
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Policy composition</p><h2>A scanner finding does not define the whole decision.</h2><p>Talon combines scanner results with the authenticated agent, organization constraints, model/provider access, budget state, egress rules and visible tools. The agent may tighten the organization PII floor but cannot weaken it.</p></div><div class="code-panel"><pre><code>agent key
++ organization PII floor
++ agent data policy
++ scanner result
++ model / provider / egress constraints
+= one pre-provider decision</code></pre></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">When to choose which</p><h2>Pick a narrow proxy when the problem is genuinely narrow.</h2><p>Use a dedicated PII layer when the primary requirement is detection/redaction and the rest of the operating stack already exists. Use Talon when teams are separately rebuilding identity, budgets, reliability behavior, policy and session history across multiple AI use cases.</p></div><div class="code-panel"><pre><code>Need only:
 - detect PII
 - redact PII
 → narrow PII layer may be enough
 
 Need also:
+- authenticated use-case identity
 - shared budgets
 - policy-safe fallback
 - common runtime policy
 - session explanation
 → Talon is closer to the primary job</code></pre></div></div></section>
-<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Practical test</p><h2>Send one PII-bearing request, then inspect the wider decision.</h2><p>Run a test request, inspect the PII facts, policy outcome, provider path and evidence. The point is not that redaction is unimportant; it is that companies operating several AI use cases usually need more than one isolated control.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the demo</a><a class="button secondary" href="/comparisons/">Compare categories</a><a class="button ghost" href="/llm-governance-gateway/">See shared policy</a></div></div></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Practical test</p><h2>Send one PII-bearing request, then inspect the wider decision.</h2><p>Create an agent identity, run a test request, inspect the PII facts, policy outcome, provider path and evidence. The point is not that redaction is unimportant; it is that companies operating several AI use cases usually need more than one isolated control.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the demo</a><a class="button secondary" href="/comparisons/">Compare categories</a><a class="button ghost" href="/llm-governance-gateway/">See shared policy</a></div></div></div></section>
 </main>
 <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>This comparison describes product focus rather than asserting that every PII tool lacks adjacent capabilities. Verify specific products against current primary sources.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body></html>
