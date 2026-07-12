@@ -77,7 +77,7 @@ const config = {
           position: 'left',
         },
         {
-          to: '/cost-governance-by-caller/',
+          to: '/cost-governance-by-agent/',
           label: 'Cost',
           position: 'left',
         },
@@ -130,7 +130,7 @@ const config = {
         {
           title: 'Control',
           items: [
-            {label: 'Cost and budgets', to: '/cost-governance-by-caller/'},
+            {label: 'Cost and budgets', to: '/cost-governance-by-agent/'},
             {label: 'Retries and fallback', to: '/configuration/#provider-fallback-chains-error-driven-failover'},
             {label: 'Shared policy', to: '/policy-cookbook/'},
             {label: 'Request lifecycle', to: '/what-talon-does-to-your-request/'},
