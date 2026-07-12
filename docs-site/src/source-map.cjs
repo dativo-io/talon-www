@@ -51,7 +51,7 @@ module.exports = {
   'benchmarks.md': 'docs/reference/benchmarks.md',
   'observability.md': 'docs/OBSERVABILITY.md',
   'policy-cookbook.md': 'docs/guides/policy-cookbook.md',
-  'cost-governance-by-caller.md': 'docs/guides/cost-governance-by-caller.md',
+  'cost-governance-by-agent.md': 'docs/guides/cost-governance-by-agent.md',
   'cicd-pipeline-governance.md': 'docs/guides/cicd-pipeline-governance.md',
   'internal-support-agent.md': 'docs/guides/internal-support-agent.md',
   'memory-verification.md': 'docs/guides/memory-verification.md',
