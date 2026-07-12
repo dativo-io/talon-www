@@ -31,7 +31,7 @@ const sidebars = {
       label: 'Control cost',
       collapsed: false,
       items: [
-        doc('cost-governance-by-caller', 'Budgets and hard limits'),
+        doc('cost-governance-by-agent', 'Budgets and hard limits'),
         doc('internal-support-agent', 'Cost controls in a support use case'),
       ],
     },
