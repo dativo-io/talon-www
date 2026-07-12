@@ -108,7 +108,7 @@ if (!sourcesOnly) {
 
   const requiredFirstClassDocs = [
     'control-plane',
-    'cost-governance-by-caller',
+    'cost-governance-by-agent',
     'configuration',
     'policy-cookbook',
     'governing-coding-agents',

@@ -5,50 +5,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/llm-governance-gateway/" />
   <title>Shared Policy for Company AI Use Cases | Dativo Talon</title>
-  <meta name="description" content="Apply shared runtime policy across company AI use cases with Dativo Talon: model, provider, cost, PII, tool and regional controls on the governed path, with signed evidence." />
+  <meta name="description" content="Apply one resolved runtime policy across company AI use cases with Dativo Talon: organization constraints plus one explicit agent override for models, providers, cost, PII, tools and egress, with signed evidence." />
   <meta property="og:title" content="Shared Policy for Company AI Use Cases" />
-  <meta property="og:description" content="One runtime control layer for common organizational intent and use-case-specific needs." />
+  <meta property="og:description" content="One authenticated agent identity and one effective policy for each governed AI use case." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://dativo.io/llm-governance-gateway/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Shared Policy for Company AI Use Cases" />
-  <meta name="twitter:description" content="Apply model, provider, cost, PII, tool and regional policy on the same governed path." />
+  <meta name="twitter:description" content="Resolve organization constraints and one agent override into the policy used for every primary and fallback decision." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/styles.css" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Shared Policy for Company AI Use Cases","description":"How Dativo Talon applies shared runtime policy to company AI use cases without becoming an agent orchestrator or general GRC suite.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/llm-governance-gateway/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Shared Policy for Company AI Use Cases","description":"How Dativo Talon binds one authenticated agent identity to one resolved effective policy without becoming an agent orchestrator or general GRC suite.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/llm-governance-gateway/"}</script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
 </head>
 <body>
 <header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/">Operate</a><a href="/ai-cost-control/">Cost</a><a href="/#reliability">Reliability</a><a href="/llm-governance-gateway/">Policy</a><a href="/coding-agent-governance/">Sessions</a><a href="/talon/docs/">Docs</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
 <main>
-<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Control-plane pillar · Shared policy</div><h1>Stop rebuilding policy inside every AI use case.</h1><p class="hero-subtitle">Talon puts shared runtime controls on the governed path. Company intent can cover models, providers, cost, sensitive data, tools and region; individual use cases can keep their own explicit needs without becoming separate policy systems.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the 60-second demo</a><a class="button secondary" href="/talon/docs/configuration/">Read configuration</a><a class="button ghost" href="/ai-governance-eu/">See EU/local controls</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>company intent
-→ models / providers
-→ cost limits
-→ PII handling
-→ tool exposure
-→ regional constraints
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Control-plane pillar · Shared policy</div><h1>Give every AI use case one identity and one effective policy.</h1><p class="hero-subtitle">Talon resolves organization intent and one explicit agent override before provider access. The same immutable policy snapshot governs models, providers, cost, sensitive data, visible tools, egress and fallback—and its identity is recorded in signed evidence.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the 60-second demo</a><a class="button secondary" href="/talon/docs/configuration/">Read configuration</a><a class="button ghost" href="/ai-governance-eu/">See EU/local controls</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>presented agent key
+→ resolve agent + tenant
+→ load organization policy
+→ apply one agent override
+→ resolve effective policy snapshot
+→ evaluate primary and fallback candidates
+→ record signed policy digests</code></pre></div></div></section>
+<section class="strip"><div class="wrap strip-inner"><span>One agent key</span><span>Organization baseline</span><span>One agent override</span><span>Monotonic constraints</span><span>Effective policy</span><span>Signed digests</span></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">The operating problem</p><h2>Independent AI apps create independent policy drift.</h2><p>A support bot, coding agent and internal assistant should not each invent their own answer to sensitive data, model access, budget and egress. Talon centralizes identity and enforcement on paths it can actually intercept.</p></div><div class="grid three"><article class="card"><h3>Authenticated use-case identity</h3><p>One <code>agent.talon.yaml</code> binds one AI use case to one active vault-bound Talon key.</p></article><article class="card"><h3>One decision contract</h3><p>The organization baseline and the agent override are resolved once rather than reinterpreted by every runtime surface.</p></article><article class="card"><h3>One proof history</h3><p>Signed evidence carries the organization, agent, provider and resolved effective-policy digests behind the decision.</p></article></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Shipped identity model</p><h2>The presented key is the Talon traffic identity.</h2><p>Each AI use case has one agent file and one encrypted key reference. Talon resolves the presented key to the agent, derives the tenant, and rejects unknown keys or attempts to claim another agent or tenant. A key collision with the admin key fails startup.</p><div class="link-row"><a href="/talon/docs/authentication-and-key-scopes/">Authentication and key scopes</a><a href="/talon/docs/configuration/">Configuration reference</a></div></div><div class="code-panel"><pre><code># agent.talon.yaml
+agent:
+  name: support-slack-bot
+  tenant_id: default
+  key:
+    secret_name: support-bot-talon-key
 
-AI use case
-→ concrete identity and needs
-→ traffic crosses Talon
-→ effective decision + signed evidence</code></pre></div></div></section>
-<section class="strip"><div class="wrap strip-inner"><span>Models</span><span>Providers</span><span>Cost</span><span>PII</span><span>Tools</span><span>Region</span><span>Evidence</span></div></section>
-<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">The operating problem</p><h2>Independent AI apps create independent policy drift.</h2><p>A support bot, coding agent and internal assistant should not each invent their own answer to sensitive data, model access, budget and egress. Talon centralizes enforcement on paths it can actually intercept.</p></div><div class="grid three"><article class="card"><h3>Shared intent</h3><p>Use common runtime defaults for provider/model access, cost, PII, tools and regional posture.</p></article><article class="card"><h3>Explicit use-case needs</h3><p>Keep differences visible instead of hiding them in application code or ad-hoc gateway keys.</p></article><article class="card"><h3>One decision history</h3><p>Record policy reasons in the same evidence model used for cost, sessions, routing and incident review.</p></article></div></div></section>
-<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Current implementation</p><h2>Configuration is not fully normalized yet—and the website does not pretend otherwise.</h2><p>Current Talon capabilities are split across <code>agent.talon.yaml</code>, <code>talon.config.yaml</code>, gateway callers and provider settings. The product direction is simpler: one AI use case should have one operational identity and one effective policy. The site does not claim the final baseline-plus-override contract is fully shipped.</p><div class="link-row"><a href="/talon/docs/configuration/">Current configuration reference</a><a href="/talon/docs/authentication-and-key-scopes/">Current key scopes</a></div></div><div class="code-panel"><pre><code>desired product semantics
+# one file = one AI use case
+# one vault secret = one traffic identity</code></pre></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">One effective policy</p><h2>Resolve the policy once, then use it everywhere.</h2><p>The gateway owns providers and <code>organization_policy</code>. The agent file owns one explicit use-case override. Talon deep-copies both into an effective snapshot used by the primary route, every fallback candidate, cost reporting, budget APIs and evidence.</p><div class="link-row"><a href="/talon/docs/policy-cookbook/">Policy examples</a><a href="/talon/docs/cost-governance-by-agent/">Agent cost controls</a></div></div><div class="code-panel"><pre><code># talon.config.yaml
+gateway:
+  organization_policy:
+    default_pii_action: warn
+    allowed_providers: [openai, ollama]
+    max_data_tier: 2
 
-organization baseline
-        ↓
-one explicit AI-use-case override
-        ↓
-effective policy
+# agent.talon.yaml
+policies:
+  allowed_providers: [ollama]
+  models:
+    allowed: [llama3.2]
+  data_classification:
+    input_scan: true</code></pre></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Monotonic organization boundaries</p><h2>An agent can specialize the baseline without weakening hard constraints.</h2></div><div class="table-wrap comparison-table"><table><thead><tr><th>Policy domain</th><th>Resolution rule</th><th>Operator question</th></tr></thead><tbody><tr><td>PII actions</td><td>The organization action is a minimum floor; an agent may tighten it but a weaker action is ignored.</td><td>May this data leave in this form?</td></tr><tr><td>Provider/model access</td><td>Organization restrictions remain binding; agent and provider restrictions are added to the decision.</td><td>May this agent call this provider and model?</td></tr><tr><td>Data tier</td><td>The organization ceiling is hard; an agent may only lower its own maximum tier.</td><td>Is this data class allowed on the selected path?</td></tr><tr><td>Egress</td><td>Organization and agent boundaries are intersected; the destination must satisfy both.</td><td>May this traffic go there?</td></tr><tr><td>Cost</td><td>Positive agent caps replace organization defaults for that use case and feed the same enforcement/reporting calculation.</td><td>Should the next call be allowed to spend?</td></tr><tr><td>Reliability</td><td>Every explicit fallback candidate is evaluated against the same resolved constraints before dispatch.</td><td>Can availability recover without bypassing controls?</td></tr></tbody></table></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Fail-closed configuration</p><h2>A typo should not silently disable a security boundary.</h2><p>The gateway block is strictly decoded, invalid policy actions and negative limits fail validation, unknown agent-policy fields fail the gateway preflight, and wildcard allow entries are rejected where they would otherwise create ambiguous behavior.</p><div class="link-row"><a href="/talon/docs/configuration/">Validation rules</a><a href="/talon/docs/threat-model/">Threat model</a></div></div><div class="code-panel"><pre><code>invalid field or enum
+→ startup / doctor failure
 
-current code may still expose
-caller / tenant / agent naming separately</code></pre></div></div></section>
-<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Current policy domains</p><h2>Controls that already matter across use cases.</h2></div><div class="table-wrap comparison-table"><table><thead><tr><th>Domain</th><th>Current Talon behavior</th><th>Operator question</th></tr></thead><tbody><tr><td>Model/provider</td><td>Allow/block policy and policy-aware provider decisions on supported paths.</td><td>May this use case call this model or destination?</td></tr><tr><td>Cost</td><td>Per-request and caller limits; asserted-session soft caps where configured.</td><td>Should the next call be allowed to spend?</td></tr><tr><td>PII/data</td><td>Scan and apply configured allow/warn/redact/block behavior on governed request paths.</td><td>May this data leave in this form?</td></tr><tr><td>Tools/actions</td><td>Filter/block provider-bound tool schemas and govern intercepted MCP/tool paths.</td><td>Should this action surface be exposed or executed?</td></tr><tr><td>Region/sovereignty</td><td>EU/local posture, candidate rejection and air-gap controls on supported paths.</td><td>May this traffic go there?</td></tr><tr><td>Reliability</td><td>Explicit fallback candidates are re-checked against policy after supported transient failures.</td><td>Can availability recover without bypassing controls?</td></tr></tbody></table></div></div></section>
-<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Tool boundary</p><h2>Govern only actions Talon can actually intercept.</h2><p>Tool schemas visible in LLM requests can be filtered or blocked. MCP calls routed through Talon can be governed. Local shell commands, file edits, browser actions and direct APIs that bypass Talon are outside the control plane.</p><div class="link-row"><a href="/talon/docs/openclaw-integration/">Gateway tool governance</a><a href="/talon/docs/policy-cookbook/">Policy examples</a></div></div><div class="code-panel"><pre><code>organization blocks: delete_*
-AI use case declares: search, update, delete_customer
+unknown agent key
+→ HTTP 401
+
+agent key claims another identity
+→ HTTP 403
+
+organization hard constraint fails
+→ provider call never happens</code></pre></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Tool and action boundary</p><h2>Govern only actions Talon can actually intercept.</h2><p>Tool schemas visible in LLM requests can be filtered or blocked. MCP calls routed through Talon can be governed. Local shell commands, file edits, browser actions and direct APIs that bypass Talon are outside the control plane.</p><div class="link-row"><a href="/talon/docs/openclaw-integration/">Gateway tool governance</a><a href="/talon/docs/policy-cookbook/">Policy examples</a></div></div><div class="code-panel"><pre><code>organization forbids: delete_*
+agent allows: search, update, delete_customer
 
 through Talon:
 search          → allowed
@@ -56,8 +76,9 @@ update          → allowed if policy passes
 delete_customer → blocked
 
 local shell bypass → invisible to Talon</code></pre></div></div></section>
-<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Evidence under policy</p><h2>Prove how the control plane behaved.</h2><p>Evidence is not the entire product category. It is the proof layer under operation: the reason a request was allowed, denied, redacted, routed, failed over or stopped by budget can be inspected and verified later.</p></div><div class="grid three"><article class="card"><h3>Decision</h3><p>Allow, deny, redact, filter, route or fail-closed outcome with reasons.</p></article><article class="card"><h3>Context</h3><p>Caller/agent attribution, model/provider, session, cost, PII and destination facts where present.</p></article><article class="card"><h3>Integrity</h3><p>HMAC signatures make stored records tamper-evident and verifiable.</p></article></div></div></section>
-<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Start small</p><h2>Apply one shared rule to one real AI use case.</h2><p>Route one application through Talon, set the first control you genuinely need, and inspect the resulting decision. Add broader organizational defaults when the second and third use cases arrive.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/add-talon-to-existing-app/">Add Talon to an app</a><a class="button secondary" href="/ai-cost-control/">Start with cost</a><a class="button ghost" href="/ai-governance-eu/">Start with egress policy</a></div></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Evidence under policy</p><h2>Prove which identity and policy produced the decision.</h2><p>Evidence is the proof layer under operation: the reason a request was allowed, denied, redacted, routed, failed over or stopped by budget can be inspected and verified later.</p></div><div class="grid three"><article class="card"><h3>Identity</h3><p>Authenticated agent, derived tenant, team and session context where present.</p></article><article class="card"><h3>Policy</h3><p>Organization, agent, provider and resolved effective-policy digests are signed with the record.</p></article><article class="card"><h3>Outcome</h3><p>Allow, deny, redact, filter, route or fail-closed result with the decisive reason and layer.</p></article></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Current boundary</p><h2>The identity model is shipped; multi-agent discovery is the next fleet step.</h2><p>A gateway process currently loads one default <code>agent.talon.yaml</code>. The agent identity and effective-policy contract is live now. Discovering and safely reloading many agent files in one process remains tracked product work.</p></div></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Start small</p><h2>Give one real AI use case an identity and one enforceable policy.</h2><p>Create its agent file, mint the vault-bound key, route the application through Talon, and inspect the resulting policy decision before expanding to the next use case.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/add-talon-to-existing-app/">Add Talon to an app</a><a class="button secondary" href="/ai-cost-control/">Start with cost</a><a class="button ghost" href="/ai-governance-eu/">Start with egress policy</a></div></div></div></section>
 </main>
 <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Talon is a runtime control layer for intercepted AI paths, not an agent orchestrator, endpoint-security product or general GRC suite.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body></html>

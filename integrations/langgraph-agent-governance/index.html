@@ -5,28 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/integrations/langgraph-agent-governance/" />
   <title>Operate a LangGraph AI Use Case with Talon</title>
-  <meta name="description" content="Keep LangGraph as the orchestrator and add Dativo Talon as the runtime control plane for intercepted model traffic: cost, policy, reliability paths, sessions and signed evidence." />
+  <meta name="description" content="Keep LangGraph as the orchestrator and add Dativo Talon as the runtime control plane: one authenticated agent identity, effective policy, cost controls, reliability paths, sessions and signed evidence." />
   <meta property="og:title" content="Operate a LangGraph AI Use Case with Talon" />
-  <meta property="og:description" content="LangGraph orchestrates the agent. Talon applies shared runtime controls on the governed provider path." />
+  <meta property="og:description" content="LangGraph orchestrates the agent. Talon authenticates the use case and applies one effective policy on the governed provider path." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://dativo.io/integrations/langgraph-agent-governance/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Operate a LangGraph AI Use Case with Talon" />
-  <meta name="twitter:description" content="Keep orchestration in LangGraph; add shared cost, policy and runtime evidence with Talon." />
+  <meta name="twitter:description" content="Keep orchestration in LangGraph; add authenticated agent identity, shared cost, effective policy and runtime evidence with Talon." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/styles.css" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Operate a LangGraph AI Use Case with Talon","description":"A practical integration pattern for keeping LangGraph orchestration while routing model traffic through Dativo Talon’s control plane.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/integrations/langgraph-agent-governance/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Operate a LangGraph AI Use Case with Talon","description":"A practical integration pattern for keeping LangGraph orchestration while authenticating the AI use case and routing model traffic through Dativo Talon’s control plane.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/integrations/langgraph-agent-governance/"}</script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
 </head>
 <body>
 <header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/">Operate</a><a href="/ai-cost-control/">Cost</a><a href="/#reliability">Reliability</a><a href="/llm-governance-gateway/">Policy</a><a href="/coding-agent-governance/">Sessions</a><a href="/talon/docs/">Docs</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
 <main>
-<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Integration · LangGraph</div><h1>Keep LangGraph as the orchestrator. Operate the use case through Talon.</h1><p class="hero-subtitle">LangGraph builds and runs the agent workflow. Talon does not replace it. Route supported model traffic through Talon when the use case needs shared cost controls, runtime policy, policy-preserving provider paths, session evidence and a common operational history.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the 60-second demo</a><a class="button secondary" href="/ai-agent-governance/">See AI use case operations</a><a class="button ghost" href="https://github.com/dativo-io/talon">View GitHub</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>LangGraph workflow
-→ model client
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Integration · LangGraph</div><h1>Keep LangGraph as the orchestrator. Give the use case one Talon identity.</h1><p class="hero-subtitle">LangGraph builds and runs the workflow. Talon does not replace it. Define one agent file, bind one vault key, and route supported model traffic through Talon when the use case needs shared cost controls, one effective policy, policy-preserving provider paths, session evidence and a common operational history.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the 60-second demo</a><a class="button secondary" href="/ai-agent-governance/">See AI use case operations</a><a class="button ghost" href="https://github.com/dativo-io/talon">View GitHub</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>LangGraph workflow
+→ model client + Talon agent key
 → Talon control plane
-   → caller / use-case policy
+   → authenticate agent + derive tenant
+   → resolve effective policy
    → PII + tool-schema checks
    → cost decision
    → provider path / fallback policy
@@ -34,26 +35,45 @@
 → model provider
 
 LangGraph keeps orchestration.</code></pre></div></div></section>
-<section class="strip"><div class="wrap strip-inner"><span>Keep orchestration</span><span>Shared budgets</span><span>Runtime policy</span><span>Reliability path</span><span>Session evidence</span></div></section>
-<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Why add a control plane</p><h2>The second and third AI use cases should not rebuild the same controls.</h2><p>LangGraph gives the application a strong agent runtime. Talon addresses the cross-use-case operating problem: common spend rules, provider/model/data/tool policy, provider-path evidence and session history on traffic that crosses Talon.</p></div><div class="grid three"><article class="card"><h3>Cost</h3><p>Apply per-request and caller controls before provider access; use asserted-session cost views where supported.</p></article><article class="card"><h3>Policy</h3><p>Apply model/provider, PII, tool-schema and regional rules outside the individual graph implementation.</p></article><article class="card"><h3>History</h3><p>Inspect signed decisions and asserted-session evidence without turning application logs into the sole source of truth.</p></article></div></div></section>
-<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Minimal setup</p><h2>Point the LangGraph model client at Talon.</h2><p>The first integration path is the LLM API gateway. Keep the LangGraph graph and application logic; change the supported provider client base URL and use a Talon caller key.</p></div><div class="code-panel"><pre><code>from langchain_openai import ChatOpenAI
+<section class="strip"><div class="wrap strip-inner"><span>Keep orchestration</span><span>Agent-key identity</span><span>Effective policy</span><span>Shared budgets</span><span>Reliability path</span><span>Session evidence</span></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Why add a control plane</p><h2>The second and third AI use cases should not rebuild the same controls.</h2><p>LangGraph gives the application a strong agent runtime. Talon addresses the cross-use-case operating problem: authenticated use-case identity, common spend rules, provider/model/data/tool policy, provider-path evidence and session history on traffic that crosses Talon.</p></div><div class="grid three"><article class="card"><h3>Identity</h3><p>The presented vault-bound key resolves one Talon agent and tenant before any policy decision.</p></article><article class="card"><h3>Policy</h3><p>The organization baseline and one LangGraph-use-case override resolve into one policy for primary and fallback paths.</p></article><article class="card"><h3>History</h3><p>Inspect signed decisions and agent-scoped asserted-session evidence without turning application logs into the sole source of truth.</p></article></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Define the use case</p><h2>Bind the LangGraph application to one encrypted Talon key.</h2><p>The agent file is the use-case identity and policy override. The raw key never belongs in YAML; store it in the Talon vault and put the secret reference in <code>agent.key.secret_name</code>.</p><div class="link-row"><a href="/talon/docs/configuration/">Agent configuration</a><a href="/talon/docs/authentication-and-key-scopes/">Key scopes</a></div></div><div class="code-panel"><pre><code>agent:
+  name: langgraph-support
+  tenant_id: acme
+  key:
+    secret_name: langgraph-support-talon-key
+
+policies:
+  cost_limits:
+    daily: 10.00
+  models:
+    allowed: [gpt-4o-mini]</code></pre></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Minimal setup</p><h2>Point the LangGraph model client at Talon.</h2><p>Keep the LangGraph graph and application logic; change the supported provider client base URL and use the value minted into the agent's vault secret as the SDK API key.</p></div><div class="code-panel"><pre><code>from langchain_openai import ChatOpenAI
 
 llm = ChatOpenAI(
     model="gpt-4o-mini",
     base_url="http://localhost:8080/v1/proxy/openai/v1",
-    api_key="&lt;talon-caller-key&gt;",
+    api_key="&lt;talon-agent-key&gt;",
 )
 
 # Use llm inside LangGraph nodes as usual.</code></pre></div></div></section>
-<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Boundary</p><h2>Talon governs the path, not the whole graph.</h2><p>Model requests routed through Talon can be controlled and evidenced. Tool schemas visible to the gateway can be filtered. Local Python actions, direct APIs and tool execution that bypass Talon remain outside its view.</p></div><div class="table-wrap comparison-table"><table><thead><tr><th>LangGraph activity</th><th>Talon visibility</th></tr></thead><tbody><tr><td>Model API request routed through Talon</td><td>Governed and evidenced.</td></tr><tr><td>Tool schema included in governed LLM request</td><td>Can be filtered/blocked by supported gateway policy.</td></tr><tr><td>MCP/tool call routed through Talon interception</td><td>Can be governed on supported path.</td></tr><tr><td>Local node code, shell command or direct API bypass</td><td>Invisible and uncontrolled by Talon.</td></tr></tbody></table></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">What the key controls</p><h2>Identity, budget and policy stay bound to the AI use case.</h2></div><div class="table-wrap comparison-table"><table><thead><tr><th>Concern</th><th>Runtime behavior</th></tr></thead><tbody><tr><td>Identity</td><td>The bearer key resolves the Talon agent and tenant; the request cannot substitute another identity.</td></tr><tr><td>Cost</td><td>Per-request, daily, monthly and session limits come from the agent's resolved effective policy.</td></tr><tr><td>Models/providers</td><td>Organization, agent and provider restrictions are evaluated on the primary route and every fallback candidate.</td></tr><tr><td>Evidence</td><td>Agent, tenant, policy digests, provider path and decision outcome are signed in the runtime record.</td></tr></tbody></table></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Boundary</p><h2>Talon governs the path, not the whole graph.</h2><p>Model requests routed through Talon can be controlled and evidenced. Tool schemas visible to the gateway can be filtered. Local Python actions, direct APIs and tool execution that bypass Talon remain outside its view.</p></div><div class="table-wrap comparison-table"><table><thead><tr><th>LangGraph activity</th><th>Talon visibility</th></tr></thead><tbody><tr><td>Model API request routed through Talon</td><td>Authenticated, governed and evidenced.</td></tr><tr><td>Tool schema included in governed LLM request</td><td>Can be filtered or blocked by supported gateway policy.</td></tr><tr><td>MCP/tool call routed through Talon interception</td><td>Can be governed on the supported path.</td></tr><tr><td>Local node code, shell command or direct API bypass</td><td>Invisible and uncontrolled by Talon.</td></tr></tbody></table></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Sessions and subagents</p><h2>Attribute the workflow inside the authenticated agent boundary.</h2><p>A custom orchestrator can pass an asserted session id and free-form subagent labels. They explain fan-out but do not replace the authenticated Talon agent. Session state and budget remain scoped to tenant plus agent.</p></div><div class="code-panel"><pre><code>X-Talon-Session-ID: sess-support-4711
+X-Talon-Agent-ID: researcher
+X-Talon-Parent-Agent-ID: planner
+X-Talon-Stage: generation
+
+# attribution inside langgraph-support
+# not an independent policy identity</code></pre></div></div></section>
 <section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Verify</p><h2>Inspect the use case after a run.</h2><p>Use current CLI surfaces to review recent evidence, explain one decision, verify integrity and inspect cost.</p></div><div class="code-panel"><pre><code>talon audit list --limit 10
 
 talon audit show &lt;evidence-id&gt;
 
 talon audit verify &lt;evidence-id&gt;
 
-talon costs --agent &lt;name&gt;</code></pre></div></div></section>
-<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Start with one graph</p><h2>Operate one LangGraph use case on the common path.</h2><p>Choose a workflow with real spend, sensitive data or repeated model calls. Route its provider traffic through Talon and inspect the resulting runtime decisions.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/add-talon-to-existing-app/">Add Talon to an app</a><a class="button secondary" href="/ai-cost-control/">Start with cost</a><a class="button ghost" href="/comparisons/talon-vs-agent-governance-toolkits/">Compare boundaries</a></div></div></div></section>
+talon costs --agent langgraph-support</code></pre></div></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Start with one graph</p><h2>Give one LangGraph use case an identity on the common path.</h2><p>Choose a workflow with real spend, sensitive data or repeated model calls. Create its agent file, mint the key, route provider traffic through Talon and inspect the resulting runtime decisions.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/add-talon-to-existing-app/">Add Talon to an app</a><a class="button secondary" href="/ai-cost-control/">Start with cost</a><a class="button ghost" href="/comparisons/talon-vs-agent-governance-toolkits/">Compare boundaries</a></div></div></div></section>
 </main>
-<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>LangGraph remains the orchestrator. Talon governs only supported traffic and actions routed through its interception paths.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>LangGraph remains the orchestrator. Talon authenticates the use case and governs only supported traffic and actions routed through its interception paths.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body></html>

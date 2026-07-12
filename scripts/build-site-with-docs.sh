@@ -75,6 +75,10 @@ find "$ROOT_DIR" -mindepth 1 -maxdepth 1 \
 # so adding or editing a page cannot silently reintroduce menu drift.
 node "$ROOT_DIR/scripts/normalize-site-nav.cjs" "$OUT_DIR"
 
+# Keep the website's locally owned copy and configuration aligned with Talon's
+# shipped agent identity model. Historical routes are allowed only in _redirects.
+node "$ROOT_DIR/scripts/verify-agent-identity-contract.cjs" "$ROOT_DIR"
+
 # Fetch the Talon source once. The docs sync script reads every mapped source
 # file from this local checkout instead of making dozens of anonymous requests
 # to raw.githubusercontent.com, which can be rate-limited during production builds.
@@ -96,7 +100,7 @@ cp -R "$DOCS_DIR/build/." "$OUT_DIR/talon/docs/"
 # every production artifact.
 test -f "$OUT_DIR/talon/docs/manual-governed-session/index.html"
 test -f "$OUT_DIR/talon/docs/control-plane/index.html"
-test -f "$OUT_DIR/talon/docs/cost-governance-by-caller/index.html"
+test -f "$OUT_DIR/talon/docs/cost-governance-by-agent/index.html"
 test -f "$OUT_DIR/talon/docs/configuration/index.html"
 test -f "$OUT_DIR/talon/docs/policy-cookbook/index.html"
 test -f "$OUT_DIR/talon/docs/governing-coding-agents/index.html"
