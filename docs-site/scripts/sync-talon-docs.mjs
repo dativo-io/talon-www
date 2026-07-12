@@ -188,7 +188,7 @@ function escapeMdxJsxOutsideCode(markdown) {
       if (inFence) return line;
 
       // MDX treats any raw '<' as possible JSX, including prose like '<15ms'
-      // and placeholders like '<tenant_key>'. Imported GitHub markdown should
+      // and placeholders like '<agent-key>'. Imported GitHub markdown should
       // render these literally, so escape bare '<' outside fenced code blocks.
       return line.replace(/</g, '&lt;');
     })
