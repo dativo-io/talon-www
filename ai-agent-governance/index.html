@@ -5,38 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/ai-agent-governance/" />
   <title>Operate AI Agents and Applications as Company AI Use Cases | Dativo Talon</title>
-  <meta name="description" content="Operate AI agents, bots, coding tools and LLM applications with a shared control plane for cost, reliability, policy, sessions and signed runtime evidence." />
+  <meta name="description" content="Operate AI agents, bots, coding tools and LLM applications with one authenticated Talon agent identity per use case, shared cost controls, effective policy, sessions and signed runtime evidence." />
   <meta property="og:title" content="Operate AI Agents and Applications as Company AI Use Cases" />
-  <meta property="og:description" content="A shared operating layer for multiple AI use cases without replacing their orchestrators or frameworks." />
+  <meta property="og:description" content="One authenticated identity and effective policy for every AI use case routed through the control plane." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://dativo.io/ai-agent-governance/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Operate AI Agents and Applications with Talon" />
-  <meta name="twitter:description" content="Shared budgets, policy, reliability and session visibility for company AI use cases." />
+  <meta name="twitter:description" content="One agent key, one effective policy, shared budgets, reliability and session visibility for each company AI use case." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/styles.css" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Operate AI Agents and Applications as Company AI Use Cases","description":"How Dativo Talon provides a shared operating and policy layer for AI agents, bots, coding tools and LLM applications.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/ai-agent-governance/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Operate AI Agents and Applications as Company AI Use Cases","description":"How Dativo Talon gives each AI agent, bot, coding tool or LLM application one authenticated traffic identity and one effective policy.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/ai-agent-governance/"}</script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
 </head>
 <body>
 <header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/">Operate</a><a href="/ai-cost-control/">Cost</a><a href="/#reliability">Reliability</a><a href="/llm-governance-gateway/">Policy</a><a href="/coding-agent-governance/">Sessions</a><a href="/talon/docs/">Docs</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
 <main>
-<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Agents · Apps · Bots · Coding tools</div><h1>Operate AI use cases without turning each one into its own platform.</h1><p class="hero-subtitle">Your company may call them agents, assistants, bots or AI features. Talon treats the operational problem consistently: shared cost controls, policy-preserving reliability, common policy and session-level understanding on the paths it can intercept.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the 60-second demo</a><a class="button secondary" href="/talon/docs/choosing-integration-path/">Choose an integration path</a><a class="button ghost" href="/comparisons/">Compare approaches</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>customer-support  → Talon → provider
-coding-session    → Talon → Anthropic / OpenAI
-internal-assistant→ Talon → local / cloud model
-vendor MCP path   → Talon → intercepted tool
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Agents · Apps · Bots · Coding tools</div><h1>Give every AI use case one identity and one operating policy.</h1><p class="hero-subtitle">Your company may call them agents, assistants, bots or AI features. Talon treats each one as a concrete agent identity: one file, one vault-bound key, one derived tenant, and one effective policy for cost, reliability, data, tools, egress and evidence on intercepted paths.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/quickstart-demo/">Run the 60-second demo</a><a class="button secondary" href="/talon/docs/choosing-integration-path/">Choose an integration path</a><a class="button ghost" href="/comparisons/">Compare approaches</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>one agent.talon.yaml
+= one AI use case
+= one vault-bound agent key
+= one derived tenant
+= one effective policy
 
-same operating questions:
-- what spent?
-- what failed?
-- which policy intervened?
-- what happened in the session?</code></pre></div></div></section>
-<section class="strip"><div class="wrap strip-inner"><span>AI use case inventory</span><span>Shared budgets</span><span>Reliability</span><span>Shared policy</span><span>Sessions</span><span>Evidence</span></div></section>
-<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Category</p><h2>AI use case is the public object. Agent is the concrete Talon object.</h2><p>A buyer should not have to learn a new “workload” noun. Publicly, Talon operates AI use cases. In current CLI/config and evidence, agent/caller identities remain implementation realities and are being simplified over time rather than cosmetically renamed.</p></div><div class="grid three"><article class="card"><h3>One real use case first</h3><p>Start with the support bot, coding workflow or product feature that already needs cost, reliability or policy control.</p></article><article class="card"><h3>Keep the orchestrator</h3><p>Talon does not decide tasks, spawn subagents or replace LangGraph, Claude Code, Codex or your application logic.</p></article><article class="card"><h3>Unify the operating layer</h3><p>Move runtime budgets, policy decisions, provider paths and evidence out of one-off application code.</p></article></div></div></section>
-<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Four questions</p><h2>The control plane should answer what the app alone cannot.</h2></div><div class="table-wrap comparison-table"><table><thead><tr><th>Question</th><th>Talon pillar</th><th>Current proof</th></tr></thead><tbody><tr><td>What is this AI use case spending?</td><td>Cost control</td><td>Caller/agent cost views, session cost and budget-denial evidence.</td></tr><tr><td>What failed and where did execution go?</td><td>Reliability</td><td>Policy-checked fallback attempts and terminal evidence on supported transient failures.</td></tr><tr><td>Which rules apply across use cases?</td><td>Shared policy</td><td>Model/provider, cost, PII, tool and regional enforcement on governed paths.</td></tr><tr><td>What happened in this multi-request run?</td><td>Session understanding</td><td>Asserted-session list, export, cost and verification across supported provider routes.</td></tr></tbody></table></div></div></section>
-<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Current operator path</p><h2>Use the CLI and evidence model that actually ship.</h2><p>The website does not present future fleet commands as current product output. Today, operators can inspect cost, list session evidence, open one decision and verify integrity with shipped CLI surfaces.</p></div><div class="code-panel"><pre><code>talon costs --agent customer-support
+request
+→ authenticate agent
+→ evaluate policy
+→ route / deny / redact / filter
+→ sign the evidence</code></pre></div></div></section>
+<section class="strip"><div class="wrap strip-inner"><span>Agent identity</span><span>Shared budgets</span><span>Reliability</span><span>Effective policy</span><span>Sessions</span><span>Evidence</span></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Category and implementation</p><h2>AI use case is the public object. Agent is the shipped Talon object.</h2><p>A buyer should not have to learn a new workload noun. Publicly, Talon operates AI use cases. In configuration, authentication, policy, evidence and cost attribution, one Talon agent now represents that use case consistently.</p></div><div class="grid three"><article class="card"><h3>One real use case first</h3><p>Start with the support bot, coding workflow or product feature that already needs cost, reliability or policy control.</p></article><article class="card"><h3>Keep the orchestrator</h3><p>Talon does not decide tasks, spawn subagents or replace LangGraph, Claude Code, Codex or your application logic.</p></article><article class="card"><h3>Unify the operating layer</h3><p>Move runtime budgets, identity, policy decisions, provider paths and evidence out of one-off application code.</p></article></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Identity contract</p><h2>The application presents an agent key, not a free-form identity claim.</h2><p><code>agent.key.secret_name</code> points to one encrypted vault secret. Talon resolves the presented key to the agent and tenant, rejects unknown keys, and prevents the request from acting as a different agent. The admin key remains a separate authority.</p><div class="link-row"><a href="/talon/docs/authentication-and-key-scopes/">Authentication reference</a><a href="/talon/docs/configuration/">Configure an agent</a></div></div><div class="code-panel"><pre><code>agent:
+  name: customer-support
+  tenant_id: acme
+  key:
+    secret_name: customer-support-talon-key
+
+# bearer key → customer-support → acme
+# body/header cannot substitute another identity</code></pre></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Four questions</p><h2>The control plane should answer what the app alone cannot.</h2></div><div class="table-wrap comparison-table"><table><thead><tr><th>Question</th><th>Talon pillar</th><th>Current proof</th></tr></thead><tbody><tr><td>What is this AI use case spending?</td><td>Cost control</td><td>Per-agent cost views, session cost and budget-denial evidence.</td></tr><tr><td>What failed and where did execution go?</td><td>Reliability</td><td>Policy-checked fallback attempts and terminal evidence on supported transient failures.</td></tr><tr><td>Which rules apply to this use case?</td><td>Shared policy</td><td>Organization baseline plus one agent override, resolved for models, providers, cost, PII, tools and egress.</td></tr><tr><td>What happened in this multi-request run?</td><td>Session understanding</td><td>Agent-scoped asserted-session list, export, cost and verification across allowed provider routes.</td></tr></tbody></table></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Effective policy</p><h2>Use one policy snapshot across the complete provider path.</h2><p>The organization baseline and agent override resolve into the same effective policy used by the primary route, every fallback candidate, budget reporting and evidence. Organization PII, provider/model, tier and egress boundaries cannot be weakened by an agent.</p><div class="link-row"><a href="/llm-governance-gateway/">Shared policy model</a><a href="/talon/docs/policy-cookbook/">Policy examples</a></div></div><div class="code-panel"><pre><code>organization policy
+        +
+one agent override
+        ↓
+resolved effective policy
+        ↓
+primary route + fallback + costs + evidence</code></pre></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Current operator path</p><h2>Use the CLI and evidence model that actually ship.</h2><p>Operators can inspect cost, list session evidence, open one decision, verify integrity and confirm the policy identity with shipped CLI surfaces.</p></div><div class="code-panel"><pre><code>talon costs --agent customer-support
 
 talon audit list --session sess-feature-4711
 
@@ -44,14 +60,15 @@ talon audit show &lt;evidence-id&gt;
 
 talon audit verify &lt;evidence-id&gt;</code></pre></div></div></section>
 <section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Action boundary</p><h2>Agentic does not mean universally observable.</h2><p>Talon can govern provider-bound traffic, tool schemas visible to the gateway and MCP/tool calls routed through its interception path. Local shell commands, file edits, browser actions and direct APIs that bypass Talon remain outside the control plane.</p></div><div class="code-panel"><pre><code>through Talon
-→ visible
+→ authenticated agent
 → policy can run
 → evidence can be written
 
 bypasses Talon
 → invisible
 → uncontrolled by Talon</code></pre></div></div></section>
-<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Adopt incrementally</p><h2>Put one AI use case on the common path.</h2><p>Do not wait for a complete enterprise inventory. Route one existing use case through Talon, inspect what it costs and why requests are allowed or denied, then expand to the next use case.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/add-talon-to-existing-app/">Add Talon to an app</a><a class="button secondary" href="/ai-cost-control/">Start with cost</a><a class="button ghost" href="/coding-agent-governance/">Start with sessions</a></div></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Current boundary</p><h2>Agent identity is shipped; one-process fleet discovery is not.</h2><p>A gateway process currently loads one default agent file. Serving and safely reloading many agent files through <code>agents_dir</code> remains active roadmap work. The identity, key binding and effective-policy contract described here is already enforced.</p></div></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Adopt incrementally</p><h2>Put one authenticated AI use case on the common path.</h2><p>Create its agent file, mint the vault-bound key, route provider traffic through Talon, inspect what it costs and why requests are allowed or denied, then expand to the next use case.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/add-talon-to-existing-app/">Add Talon to an app</a><a class="button secondary" href="/ai-cost-control/">Start with cost</a><a class="button ghost" href="/coding-agent-governance/">Start with sessions</a></div></div></div></section>
 </main>
-<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Talon operates intercepted AI paths. It does not orchestrate agents or control local actions that never cross Talon.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Talon authenticates and operates intercepted AI paths. It does not orchestrate agents or control local actions that never cross Talon.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body></html>
