@@ -37,11 +37,56 @@
     const playButton = demoMedia.querySelector('.hero-demo-play');
     const compactDemo = window.matchMedia('(max-width: 720px)');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const heroGitHubLink = document.querySelector('.hero-github-link');
+    const trustRow = document.querySelector('.trust-row');
+    const questionStrip = document.querySelector('.strip');
+    const caption = document.querySelector('.hero-demo-caption');
+    const captionSummary = caption?.querySelector('span');
+    const captionLink = caption?.querySelector('a');
+    const posterLines = [...demoMedia.querySelectorAll('.hero-demo-line')];
+    const desktopCaption = captionSummary?.textContent || '';
     let observer;
     let loading = false;
 
+    const applyCompactHeroMode = () => {
+      const isCompact = compactDemo.matches;
+
+      if (heroGitHubLink) heroGitHubLink.hidden = isCompact;
+      if (trustRow) trustRow.hidden = isCompact;
+      if (questionStrip) questionStrip.hidden = isCompact;
+      if (captionSummary) {
+        captionSummary.textContent = isCompact
+          ? 'One agent · one policy · verified'
+          : desktopCaption;
+      }
+      if (captionLink) captionLink.hidden = isCompact;
+
+      posterLines.forEach((line, index) => {
+        line.hidden = isCompact && ![0, 3, 4].includes(index);
+      });
+
+      demoMedia.style.aspectRatio = isCompact ? '4 / 3' : '';
+
+      if (playButton) playButton.hidden = isCompact;
+      if (animation) {
+        animation.hidden = isCompact;
+        if (isCompact) {
+          observer?.disconnect();
+          loading = false;
+          animation.removeAttribute('src');
+          demoMedia.classList.remove('is-playing');
+          demoMedia.removeAttribute('aria-busy');
+        }
+      }
+    };
+
     const playDemo = () => {
-      if (!animation || loading || demoMedia.classList.contains('is-playing')) return;
+      if (
+        compactDemo.matches ||
+        !animation ||
+        loading ||
+        demoMedia.classList.contains('is-playing')
+      ) return;
 
       loading = true;
       observer?.disconnect();
@@ -82,8 +127,13 @@
     };
 
     playButton?.addEventListener('click', playDemo);
-    compactDemo.addEventListener('change', scheduleDesktopPlayback);
+    compactDemo.addEventListener('change', () => {
+      applyCompactHeroMode();
+      scheduleDesktopPlayback();
+    });
     reducedMotion.addEventListener('change', scheduleDesktopPlayback);
+
+    applyCompactHeroMode();
     scheduleDesktopPlayback();
   }
 
