@@ -1,0 +1,286 @@
+/* Mobile-first viewer for the real governed-session terminal recording. */
+
+.hero-demo-dialog {
+  width: min(1100px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(147, 197, 253, 0.24);
+  border-radius: 22px;
+  background: #050b16;
+  color: #f8fafc;
+  box-shadow: 0 32px 100px rgba(2, 6, 23, 0.78);
+}
+
+.hero-demo-dialog::backdrop {
+  background: rgba(2, 6, 23, 0.88);
+  backdrop-filter: blur(8px);
+}
+
+.demo-dialog-open {
+  overflow: hidden;
+}
+
+.hero-demo-dialog-shell {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  max-height: calc(100dvh - 32px);
+  background:
+    radial-gradient(circle at 80% 0, rgba(59, 130, 246, 0.12), transparent 28rem),
+    #050b16;
+}
+
+.hero-demo-dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 22px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.hero-demo-dialog-kicker {
+  display: block;
+  color: #93c5fd;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hero-demo-dialog-header h2 {
+  margin: 5px 0 0;
+  font-size: clamp(22px, 3vw, 32px);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.hero-demo-dialog-close {
+  display: grid;
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.8);
+  color: #e2e8f0;
+  font: inherit;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.hero-demo-dialog-close:hover,
+.hero-demo-dialog-close:focus-visible {
+  border-color: rgba(147, 197, 253, 0.54);
+  background: #0f172a;
+}
+
+.hero-demo-dialog-stage {
+  position: relative;
+  display: grid;
+  min-height: 0;
+  place-items: center;
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  background: #020617;
+}
+
+.hero-demo-dialog-stage img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+}
+
+.hero-demo-dialog-stage.is-actual-size {
+  place-items: start;
+}
+
+.hero-demo-dialog-stage.is-actual-size img {
+  width: 979px;
+  max-width: none;
+  max-height: none;
+}
+
+.hero-demo-dialog-status {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #020617;
+  color: #94a3b8;
+  font-size: 14px;
+  text-align: center;
+}
+
+.hero-demo-dialog-status[hidden] {
+  display: none;
+}
+
+.hero-demo-dialog-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 20px;
+  border-top: 1px solid rgba(148, 163, 184, 0.14);
+  background: rgba(15, 23, 42, 0.72);
+}
+
+.hero-demo-dialog-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.hero-demo-dialog-controls button,
+.hero-demo-dialog-controls a {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 740;
+}
+
+.hero-demo-dialog-controls button {
+  border: 1px solid rgba(147, 197, 253, 0.28);
+  background: rgba(2, 6, 23, 0.68);
+  color: #dbeafe;
+  cursor: pointer;
+}
+
+.hero-demo-dialog-controls button:hover,
+.hero-demo-dialog-controls button:focus-visible {
+  border-color: rgba(147, 197, 253, 0.58);
+  background: #0f172a;
+}
+
+.hero-demo-dialog-controls a {
+  color: #bfdbfe;
+  white-space: nowrap;
+}
+
+.hero-demo-dialog-hint {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: right;
+}
+
+@media (max-width: 720px) {
+  .hero-demo-media {
+    aspect-ratio: 4 / 3 !important;
+  }
+
+  .hero-demo-poster-body {
+    padding-bottom: 56px;
+  }
+
+  .hero-demo-play {
+    right: 14px;
+    bottom: 14px;
+    left: 14px;
+    display: flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    border-color: rgba(147, 197, 253, 0.48);
+    background: linear-gradient(180deg, rgba(30, 64, 175, 0.96), rgba(30, 58, 138, 0.96));
+    color: #eff6ff;
+    font-size: 14px;
+    box-shadow: 0 12px 32px rgba(2, 6, 23, 0.5);
+  }
+
+  .hero-demo-play:hover,
+  .hero-demo-play:focus-visible {
+    border-color: rgba(191, 219, 254, 0.8);
+    background: linear-gradient(180deg, #1d4ed8, #1e3a8a);
+  }
+
+  .hero-demo-dialog {
+    width: 100vw;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .hero-demo-dialog-shell {
+    height: 100dvh;
+    max-height: none;
+  }
+
+  .hero-demo-dialog-header {
+    padding: max(16px, env(safe-area-inset-top)) 16px 14px;
+  }
+
+  .hero-demo-dialog-header h2 {
+    font-size: 22px;
+  }
+
+  .hero-demo-dialog-close {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+  }
+
+  .hero-demo-dialog-stage {
+    min-height: 0;
+  }
+
+  .hero-demo-dialog-stage img {
+    width: 100%;
+    max-width: 100%;
+    max-height: none;
+  }
+
+  .hero-demo-dialog-stage.is-actual-size img {
+    width: 979px;
+    max-width: none;
+  }
+
+  .hero-demo-dialog-controls {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px 14px max(14px, env(safe-area-inset-bottom));
+  }
+
+  .hero-demo-dialog-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-demo-dialog-controls button,
+  .hero-demo-dialog-controls a {
+    min-height: 46px;
+  }
+
+  .hero-demo-dialog-controls a {
+    grid-column: 1 / -1;
+  }
+
+  .hero-demo-dialog-hint {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-demo-dialog::backdrop {
+    backdrop-filter: none;
+  }
+}
