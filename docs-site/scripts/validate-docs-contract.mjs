@@ -107,6 +107,7 @@ if (!sourcesOnly) {
   }
 
   const requiredFirstClassDocs = [
+    'product-demo',
     'control-plane',
     'cost-governance-by-agent',
     'configuration',
