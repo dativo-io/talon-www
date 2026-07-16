@@ -79,20 +79,20 @@
         <div class="hero-demo-dialog-shell">
           <header class="hero-demo-dialog-header">
             <div>
-              <span class="hero-demo-dialog-kicker">Full terminal recording</span>
-              <h2 id="hero-demo-dialog-title">Watch one governed Talon session</h2>
+              <span class="hero-demo-dialog-kicker">Live product recording</span>
+              <h2 id="hero-demo-dialog-title">Watch three AI use cases through Talon</h2>
             </div>
             <button class="hero-demo-dialog-close" type="button" aria-label="Close demo">×</button>
           </header>
           <div class="hero-demo-dialog-stage" tabindex="0">
-            <div class="hero-demo-dialog-status" role="status">Loading the full terminal demo…</div>
-            <img width="979" height="694" alt="Animated Talon terminal demo showing agent authentication, tool filtering, PII and egress controls, session-budget denial, and signed evidence verification." decoding="async" />
+            <div class="hero-demo-dialog-status" role="status">Loading the full product demo…</div>
+            <img width="979" height="694" alt="Animated Talon product demo showing customer support, coding assistant, and document summary use cases under shared cost, reliability, policy, session, and evidence controls." decoding="async" />
           </div>
           <footer class="hero-demo-dialog-controls">
             <div class="hero-demo-dialog-buttons">
               <button type="button" data-demo-replay>↻ Replay</button>
               <button type="button" data-demo-size aria-pressed="false">Read terminal text</button>
-              <a href="/talon/docs/manual-governed-session/">Reproduce manually →</a>
+              <a href="/talon/docs/product-demo/">Run it yourself →</a>
             </div>
             <p class="hero-demo-dialog-hint">Fit shows the complete run. “Read terminal text” opens the recording at native size for touch panning; landscape gives the clearest view.</p>
           </footer>
@@ -109,7 +109,7 @@
         if (!dialogImage || !status) return;
 
         status.hidden = false;
-        status.textContent = 'Loading the full terminal demo…';
+        status.textContent = 'Loading the full product demo…';
         dialogImage.removeAttribute('src');
         const separator = demoMedia.dataset.demoSrc.includes('?') ? '&' : '?';
         requestAnimationFrame(() => {
@@ -123,7 +123,7 @@
 
       dialogImage?.addEventListener('error', () => {
         status.hidden = false;
-        status.textContent = 'The recording could not be loaded. Use “Reproduce manually” for the same governed session.';
+        status.textContent = 'The recording could not be loaded. Use “Run it yourself” for the same live product demo.';
       });
 
       closeButton?.addEventListener('click', closeDialog);
@@ -175,7 +175,7 @@
       if (questionStrip) questionStrip.hidden = isCompact;
       if (captionSummary) {
         captionSummary.textContent = isCompact
-          ? 'Readable preview · tap Watch full demo for the complete run'
+          ? 'Readable preview · tap Watch full demo for all three use cases'
           : desktopCaption;
       }
       if (captionLink) captionLink.hidden = isCompact;
@@ -191,7 +191,7 @@
         playButton.textContent = isCompact ? '▶ Watch full demo' : desktopPlayLabel;
         playButton.setAttribute(
           'aria-label',
-          isCompact ? 'Open the full governed-session terminal demo' : 'Play the governed-session demo',
+          isCompact ? 'Open the full three-use-case Talon product demo' : 'Play the Talon product demo',
         );
       }
 
@@ -211,9 +211,9 @@
 
     const playInlineDemo = () => {
       if (
-        !animation ||
-        loading ||
-        demoMedia.classList.contains('is-playing')
+        !animation
+        || loading
+        || demoMedia.classList.contains('is-playing')
       ) return;
 
       loading = true;

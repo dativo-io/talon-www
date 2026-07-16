@@ -72,8 +72,8 @@ const config = {
           label: 'Overview',
         },
         {
-          to: '/quickstart-demo/',
-          label: 'Get started',
+          to: '/product-demo/',
+          label: 'Product demo',
           position: 'left',
         },
         {
@@ -114,7 +114,8 @@ const config = {
         {
           title: 'Get started',
           items: [
-            {label: '60-second demo', to: '/quickstart-demo/'},
+            {label: 'Product demo — three use cases', to: '/product-demo/'},
+            {label: '60-second no-key demo', to: '/quickstart-demo/'},
             {label: 'Add Talon to an existing app', to: '/add-talon-to-existing-app/'},
             {label: 'Choose an integration path', to: '/choosing-integration-path/'},
           ],

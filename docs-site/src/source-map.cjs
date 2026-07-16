@@ -1,4 +1,5 @@
 module.exports = {
+  'product-demo.md': 'examples/product-demo/README.md',
   'quickstart-demo.md': 'docs/tutorials/quickstart-demo.md',
   'manual-governed-session.md': 'docs/tutorials/manual-governed-session.md',
   'evidence-integrity-demo.md': 'docs/tutorials/evidence-integrity-demo.md',

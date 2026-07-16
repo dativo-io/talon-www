@@ -8,6 +8,7 @@ const sidebars = {
       label: 'Start here',
       collapsed: false,
       items: [
+        doc('product-demo', 'Product demo — three use cases'),
         'quickstart-demo',
         'add-talon-to-existing-app',
         'first-governed-agent',
