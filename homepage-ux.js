@@ -54,8 +54,8 @@
       const pauseStyles = document.createElement('style');
       pauseStyles.dataset.gifPauseStyles = '';
       pauseStyles.textContent = `
-        .gif-pause-target.is-gif-ready { cursor: pointer; }
-        .gif-pause-target.is-gif-ready:focus-visible { outline: 2px solid #93c5fd; outline-offset: -3px; }
+        .gif-pause-target .is-gif-ready { cursor: pointer; }
+        .gif-pause-target .is-gif-ready:focus-visible { outline: 2px solid #93c5fd; outline-offset: -3px; }
         .gif-pause-frame { position: absolute; inset: 0; z-index: 3; display: block; width: 100%; height: 100%; object-fit: cover; }
         .gif-pause-badge { position: absolute; z-index: 4; right: 14px; bottom: 14px; padding: 8px 12px; border: 1px solid rgba(191,219,254,.45); border-radius: 999px; background: rgba(2,6,23,.9); color: #dbeafe; font-size: 12px; font-weight: 750; line-height: 1; pointer-events: none; box-shadow: 0 8px 24px rgba(2,6,23,.42); }
         .hero-demo-dialog-stage .gif-pause-frame { width: auto; max-width: 100%; max-height: 100%; height: auto; place-self: center; }
@@ -90,12 +90,13 @@
       };
 
       const setReady = () => {
-        container.classList.add('gif-pause-target', 'is-gif-ready');
-        if (!container.hasAttribute('tabindex')) container.tabIndex = 0;
-        container.setAttribute('role', 'button');
-        container.setAttribute('aria-pressed', 'false');
-        container.setAttribute('aria-label', 'Pause animated product demo');
-        container.title = 'Click to pause the demo';
+        container.classList.add('gif-pause-target');
+        image.classList.add('is-gif-ready');
+        image.tabIndex = 0;
+        image.setAttribute('role', 'button');
+        image.setAttribute('aria-pressed', 'false');
+        image.setAttribute('aria-label', 'Pause animated product demo');
+        image.title = 'Click to pause the demo';
       };
 
       const resume = () => {
@@ -103,9 +104,9 @@
         if (frame) frame.hidden = true;
         if (badge) badge.hidden = true;
         container.classList.remove('is-gif-paused');
-        container.setAttribute('aria-pressed', 'false');
-        container.setAttribute('aria-label', 'Pause animated product demo');
-        container.title = 'Click to pause the demo';
+        image.setAttribute('aria-pressed', 'false');
+        image.setAttribute('aria-label', 'Pause animated product demo');
+        image.title = 'Click to pause the demo';
       };
 
       const pause = () => {
@@ -123,9 +124,9 @@
         badge.hidden = false;
         paused = true;
         container.classList.add('is-gif-paused');
-        container.setAttribute('aria-pressed', 'true');
-        container.setAttribute('aria-label', 'Resume animated product demo');
-        container.title = 'Click to resume the demo';
+        image.setAttribute('aria-pressed', 'true');
+        image.setAttribute('aria-label', 'Resume animated product demo');
+        image.title = 'Click to resume the demo';
       };
 
       const toggle = () => {
