@@ -33,7 +33,7 @@
 
   const demoMedia = document.querySelector('.hero-demo-media[data-demo-src]');
   if (demoMedia) {
-    const animation = demoMedia.querySelector('.hero-demo-animation');
+    const originalAnimation = demoMedia.querySelector('.hero-demo-animation');
     const playButton = demoMedia.querySelector('.hero-demo-play');
     const compactDemo = window.matchMedia('(max-width: 720px)');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -46,110 +46,30 @@
     const posterLines = [...demoMedia.querySelectorAll('.hero-demo-line')];
     const desktopCaption = captionSummary?.textContent || '';
     const desktopPlayLabel = playButton?.textContent || '▶ Play demo';
+    const sourceUrl = demoMedia.dataset.demoSrc;
+    const supportsFramePlayback = typeof window.ImageDecoder === 'function';
     let observer;
     let loading = false;
     let dialogElements;
+    let bytesPromise;
 
-    if (!document.querySelector('style[data-gif-pause-styles]')) {
-      const pauseStyles = document.createElement('style');
-      pauseStyles.dataset.gifPauseStyles = '';
-      pauseStyles.textContent = `
-        .gif-pause-target .is-gif-ready { cursor: pointer; }
-        .gif-pause-target .is-gif-ready:focus-visible { outline: 2px solid #93c5fd; outline-offset: -3px; }
-        .gif-pause-frame { position: absolute; inset: 0; z-index: 3; display: block; width: 100%; height: 100%; object-fit: cover; }
-        .gif-pause-badge { position: absolute; z-index: 4; right: 14px; bottom: 14px; padding: 8px 12px; border: 1px solid rgba(191,219,254,.45); border-radius: 999px; background: rgba(2,6,23,.9); color: #dbeafe; font-size: 12px; font-weight: 750; line-height: 1; pointer-events: none; box-shadow: 0 8px 24px rgba(2,6,23,.42); }
-        .hero-demo-dialog-stage .gif-pause-frame { width: auto; max-width: 100%; max-height: 100%; height: auto; place-self: center; }
-        .hero-demo-dialog-stage.is-actual-size .gif-pause-frame { width: 979px; max-width: none; max-height: none; place-self: start; }
+    if (!document.querySelector('style[data-demo-playback-styles]')) {
+      const playbackStyles = document.createElement('style');
+      playbackStyles.dataset.demoPlaybackStyles = '';
+      playbackStyles.textContent = `
+        .demo-animation-target { cursor: pointer; }
+        .demo-animation-target:focus-visible { outline: 2px solid #93c5fd; outline-offset: -3px; }
+        .demo-pause-badge { position: absolute; z-index: 4; right: 14px; bottom: 14px; padding: 8px 12px; border: 1px solid rgba(191,219,254,.45); border-radius: 999px; background: rgba(2,6,23,.9); color: #dbeafe; font-size: 12px; font-weight: 750; line-height: 1; pointer-events: none; box-shadow: 0 8px 24px rgba(2,6,23,.42); }
+        .demo-pause-badge[hidden] { display: none !important; }
+        .hero-demo-dialog-stage canvas { display: block; width: auto; max-width: 100%; max-height: 100%; height: auto; }
+        .hero-demo-dialog-stage.is-actual-size canvas { width: 979px; max-width: none; max-height: none; }
+        @media (max-width: 720px) {
+          .hero-demo-dialog-stage canvas { width: 100%; max-width: 100%; max-height: none; }
+          .hero-demo-dialog-stage.is-actual-size canvas { width: 979px; max-width: none; }
+        }
       `;
-      document.head.append(pauseStyles);
+      document.head.append(playbackStyles);
     }
-
-    const createGifPauseController = ({container, image, isActive, pausedText}) => {
-      if (!container || !image) return null;
-
-      let paused = false;
-      let frame;
-      let badge;
-
-      const ensureOverlay = () => {
-        if (!frame) {
-          frame = document.createElement('canvas');
-          frame.className = 'gif-pause-frame';
-          frame.hidden = true;
-          frame.setAttribute('aria-hidden', 'true');
-          container.append(frame);
-        }
-
-        if (!badge) {
-          badge = document.createElement('span');
-          badge.className = 'gif-pause-badge';
-          badge.hidden = true;
-          badge.textContent = pausedText;
-          container.append(badge);
-        }
-      };
-
-      const setReady = () => {
-        container.classList.add('gif-pause-target');
-        image.classList.add('is-gif-ready');
-        image.tabIndex = 0;
-        image.setAttribute('role', 'button');
-        image.setAttribute('aria-pressed', 'false');
-        image.setAttribute('aria-label', 'Pause animated product demo');
-        image.title = 'Click to pause the demo';
-      };
-
-      const resume = () => {
-        paused = false;
-        if (frame) frame.hidden = true;
-        if (badge) badge.hidden = true;
-        container.classList.remove('is-gif-paused');
-        image.setAttribute('aria-pressed', 'false');
-        image.setAttribute('aria-label', 'Pause animated product demo');
-        image.title = 'Click to pause the demo';
-      };
-
-      const pause = () => {
-        if (!isActive() || !image.complete || !image.naturalWidth || !image.naturalHeight) return;
-
-        ensureOverlay();
-        frame.width = image.naturalWidth;
-        frame.height = image.naturalHeight;
-        const context = frame.getContext('2d');
-        if (!context) return;
-
-        context.clearRect(0, 0, frame.width, frame.height);
-        context.drawImage(image, 0, 0, frame.width, frame.height);
-        frame.hidden = false;
-        badge.hidden = false;
-        paused = true;
-        container.classList.add('is-gif-paused');
-        image.setAttribute('aria-pressed', 'true');
-        image.setAttribute('aria-label', 'Resume animated product demo');
-        image.title = 'Click to resume the demo';
-      };
-
-      const toggle = () => {
-        if (paused) resume();
-        else pause();
-      };
-
-      container.addEventListener('click', (event) => {
-        if (event.target.closest('button, a')) return;
-        toggle();
-      });
-
-      container.addEventListener('keydown', (event) => {
-        if (event.key !== 'Enter' && event.key !== ' ') return;
-        event.preventDefault();
-        toggle();
-      });
-
-      image.addEventListener('load', setReady);
-      if (image.complete && image.naturalWidth) setReady();
-
-      return {reset: resume};
-    };
 
     if (!document.querySelector('link[href="/homepage-demo-dialog.css"]')) {
       const stylesheet = document.createElement('link');
@@ -158,11 +78,250 @@
       document.head.append(stylesheet);
     }
 
-    const inlinePauseController = createGifPauseController({
+    const fetchDemoBytes = () => {
+      if (!bytesPromise) {
+        bytesPromise = fetch(sourceUrl, {
+          mode: 'cors',
+          credentials: 'omit',
+          cache: 'force-cache',
+        })
+          .then((response) => {
+            if (!response.ok) throw new Error(`Demo recording returned HTTP ${response.status}`);
+            return response.arrayBuffer();
+          })
+          .catch((error) => {
+            bytesPromise = null;
+            throw error;
+          });
+      }
+      return bytesPromise;
+    };
+
+    const replaceImageWithCanvas = (image) => {
+      if (!image || !supportsFramePlayback) return image;
+
+      const canvas = document.createElement('canvas');
+      canvas.className = image.className;
+      canvas.width = Number(image.getAttribute('width')) || 979;
+      canvas.height = Number(image.getAttribute('height')) || 694;
+      canvas.dataset.demoDescription = image.alt || 'Animated Talon product demo';
+      image.replaceWith(canvas);
+      return canvas;
+    };
+
+    const createFallbackImagePlayer = ({image, onReady, onError}) => {
+      let loaded = false;
+
+      const restart = () => {
+        loaded = false;
+        const separator = sourceUrl.includes('?') ? '&' : '?';
+        image.onload = () => {
+          loaded = true;
+          onReady?.();
+        };
+        image.onerror = () => onError?.(new Error('The GIF could not be loaded'));
+        image.src = `${sourceUrl}${separator}replay=${Date.now()}`;
+      };
+
+      image.removeAttribute('tabindex');
+      image.removeAttribute('role');
+      image.removeAttribute('aria-pressed');
+      image.title = 'Animated demo playback; pause requires a browser with ImageDecoder support';
+
+      return {
+        restart,
+        pause: () => {},
+        reset: () => {
+          loaded = false;
+          image.removeAttribute('src');
+        },
+        isLoaded: () => loaded,
+      };
+    };
+
+    const createCanvasPlayer = ({canvas, container, onReady, onError}) => {
+      const context = canvas.getContext('2d');
+      const badge = document.createElement('span');
+      badge.className = 'demo-pause-badge';
+      badge.textContent = 'Paused · click to resume';
+      badge.hidden = true;
+      container.append(badge);
+
+      let decoder;
+      let frameCount = 1;
+      let frameIndex = 0;
+      let timer;
+      let generation = 0;
+      let loaded = false;
+      let playing = false;
+
+      canvas.classList.add('demo-animation-target');
+      canvas.tabIndex = 0;
+      canvas.setAttribute('role', 'button');
+
+      const updateAccessibleState = () => {
+        const paused = loaded && !playing;
+        badge.hidden = !paused;
+        canvas.setAttribute('aria-pressed', String(paused));
+        canvas.setAttribute(
+          'aria-label',
+          paused ? 'Resume animated product demo' : 'Pause animated product demo',
+        );
+        canvas.title = paused ? 'Click to resume the demo' : 'Click to pause the demo';
+      };
+
+      const invalidatePlayback = () => {
+        generation += 1;
+        if (timer) window.clearTimeout(timer);
+        timer = undefined;
+        return generation;
+      };
+
+      const ensureDecoder = async () => {
+        if (decoder) return;
+        const bytes = await fetchDemoBytes();
+        decoder = new window.ImageDecoder({
+          data: bytes.slice(0),
+          type: 'image/gif',
+          preferAnimation: true,
+        });
+        await decoder.tracks.ready;
+        const selectedTrack = decoder.tracks.selectedTrack;
+        if (!selectedTrack) throw new Error('The GIF has no decodable image track');
+        frameCount = Math.max(1, selectedTrack.frameCount || 1);
+      };
+
+      const renderFrame = async (index, runGeneration) => {
+        const result = await decoder.decode({frameIndex: index});
+        const frame = result.image;
+
+        if (runGeneration !== generation) {
+          frame.close();
+          return null;
+        }
+
+        const width = frame.displayWidth || frame.codedWidth || 979;
+        const height = frame.displayHeight || frame.codedHeight || 694;
+        if (canvas.width !== width) canvas.width = width;
+        if (canvas.height !== height) canvas.height = height;
+        context.clearRect(0, 0, width, height);
+        context.drawImage(frame, 0, 0, width, height);
+        const delay = Math.min(10000, Math.max(20, (frame.duration || 100000) / 1000));
+        frame.close();
+        return delay;
+      };
+
+      const advance = async (runGeneration) => {
+        if (!playing || runGeneration !== generation) return;
+
+        try {
+          const currentIndex = frameIndex;
+          const delay = await renderFrame(currentIndex, runGeneration);
+          if (delay === null || !playing || runGeneration !== generation) return;
+          frameIndex = (currentIndex + 1) % frameCount;
+          timer = window.setTimeout(() => advance(runGeneration), delay);
+        } catch (error) {
+          if (runGeneration !== generation) return;
+          playing = false;
+          loaded = false;
+          updateAccessibleState();
+          onError?.(error);
+        }
+      };
+
+      const restart = async () => {
+        const runGeneration = invalidatePlayback();
+        playing = false;
+        loaded = false;
+        frameIndex = 0;
+        updateAccessibleState();
+
+        try {
+          await ensureDecoder();
+          if (runGeneration !== generation) return;
+
+          const delay = await renderFrame(0, runGeneration);
+          if (delay === null || runGeneration !== generation) return;
+
+          loaded = true;
+          playing = true;
+          frameIndex = frameCount > 1 ? 1 : 0;
+          updateAccessibleState();
+          onReady?.();
+          timer = window.setTimeout(() => advance(runGeneration), delay);
+        } catch (error) {
+          if (runGeneration !== generation) return;
+          loaded = false;
+          playing = false;
+          updateAccessibleState();
+          onError?.(error);
+        }
+      };
+
+      const pause = () => {
+        if (!loaded || !playing) return;
+        invalidatePlayback();
+        playing = false;
+        updateAccessibleState();
+      };
+
+      const resume = () => {
+        if (!loaded || playing) return;
+        const runGeneration = invalidatePlayback();
+        playing = true;
+        updateAccessibleState();
+        timer = window.setTimeout(() => advance(runGeneration), 0);
+      };
+
+      const toggle = () => {
+        if (playing) pause();
+        else resume();
+      };
+
+      const reset = () => {
+        invalidatePlayback();
+        loaded = false;
+        playing = false;
+        frameIndex = 0;
+        badge.hidden = true;
+        canvas.setAttribute('aria-pressed', 'false');
+        canvas.setAttribute('aria-label', 'Pause animated product demo');
+        canvas.title = 'Click to pause the demo';
+      };
+
+      canvas.addEventListener('click', toggle);
+      canvas.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        event.preventDefault();
+        toggle();
+      });
+
+      updateAccessibleState();
+      return {restart, pause, reset, isLoaded: () => loaded};
+    };
+
+    const createPlayer = ({element, container, onReady, onError}) => {
+      if (element instanceof HTMLCanvasElement) {
+        return createCanvasPlayer({canvas: element, container, onReady, onError});
+      }
+      return createFallbackImagePlayer({image: element, onReady, onError});
+    };
+
+    const animation = replaceImageWithCanvas(originalAnimation);
+    const inlinePlayer = createPlayer({
+      element: animation,
       container: demoMedia,
-      image: animation,
-      isActive: () => !compactDemo.matches && demoMedia.classList.contains('is-playing'),
-      pausedText: 'Paused · click to resume',
+      onReady: () => {
+        loading = false;
+        demoMedia.classList.add('is-playing');
+        demoMedia.removeAttribute('aria-busy');
+      },
+      onError: () => {
+        loading = false;
+        demoMedia.classList.remove('is-playing');
+        demoMedia.removeAttribute('aria-busy');
+        if (playButton) playButton.textContent = 'Retry demo';
+      },
     });
 
     const closeDialog = () => {
@@ -183,6 +342,9 @@
       const dialog = document.createElement('dialog');
       dialog.className = 'hero-demo-dialog';
       dialog.setAttribute('aria-labelledby', 'hero-demo-dialog-title');
+      const playbackElement = supportsFramePlayback
+        ? '<canvas width="979" height="694" data-demo-description="Animated Talon product demo showing customer support, coding assistant, and document summary use cases under shared cost, reliability, policy, session, and evidence controls."></canvas>'
+        : '<img width="979" height="694" alt="Animated Talon product demo showing customer support, coding assistant, and document summary use cases under shared cost, reliability, policy, session, and evidence controls." decoding="async" />';
       dialog.innerHTML = `
         <div class="hero-demo-dialog-shell">
           <header class="hero-demo-dialog-header">
@@ -192,9 +354,9 @@
             </div>
             <button class="hero-demo-dialog-close" type="button" aria-label="Close demo">×</button>
           </header>
-          <div class="hero-demo-dialog-stage" tabindex="0">
+          <div class="hero-demo-dialog-stage">
             <div class="hero-demo-dialog-status" role="status">Loading the full product demo…</div>
-            <img width="979" height="694" alt="Animated Talon product demo showing customer support, coding assistant, and document summary use cases under shared cost, reliability, policy, session, and evidence controls." decoding="async" />
+            ${playbackElement}
           </div>
           <footer class="hero-demo-dialog-controls">
             <div class="hero-demo-dialog-buttons">
@@ -207,45 +369,32 @@
         </div>`;
 
       const stage = dialog.querySelector('.hero-demo-dialog-stage');
-      const dialogImage = dialog.querySelector('img');
+      const dialogAnimation = stage.querySelector('canvas, img');
       const status = dialog.querySelector('.hero-demo-dialog-status');
       const closeButton = dialog.querySelector('.hero-demo-dialog-close');
       const replayButton = dialog.querySelector('[data-demo-replay]');
       const sizeButton = dialog.querySelector('[data-demo-size]');
-      const dialogPauseController = createGifPauseController({
+      const dialogPlayer = createPlayer({
+        element: dialogAnimation,
         container: stage,
-        image: dialogImage,
-        isActive: () => dialog.open && status.hidden,
-        pausedText: 'Paused · click to resume',
+        onReady: () => {
+          status.hidden = true;
+        },
+        onError: () => {
+          status.hidden = false;
+          status.textContent = 'The recording could not be loaded. Use “Run it yourself” for the same live product demo.';
+        },
       });
 
       const loadRecording = () => {
-        if (!dialogImage || !status) return;
-
-        dialogPauseController?.reset();
         status.hidden = false;
         status.textContent = 'Loading the full product demo…';
-        dialogImage.removeAttribute('src');
-        const separator = demoMedia.dataset.demoSrc.includes('?') ? '&' : '?';
-        requestAnimationFrame(() => {
-          dialogImage.src = `${demoMedia.dataset.demoSrc}${separator}replay=${Date.now()}`;
-        });
+        dialogPlayer.restart();
       };
-
-      dialogImage?.addEventListener('load', () => {
-        status.hidden = true;
-      });
-
-      dialogImage?.addEventListener('error', () => {
-        dialogPauseController?.reset();
-        status.hidden = false;
-        status.textContent = 'The recording could not be loaded. Use “Run it yourself” for the same live product demo.';
-      });
 
       closeButton?.addEventListener('click', closeDialog);
       replayButton?.addEventListener('click', loadRecording);
       sizeButton?.addEventListener('click', () => {
-        dialogPauseController?.reset();
         const actualSize = stage.classList.toggle('is-actual-size');
         sizeButton.setAttribute('aria-pressed', String(actualSize));
         sizeButton.textContent = actualSize ? 'Fit to screen' : 'Read terminal text';
@@ -257,13 +406,13 @@
       });
 
       dialog.addEventListener('close', () => {
-        dialogPauseController?.reset();
+        dialogPlayer.pause();
         document.documentElement.classList.remove('demo-dialog-open');
         playButton?.focus({preventScroll: true});
       });
 
       document.body.append(dialog);
-      dialogElements = {dialog, stage, dialogImage, status, loadRecording};
+      dialogElements = {dialog, stage, status, dialogPlayer, loadRecording};
       return dialogElements;
     };
 
@@ -276,13 +425,13 @@
         sizeButton.textContent = 'Read terminal text';
       }
 
-      loadRecording();
       document.documentElement.classList.add('demo-dialog-open');
       if (typeof dialog.showModal === 'function') {
         dialog.showModal();
       } else {
         dialog.setAttribute('open', '');
       }
+      loadRecording();
     };
 
     const applyCompactHeroMode = () => {
@@ -316,10 +465,9 @@
       if (animation) {
         animation.hidden = isCompact;
         if (isCompact) {
-          inlinePauseController?.reset();
+          inlinePlayer.reset();
           observer?.disconnect();
           loading = false;
-          animation.removeAttribute('src');
           demoMedia.classList.remove('is-playing');
           demoMedia.removeAttribute('aria-busy');
         }
@@ -337,24 +485,9 @@
 
       loading = true;
       observer?.disconnect();
-      inlinePauseController?.reset();
       demoMedia.setAttribute('aria-busy', 'true');
       if (playButton) playButton.textContent = 'Loading demo…';
-
-      animation.addEventListener('load', () => {
-        demoMedia.classList.add('is-playing');
-        demoMedia.removeAttribute('aria-busy');
-      }, {once: true});
-
-      animation.addEventListener('error', () => {
-        loading = false;
-        inlinePauseController?.reset();
-        animation.removeAttribute('src');
-        demoMedia.removeAttribute('aria-busy');
-        if (playButton) playButton.textContent = 'Retry demo';
-      }, {once: true});
-
-      animation.src = demoMedia.dataset.demoSrc;
+      inlinePlayer.restart();
     };
 
     const playDemo = () => {
