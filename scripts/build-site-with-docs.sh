@@ -96,8 +96,9 @@ npm run build
 mkdir -p "$OUT_DIR/talon/docs"
 cp -R "$DOCS_DIR/build/." "$OUT_DIR/talon/docs/"
 
-# Keep the primary evaluator route and the four control-plane journeys present in
-# every production artifact.
+# Keep the canonical evaluator demo and the four control-plane journeys present
+# in every production artifact.
+test -f "$OUT_DIR/talon/docs/product-demo/index.html"
 test -f "$OUT_DIR/talon/docs/manual-governed-session/index.html"
 test -f "$OUT_DIR/talon/docs/control-plane/index.html"
 test -f "$OUT_DIR/talon/docs/cost-governance-by-agent/index.html"
