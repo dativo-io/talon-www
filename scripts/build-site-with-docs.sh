@@ -79,10 +79,19 @@ node "$ROOT_DIR/scripts/normalize-site-nav.cjs" "$OUT_DIR"
 # shipped agent identity model. Historical routes are allowed only in _redirects.
 node "$ROOT_DIR/scripts/verify-agent-identity-contract.cjs" "$ROOT_DIR"
 
-# Fetch the Talon source once. The docs sync script reads every mapped source
-# file from this local checkout instead of making dozens of anonymous requests
-# to raw.githubusercontent.com, which can be rate-limited during production builds.
+# Fetch the Talon source once. The docs sync script and hero publisher read from
+# this one checkout, keeping the homepage proof and /talon/docs on the same ref.
 prepare_talon_checkout
+
+# Publish the exact hero from the selected Talon checkout as a fingerprinted,
+# same-origin asset. Source index.html keeps its pinned GitHub URL for no-build
+# local previews; the production artifact never depends on raw.githubusercontent.
+node "$ROOT_DIR/scripts/publish-talon-hero.cjs" "$TALON_REPO_PATH" "$OUT_DIR"
+find "$OUT_DIR/public/assets" -maxdepth 1 -type f -name 'talon_hero-*.gif' -size +0c | grep -q .
+if grep -q 'data-demo-src="https://raw.githubusercontent.com/dativo-io/talon/' "$OUT_DIR/index.html"; then
+  echo "Production homepage still hotlinks the Talon hero asset." >&2
+  exit 1
+fi
 
 # Fail fast, before npm install and Docusaurus compilation, if talon/main changed
 # a mapped docs path without the corresponding talon-www publication update.
