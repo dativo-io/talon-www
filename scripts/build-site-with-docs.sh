@@ -87,7 +87,11 @@ prepare_talon_checkout
 # same-origin asset. Source index.html keeps its pinned GitHub URL for no-build
 # local previews; the production artifact never depends on raw.githubusercontent.
 node "$ROOT_DIR/scripts/publish-talon-hero.cjs" "$TALON_REPO_PATH" "$OUT_DIR"
-find "$OUT_DIR/public/assets" -maxdepth 1 -type f -name 'talon_hero-*.gif' -size +0c | grep -q .
+HERO_ASSET="$(find "$OUT_DIR/public/assets" -maxdepth 1 -type f -name 'talon_hero-*.gif' -size +0c -print -quit)"
+if [ -z "$HERO_ASSET" ]; then
+  echo "Production build did not publish a non-empty Talon hero asset." >&2
+  exit 1
+fi
 if grep -q 'data-demo-src="https://raw.githubusercontent.com/dativo-io/talon/' "$OUT_DIR/index.html"; then
   echo "Production homepage still hotlinks the Talon hero asset." >&2
   exit 1
