@@ -6,7 +6,7 @@ const root = path.resolve(process.argv[2] || 'dist');
 const canonicalHeader = `<header class="site-nav">
     <div class="wrap nav-inner">
       <a class="brand" href="/" aria-label="Dativo Talon home">
-        <img class="brand-logo" src="/public/assets/talon-mark-white.svg" alt="Dativo Talon mark" />
+        <img class="brand-logo" src="/public/assets/talon-icon.svg?v=2" alt="Dativo Talon mark" />
         <span>Dativo Talon</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation">
@@ -108,7 +108,7 @@ for (const file of pagesWithSiteNav) {
   if (!header.includes('class="nav-toggle"') || !header.includes('id="primary-navigation"')) {
     throw new Error(`Responsive navigation controls missing from ${file}`);
   }
-  if (!header.includes('/public/assets/talon-mark-white.svg')) {
+  if (!header.includes('/public/assets/talon-icon.svg?v=2')) {
     throw new Error(`Canonical Talon mark missing from ${file}`);
   }
   if (!html.includes('href="/public/assets/talon-icon.svg"')) {

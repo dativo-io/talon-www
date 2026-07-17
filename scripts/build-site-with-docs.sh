@@ -61,6 +61,9 @@ prepare_talon_checkout() {
 rm -rf "$OUT_DIR"
 mkdir -p "$OUT_DIR"
 
+# Keep the canonical mark, app icon, and docs copies present and non-empty.
+node "$ROOT_DIR/scripts/verify-talon-brand-assets.cjs" "$ROOT_DIR"
+
 # Copy the existing static marketing site as-is.
 # Cloudflare Workers build images do not include rsync, so use portable shell/cp.
 find "$ROOT_DIR" -mindepth 1 -maxdepth 1 \
