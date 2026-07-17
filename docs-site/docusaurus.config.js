@@ -1,7 +1,7 @@
 const config = {
   title: 'Dativo Talon Docs',
   tagline: 'Control cost, reliability, policy, and sessions across company AI use cases.',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
 
   url: 'https://dativo.io',
   baseUrl: '/talon/docs/',
@@ -62,7 +62,7 @@ const config = {
       title: 'Dativo Talon Docs',
       logo: {
         alt: 'Dativo Talon',
-        src: 'https:' + '//dativo.io/public/assets/talon-logo.png',
+        src: 'img/talon-mark.svg',
       },
       items: [
         {
