@@ -18,19 +18,40 @@ const snippet = `  <!-- Privacy-friendly analytics by Plausible -->
     plausible.init();
 
     document.addEventListener('click', function(event) {
-      var link = event.target && event.target.closest ? event.target.closest('a') : null;
-      if (!link) return;
+      var target = event.target && event.target.closest ? event.target.closest('a,button') : null;
+      if (!target) return;
 
-      var href = link.getAttribute('href') || '';
+      var href = target.getAttribute('href') || '';
       var eventName = null;
 
-      if (href.indexOf('/quickstart-demo/') !== -1) eventName = 'Quickstart Demo Click';
+      if (target.matches('.hero-demo-play')) {
+        window.plausible('Hero Demo Play');
+        return;
+      }
+
+      if (href.indexOf('/pilot/') !== -1) eventName = 'Pilot Click';
+      else if (href.indexOf('/product-demo/') !== -1) eventName = 'Product Demo Click';
+      else if (href.indexOf('/quickstart-demo/') !== -1) eventName = 'Quickstart Demo Click';
+      else if (href.indexOf('/add-talon-to-existing-app/') !== -1) eventName = 'Add Existing App Click';
+      else if (
+        href.indexOf('/choosing-integration-path/') !== -1
+        || href.indexOf('/claude-code-integration/') !== -1
+        || href.indexOf('/codex-cli-integration/') !== -1
+        || href.indexOf('/integrations/') !== -1
+      ) eventName = 'Integration Selected';
       else if (href.indexOf('/sample-auditor-pack/') !== -1 || href.indexOf('/ai-governance-evidence-store/') !== -1) eventName = 'Evidence Click';
       else if (href.indexOf('/resources/eu-ai-governance-runtime-checklist/') !== -1) eventName = 'Checklist Click';
       else if (href.indexOf('github.com/dativo-io/talon') !== -1) eventName = 'GitHub Click';
       else if (href.indexOf('/talon/docs/') !== -1 || href.indexOf('/docs/talon/') !== -1) eventName = 'Docs Click';
 
-      if (eventName) window.plausible(eventName);
+      if (eventName) {
+        window.plausible(eventName, {
+          props: {
+            path: window.location.pathname,
+            label: (target.textContent || '').trim().slice(0, 80)
+          }
+        });
+      }
     });
   </script>
 `;

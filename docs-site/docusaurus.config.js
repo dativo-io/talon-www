@@ -106,6 +106,12 @@ const config = {
           label: 'GitHub',
           position: 'right',
         },
+        {
+          href: '/pilot/',
+          label: 'Pilot one use case',
+          position: 'right',
+          className: 'navbar-pilot-link',
+        },
       ],
     },
     footer: {
@@ -156,9 +162,9 @@ const config = {
         {
           title: 'Community',
           items: [
+            {label: 'Pilot one AI use case privately', href: '/pilot/'},
             {label: 'GitHub', href: 'https://github.com/dativo-io/talon'},
             {label: 'Website', href: '/'},
-            {label: 'Pilot one AI use case', href: 'https://github.com/dativo-io/talon/issues/new?title=Pilot%3A%20%3Cyour%20AI%20use%20case%3E&body=Current%20stack%3A%0AFirst%20control%20I%20need%20%28cost%20%2F%20reliability%20%2F%20policy%20%2F%20sessions%29%3A'},
           ],
         },
       ],

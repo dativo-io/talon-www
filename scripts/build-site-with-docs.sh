@@ -61,34 +61,22 @@ prepare_talon_checkout() {
 rm -rf "$OUT_DIR"
 mkdir -p "$OUT_DIR"
 
-# Keep the canonical mark, app icon, and docs copies present and non-empty.
 node "$ROOT_DIR/scripts/verify-talon-brand-assets.cjs" "$ROOT_DIR"
+node "$ROOT_DIR/scripts/verify-pilot-funnel.cjs" "$ROOT_DIR"
 
-# Copy the existing static marketing site as-is.
-# Cloudflare Workers build images do not include rsync, so use portable shell/cp.
+# Cloudflare Pages Functions remain at repository root and must not be exposed
+# as static source files inside dist/.
 find "$ROOT_DIR" -mindepth 1 -maxdepth 1 \
   ! -name '.git' \
   ! -name 'dist' \
   ! -name 'docs-site' \
+  ! -name 'functions' \
   ! -name 'scripts' \
   -exec cp -R {} "$OUT_DIR/" \;
 
-# Marketing pages historically carried independent hard-coded nav variants.
-# Normalize every .site-nav in the built artifact from one canonical definition
-# so adding or editing a page cannot silently reintroduce menu drift.
 node "$ROOT_DIR/scripts/normalize-site-nav.cjs" "$OUT_DIR"
-
-# Keep the website's locally owned copy and configuration aligned with Talon's
-# shipped agent identity model. Historical routes are allowed only in _redirects.
 node "$ROOT_DIR/scripts/verify-agent-identity-contract.cjs" "$ROOT_DIR"
-
-# Fetch the Talon source once. The docs sync script and hero publisher read from
-# this one checkout, keeping the homepage proof and /talon/docs on the same ref.
 prepare_talon_checkout
-
-# Publish the exact hero from the selected Talon checkout as a fingerprinted,
-# same-origin asset. Source index.html keeps its pinned GitHub URL for no-build
-# local previews; the production artifact never depends on raw.githubusercontent.
 node "$ROOT_DIR/scripts/publish-talon-hero.cjs" "$TALON_REPO_PATH" "$OUT_DIR"
 HERO_ASSET="$(find "$OUT_DIR/public/assets" -maxdepth 1 -type f -name 'talon_hero-*.gif' -size +0c -print -quit)"
 if [ -z "$HERO_ASSET" ]; then
@@ -100,20 +88,13 @@ if grep -q 'data-demo-src="https://raw.githubusercontent.com/dativo-io/talon/' "
   exit 1
 fi
 
-# Fail fast, before npm install and Docusaurus compilation, if talon/main changed
-# a mapped docs path without the corresponding talon-www publication update.
 node "$DOCS_DIR/scripts/validate-docs-contract.mjs" --sources-only
-
-# Build Docusaurus and mount it under /talon/docs/.
 cd "$DOCS_DIR"
 npm install
 npm run build
-
 mkdir -p "$OUT_DIR/talon/docs"
 cp -R "$DOCS_DIR/build/." "$OUT_DIR/talon/docs/"
 
-# Keep the canonical evaluator demo and the four control-plane journeys present
-# in every production artifact.
 test -f "$OUT_DIR/talon/docs/product-demo/index.html"
 test -f "$OUT_DIR/talon/docs/manual-governed-session/index.html"
 test -f "$OUT_DIR/talon/docs/control-plane/index.html"
@@ -121,15 +102,15 @@ test -f "$OUT_DIR/talon/docs/cost-governance-by-agent/index.html"
 test -f "$OUT_DIR/talon/docs/configuration/index.html"
 test -f "$OUT_DIR/talon/docs/policy-cookbook/index.html"
 test -f "$OUT_DIR/talon/docs/governing-coding-agents/index.html"
+test -f "$OUT_DIR/pilot/index.html"
+test -f "$OUT_DIR/pilot/pilot.js"
+if find "$OUT_DIR" -path '*/functions/api/pilot.js' -print -quit | grep -q .; then
+  echo "Cloudflare Pages Function source leaked into the static dist artifact." >&2
+  exit 1
+fi
 
-# Prevent historical repo-relative link mistakes from becoming public web routes.
 node "$ROOT_DIR/scripts/verify-internal-link-shapes.cjs" "$OUT_DIR"
-
-# Generate the root SEO files after all pages exist.
 node "$ROOT_DIR/scripts/generate-seo-files.cjs" "$OUT_DIR" "$SITE_URL"
-
-# Inject and verify Plausible in the final static artifact so both the marketing
-# pages and generated Docusaurus docs are tracked consistently.
 if [ "$PLAUSIBLE_ENABLED" = "true" ]; then
   node "$ROOT_DIR/scripts/inject-plausible.cjs" "$OUT_DIR" "$PLAUSIBLE_SCRIPT_SRC"
   node "$ROOT_DIR/scripts/verify-plausible.cjs" "$OUT_DIR" "$PLAUSIBLE_SCRIPT_SRC"
