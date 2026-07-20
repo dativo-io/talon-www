@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="canonical" href="https://dativo.io/pilot/" />
+  <title>Pilot one AI use case with Dativo Talon</title>
+  <meta name="description" content="Pressure-test Dativo Talon on one real AI use case: reproduce one cost, reliability, policy or session failure and inspect the controlled outcome and signed evidence." />
+  <meta property="og:title" content="Pilot one AI use case with Dativo Talon" />
+  <meta property="og:description" content="One use case. One failure scenario. One working control. One signed receipt." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dativo.io/pilot/" />
+  <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
+  <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/site-nav.css" />
+  <link rel="stylesheet" href="/acquisition.css" />
+  <script defer src="/site-nav.js"></script>
+  <script defer src="/pilot/pilot.js"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
+</head>
+<body>
+  <header class="site-nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/" aria-label="Dativo Talon home"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation"><span></span><span></span><span></span></button>
+      <nav class="nav-links" id="primary-navigation" aria-label="Primary navigation"><a href="/">Operate</a><a href="/ai-cost-control/">Cost</a><a href="/#reliability">Reliability</a><a href="/llm-governance-gateway/">Policy</a><a href="/coding-agent-governance/">Sessions</a><a href="/talon/docs/">Docs</a><a href="/comparisons/">Compare</a><a href="https://github.com/dativo-io/talon">GitHub</a><a class="nav-button" href="/pilot/">Pilot</a></nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero pilot-hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Founder-led technical pilot</div>
+          <h1>Pilot Talon on one real AI use case.</h1>
+          <p class="hero-subtitle">Bring an existing support bot, coding workflow, internal copilot or AI-backed product feature. We will start in shadow mode, reproduce one operating failure and decide from the evidence whether Talon deserves a broader rollout.</p>
+          <div class="trust-row"><span>No public GitHub issue</span><span>No company-wide programme</span><span>No sales theatre</span></div>
+        </div>
+        <aside class="pilot-promise" aria-label="Pilot outcome">
+          <p class="eyebrow">The pilot contract</p>
+          <h2>One use case. One failure. One control. One receipt.</h2>
+          <ol>
+            <li><strong>Route</strong> one development or internal use case through Talon.</li>
+            <li><strong>Observe</strong> in shadow mode without changing the response.</li>
+            <li><strong>Trigger</strong> one cost, reliability or policy condition.</li>
+            <li><strong>Inspect</strong> the session and verify the signed evidence.</li>
+          </ol>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap pilot-layout">
+        <div class="pilot-copy">
+          <p class="eyebrow">Good pilot candidates</p>
+          <h2>Start where the operating pain is already visible.</h2>
+          <p>The best pilot is not “govern all AI.” It is a bounded scenario your team can reproduce and judge.</p>
+          <div class="pilot-copy-list">
+            <article><strong>Unexpected or fragmented spend</strong><span>Prove that a new request is stopped before provider access when the effective budget is crossed.</span></article>
+            <article><strong>Provider failure behavior</strong><span>Trigger a supported transient failure and confirm fallback stays inside the same policy boundary.</span></article>
+            <article><strong>Customer or confidential data</strong><span>See what Talon would redact, block or keep inside an allowed destination before enabling enforcement.</span></article>
+            <article><strong>Unclear agent sessions</strong><span>Reconstruct cost, provider path, denials and decisions for one asserted session.</span></article>
+          </div>
+          <p class="boundary-note">Talon governs traffic and actions routed through its interception paths. It does not orchestrate agents or observe local actions that bypass it.</p>
+        </div>
+
+        <div class="pilot-form-card">
+          <p class="eyebrow">Private pilot request</p>
+          <h2>Tell us what you already operate.</h2>
+          <form class="pilot-form" action="/api/pilot" method="post" data-pilot-form>
+            <div class="form-row">
+              <div class="form-field"><label for="pilot-name">Name</label><input id="pilot-name" name="name" type="text" autocomplete="name" maxlength="120" required /></div>
+              <div class="form-field"><label for="pilot-email">Work email</label><input id="pilot-email" name="email" type="email" autocomplete="email" maxlength="200" required /></div>
+            </div>
+            <div class="form-row">
+              <div class="form-field"><label for="pilot-company">Company</label><input id="pilot-company" name="company" type="text" autocomplete="organization" maxlength="160" required /></div>
+              <div class="form-field"><label for="pilot-role">Role <span class="form-hint">(optional)</span></label><input id="pilot-role" name="role" type="text" autocomplete="organization-title" maxlength="160" /></div>
+            </div>
+            <div class="form-field"><label for="pilot-use-case">AI use case</label><input id="pilot-use-case" name="use_case" type="text" maxlength="240" placeholder="Example: Zendesk support summarizer, Claude Code fleet, internal document assistant" required /></div>
+            <div class="form-field"><label for="pilot-stack">Current stack</label><input id="pilot-stack" name="stack" type="text" maxlength="300" placeholder="Providers, SDK/framework, deployment environment" required /></div>
+            <div class="form-field"><label for="pilot-problem">First problem to reproduce</label><select id="pilot-problem" name="problem" required><option value="">Choose one</option><option value="cost">Cost or budget control</option><option value="reliability">Retries or provider fallback</option><option value="policy">PII, models, tools or data destinations</option><option value="sessions">Session visibility or incident explanation</option><option value="other">Another bounded operating problem</option></select></div>
+            <div class="form-field"><label for="pilot-notes">What is blocked or painful today? <span class="form-hint">(optional)</span></label><textarea id="pilot-notes" name="notes" maxlength="3000" placeholder="Keep sensitive customer data, secrets and credentials out of this form."></textarea></div>
+            <div class="form-field form-honeypot" aria-hidden="true"><label for="pilot-website">Website</label><input id="pilot-website" name="website" type="text" tabindex="-1" autocomplete="off" /></div>
+            <label class="form-consent"><input name="consent" type="checkbox" value="yes" required /><span>Dativo may use this information to respond about the Talon pilot. I have not included customer data, secrets or credentials.</span></label>
+            <div class="form-actions"><button class="button primary" type="submit">Request the pilot</button><span class="form-status" role="status" aria-live="polite" data-form-status></span></div>
+            <p class="pilot-privacy">This submission is delivered privately to Dativo. It is not posted to GitHub or made public.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Prefer to evaluate independently?</p><h2>Run the same proof before contacting us.</h2><p>The no-key product demo exercises multiple AI use cases, policy decisions, budget enforcement and signed verification without real provider credentials.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/product-demo/">Run the product demo</a><a class="button secondary" href="/talon/docs/quickstart-demo/">Try it without API keys</a><a class="hero-github-link" href="https://github.com/dativo-io/talon">View GitHub →</a></div></div></div></section>
+  </main>
+
+  <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Talon is self-hostable Apache-2.0 software. Pilot requests are used only to evaluate a possible Talon deployment.</span></div></footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
