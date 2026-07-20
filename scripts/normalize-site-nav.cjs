@@ -20,7 +20,8 @@ const canonicalHeader = `<header class="site-nav">
         <a href="/coding-agent-governance/">Sessions</a>
         <a href="/talon/docs/">Docs</a>
         <a href="/comparisons/">Compare</a>
-        <a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a>
+        <a href="https://github.com/dativo-io/talon">GitHub</a>
+        <a class="nav-button" href="/pilot/">Pilot</a>
       </nav>
     </div>
   </header>`;
@@ -29,7 +30,9 @@ const headerPattern = /<header class="site-nav">[\s\S]*?<\/header>/;
 const iconPattern = /\s*<link\s+rel="icon"[^>]*>\s*/gi;
 const faviconTag = '<link rel="icon" type="image/svg+xml" href="/public/assets/talon-icon.svg" />';
 const navStylesheet = '<link rel="stylesheet" href="/site-nav.css" />';
+const acquisitionStylesheet = '<link rel="stylesheet" href="/acquisition.css" />';
 const navScript = '<script defer src="/site-nav.js"></script>';
+const acquisitionScript = '<script defer src="/acquisition.js"></script>';
 const expectedLabels = [
   'Operate',
   'Cost',
@@ -39,6 +42,7 @@ const expectedLabels = [
   'Docs',
   'Compare',
   'GitHub',
+  'Pilot',
 ];
 
 function listHtmlFiles(dir) {
@@ -78,7 +82,9 @@ for (const file of listHtmlFiles(root)) {
   updated = updated.replace(iconPattern, '\n');
   updated = ensureHeadAsset(updated, 'href="/public/assets/talon-icon.svg"', faviconTag);
   updated = ensureHeadAsset(updated, 'href="/site-nav.css"', navStylesheet);
+  updated = ensureHeadAsset(updated, 'href="/acquisition.css"', acquisitionStylesheet);
   updated = ensureHeadAsset(updated, 'src="/site-nav.js"', navScript);
+  updated = ensureHeadAsset(updated, 'src="/acquisition.js"', acquisitionScript);
   fs.writeFileSync(file, updated, 'utf8');
   normalized += 1;
 }
@@ -111,11 +117,17 @@ for (const file of pagesWithSiteNav) {
   if (!header.includes('/public/assets/talon-icon.svg?v=2')) {
     throw new Error(`Canonical Talon mark missing from ${file}`);
   }
+  if (!header.includes('href="/pilot/"') || !header.includes('class="nav-button"')) {
+    throw new Error(`Private pilot CTA missing from canonical navigation in ${file}`);
+  }
   if (!html.includes('href="/public/assets/talon-icon.svg"')) {
     throw new Error(`Canonical Talon favicon missing from ${file}`);
   }
   if (!html.includes('href="/site-nav.css"') || !html.includes('src="/site-nav.js"')) {
     throw new Error(`Responsive navigation assets missing from ${file}`);
+  }
+  if (!html.includes('href="/acquisition.css"') || !html.includes('src="/acquisition.js"')) {
+    throw new Error(`Acquisition assets missing from ${file}`);
   }
 }
 
