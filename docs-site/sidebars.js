@@ -21,6 +21,7 @@ const sidebars = {
       label: 'Operate AI use cases',
       collapsed: false,
       items: [
+        doc('operating-company-ai-use-cases', 'Company AI operating model'),
         doc('control-plane', 'What the Talon control plane does'),
         'gateway-dashboard',
         'operational-control-plane',
