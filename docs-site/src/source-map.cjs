@@ -16,6 +16,7 @@ module.exports = {
   'copaw-docker-primer.md': 'docs/guides/copaw-talon-primer/docker-copaw-talon-primer.md',
   'claude-code-integration.md': 'docs/guides/claude-code-integration.md',
   'codex-cli-integration.md': 'docs/guides/codex-cli-integration.md',
+  'github-copilot-cli-governance.md': 'docs/guides/github-copilot-cli-governance.md',
   'governing-coding-agents.md': 'docs/guides/governing-coding-agents.md',
   'desktop-app-governance.md': 'docs/guides/desktop-app-governance.md',
   'multi-tenant-msp.md': 'docs/guides/multi-tenant-msp.md',
