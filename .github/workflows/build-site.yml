@@ -21,6 +21,8 @@ jobs:
       - name: Build static site and Docusaurus docs
         run: bash scripts/build-site-with-docs.sh
 
+      # Keep both the buyer-facing use-case route and its canonical technical
+      # documentation route in the deployable artifact.
       - name: Verify expected outputs
         run: |
           test -f dist/index.html
