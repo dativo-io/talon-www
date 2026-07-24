@@ -44,6 +44,72 @@
   transform: translateY(-6px) rotate(-45deg);
 }
 
+.nav-dropdown {
+  position: relative;
+  color: #a7b2c4;
+}
+
+.nav-dropdown summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+  cursor: pointer;
+  transition: color 0.16s ease;
+}
+
+.nav-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.nav-dropdown summary::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 0.16s ease;
+}
+
+.nav-dropdown[open] summary,
+.nav-dropdown summary:hover,
+.nav-dropdown summary:focus-visible {
+  color: var(--text);
+}
+
+.nav-dropdown[open] summary::after {
+  transform: translateY(2px) rotate(225deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  z-index: 30;
+  min-width: 245px;
+  padding: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 14px;
+  background: rgba(7, 10, 18, 0.98);
+  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.42);
+  transform: translateX(-50%);
+}
+
+.nav-dropdown-menu a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 9px;
+  color: #d6dfec;
+  white-space: nowrap;
+}
+
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a:focus-visible {
+  background: rgba(148, 163, 184, 0.1);
+  color: var(--text);
+}
+
 @media (max-width: 860px) {
   body.nav-open {
     overflow: hidden;
@@ -81,7 +147,8 @@
     gap: 4px;
   }
 
-  .nav-links a {
+  .nav-links a,
+  .nav-dropdown summary {
     display: block;
     padding: 11px 12px;
     border-radius: 10px;
@@ -89,9 +156,39 @@
     font-size: 16px;
   }
 
+  .nav-dropdown summary {
+    position: relative;
+  }
+
+  .nav-dropdown summary::after {
+    position: absolute;
+    top: 17px;
+    right: 15px;
+  }
+
   .nav-links a:hover,
-  .nav-links a:focus-visible {
+  .nav-links a:focus-visible,
+  .nav-dropdown summary:hover,
+  .nav-dropdown summary:focus-visible {
     background: rgba(148, 163, 184, 0.1);
+  }
+
+  .nav-dropdown-menu {
+    position: static;
+    min-width: 0;
+    margin: 2px 0 6px 12px;
+    padding: 4px;
+    border: 0;
+    border-left: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .nav-dropdown-menu a {
+    padding-left: 14px;
+    white-space: normal;
   }
 
   .nav-links .nav-button {
@@ -101,7 +198,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nav-toggle span {
+  .nav-toggle span,
+  .nav-dropdown summary,
+  .nav-dropdown summary::after {
     transition: none;
   }
 }
