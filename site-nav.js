@@ -4,6 +4,11 @@
   if (!navToggle || !nav) return;
 
   const mobileNav = window.matchMedia('(max-width: 860px)');
+  const dropdowns = [...nav.querySelectorAll('.nav-dropdown')];
+
+  const closeDropdowns = () => {
+    dropdowns.forEach((dropdown) => dropdown.removeAttribute('open'));
+  };
 
   const closeNav = ({restoreFocus = false} = {}) => {
     const wasOpen = navToggle.getAttribute('aria-expanded') === 'true';
@@ -11,6 +16,7 @@
     navToggle.setAttribute('aria-label', 'Open navigation');
     nav.dataset.open = 'false';
     document.body.classList.remove('nav-open');
+    closeDropdowns();
     if (restoreFocus && wasOpen) navToggle.focus();
   };
 
@@ -28,11 +34,21 @@
 
   nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => closeNav()));
 
+  dropdowns.forEach((dropdown) => {
+    dropdown.addEventListener('toggle', () => {
+      if (!dropdown.open) return;
+      dropdowns.forEach((other) => {
+        if (other !== dropdown) other.removeAttribute('open');
+      });
+    });
+  });
+
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeNav({restoreFocus: true});
+    if (event.key === 'Escape') closeNav({restoreFocus: mobileNav.matches});
   });
 
   document.addEventListener('click', (event) => {
+    if (!nav.contains(event.target)) closeDropdowns();
     if (!mobileNav.matches || nav.dataset.open !== 'true') return;
     if (nav.contains(event.target) || navToggle.contains(event.target)) return;
     closeNav();
