@@ -18,6 +18,12 @@ const canonicalHeader = `<header class="site-nav">
         <a href="/#reliability">Reliability</a>
         <a href="/llm-governance-gateway/">Policy</a>
         <a href="/coding-agent-governance/">Sessions</a>
+        <details class="nav-dropdown">
+          <summary>Use cases</summary>
+          <div class="nav-dropdown-menu">
+            <a href="/github-copilot-governance/">GitHub Copilot governance</a>
+          </div>
+        </details>
         <a href="/talon/docs/">Docs</a>
         <a href="/comparisons/">Compare</a>
         <a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a>
@@ -36,6 +42,8 @@ const expectedLabels = [
   'Reliability',
   'Policy',
   'Sessions',
+  'Use cases',
+  'GitHub Copilot governance',
   'Docs',
   'Compare',
   'GitHub',
@@ -107,6 +115,9 @@ for (const file of pagesWithSiteNav) {
 
   if (!header.includes('class="nav-toggle"') || !header.includes('id="primary-navigation"')) {
     throw new Error(`Responsive navigation controls missing from ${file}`);
+  }
+  if (!header.includes('class="nav-dropdown"') || !header.includes('/github-copilot-governance/')) {
+    throw new Error(`Use-case navigation missing from ${file}`);
   }
   if (!header.includes('/public/assets/talon-icon.svg?v=2')) {
     throw new Error(`Canonical Talon mark missing from ${file}`);

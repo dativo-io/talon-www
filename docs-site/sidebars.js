@@ -18,6 +18,14 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Use cases',
+      collapsed: false,
+      items: [
+        doc('github-copilot-cli-governance', 'GitHub Copilot governance'),
+      ],
+    },
+    {
+      type: 'category',
       label: 'Operate AI use cases',
       collapsed: false,
       items: [
