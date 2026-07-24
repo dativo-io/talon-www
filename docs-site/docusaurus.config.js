@@ -55,7 +55,7 @@ const config = {
       {
         name: 'keywords',
         content:
-          'AI control plane, AI agent operations, LLM cost control, AI budget enforcement, LLM retries, provider fallback, AI session debugging, AI agent session visibility, AI tool call governance, self-hosted AI gateway, EU AI routing, signed audit evidence, Dativo Talon',
+          'AI control plane, AI agent operations, GitHub Copilot governance, coding assistant governance, MCP tool governance, LLM cost control, AI budget enforcement, LLM retries, provider fallback, AI session debugging, AI agent session visibility, AI tool call governance, self-hosted AI gateway, EU AI routing, signed audit evidence, Dativo Talon',
       },
     ],
     navbar: {
@@ -97,6 +97,17 @@ const config = {
           position: 'left',
         },
         {
+          type: 'dropdown',
+          label: 'Use cases',
+          position: 'left',
+          items: [
+            {
+              to: '/github-copilot-cli-governance/',
+              label: 'GitHub Copilot governance',
+            },
+          ],
+        },
+        {
           href: '/',
           label: 'Website',
           position: 'right',
@@ -115,6 +126,7 @@ const config = {
           title: 'Get started',
           items: [
             {label: 'Product demo — three use cases', to: '/product-demo/'},
+            {label: 'GitHub Copilot governance', to: '/github-copilot-cli-governance/'},
             {label: '60-second no-key demo', to: '/quickstart-demo/'},
             {label: 'Add Talon to an existing app', to: '/add-talon-to-existing-app/'},
             {label: 'Choose an integration path', to: '/choosing-integration-path/'},
