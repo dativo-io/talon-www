@@ -108,6 +108,7 @@ if (!sourcesOnly) {
 
   const requiredFirstClassDocs = [
     'product-demo',
+    'github-copilot-cli-governance',
     'control-plane',
     'cost-governance-by-agent',
     'configuration',
