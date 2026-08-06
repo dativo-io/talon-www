@@ -4,8 +4,9 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DOCS_DIR="$ROOT_DIR/docs-site"
 OUT_DIR="$ROOT_DIR/dist"
-PLAUSIBLE_ENABLED="${PLAUSIBLE_ENABLED:-true}"
-PLAUSIBLE_SCRIPT_SRC="${PLAUSIBLE_SCRIPT_SRC:-https://plausible.io/js/pa-XmB1x7I_rYllpvVLPcVfs.js}"
+UMAMI_ENABLED="${UMAMI_ENABLED:-true}"
+UMAMI_SCRIPT_SRC="${UMAMI_SCRIPT_SRC:-https://cloud.umami.is/script.js}"
+UMAMI_WEBSITE_ID="${UMAMI_WEBSITE_ID:-e9e60801-c09d-4f9f-8890-7b76cb6fdbcb}"
 SITE_URL="${SITE_URL:-https://dativo.io}"
 TALON_DOCS_REPO_URL="${TALON_DOCS_REPO_URL:-https://github.com/dativo-io/talon.git}"
 TALON_DOCS_REF="${TALON_DOCS_REF:-main}"
@@ -129,11 +130,11 @@ node "$ROOT_DIR/scripts/verify-internal-link-shapes.cjs" "$OUT_DIR"
 # Generate the root SEO files after all pages exist.
 node "$ROOT_DIR/scripts/generate-seo-files.cjs" "$OUT_DIR" "$SITE_URL"
 
-# Inject and verify Plausible in the final static artifact so both the marketing
+# Inject and verify Umami in the final static artifact so both the marketing
 # pages and generated Docusaurus docs are tracked consistently.
-if [ "$PLAUSIBLE_ENABLED" = "true" ]; then
-  node "$ROOT_DIR/scripts/inject-plausible.cjs" "$OUT_DIR" "$PLAUSIBLE_SCRIPT_SRC"
-  node "$ROOT_DIR/scripts/verify-plausible.cjs" "$OUT_DIR" "$PLAUSIBLE_SCRIPT_SRC"
+if [ "$UMAMI_ENABLED" = "true" ]; then
+  node "$ROOT_DIR/scripts/inject-umami.cjs" "$OUT_DIR" "$UMAMI_SCRIPT_SRC" "$UMAMI_WEBSITE_ID"
+  node "$ROOT_DIR/scripts/verify-umami.cjs" "$OUT_DIR" "$UMAMI_SCRIPT_SRC" "$UMAMI_WEBSITE_ID"
 fi
 
 echo "Built site into $OUT_DIR"
