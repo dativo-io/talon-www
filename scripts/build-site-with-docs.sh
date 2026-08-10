@@ -7,6 +7,7 @@ OUT_DIR="$ROOT_DIR/dist"
 UMAMI_ENABLED="${UMAMI_ENABLED:-true}"
 UMAMI_SCRIPT_SRC="${UMAMI_SCRIPT_SRC:-https://cloud.umami.is/script.js}"
 UMAMI_WEBSITE_ID="${UMAMI_WEBSITE_ID:-e9e60801-c09d-4f9f-8890-7b76cb6fdbcb}"
+UMAMI_DOMAINS="${UMAMI_DOMAINS:-dativo.io,www.dativo.io}"
 SITE_URL="${SITE_URL:-https://dativo.io}"
 TALON_DOCS_REPO_URL="${TALON_DOCS_REPO_URL:-https://github.com/dativo-io/talon.git}"
 TALON_DOCS_REF="${TALON_DOCS_REF:-main}"
@@ -134,8 +135,8 @@ node "$ROOT_DIR/scripts/generate-seo-files.cjs" "$OUT_DIR" "$SITE_URL"
 # static marketing site and generated Docusaurus docs exist in the final dist,
 # then verify every HTML page contains exactly one tracker and no Plausible code.
 if [ "$UMAMI_ENABLED" = "true" ]; then
-  node "$ROOT_DIR/scripts/inject-umami.cjs" "$OUT_DIR" "$UMAMI_SCRIPT_SRC" "$UMAMI_WEBSITE_ID"
-  node "$ROOT_DIR/scripts/verify-umami.cjs" "$OUT_DIR" "$UMAMI_SCRIPT_SRC" "$UMAMI_WEBSITE_ID"
+  node "$ROOT_DIR/scripts/inject-umami.cjs" "$OUT_DIR" "$UMAMI_SCRIPT_SRC" "$UMAMI_WEBSITE_ID" "$UMAMI_DOMAINS"
+  node "$ROOT_DIR/scripts/verify-umami.cjs" "$OUT_DIR" "$UMAMI_SCRIPT_SRC" "$UMAMI_WEBSITE_ID" "$UMAMI_DOMAINS"
 fi
 
 echo "Built site into $OUT_DIR"
