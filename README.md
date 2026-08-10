@@ -34,7 +34,7 @@ Output directory:
 dist
 ```
 
-The build script copies the static marketing site, builds Docusaurus, mounts docs under `/talon/docs/`, generates root SEO files, injects both Plausible and Umami analytics into every generated HTML page during the comparison period, and fails the build if an enabled tracker is missing from any generated page.
+The build script copies the static marketing site, builds Docusaurus, mounts docs under `/talon/docs/`, generates root SEO files, injects Umami analytics into every generated HTML page, and fails the build if the final artifact has a missing or duplicate tracker or contains legacy analytics code.
 
 The homepage hero and the published docs are sourced from the same Talon checkout. During the production build, `docs/assets/talon_hero.gif` is copied into `dist/public/assets/` under a Talon-commit-fingerprinted filename and the built homepage is rewritten to that same-origin URL. The source `index.html` keeps its pinned GitHub URL only so the no-build local preview above can still play the demo.
 
@@ -68,51 +68,73 @@ After deployment, submit both `https://dativo.io/sitemap.xml` and `https://dativ
 
 ## Analytics
 
-Plausible and Umami are injected in parallel at build time through `scripts/build-site-with-docs.sh`. This allows a direct comparison of page traffic and event coverage before either tracker is removed.
+Umami is the sole browser analytics tracker and is injected at build time only after the complete deployable artifact exists. This covers both the static marketing pages and every generated Docusaurus HTML page under `/talon/docs/`.
 
 Defaults:
 
 ```bash
-PLAUSIBLE_ENABLED=true
-PLAUSIBLE_SCRIPT_SRC=https://plausible.io/js/pa-XmB1x7I_rYllpvVLPcVfs.js
-
 UMAMI_ENABLED=true
 UMAMI_SCRIPT_SRC=https://cloud.umami.is/script.js
 UMAMI_WEBSITE_ID=e9e60801-c09d-4f9f-8890-7b76cb6fdbcb
+UMAMI_DOMAINS=dativo.io,www.dativo.io
 ```
 
-Each tracker can be disabled independently in a non-production or diagnostic build:
+`UMAMI_DOMAINS` keeps local development and Cloudflare preview hosts out of production analytics. Disable analytics entirely for a diagnostic build with:
 
 ```bash
-PLAUSIBLE_ENABLED=false ./scripts/build-site-with-docs.sh
 UMAMI_ENABLED=false ./scripts/build-site-with-docs.sh
 ```
 
-Override `UMAMI_SCRIPT_SRC` when moving Umami collection behind a first-party proxy, and override `UMAMI_WEBSITE_ID` when deploying another Umami website/project.
+`UMAMI_SCRIPT_SRC` can later point at a first-party proxy path on `dativo.io` if tracker blocking becomes material.
 
-After deployment, both scripts should appear in page source:
+After deployment, the tracker should appear once in the `<head>` of every generated HTML page:
 
 ```html
-<!-- Privacy-friendly analytics by Plausible -->
-<script async src="https://plausible.io/js/pa-XmB1x7I_rYllpvVLPcVfs.js" data-talon-analytics="plausible"></script>
-
 <!-- Privacy-friendly analytics by Umami -->
-<script defer src="https://cloud.umami.is/script.js" data-website-id="e9e60801-c09d-4f9f-8890-7b76cb6fdbcb" data-talon-analytics="umami"></script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="e9e60801-c09d-4f9f-8890-7b76cb6fdbcb" data-domains="dativo.io,www.dativo.io" data-talon-analytics="umami"></script>
 ```
 
-Plausible continues to emit the existing buyer-intent events:
+The injected helper emits these buyer-intent events:
 
+- `Product Demo Click`
 - `Quickstart Demo Click`
+- `Demo Play`
 - `Evidence Click`
 - `Checklist Click`
 - `GitHub Click`
 - `Docs Click`
 
-Umami emits those events plus:
+Link events include the current page, destination, and truncated CTA text as event properties. Cloudflare Web Analytics remains present on the static marketing pages as a secondary infrastructure-level signal.
 
-- `Product Demo Click`
-- `Demo Play`
+### Recommended Umami dashboard setup
 
-Umami events include page, destination, and CTA-text properties where relevant. Cloudflare Web Analytics remains present on the static marketing pages as a secondary infrastructure-level signal.
+Create these Goals in Umami:
 
-During the comparison period, evaluate Plausible and Umami using the same date range and separate pageview coverage from custom-event coverage. Differences do not automatically mean one tracker is wrong: filtering, script blocking, visitor identification, event naming, and bot handling can all produce legitimate discrepancies.
+1. `Product Demo Click` — primary technical evaluation signal.
+2. `Quickstart Demo Click` — low-friction evaluation signal.
+3. `GitHub Click` — implementation/repository intent.
+4. `Evidence Click` — proof/audit interest.
+5. `Demo Play` — product-proof engagement.
+
+Keep `Docs Click` and `Checklist Click` as supporting events rather than headline conversions.
+
+Create at least these Funnels:
+
+- Homepage evaluation: `/` → `Product Demo Click` → `GitHub Click`.
+- Low-friction evaluation: `/` → `Quickstart Demo Click` → `GitHub Click`.
+- Comparison evaluation: `/comparisons/` → `Product Demo Click` or `Quickstart Demo Click` → `GitHub Click`.
+
+Use consistent UTM parameters on every external campaign link:
+
+- `utm_source`: `linkedin`, `reddit`, `github`, `blog`, `email`, `direct_outreach`
+- `utm_medium`: `organic_social`, `community`, `referral`, `newsletter`, `outreach`
+- `utm_campaign`: stable topic/campaign identifier
+- `utm_content`: individual post, creative, or placement
+
+For routine product review, separate three questions:
+
+1. **Acquisition:** which sources and landing pages bring relevant visitors?
+2. **Evaluation:** which visitors trigger demo, quickstart, evidence, or GitHub events?
+3. **Conversion:** which journeys progress through the defined Goals and Funnels?
+
+Do not identify visitors or attach email/form values to analytics events. Keep event properties limited to non-sensitive navigation and CTA context.
