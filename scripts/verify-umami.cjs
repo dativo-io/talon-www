@@ -5,10 +5,11 @@ const path = require('path');
 const outDir = process.argv[2];
 const scriptSrc = process.argv[3];
 const websiteId = process.argv[4];
+const domains = process.argv[5] || '';
 const marker = 'data-talon-analytics="umami"';
 
 if (!outDir || !scriptSrc || !websiteId) {
-  console.error('Usage: verify-umami.cjs <out-dir> <umami-script-src> <website-id>');
+  console.error('Usage: verify-umami.cjs <out-dir> <umami-script-src> <website-id> [domains]');
   process.exit(2);
 }
 
@@ -64,6 +65,7 @@ for (const file of htmlFiles) {
     if (!/\bdefer\b/i.test(tracker)) failures.push(`${relative}: Umami tracker is missing defer`);
     if (!tracker.includes(`src="${scriptSrc}"`)) failures.push(`${relative}: Umami tracker has the wrong script source`);
     if (!tracker.includes(`data-website-id="${websiteId}"`)) failures.push(`${relative}: Umami tracker has the wrong website ID`);
+    if (domains && !tracker.includes(`data-domains="${domains}"`)) failures.push(`${relative}: Umami tracker has the wrong production domain allowlist`);
   }
 
   if (!html.includes('window.umami.track')) {
