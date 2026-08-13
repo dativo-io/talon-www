@@ -5,15 +5,17 @@ const path = require('path');
 const outDir = process.argv[2];
 const scriptSrc = process.argv[3];
 const websiteId = process.argv[4];
+const domains = process.argv[5] || '';
 const marker = 'data-talon-analytics="umami"';
 
 if (!outDir || !scriptSrc || !websiteId) {
-  console.error('Usage: inject-umami.cjs <out-dir> <umami-script-src> <website-id>');
+  console.error('Usage: inject-umami.cjs <out-dir> <umami-script-src> <website-id> [domains]');
   process.exit(2);
 }
 
+const domainsAttribute = domains ? ` data-domains="${domains}"` : '';
 const snippet = `  <!-- Privacy-friendly analytics by Umami -->
-  <script defer src="${scriptSrc}" data-website-id="${websiteId}" ${marker}></script>
+  <script defer src="${scriptSrc}" data-website-id="${websiteId}"${domainsAttribute} ${marker}></script>
   <script>
     document.addEventListener('click', function(event) {
       var link = event.target && event.target.closest ? event.target.closest('a') : null;
@@ -26,7 +28,7 @@ const snippet = `  <!-- Privacy-friendly analytics by Umami -->
       else if (href.indexOf('/quickstart-demo/') !== -1) eventName = 'Quickstart Demo Click';
       else if (href.indexOf('/sample-auditor-pack/') !== -1 || href.indexOf('/ai-governance-evidence-store/') !== -1) eventName = 'Evidence Click';
       else if (href.indexOf('/resources/eu-ai-governance-runtime-checklist/') !== -1) eventName = 'Checklist Click';
-      else if (href.indexOf('github.com/dativo-io/talon') !== -1) eventName = 'GitHub Click';
+      else if (/^https:\/\/github\.com\/dativo-io\/talon(?:[/?#]|$)/.test(href)) eventName = 'GitHub Click';
       else if (href.indexOf('/talon/docs/') !== -1 || href.indexOf('/docs/talon/') !== -1) eventName = 'Docs Click';
 
       if (eventName) {
@@ -39,7 +41,7 @@ const snippet = `  <!-- Privacy-friendly analytics by Umami -->
     });
 
     document.addEventListener('click', function(event) {
-      var button = event.target && event.target.closest ? event.target.closest('[data-demo-src] button') : null;
+      var button = event.target && event.target.closest ? event.target.closest('.hero-demo-play') : null;
       if (!button || !window.umami || typeof window.umami.track !== 'function') return;
       window.umami.track('Demo Play', { page: window.location.pathname });
     });
@@ -58,6 +60,11 @@ function walk(dir) {
     const html = fs.readFileSync(fullPath, 'utf8');
     if (html.includes(marker)) continue;
     if (!/<\/head>/i.test(html)) continue;
+
+    if (html.includes(`data-website-id="${websiteId}"`) || html.includes(`src="${scriptSrc}"`)) {
+      console.error(`Refusing to inject a duplicate or unmanaged Umami tracker into ${path.relative(outDir, fullPath)}`);
+      process.exit(1);
+    }
 
     fs.writeFileSync(fullPath, html.replace(/<\/head>/i, `${snippet}</head>`));
   }
