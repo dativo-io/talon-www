@@ -49,6 +49,9 @@ function escapeAttr(value) {
 }
 
 function setMeta(html, selector, content) {
+  const prefix = selector.startsWith('name=') ? 'name' : 'property';
+  const value = selector.slice(selector.indexOf('"') + 1, selector.lastIndexOf('"'));
+  const replacement = `<meta ${prefix}="${value}" content="${escapeAttr(content)}" />`;
   let cursor = 0;
   while (true) {
     const start = html.indexOf('<meta', cursor);
@@ -57,14 +60,12 @@ function setMeta(html, selector, content) {
     if (end < 0) break;
     const tag = html.slice(start, end + 1);
     if (tag.includes(selector)) {
-      const prefix = selector.startsWith('name=') ? 'name' : 'property';
-      const value = selector.slice(selector.indexOf('"') + 1, selector.lastIndexOf('"'));
-      const replacement = `<meta ${prefix}="${value}" content="${escapeAttr(content)}" />`;
       return `${html.slice(0, start)}${replacement}${html.slice(end + 1)}`;
     }
     cursor = end + 1;
   }
-  return html;
+  const headEnd = html.indexOf('</head>');
+  return headEnd < 0 ? html : `${html.slice(0, headEnd)}  ${replacement}\n${html.slice(headEnd)}`;
 }
 
 function injectAssets(html) {
