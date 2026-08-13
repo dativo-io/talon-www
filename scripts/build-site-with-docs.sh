@@ -131,6 +131,10 @@ node "$ROOT_DIR/scripts/verify-internal-link-shapes.cjs" "$OUT_DIR"
 # Generate the root SEO files after all pages exist.
 node "$ROOT_DIR/scripts/generate-seo-files.cjs" "$OUT_DIR" "$SITE_URL"
 
+# Apply analytics-driven search snippets and site-wide funnel UX after both the
+# marketing pages and Docusaurus docs exist in their final production paths.
+node "$ROOT_DIR/scripts/apply-growth-optimizations.cjs" "$OUT_DIR"
+
 # Umami is the sole browser analytics tracker. Inject it only after both the
 # static marketing site and generated Docusaurus docs exist in the final dist,
 # then verify every HTML page contains exactly one tracker and no Plausible code.
