@@ -28,6 +28,7 @@ jobs:
           test -f dist/index.html
           test -f dist/sitemap.xml
           test -f dist/ai-cost-control/index.html
+          test -f dist/ai-action-control/index.html
           test -f dist/llm-governance-gateway/index.html
           test -f dist/coding-agent-governance/index.html
           test -f dist/github-copilot-governance/index.html
