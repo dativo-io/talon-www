@@ -8,7 +8,8 @@ const assets = [
   '<script defer src="/growth.js" data-talon-growth="script"></script>',
 ];
 const metadata = {
-  '/': ['Talon — Open-Source AI Control Plane for Cost, Policy & Sessions', 'Open-source, self-hosted control plane for AI use cases: enforce spend, model/tool/data policy, policy-valid fallback, session visibility, and signed evidence.'],
+  '/': ['Talon — Preventive AI Cost & Action Control Plane', 'Open-source, self-hosted control plane for AI use cases: stop runaway spend and disallowed intercepted actions before execution, with shared policy, reliability, sessions, and signed evidence.'],
+  '/ai-action-control/': ['AI Action Control Before Execution | Talon', 'Control intercepted AI actions before they become business effects. Block disallowed tool calls today and follow Talon’s exact-operation approval and signed lifecycle direction.'],
   '/talon/docs/': ['Talon Docs — AI Cost Control, Policy, Reliability & Sessions', 'Install, integrate, and operate Talon: AI cost caps, policy-valid fallback, model/tool/data controls, session visibility, and verifiable evidence.'],
   '/talon/docs/compliance-export-runbook/': ['Export Verifiable AI Audit Evidence for Auditors | Talon', 'Export, verify, and hand off signed Talon evidence for audits and customer reviews. Practical commands, integrity checks, and review-ready evidence workflows.'],
   '/talon/docs/codex-cli-integration/': ['Govern Codex CLI: Cost, Policy & Session Evidence | Talon', 'Route Codex CLI through Talon for agent-attributed cost controls, model and data policy, session visibility, and signed evidence—without claiming local tool control.'],
