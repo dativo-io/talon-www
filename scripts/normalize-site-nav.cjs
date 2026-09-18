@@ -15,7 +15,7 @@ const canonicalHeader = `<header class="site-nav">
       <nav class="nav-links" id="primary-navigation" aria-label="Primary navigation">
         <a href="/">Operate</a>
         <a href="/ai-cost-control/">Cost</a>
-        <a href="/#reliability">Reliability</a>
+        <a href="/ai-action-control/">Actions</a>
         <a href="/llm-governance-gateway/">Policy</a>
         <a href="/coding-agent-governance/">Sessions</a>
         <details class="nav-dropdown">
@@ -39,7 +39,7 @@ const navScript = '<script defer src="/site-nav.js"></script>';
 const expectedLabels = [
   'Operate',
   'Cost',
-  'Reliability',
+  'Actions',
   'Policy',
   'Sessions',
   'Use cases',
