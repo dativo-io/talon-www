@@ -1,6 +1,6 @@
 const config = {
   title: 'Dativo Talon Docs',
-  tagline: 'Control cost, reliability, policy, and sessions across company AI use cases.',
+  tagline: 'Turn company AI policy into enforceable, use-case-specific controls.',
   favicon: 'img/favicon.svg',
 
   url: 'https://dativo.io',
@@ -50,12 +50,12 @@ const config = {
       {
         name: 'description',
         content:
-          'Dativo Talon is the open-source control plane for company AI use cases: control LLM spend, reliability, shared policy, sessions, intercepted actions, EU routing, and signed evidence.',
+          'Dativo Talon is the open-source control layer for company AI use cases: turn company policy into use-case-specific effective rules, enforce them at supported model, data and action boundaries, and keep verifiable evidence.',
       },
       {
         name: 'keywords',
         content:
-          'AI control plane, AI agent operations, GitHub Copilot governance, coding assistant governance, MCP tool governance, LLM cost control, AI budget enforcement, LLM retries, provider fallback, AI session debugging, AI agent session visibility, AI tool call governance, self-hosted AI gateway, EU AI routing, signed audit evidence, Dativo Talon',
+          'AI policy enforcement, AI control plane, company AI policy, AI use case governance, AI action authorization, MCP governance, GitHub Copilot governance, coding assistant governance, LLM cost control, self-hosted AI gateway, EU AI routing, signed audit evidence, Dativo Talon',
       },
     ],
     navbar: {
@@ -77,8 +77,8 @@ const config = {
           position: 'left',
         },
         {
-          to: '/cost-governance-by-agent/',
-          label: 'Cost',
+          href: '/ai-action-control/',
+          label: 'Actions',
           position: 'left',
         },
         {
@@ -133,9 +133,9 @@ const config = {
           ],
         },
         {
-          title: 'Operate',
+          title: 'Apply policy',
           items: [
-            {label: 'What the control plane does', to: '/control-plane/'},
+            {label: 'What the control layer does', to: '/control-plane/'},
             {label: 'Reproduce a governed session', to: '/manual-governed-session/'},
             {label: 'Gateway dashboard', to: '/gateway-dashboard/'},
           ],
@@ -143,9 +143,10 @@ const config = {
         {
           title: 'Control',
           items: [
+            {label: 'Company policy', to: '/policy-cookbook/'},
+            {label: 'Action control', href: '/ai-action-control/'},
             {label: 'Cost and budgets', to: '/cost-governance-by-agent/'},
-            {label: 'Retries and fallback', to: '/configuration/#provider-fallback-chains-error-driven-failover'},
-            {label: 'Shared policy', to: '/policy-cookbook/'},
+            {label: 'Policy-preserving fallback', to: '/configuration/#provider-fallback-chains-error-driven-failover'},
             {label: 'Request lifecycle', to: '/what-talon-does-to-your-request/'},
           ],
         },
@@ -170,7 +171,7 @@ const config = {
           items: [
             {label: 'GitHub', href: 'https://github.com/dativo-io/talon'},
             {label: 'Website', href: '/'},
-            {label: 'Pilot one AI use case', href: 'https://github.com/dativo-io/talon/issues/new?title=Pilot%3A%20%3Cyour%20AI%20use%20case%3E&body=Current%20stack%3A%0AFirst%20control%20I%20need%20%28cost%20%2F%20reliability%20%2F%20policy%20%2F%20sessions%29%3A'},
+            {label: 'Pilot one AI use case', href: 'https://github.com/dativo-io/talon/issues/new?title=Pilot%3A%20%3Cyour%20AI%20use%20case%3E&body=Current%20stack%3A%0AFirst%20company%20rule%20or%20action%20boundary%20I%20need%20to%20enforce%3A'},
           ],
         },
       ],
