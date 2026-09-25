@@ -77,6 +77,11 @@ const config = {
           position: 'left',
         },
         {
+          to: '/policy-cookbook/',
+          label: 'Policy',
+          position: 'left',
+        },
+        {
           href: '/ai-action-control/',
           label: 'Actions',
           position: 'left',
@@ -84,11 +89,6 @@ const config = {
         {
           to: '/configuration/#provider-fallback-chains-error-driven-failover',
           label: 'Reliability',
-          position: 'left',
-        },
-        {
-          to: '/policy-cookbook/',
-          label: 'Policy',
           position: 'left',
         },
         {
