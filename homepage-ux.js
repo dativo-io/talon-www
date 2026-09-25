@@ -343,7 +343,7 @@
       dialog.className = 'hero-demo-dialog';
       dialog.setAttribute('aria-labelledby', 'hero-demo-dialog-title');
       const playbackElement = supportsFramePlayback
-        ? '<canvas width="979" height="694" data-demo-description="Animated Talon product demo showing customer support, coding assistant, and document summary use cases under shared cost, reliability, policy, session, and evidence controls."></canvas>'
+        ? '<canvas width="979" height="694" data-demo-description="Animated Talon product demo showing customer support, coding assistant, and document summary use cases under one company-policy model with preventive data, action, cost, reliability, session, and evidence controls."></canvas>'
         : '<img width="979" height="694" alt="Animated Talon product demo showing customer support, coding assistant, and document summary use cases under shared cost, reliability, policy, session, and evidence controls." decoding="async" />';
       dialog.innerHTML = `
         <div class="hero-demo-dialog-shell">
