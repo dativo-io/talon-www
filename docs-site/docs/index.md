@@ -1,23 +1,23 @@
 ---
-title: Dativo Talon documentation — AI use case control plane
-description: Operate company AI use cases with shared cost control, reliability, policy, session understanding, and signed evidence.
+title: Dativo Talon documentation — company AI policy enforcement
+description: Turn company AI policy into enforceable, use-case-specific controls with action authorization, supporting operational controls, and verifiable evidence.
 slug: /
 ---
 
-# Operate company AI use cases with one control plane
+# Enforce company AI policy across AI use cases
 
-Dativo Talon is the **open-source control plane for company AI use cases**. It gives teams one operating layer for four recurring jobs:
+Dativo Talon is the **open-source control layer for company AI use cases**. Its product model is:
 
-1. **Cost control** — see and cap spend before the provider call.
-2. **Reliability** — apply one failure and fallback contract without bypassing policy.
-3. **Shared policy** — enforce organization rules for models, providers, data, tools, and destinations.
-4. **Session understanding** — understand what each use case did, spent, and why it failed or was denied.
+1. **Company policy** — define the organization constraints that should remain stable across runtimes and providers.
+2. **Use-case-specific effective rules** — apply only the bounded parameters or tighter constraints that make one AI use case different.
+3. **Consequential-action authorization** — decide at supported interception/callout boundaries before a governed business effect is released.
+4. **Verifiable proof** — record which policy and decision applied so operators can inspect and verify what happened.
 
-A support bot, coding assistant, internal copilot, and document workflow should not each reinvent that operational plumbing. Talon puts the common controls on the traffic and actions routed through it, while leaving the application and orchestration architecture in place.
+Cost control, policy-preserving reliability, attribution, and session understanding remain important supporting capabilities on the same governed path. They help operate the control layer; they are not the category by themselves.
 
-Every decision can also produce **signed, tamper-evident evidence**. Evidence is the proof layer underneath the four jobs, not a separate product category.
+A support bot, coding assistant, internal copilot, and document workflow should not each reinterpret company AI policy in different runtime-specific code. Talon keeps the company control contract stable while leaving application logic and workflow orchestration in place.
 
-[Read what the Talon control plane does](./control-plane.md), including current behavior and honest boundaries.
+[Read what the Talon control layer does](./control-plane.md), including current behavior and honest boundaries.
 
 ## Start with the product demo
 
@@ -40,14 +40,16 @@ The demo uses real, paid provider calls. For a zero-key first look, use the [60-
 
 ## Get first value without a platform migration
 
-Do not begin with a complete organization rollout. Put one real AI use case behind Talon and enable one useful control.
+Do not begin with a complete organization rollout. Put one real AI use case behind Talon and prove one company rule or consequential-action boundary.
 
 1. Choose an existing OpenAI/Anthropic application, coding agent, internal assistant, or MCP boundary.
 2. [Add Talon to the existing app](./add-talon-to-existing-app.md) or [choose the smallest integration path](./choosing-integration-path.md).
-3. Give the use case one `agent.talon.yaml` and one vault-bound Talon key.
-4. Start in shadow mode where appropriate and inspect what policy would do.
-5. Enable one control: a budget cap, data rule, model/provider restriction, tool boundary, or egress rule.
+3. With the current OSS implementation, give the use case one `agent.talon.yaml` and one vault-bound Talon key.
+4. Define the relevant organization constraint and only the explicit use-case-specific override you need.
+5. Trigger one preventive decision: a data/model/provider/egress denial, an intercepted action denial, or a hard budget boundary.
 6. Inspect and verify the resulting evidence:
+
+Current releases may still expose legacy shadow/log-only settings. They are not the target product posture; the active roadmap replaces global non-enforcing runtime modes with safe policy testing/impact preview while keeping hard controls enforced.
 
 ```bash
 talon audit list
@@ -62,18 +64,19 @@ talon audit list --session <id>
 talon costs --session <id> --json
 ```
 
-## One control plane, four operator jobs
+## One company control model, with supporting operator capabilities
 
 | Operator job | What Talon does | Start here |
 |---|---|---|
-| **Control cost** | Enforces per-agent daily/monthly limits before provider access and tracks agent-scoped session soft caps. | [Budgets and hard limits](./cost-governance-by-agent.md) |
+| **Apply company policy** | Resolves the organization baseline plus one explicit use-case override across PII, models, providers, budgets, tools, and egress. | [Policy cookbook](./policy-cookbook.md) |
+| **Govern consequential actions** | Denies disallowed intercepted actions today; exact-action `ALLOW | DENY | REQUIRE_APPROVAL` with minimal durable authorization state is the active Action Gateway direction. | [Action control on the website](https://dativo.io/ai-action-control/) |
+| **Control cost** | Enforces per-agent daily/monthly limits before provider access and tracks agent-scoped session budgets as a supporting policy control. | [Budgets and hard limits](./cost-governance-by-agent.md) |
 | **Keep use cases reliable** | Uses explicitly configured fallback for supported transient failures, re-checks each candidate against effective policy, and fails closed on exhaustion. | [Retries, fallback, and timeouts](./configuration.md#provider-fallback-chains-error-driven-failover) |
-| **Apply shared policy** | Resolves the organization baseline plus one explicit use-case override across PII, models, providers, budgets, tools, and egress. | [Policy cookbook](./policy-cookbook.md) |
 | **Understand sessions** | Groups supported traffic by session identity and exposes cost, provider paths, denials, and signed request history. | [Session visibility for coding agents](./governing-coding-agents.md) |
 
-## The configuration object is an agent
+## AI use case is the product object; agent is today’s configuration object
 
-Publicly, Talon operates **AI use cases**. In configuration and the CLI, one AI use case is represented by one **agent**:
+Publicly, Talon governs **AI use cases** independent of runtime or provider. In the current OSS configuration and CLI, one AI use case is represented by one **agent**:
 
 ```text
 one agent.talon.yaml
@@ -85,13 +88,13 @@ one agent.talon.yaml
 
 The key resolves `key → agent → tenant_id`; the request cannot select a different agent or tenant. Client-provided subagent and session labels remain attribution inside that authenticated boundary, not independent workload attestation.
 
-For installations running several use cases, `agents_dir` discovers one `agent.talon.yaml` per use case. Configuration-backed enable/disable, periodic safe reload, and `talon agents` help operators manage that installation. These are supporting configuration and operational capabilities; the product value remains the four control-plane jobs above.
+For installations running several use cases, `agents_dir` discovers one `agent.talon.yaml` per use case. Configuration-backed enable/disable, periodic safe reload, and `talon agents` help operators manage that installation. These are current implementation mechanics; the stable contract is company policy → use-case-specific effective rules → supported enforcement boundary → evidence.
 
 Read [authentication and key scopes](./authentication-and-key-scopes.md), the [configuration reference](./configuration.md), and the [operational control-plane reference](./operational-control-plane.md).
 
-## Shared policy means one decision path
+## Company policy means one decision model across use cases
 
-The gateway owns provider wiring and the organization baseline in `talon.config.yaml`. Each AI use case owns one explicit override in `agent.talon.yaml`. Talon resolves both into one effective-policy snapshot used by the primary route, fallback candidates, budget reporting, and signed evidence.
+The gateway owns provider wiring and the organization baseline in `talon.config.yaml`. Each AI use case can add one explicit override in `agent.talon.yaml`. Talon resolves both into one effective-policy snapshot used by supported provider, data, budget, fallback, tool/action, and evidence paths. The runtime is an integration surface, not a second policy authority.
 
 Organization hard constraints remain binding:
 
@@ -119,13 +122,13 @@ A session lets an operator ask: what did this AI use case do, what did it cost, 
 
 Supported clients can provide an explicit or vendor-derived session identity. Session state and budgets are scoped by tenant and authenticated Talon agent. Synthetic request IDs remain useful for evidence correlation, but they are not presented as fake multi-request sessions.
 
-Session budgets are soft caps: concurrent in-flight requests can overshoot before a later request is denied.
+Session-budget admission uses atomic reservation of the pre-request estimate, so concurrent requests cannot independently race through the same remaining budget. One request can still overshoot if the provider's actual charge exceeds the estimate used for admission.
 
 Start with [governing coding agents](./governing-coding-agents.md) or the [manual governed-session proof](./manual-governed-session.md).
 
 ## Evidence, privacy, sovereignty, and compliance support
 
-These strengthen the operating layer and help teams prove what happened:
+These strengthen the control layer and help teams prove what happened:
 
 - [Evidence store](./evidence-store.md) — what is signed, stored, verified, and exported.
 - [Evidence integrity proof](./evidence-integrity-demo.md) — change a record and watch verification fail.
@@ -139,7 +142,7 @@ Talon provides supporting controls and evidence. It does not make a deployment l
 
 - Talon governs provider traffic and actions routed through its interception paths, not local shell commands, file edits, browser actions, or direct API calls that bypass it.
 - The Talon agent identity is authenticated by its key; client-supplied subagent/session metadata is attribution.
-- Session budgets are soft unless atomic reservation is explicitly implemented.
+- Session-budget concurrency is protected by atomic estimate reservation; actual provider cost can still exceed the admission estimate.
 - HMAC-signed evidence is tamper-evident and verifiable, not immutable.
 - The dashboard is a secondary operational surface; YAML and the local CLI remain the primary configuration and control path.
 

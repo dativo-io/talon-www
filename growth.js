@@ -81,7 +81,7 @@
       <div class="growth-paths-heading">
         <p class="eyebrow">Choose the shortest path</p>
         <h2 id="growth-paths-title">Start from the AI problem you already have.</h2>
-        <p>Do not migrate a platform first. Put one real use case on Talon's governed path, prove one control, then expand only if the operating model earns it.</p>
+        <p>Do not migrate a platform first. Put one real use case on Talon's governed path, prove one company rule or consequential-action boundary, then expand only if reusing the control model earns it.</p>
       </div>
       <div class="growth-path-grid">
         <a class="growth-path-card" href="/talon/docs/add-talon-to-existing-app/" data-growth-intent="integration" data-growth-placement="homepage-paths">
