@@ -122,7 +122,7 @@ A session lets an operator ask: what did this AI use case do, what did it cost, 
 
 Supported clients can provide an explicit or vendor-derived session identity. Session state and budgets are scoped by tenant and authenticated Talon agent. Synthetic request IDs remain useful for evidence correlation, but they are not presented as fake multi-request sessions.
 
-Session budgets are soft caps: concurrent in-flight requests can overshoot before a later request is denied.
+Session-budget admission uses atomic reservation of the pre-request estimate, so concurrent requests cannot independently race through the same remaining budget. One request can still overshoot if the provider's actual charge exceeds the estimate used for admission.
 
 Start with [governing coding agents](./governing-coding-agents.md) or the [manual governed-session proof](./manual-governed-session.md).
 
@@ -142,7 +142,7 @@ Talon provides supporting controls and evidence. It does not make a deployment l
 
 - Talon governs provider traffic and actions routed through its interception paths, not local shell commands, file edits, browser actions, or direct API calls that bypass it.
 - The Talon agent identity is authenticated by its key; client-supplied subagent/session metadata is attribution.
-- Session budgets are soft unless atomic reservation is explicitly implemented.
+- Session-budget concurrency is protected by atomic estimate reservation; actual provider cost can still exceed the admission estimate.
 - HMAC-signed evidence is tamper-evident and verifiable, not immutable.
 - The dashboard is a secondary operational surface; YAML and the local CLI remain the primary configuration and control path.
 
