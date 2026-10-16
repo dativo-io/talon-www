@@ -30,6 +30,8 @@ const sidebars = {
       collapsed: false,
       items: [
         doc('control-plane', 'What the Talon control plane does'),
+        doc('control-plane-boundaries', 'Architecture and enforcement boundaries'),
+        doc('object-model', 'Agents, sessions, operations and approvals'),
         'gateway-dashboard',
         'operational-control-plane',
         'observability',
@@ -58,6 +60,7 @@ const sidebars = {
       label: 'Shared policy and intercepted actions',
       collapsed: false,
       items: [
+        doc('action-gateway', 'Action Gateway — exact-action approvals'),
         'what-talon-does-to-your-request',
         'policy-cookbook',
         'why-not-a-pii-proxy',
@@ -82,6 +85,7 @@ const sidebars = {
       label: 'Integrate',
       collapsed: true,
       items: [
+        doc('openshell', 'NVIDIA OpenShell — delegated runtime control'),
         'slack-bot-integration',
         'openclaw-integration',
         'openclaw-docker-primer',
