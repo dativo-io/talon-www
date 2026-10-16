@@ -66,7 +66,7 @@ talon costs --session <id> --json
 
 ## What ships on each action boundary
 
-The HTTP [Action Gateway](./action-gateway.md) ships immutable exact operations, authenticated reviewer decisions and at-most-once Talon-forwarded HTTP dispatch, with signed lifecycle evidence. Trusted [MCP source discovery](./action-gateway.md#trusted-mcp-sources-actions.sources) can populate the action catalog, but it does **not** make those discovered actions executable through that HTTP adapter. Current `/mcp` and `/mcp/proxy` paths support only **MCP protocol `2026-07-28`** (no `initialize` or protocol session); their `tools/call` enforcement has **not** converged on the Action Gateway yet. See the [architecture boundary reference](./control-plane-boundaries.md) for shipped versus target surfaces.
+The HTTP [Action Gateway](./action-gateway.md) ships immutable exact operations, authenticated reviewer decisions and at-most-once Talon-forwarded HTTP dispatch, with signed lifecycle evidence. Trusted [MCP source discovery](./action-gateway.md) can populate the action catalog, but it does **not** make those discovered actions executable through that HTTP adapter. Current `/mcp` and `/mcp/proxy` paths support only **MCP protocol `2026-07-28`** (no `initialize` or protocol session); their `tools/call` enforcement has **not** converged on the Action Gateway yet. See the [architecture boundary reference](./control-plane-boundaries.md) for shipped versus target surfaces.
 
 ## One company control model, with supporting operator capabilities
 
