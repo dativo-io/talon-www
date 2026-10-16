@@ -64,6 +64,10 @@ talon audit list --session <id>
 talon costs --session <id> --json
 ```
 
+## What ships on each action boundary
+
+The HTTP [Action Gateway](./action-gateway.md) ships immutable exact operations, authenticated reviewer decisions and at-most-once Talon-forwarded HTTP dispatch, with signed lifecycle evidence. Trusted [MCP source discovery](./action-gateway.md#trusted-mcp-sources-actions.sources) can populate the action catalog, but it does **not** make those discovered actions executable through that HTTP adapter. Current `/mcp` and `/mcp/proxy` paths support only **MCP protocol `2026-07-28`** (no `initialize` or protocol session); their `tools/call` enforcement has **not** converged on the Action Gateway yet. See the [architecture boundary reference](./control-plane-boundaries.md) for shipped versus target surfaces.
+
 ## One company control model, with supporting operator capabilities
 
 | Operator job | What Talon does | Start here |
@@ -73,6 +77,7 @@ talon costs --session <id> --json
 | **Control cost** | Enforces per-agent daily/monthly limits before provider access and tracks agent-scoped session budgets as a supporting policy control. | [Budgets and hard limits](./cost-governance-by-agent.md) |
 | **Keep use cases reliable** | Uses explicitly configured fallback for supported transient failures, re-checks each candidate against effective policy, and fails closed on exhaustion. | [Retries, fallback, and timeouts](./configuration.md#provider-fallback-chains-error-driven-failover) |
 | **Understand sessions** | Groups supported traffic by session identity and exposes cost, provider paths, denials, and signed request history. | [Session visibility for coding agents](./governing-coding-agents.md) |
+| **Use delegated runtime control** | OpenShell v0.1.3 calls Talon before provider-credential injection; Talon decides and signs evidence, while OpenShell enforces and contains execution. Response scanning and Talon-side retry/fallback are not available on this path. | [OpenShell integration](./openshell.md) |
 
 ## AI use case is the product object; agent is today’s configuration object
 
