@@ -10,6 +10,7 @@ const sidebars = {
       items: [
         doc('product-demo', 'Product demo — three use cases'),
         'quickstart-demo',
+        doc('action-gateway-proof', 'Exact-action proof — no provider key'),
         'add-talon-to-existing-app',
         'first-governed-agent',
         'choosing-integration-path',
@@ -61,6 +62,8 @@ const sidebars = {
       collapsed: false,
       items: [
         doc('action-gateway', 'Action Gateway — exact-action approvals'),
+        doc('mcp-governance-extension', 'MCP governance extension — codes and evidence'),
+        doc('mcp-2026-migration', 'MCP 2026-07-28 migration'),
         'what-talon-does-to-your-request',
         'policy-cookbook',
         'why-not-a-pii-proxy',

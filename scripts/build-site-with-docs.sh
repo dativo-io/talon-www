@@ -124,9 +124,13 @@ test -f "$OUT_DIR/talon/docs/cost-governance-by-agent/index.html"
 test -f "$OUT_DIR/talon/docs/configuration/index.html"
 test -f "$OUT_DIR/talon/docs/policy-cookbook/index.html"
 test -f "$OUT_DIR/talon/docs/governing-coding-agents/index.html"
+test -f "$OUT_DIR/talon/docs/action-gateway-proof/index.html"
+test -f "$OUT_DIR/talon/docs/mcp-governance-extension/index.html"
+test -f "$OUT_DIR/talon/docs/mcp-2026-migration/index.html"
 
 # Prevent historical repo-relative link mistakes from becoming public web routes.
 node "$ROOT_DIR/scripts/verify-internal-link-shapes.cjs" "$OUT_DIR"
+node "$ROOT_DIR/scripts/verify-current-capabilities.cjs" "$OUT_DIR"
 
 # Generate the root SEO files after all pages exist.
 node "$ROOT_DIR/scripts/generate-seo-files.cjs" "$OUT_DIR" "$SITE_URL"

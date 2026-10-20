@@ -1,6 +1,8 @@
 module.exports = {
   'product-demo.md': 'examples/product-demo/README.md',
   'quickstart-demo.md': 'docs/tutorials/quickstart-demo.md',
+  'action-gateway-proof.md': 'docs/tutorials/action-gateway-proof.md',
+  'mcp-2026-migration.md': 'docs/guides/mcp-2026-migration.md',
   'manual-governed-session.md': 'docs/tutorials/manual-governed-session.md',
   'evidence-integrity-demo.md': 'docs/tutorials/evidence-integrity-demo.md',
   'turnkey-compliance-reports.md': 'docs/tutorials/turnkey-compliance-reports.md',
@@ -34,6 +36,7 @@ module.exports = {
   'control-plane-boundaries.md': 'docs/reference/control-plane-boundaries.md',
   'object-model.md': 'docs/reference/object-model.md',
   'action-gateway.md': 'docs/reference/action-gateway.md',
+  'mcp-governance-extension.md': 'docs/reference/mcp-governance-extension.md',
   'openshell.md': 'docs/integration/openshell.md',
   'what-talon-does-to-your-request.md': 'docs/explanation/what-talon-does-to-your-request.md',
   'why-not-a-pii-proxy.md': 'docs/explanation/why-not-a-pii-proxy.md',
