@@ -6,6 +6,8 @@ slug: /
 
 # Enforce company AI policy across AI use cases
 
+> **Documentation version:** this site follows the Talon source revision configured at build time (`TALON_DOCS_REF`, normally `main`). Newly merged features described here can precede a tagged binary release. Check [GitHub Releases](https://github.com/dativo-io/talon/releases/latest) and the [release notes](./release-notes.md) before deploying.
+
 Dativo Talon is the **open-source control layer for company AI use cases**. Its product model is:
 
 1. **Company policy** — define the organization constraints that should remain stable across runtimes and providers.
@@ -36,7 +38,7 @@ export OPENAI_API_KEY=sk-... ANTHROPIC_API_KEY=sk-ant-...
 make product-demo
 ```
 
-The demo uses real, paid provider calls. For a zero-key first look, use the [60-second demo](./quickstart-demo.md).
+The demo uses real, paid provider calls. For a zero-key first look, use the [60-second demo](./quickstart-demo.md). To verify a **consequential HTTP action** (denial, human approval, single dispatch, replay protection, signed lifecycle) without a provider key, run the [exact-action proof](./action-gateway-proof.md).
 
 ## Get first value without a platform migration
 
@@ -66,18 +68,18 @@ talon costs --session <id> --json
 
 ## What ships on each action boundary
 
-The HTTP [Action Gateway](./action-gateway.md) ships immutable exact operations, authenticated reviewer decisions and at-most-once Talon-forwarded HTTP dispatch, with signed lifecycle evidence. Trusted [MCP source discovery](./action-gateway.md) can populate the action catalog, but it does **not** make those discovered actions executable through that HTTP adapter. Current `/mcp` and `/mcp/proxy` paths support only **MCP protocol `2026-07-28`** (no `initialize` or protocol session); their `tools/call` enforcement has **not** converged on the Action Gateway yet. See the [architecture boundary reference](./control-plane-boundaries.md) for shipped versus target surfaces.
+The HTTP [Action Gateway](./action-gateway.md) ships immutable exact operations, authenticated reviewer decisions and at-most-once Talon-forwarded HTTP dispatch, with signed lifecycle evidence. Trusted [MCP source discovery](./action-gateway.md) can populate the action catalog, but it does **not** make those discovered actions executable through that HTTP adapter. Current `/mcp` and `/mcp/proxy` paths support only **MCP protocol `2026-07-28`** (no `initialize` or protocol session); their `tools/call` enforcement has **not** converged on the Action Gateway yet. Both routes now expose the versioned [MCP governance extension](./mcp-governance-extension.md) for stable codes and committed evidence references; existing integrations should follow the [2026-07-28 migration guide](./mcp-2026-migration.md). See the [architecture boundary reference](./control-plane-boundaries.md) for shipped versus target surfaces.
 
 ## One company control model, with supporting operator capabilities
 
 | Operator job | What Talon does | Start here |
 |---|---|---|
 | **Apply company policy** | Resolves the organization baseline plus one explicit use-case override across PII, models, providers, budgets, tools, and egress. | [Policy cookbook](./policy-cookbook.md) |
-| **Govern consequential actions** | HTTP Action Gateway ships exact-action `DENY > REQUIRE_APPROVAL > ALLOW`, bound approvals, at-most-once Talon-forwarded dispatch and signed lifecycle evidence. MCP/native tools still use distinct paths while convergence is in progress. | [Action Gateway reference](./action-gateway.md) · [Action control](https://dativo.io/ai-action-control/) |
+| **Govern consequential actions** | HTTP Action Gateway ships exact-action `DENY > REQUIRE_APPROVAL > ALLOW`, bound approvals, at-most-once Talon-forwarded dispatch and signed lifecycle evidence. MCP/native tools still use distinct paths while convergence is in progress. | [Run the no-key action proof](./action-gateway-proof.md) · [Action Gateway reference](./action-gateway.md) |
 | **Control cost** | Enforces per-agent daily/monthly limits before provider access and tracks agent-scoped session budgets as a supporting policy control. | [Budgets and hard limits](./cost-governance-by-agent.md) |
 | **Keep use cases reliable** | Uses explicitly configured fallback for supported transient failures, re-checks each candidate against effective policy, and fails closed on exhaustion. | [Retries, fallback, and timeouts](./configuration.md#provider-fallback-chains-error-driven-failover) |
 | **Understand sessions** | Groups supported traffic by session identity and exposes cost, provider paths, denials, and signed request history. | [Session visibility for coding agents](./governing-coding-agents.md) |
-| **Use delegated runtime control** | OpenShell v0.1.3 calls Talon before provider-credential injection; Talon decides and signs evidence, while OpenShell enforces and contains execution. Response scanning and Talon-side retry/fallback are not available on this path. | [OpenShell integration](./openshell.md) |
+| **Use delegated runtime control** | OpenShell calls Talon before provider-credential injection; opt-in PRE_RETURN can scan supported responses and settle usage, and a verified sandbox hop can reach the HTTP Action Gateway without a Talon key in the sandbox. Talon still does not observe delegated enforcement, provide model-path retry/fallback, or control local bypasses. v0.1.3 is the live-validated request baseline; check fixture and live status for newer additions. | [OpenShell integration and verification](./openshell.md) |
 
 ## AI use case is the product object; agent is today’s configuration object
 
