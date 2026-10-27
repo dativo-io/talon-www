@@ -10,11 +10,13 @@ const required = [
   'talon/docs/mcp-governance-extension/index.html',
   'talon/docs/mcp-2026-migration/index.html',
   'talon/docs/openshell/index.html',
+  'talon/docs/observability/index.html',
 ];
 let failures = [];
 for (const rel of required) { if (!fs.existsSync(path.join(root, rel))) failures.push(`Missing public route: ${rel}`); }
 const pages = [
   ['ai-action-control/index.html', [/Preview gate #458/i]],
+  ['comparisons/index.html', [/direct OTLP log export is shipped/i]],
   ['llm-governance-gateway/index.html', [/does not yet inspect provider responses/i]],
   ['talon/docs/index.html', [/Response scanning and Talon-side retry\/fallback are not available on this path/i, /start in shadow mode/i]],
 ];
@@ -31,5 +33,20 @@ if (fs.existsSync(homepage)) {
   if (!html.includes('routed through it')) failures.push('Homepage lost its interception-boundary qualification');
   if (html.indexOf('<h3>Action → stop</h3>') >= html.indexOf('<h3>Policy → prevent</h3>')) failures.push('Homepage action proof is no longer the first proof story');
 } else failures.push('Missing homepage');
+for (const rel of ['index.html', 'ai-action-control/index.html']) {
+  const target = path.join(root, rel);
+  if (!fs.existsSync(target)) continue;
+  const body = fs.readFileSync(target, 'utf8');
+  if (/github\\.com\\/dativo-io\\/talon\\/issues\\/new\\?title=Pilot/i.test(body)) failures.push('Public pilot issue intake on ' + rel);
+  if (!body.includes('linkedin.com/in/sergeyenin/')) failures.push('Private founder contact missing on ' + rel);
+}
+const actionPage = path.join(root, 'ai-action-control/index.html');
+if (fs.existsSync(actionPage)) {
+  const body = fs.readFileSync(actionPage, 'utf8');
+  if (!body.includes('How do you investigate an agent action?')) failures.push('Action incident explanation missing');
+  if (!body.includes('approval ≠ dispatch')) failures.push('Action approval/dispatch separation missing');
+}
+const comparisonPage = path.join(root, 'comparisons/index.html');
+if (fs.existsSync(comparisonPage) && !fs.readFileSync(comparisonPage, 'utf8').includes('observability/evaluation tools')) failures.push('Observability complementarity missing');
 if (failures.length) { for (const failure of failures) console.error(`FAIL: ${failure}`); process.exit(1); }
 console.log('PASS: current action/MCP/OpenShell publication routes and claims');

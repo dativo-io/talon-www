@@ -9,7 +9,8 @@ const assets = [
 ];
 const metadata = {
   '/': ['Talon — Control Consequential AI Actions', 'Open-source, self-hosted control plane for production AI use cases. Govern intercepted actions and provider calls, explain decisions with signed evidence, and operate costs, reliability and sessions in one place.'],
-  '/ai-action-control/': ['AI Action Control Before Execution | Talon', 'Deny disallowed intercepted MCP tool calls. Evaluate exact HTTP action authorization and signed lifecycle evidence on Talon main; native/MCP convergence is still in progress.'],
+  '/ai-action-control/': ['AI Action Control Before Execution | Talon', 'Deny disallowed intercepted MCP tool calls, authorize exact HTTP operations and inspect the resulting policy, dispatch and evidence history. MCP/native convergence remains in progress.'],
+  '/comparisons/': ['Compare AI Control Planes, Gateways and Observability | Talon', 'Talon governs intercepted AI actions and verifies decisions; existing observability platforms handle log search, traces, metrics, alerts, dashboards and evaluation.'],
   '/talon/docs/': ['Talon Docs — AI Cost Control, Policy, Reliability & Sessions', 'Install, integrate, and operate Talon: AI cost caps, policy-valid fallback, model/tool/data controls, session visibility, and verifiable evidence.'],
   '/talon/docs/compliance-export-runbook/': ['Export Verifiable AI Audit Evidence for Auditors | Talon', 'Export, verify, and hand off signed Talon evidence for audits and customer reviews. Practical commands, integrity checks, and review-ready evidence workflows.'],
   '/talon/docs/codex-cli-integration/': ['Govern Codex CLI: Cost, Policy & Session Evidence | Talon', 'Route Codex CLI through Talon for agent-attributed cost controls, model and data policy, session visibility, and signed evidence—without claiming local tool control.'],

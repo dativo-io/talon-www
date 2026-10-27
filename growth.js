@@ -16,7 +16,7 @@
     const external = href.toLowerCase();
 
     if (link.dataset.growthIntent) return link.dataset.growthIntent;
-    if (external.includes('github.com/dativo-io/talon/issues/new') && external.includes('pilot')) return 'pilot';
+    if (external.includes('linkedin.com/in/sergeyenin/')) return 'pilot-contact';
     if (normalized.includes('/quickstart-demo/')) return 'quickstart';
     if (normalized.includes('/product-demo/')) return 'product-demo';
     if (normalized.includes('/add-talon-to-existing-app/') || normalized.includes('/proxy-quickstart/')) return 'integration';
