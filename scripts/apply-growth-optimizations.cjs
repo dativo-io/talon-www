@@ -9,7 +9,8 @@ const assets = [
 ];
 const metadata = {
   '/': ['AI Agent Action Control & Governance | Dativo Talon', 'Control consequential AI agent actions at supported boundaries. Shared company policy, MCP tool-call denial, exact HTTP action authorization and verifiable evidence. Open source and self-hostable.'],
-  '/ai-action-control/': ['AI Action Control Before Execution | Talon', 'Deny disallowed intercepted MCP tool calls, authorize exact HTTP operations and inspect the resulting policy, dispatch and evidence history. MCP/native convergence remains in progress.'],
+  '/ai-action-control/': ['AI Agent Action Approval & Authorization | Dativo Talon', 'Govern intercepted AI agent actions before execution. Talon supports MCP tool-call denial and exact HTTP action authorization with signed lifecycle evidence.'],
+  '/ai-agent-governance/': ['AI Agent Governance by Use Case | Dativo Talon', 'Govern production AI agents with one company policy and use-case-specific rules for models, tools, spending, reliability and signed runtime decisions.'],
   '/comparisons/': ['Compare AI Control Planes, Gateways and Observability | Talon', 'Talon governs intercepted AI actions and verifies decisions; existing observability platforms handle log search, traces, metrics, alerts, dashboards and evaluation.'],
   '/mcp-tool-governance/': ['MCP Tool Permissions & Call Governance | Dativo Talon', 'A practical guide to MCP tool permissions: discovery filtering, pre-call denial, exact-action approval boundaries and verifiable evidence. See what Talon enforces today.'],
   '/ai-agent-audit-trail/': ['AI Agent Audit Trails: Logs vs Signed Evidence | Talon', 'How to investigate an AI agent action: identities, requests, policy decisions, operation attempts, observed or unknown outcomes, operational logs and signed evidence.'],

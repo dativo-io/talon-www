@@ -21,6 +21,9 @@
     if (normalized.includes('/product-demo/')) return 'product-demo';
     if (normalized.includes('/add-talon-to-existing-app/') || normalized.includes('/proxy-quickstart/')) return 'integration';
     if (normalized.includes('/ai-cost-control/') || normalized.includes('/cost-governance-by-agent/')) return 'cost';
+    if (normalized.includes('/mcp-tool-governance/')) return 'seo-mcp';
+    if (normalized.includes('/ai-agent-audit-trail/')) return 'seo-audit';
+    if (normalized.includes('/comparisons/talon-vs-litellm/')) return 'seo-comparison';
     if (normalized.includes('/ai-action-control/') || normalized.includes('/action-gateway-proof/') || normalized.includes('/action-gateway/')) return 'action-control';
     if (
       normalized.includes('/coding-agent-governance/')
