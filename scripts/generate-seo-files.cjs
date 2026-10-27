@@ -64,12 +64,13 @@ function urlForRoute(route) {
 }
 
 function writeSitemap(filePath, routes) {
-  const today = new Date().toISOString().slice(0, 10);
+  // Do not declare a fabricated lastmod: deployment time is not content-modification time.
+  // Add lastmod only when authoritative per-page modification dates are available.
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${Array.from(routes)
   .sort()
-  .map((route) => `  <url><loc>${urlForRoute(route)}</loc><lastmod>${today}</lastmod></url>`)
+  .map((route) => `  <url><loc>${urlForRoute(route)}</loc></url>`)
   .join('\n')}
 </urlset>
 `;

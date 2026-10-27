@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="canonical" href="https://dativo.io/comparisons/talon-vs-litellm/" />
+  <title>Talon vs LiteLLM: AI Agent Governance or LLM Gateway?</title>
+  <meta name="description" content="Compare Dativo Talon and LiteLLM fairly: model routing, virtual keys, MCP permissions, exact HTTP action authorization, deployment and verifiable evidence." />
+  <meta property="og:title" content="Talon vs LiteLLM: AI Agent Governance or LLM Gateway?" />
+  <meta property="og:description" content="Compare Dativo Talon and LiteLLM fairly: model routing, virtual keys, MCP permissions, exact HTTP action authorization, deployment and verifiable evidence." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dativo.io/comparisons/talon-vs-litellm/" />
+  <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Talon vs LiteLLM: AI Agent Governance or LLM Gateway?" />
+  <meta name="twitter:description" content="Compare Dativo Talon and LiteLLM fairly: model routing, virtual keys, MCP permissions, exact HTTP action authorization, deployment and verifiable evidence." />
+  <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
+  <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Talon vs LiteLLM: which control boundary do you need?","description":"Compare Dativo Talon and LiteLLM fairly: model routing, virtual keys, MCP permissions, exact HTTP action authorization, deployment and verifiable evidence.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/comparisons/talon-vs-litellm/","inLanguage":"en"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dativo.io/"},{"@type":"ListItem","position":2,"name":"Comparisons","item":"https://dativo.io/comparisons/"},{"@type":"ListItem","position":3,"name":"Talon vs LiteLLM","item":"https://dativo.io/comparisons/talon-vs-litellm/"}]}]}</script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
+</head>
+<body>
+<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/llm-governance-gateway/">Policy</a><a href="/ai-action-control/">Actions</a><a href="/ai-agent-governance/">Use cases</a><a href="/ai-governance-evidence-store/">Evidence</a><a href="/talon/docs/">Docs</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
+<main>
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Technical buyer comparison · LiteLLM</div><h1>Talon vs LiteLLM: which control boundary do you need?</h1><p class="hero-subtitle">LiteLLM is a mature model gateway and SDK with extensive provider access, virtual keys, budgets and MCP permissions. Talon focuses on one effective company policy per AI use case and verifiable action authorization at supported boundaries. The right choice depends on the job you need done.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/action-gateway-proof/">Test Talon action control</a><a class="button secondary" href="https://docs.litellm.ai/docs/">Read LiteLLM docs</a><a class="button ghost" href="/comparisons/">All comparisons</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>CONTROL BUYER QUESTION
+
+Need provider breadth? → LiteLLM
+Need scoped action enforcement? → Talon
+
+Inspect the same real workflow.
+Measure allowed and denied calls.</code></pre></div></div></section>
+<section class="strip"><div class="wrap strip-inner"><span>Model routing</span><span>MCP access</span><span>Effective policy</span><span>Exact HTTP actions</span><span>Auditable decisions</span></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Decision in one minute</p><h2>Choose by the primary operating problem, not a checklist victory.</h2></div><div class="grid three"><article class="card"><h3>LiteLLM is a strong fit when…</h3><p>You need one developer-facing API across many model providers, routing and fallback, virtual-key cost controls, or a centralized MCP tool gateway with key/team permissions.</p></article><article class="card"><h3>Talon is a strong fit when…</h3><p>Your first problem is applying a company policy to a particular production AI use case, intercepting disallowed actions, explaining exact HTTP action decisions and verifying the recorded facts.</p></article><article class="card"><h3>Both may be appropriate when…</h3><p>A platform needs broad provider abstraction and a separate governed action boundary. Only put both on the same path if the architecture and operational complexity justify it.</p></article></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Documented capability comparison</p><h2>What each project actually emphasizes</h2><p>LiteLLM statements here are based on its public documentation checked October 2026, not an independent test of every paid edition or release. Talon statements are scoped to supported interception paths and the current main branch where noted.</p></div><div class="table-wrap comparison-table"><table><thead><tr><th>Evaluation criterion</th><th>LiteLLM</th><th>Dativo Talon</th></tr></thead><tbody>
+<tr><td>Primary job</td><td>Unified SDK and self-hostable model/agent/MCP gateway for broad provider traffic.</td><td>Company AI use-case control plane; shared effective policy plus action decision and evidence.</td></tr>
+<tr><td>Models and reliability</td><td>Large provider catalog, OpenAI-compatible access, Router retries and fallbacks.</td><td>Policy-constrained model/provider access, supported retries and fallback; not a provider breadth contest.</td></tr>
+<tr><td>Cost and access</td><td>Virtual keys, team/user/key budgets, logging and rate limits, subject to deployment configuration.</td><td>Authenticated Talon agent/use-case keys, organization/agent effective rules, estimates and session/cost admission.</td></tr>
+<tr><td>MCP</td><td>Documents centralized MCP endpoint and permissions by key/team/organization.</td><td>Can filter visible tools and deny intercepted MCP <code>tools/call</code> before upstream execution, recording denial evidence.</td></tr>
+<tr><td>Exact human-bound business action</td><td>Evaluate its current tool/MCP governance features against your required approval flow; don't infer absence from this comparison.</td><td>Separate HTTP Action Gateway on Talon <code>main</code> binds exact operations and supports <code>ALLOW | DENY | REQUIRE_APPROVAL</code> with signed lifecycle evidence. MCP/native convergence remains in progress.</td></tr>
+<tr><td>Observability and proof</td><td>Operational usage, logging/observability integrations; enterprise audit capabilities vary by edition.</td><td>Operational logs/traces plus HMAC-signed evidence for facts Talon observed/enforced. Not universal workflow tracing.</td></tr>
+<tr><td>What remains outside</td><td>Agent-internal behavior or directly invoked tools bypassing its gateway require separate controls.</td><td>Local shell/browser/filesystem actions and direct APIs bypassing Talon are not intercepted.</td></tr></tbody></table></div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Sample buying scenario</p><h2>Your coding assistant can publish a release.</h2><p>If the job is centralizing model/API access, organizing provider credentials and managing team usage, start by evaluating LiteLLM. If the job is ensuring an identified use case cannot invoke a forbidden intercepted action, or binding a particular HTTP operation to company authorization and verifiable proof, evaluate Talon at that supported boundary.</p><p><strong>Do not confuse categories:</strong> neither placing a gateway in front of a provider nor hiding a tool from discovery proves all of the agent's local actions are controlled. Use a deterministic fake release endpoint and verify zero upstream invocation when denied.</p><div class="link-row"><a href="/mcp-tool-governance/">MCP permission guide</a><a href="/talon/docs/action-gateway-proof/">Run Talon's proof</a></div></div><div class="code-panel"><pre><code>need: 100+ model APIs / SDK routing
+→ evaluate LiteLLM first
+
+need: intercepted action denial
+→ test the tool-call boundary
+
+need: exact HTTP approval + lifecycle proof
+→ test Talon Action Gateway
+
+need: local process/browser containment
+→ use separate runtime/endpoint controls</code></pre></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">What to validate before choosing</p><h2>A small, reproducible bake-off</h2></div><div class="grid three"><article class="card"><h3>Identify the identity</h3><p>Which credential authenticates the application? Is a subagent label authenticated or just asserted? Inspect policy inheritance before testing permissions.</p></article><article class="card"><h3>Count actual dispatches</h3><p>Present permitted and forbidden operations to the same mock destination. Measure upstream handler calls, retries, timing and budget decisions.</p></article><article class="card"><h3>Verify the outcome evidence</h3><p>Check whether an allow, deny, approval and unknown dispatch are distinct from raw logs. Compare the exported records to the destination's own audit trail.</p></article></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Primary sources</p><h2>Verify features at the version you intend to deploy</h2><p>See <a href="https://docs.litellm.ai/docs/">LiteLLM's gateway and SDK overview</a>, <a href="https://docs.litellm.ai/docs/mcp">MCP permissions reference</a>, and <a href="https://docs.litellm.ai/docs/proxy/virtual_keys">virtual keys</a>. For Talon, read <a href="/talon/docs/action-gateway/">the HTTP action reference</a>, <a href="/talon/docs/mcp-governance-extension/">MCP governance guide</a>, and <a href="https://github.com/dativo-io/talon/blob/main/LIMITATIONS.md">implementation limitations</a>. Features change; no winner is claimed across all workloads.</p></div></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Evaluate the boundary, not the branding</p><h2>Can you deny one real operation and verify why?</h2><p>Reproduce Talon's no-key action proof, then compare the corresponding LiteLLM permissions and runtime-specific alternatives for your stack.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/action-gateway-proof/">Run Talon proof</a><a class="button secondary" href="https://docs.litellm.ai/docs/mcp">LiteLLM MCP documentation</a><a class="button ghost" href="/comparisons/">More category comparisons</a></div></div></div></section>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Talon governs only traffic and actions routed through supported interception points. Exact-operation approvals ship on the HTTP Action Gateway; MCP/native convergence remains on the roadmap.</span></div></footer>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

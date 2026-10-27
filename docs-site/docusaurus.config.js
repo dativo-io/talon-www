@@ -145,6 +145,7 @@ const config = {
           items: [
             {label: 'Company policy', to: '/policy-cookbook/'},
             {label: 'Action control', href: '/ai-action-control/'},
+            {label: 'MCP tool permissions', href: '/mcp-tool-governance/'},
             {label: 'Cost and budgets', to: '/cost-governance-by-agent/'},
             {label: 'Policy-preserving fallback', to: '/configuration/#provider-fallback-chains-error-driven-failover'},
             {label: 'Request lifecycle', to: '/what-talon-does-to-your-request/'},
@@ -162,6 +163,7 @@ const config = {
           title: 'Trust and evidence',
           items: [
             {label: 'Evidence store', to: '/evidence-store/'},
+            {label: 'AI agent audit trails', href: '/ai-agent-audit-trail/'},
             {label: 'Verify evidence integrity', to: '/evidence-integrity-demo/'},
             {label: 'EU and privacy controls', to: '/governance-control-matrix/'},
           ],

@@ -11,6 +11,9 @@ const required = [
   'talon/docs/mcp-2026-migration/index.html',
   'talon/docs/openshell/index.html',
   'talon/docs/observability/index.html',
+  'mcp-tool-governance/index.html',
+  'ai-agent-audit-trail/index.html',
+  'comparisons/talon-vs-litellm/index.html',
 ];
 let failures = [];
 for (const rel of required) { if (!fs.existsSync(path.join(root, rel))) failures.push(`Missing public route: ${rel}`); }

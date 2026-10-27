@@ -4,17 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/ai-action-control/" />
-  <title>AI Action Control Before Execution | Talon</title>
-  <meta name="description" content="Deny disallowed intercepted MCP tool calls, authorize exact HTTP operations and inspect the resulting policy, dispatch and evidence history. MCP/native convergence remains in progress." />
+  <title>AI Agent Action Approval & Authorization | Dativo Talon</title>
+  <meta name="description" content="Govern intercepted AI agent actions before execution. Talon supports MCP tool-call denial and exact HTTP action authorization with signed lifecycle evidence." />
   <meta name="keywords" content="AI action control, AI agent approval, MCP governance, tool call governance, AI action gateway, human approval AI agent, agent action policy" />
-  <meta property="og:title" content="AI Action Control Before Execution | Talon" />
-  <meta property="og:description" content="Deny disallowed intercepted MCP tool calls, authorize exact HTTP operations and inspect the resulting policy, dispatch and evidence history. MCP/native convergence remains in progress." />
+  <meta property="og:title" content="AI Agent Action Approval & Authorization | Dativo Talon" />
+  <meta property="og:description" content="Govern intercepted AI agent actions before execution. Talon supports MCP tool-call denial and exact HTTP action authorization with signed lifecycle evidence." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://dativo.io/ai-action-control/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="AI Action Control Before Execution | Talon" />
-  <meta name="twitter:description" content="Deny disallowed intercepted MCP tool calls, authorize exact HTTP operations and inspect the resulting policy, dispatch and evidence history. MCP/native convergence remains in progress." />
+  <meta name="twitter:title" content="AI Agent Action Approval & Authorization | Dativo Talon" />
+  <meta name="twitter:description" content="Govern intercepted AI agent actions before execution. Talon supports MCP tool-call denial and exact HTTP action authorization with signed lifecycle evidence." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/styles.css" />
@@ -94,6 +94,7 @@ workflow waiting
 local execution outside Talon
 business application logic</code></pre></div></div></section>
 
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Go deeper</p><h2>Permission, authorization and evidence are distinct questions.</h2><p>For MCP tool filtering and direct-call denials, read the <a href="/mcp-tool-governance/">MCP tool permissions guide</a>. To investigate after a governed action, use the <a href="/ai-agent-audit-trail/">AI agent audit-trail guide</a>. If you are choosing an existing model gateway, compare the boundaries in <a href="/comparisons/talon-vs-litellm/">Talon vs LiteLLM</a>.</p></div></div></section>
 <section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Validate on a real workflow</p><h2>Which production action needs a hard boundary?</h2><p>Start with a refund, release, deletion, export or external message that actually passes through a supported Talon interception path. Test a denied action, inspect the recorded decision and identify any action paths Talon cannot observe. Do not treat an intercepted subset as complete agent coverage.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/action-gateway-proof/">Run the exact-action proof</a><a class="button secondary" href="https://www.linkedin.com/in/sergeyenin/" rel="noopener noreferrer">Message founder privately</a><a class="button ghost" href="/talon/docs/action-gateway/">HTTP Action Gateway guide</a></div><p class="boundary-note">Message the founder privately about a design-partner evaluation. Do not put secrets or production payloads in an initial message. Private website intake is planned, not available yet.</p></div></div></section>
 </main>
 <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Talon governs only traffic and actions routed through supported interception points. Exact-operation approvals ship on the HTTP Action Gateway; MCP/native convergence remains on the roadmap.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
