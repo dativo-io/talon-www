@@ -8,8 +8,9 @@ const assets = [
   '<script defer src="/growth.js" data-talon-growth="script"></script>',
 ];
 const metadata = {
-  '/': ['Talon — Preventive AI Cost & Action Control Plane', 'Open-source, self-hosted control plane for AI use cases: stop runaway spend and disallowed intercepted actions before execution, with shared policy, reliability, sessions, and signed evidence.'],
-  '/ai-action-control/': ['AI Action Control Before Execution | Talon', 'Control intercepted AI actions before they become business effects. Block disallowed tool calls today and follow Talon’s exact-operation approval and signed lifecycle direction.'],
+  '/': ['Talon — Control Consequential AI Actions', 'Open-source, self-hosted control plane for production AI use cases. Govern intercepted actions and provider calls, explain decisions with signed evidence, and operate costs, reliability and sessions in one place.'],
+  '/ai-action-control/': ['AI Action Control Before Execution | Talon', 'Deny disallowed intercepted MCP tool calls, authorize exact HTTP operations and inspect the resulting policy, dispatch and evidence history. MCP/native convergence remains in progress.'],
+  '/comparisons/': ['Compare AI Control Planes, Gateways and Observability | Talon', 'Talon governs intercepted AI actions and verifies decisions; existing observability platforms handle log search, traces, metrics, alerts, dashboards and evaluation.'],
   '/talon/docs/': ['Talon Docs — AI Cost Control, Policy, Reliability & Sessions', 'Install, integrate, and operate Talon: AI cost caps, policy-valid fallback, model/tool/data controls, session visibility, and verifiable evidence.'],
   '/talon/docs/compliance-export-runbook/': ['Export Verifiable AI Audit Evidence for Auditors | Talon', 'Export, verify, and hand off signed Talon evidence for audits and customer reviews. Practical commands, integrity checks, and review-ready evidence workflows.'],
   '/talon/docs/codex-cli-integration/': ['Govern Codex CLI: Cost, Policy & Session Evidence | Talon', 'Route Codex CLI through Talon for agent-attributed cost controls, model and data policy, session visibility, and signed evidence—without claiming local tool control.'],

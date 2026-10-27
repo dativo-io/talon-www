@@ -155,7 +155,7 @@ const config = {
           items: [
             {label: 'Coding-agent sessions', to: '/governing-coding-agents/'},
             {label: 'Incident response', to: '/incident-response-playbook/'},
-            {label: 'Observability', to: '/observability/'},
+            {label: 'Logs, traces and metrics', to: '/observability/'},
           ],
         },
         {
@@ -171,7 +171,7 @@ const config = {
           items: [
             {label: 'GitHub', href: 'https://github.com/dativo-io/talon'},
             {label: 'Website', href: '/'},
-            {label: 'Pilot one AI use case', href: 'https://github.com/dativo-io/talon/issues/new?title=Pilot%3A%20%3Cyour%20AI%20use%20case%3E&body=Current%20stack%3A%0AFirst%20company%20rule%20or%20action%20boundary%20I%20need%20to%20enforce%3A'},
+            {label: 'Discuss a pilot privately', href: 'https://www.linkedin.com/in/sergeyenin/'},
           ],
         },
       ],

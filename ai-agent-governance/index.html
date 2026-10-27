@@ -52,13 +52,13 @@ one agent override
 resolved effective policy
         ↓
 primary route + fallback + costs + evidence</code></pre></div></div></section>
-<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Current operator path</p><h2>Use the CLI and evidence model that actually ship.</h2><p>Operators can inspect cost, list session evidence, open one decision, verify integrity and confirm the policy identity with shipped CLI surfaces.</p></div><div class="code-panel"><pre><code>talon costs --agent customer-support
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Current operator path</p><h2>Investigate the use case before the individual call.</h2><p>Start with the authenticated AI use case and its effective policy. Inspect request evidence and provider/model attempts; use a real agent-scoped session only when one exists. For HTTP actions, distinguish operation identity, dispatch attempt and policy decision from an externally asserted outcome. Signed evidence verifies supported facts; JSON logs and available OTel traces/metrics help diagnose execution without becoming proof.</p></div><div class="code-panel"><pre><code>talon costs --agent customer-support
 
 talon audit list --session sess-feature-4711
 
 talon audit show &lt;evidence-id&gt;
 
-talon audit verify &lt;evidence-id&gt;</code></pre></div></div></section>
+talon audit verify &lt;evidence-id&gt;</code></pre><p class="boundary-note">A request is not automatically a durable session. See the <a href="/talon/docs/observability/">observability guide</a> for supported logging and tracing, and <a href="/ai-action-control/">action control</a> for the distinct HTTP operation/attempt lifecycle.</p></div></div></section>
 <section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Action boundary</p><h2>Agentic does not mean universally controllable.</h2><p>Talon can govern provider-bound traffic, tool schemas visible to the gateway and MCP/tool calls routed through its interception path. Current MCP interception can deny disallowed calls before upstream execution. The HTTP Action Gateway already ships exact-operation authorization and durable approval; convergence of native/MCP calls onto that path remains in progress. Local shell commands, file edits, browser actions and direct APIs that bypass Talon remain outside the control plane.</p><div class="link-row"><a href="/ai-action-control/">Action control</a><a href="/talon/docs/action-gateway/">Action Gateway reference</a></div></div><div class="code-panel"><pre><code>through Talon
 → authenticated agent
 → policy can run
