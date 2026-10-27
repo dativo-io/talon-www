@@ -21,6 +21,7 @@
     if (normalized.includes('/product-demo/')) return 'product-demo';
     if (normalized.includes('/add-talon-to-existing-app/') || normalized.includes('/proxy-quickstart/')) return 'integration';
     if (normalized.includes('/ai-cost-control/') || normalized.includes('/cost-governance-by-agent/')) return 'cost';
+    if (normalized.includes('/ai-action-control/') || normalized.includes('/action-gateway-proof/') || normalized.includes('/action-gateway/')) return 'action-control';
     if (
       normalized.includes('/coding-agent-governance/')
       || normalized.includes('/governing-coding-agents/')
@@ -80,34 +81,34 @@
     <div class="wrap growth-paths-inner">
       <div class="growth-paths-heading">
         <p class="eyebrow">Choose the shortest path</p>
-        <h2 id="growth-paths-title">Start from the AI problem you already have.</h2>
-        <p>Do not migrate a platform first. Put one real use case on Talon's governed path, prove one company rule or consequential-action boundary, then expand only if reusing the control model earns it.</p>
+        <h2 id="growth-paths-title">Start with the action or incident you need to control.</h2>
+        <p>Keep your agent and orchestrator. Route one supported action or provider path through Talon, test what gets blocked, and verify why. Expand only when that proof matters in production.</p>
       </div>
       <div class="growth-path-grid">
+        <a class="growth-path-card" href="/ai-action-control/" data-growth-intent="action-control" data-growth-placement="homepage-paths">
+          <span class="growth-path-kicker">Consequential actions</span>
+          <strong>An agent can publish, refund or update data</strong>
+          <span>Inspect the action boundary. Deny disallowed MCP calls today; test exact HTTP action authorization on Talon main, with clear limits for other execution paths.</span>
+          <em>Action-control proof →</em>
+        </a>
         <a class="growth-path-card" href="/talon/docs/add-talon-to-existing-app/" data-growth-intent="integration" data-growth-placement="homepage-paths">
-          <span class="growth-path-kicker">Existing app</span>
-          <strong>OpenAI or Anthropic traffic</strong>
-          <span>Keep your SDK and orchestration. Change the governed path, add one Talon identity, and start with one cost or policy control.</span>
+          <span class="growth-path-kicker">Existing production app</span>
+          <strong>OpenAI or Anthropic calls need shared limits</strong>
+          <span>Keep your SDK and orchestration. Add an agent key, govern provider/model/data access, and preserve fallback, budget and session visibility.</span>
           <em>Integration guide →</em>
         </a>
-        <a class="growth-path-card" href="/coding-agent-governance/" data-growth-intent="coding-agents" data-growth-placement="homepage-paths">
-          <span class="growth-path-kicker">Coding agents</span>
-          <strong>Codex, Claude Code or Copilot</strong>
-          <span>Attribute model traffic to sessions, cap spend, enforce model/data policy, and govern MCP calls Talon can actually intercept.</span>
-          <em>Coding-agent path →</em>
-        </a>
         <a class="growth-path-card" href="/talon/docs/compliance-export-runbook/" data-growth-intent="evidence" data-growth-placement="homepage-paths">
-          <span class="growth-path-kicker">Proof & review</span>
-          <strong>Audit or customer evidence</strong>
-          <span>Verify and export signed, tamper-evident records for the runtime decisions that passed through Talon.</span>
+          <span class="growth-path-kicker">Investigate and prove</span>
+          <strong>Why was that agent action allowed or denied?</strong>
+          <span>Trace decisions on paths Talon intercepted, inspect the reason and export independently verifiable evidence without promising visibility into bypassed actions.</span>
           <em>Evidence handoff →</em>
         </a>
       </div>
       <div class="growth-path-footer">
-        <span>Best fit: a support bot, coding agent, internal copilot or AI workflow already running—or close to production.</span>
+        <span>Best fit: teams operating real AI workflows with consequential actions, shared policy needs or audit questions.</span>
         <div class="growth-path-actions">
-          <a class="button primary" href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart" data-growth-placement="homepage-paths" data-growth-primary="true">60-second demo · no API key</a>
-          <a class="button secondary" href="/talon/docs/product-demo/" data-growth-intent="product-demo" data-growth-placement="homepage-paths">Run the full product demo</a>
+          <a class="button primary" href="/talon/docs/action-gateway-proof/" data-growth-intent="action-control" data-growth-placement="homepage-paths" data-growth-primary="true">Run the action-control proof</a>
+          <a class="button secondary" href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart" data-growth-placement="homepage-paths">60-second demo · no API key</a>
         </div>
       </div>
     </div>`;

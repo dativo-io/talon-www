@@ -24,5 +24,12 @@ for (const [rel, expressions] of pages) {
   const body = fs.readFileSync(target, 'utf8');
   for (const expression of expressions) if (expression.test(body)) failures.push(`Retired wording ${expression} in ${rel}`);
 }
+const homepage = path.join(root, 'index.html');
+if (fs.existsSync(homepage)) {
+  const html = fs.readFileSync(homepage, 'utf8');
+  if (!html.includes('Control consequential AI actions. Prove what happened.')) failures.push('Homepage lost the action-first product promise');
+  if (!html.includes('routed through it')) failures.push('Homepage lost its interception-boundary qualification');
+  if (html.indexOf('<h3>Action → stop</h3>') >= html.indexOf('<h3>Policy → prevent</h3>')) failures.push('Homepage action proof is no longer the first proof story');
+} else failures.push('Missing homepage');
 if (failures.length) { for (const failure of failures) console.error(`FAIL: ${failure}`); process.exit(1); }
 console.log('PASS: current action/MCP/OpenShell publication routes and claims');
