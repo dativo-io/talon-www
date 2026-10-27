@@ -37,7 +37,7 @@ for (const rel of ['index.html', 'ai-action-control/index.html']) {
   const target = path.join(root, rel);
   if (!fs.existsSync(target)) continue;
   const body = fs.readFileSync(target, 'utf8');
-  if (/github\\.com\\/dativo-io\\/talon\\/issues\\/new\\?title=Pilot/i.test(body)) failures.push('Public pilot issue intake on ' + rel);
+  if (body.includes('github.com/dativo-io/talon/issues/new?title=Pilot')) failures.push('Public pilot issue intake on ' + rel);
   if (!body.includes('linkedin.com/in/sergeyenin/')) failures.push('Private founder contact missing on ' + rel);
 }
 const actionPage = path.join(root, 'ai-action-control/index.html');
