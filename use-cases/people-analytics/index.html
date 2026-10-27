@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="canonical" href="https://dativo.io/use-cases/people-analytics/" />
+<title>People Analytics AI Governance: HR Data Access | Talon</title>
+<meta name="description" content="Govern AI workforce analytics with Talon: allow aggregate HR tools, deny intercepted employee-record exports, verify policy evidence and retain existing HR access controls." />
+<meta property="og:title" content="People Analytics AI Governance: HR Data Access | Talon" />
+<meta property="og:description" content="Govern AI workforce analytics with Talon: allow aggregate HR tools, deny intercepted employee-record exports, verify policy evidence and retain existing HR access controls." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dativo.io/use-cases/people-analytics/" />
+<meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="People Analytics AI Governance: HR Data Access | Talon" />
+<meta name="twitter:description" content="Govern AI workforce analytics with Talon: allow aggregate HR tools, deny intercepted employee-record exports, verify policy evidence and retain existing HR access controls." />
+<meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
+<link rel="stylesheet" href="/styles.css" />
+<link rel="icon" type="image/svg+xml" href="/public/assets/talon-icon.svg" />
+<link rel="stylesheet" href="/site-nav.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Give People Analytics AI access to trends, not unrestricted employee records.","description":"Govern AI workforce analytics with Talon: allow aggregate HR tools, deny intercepted employee-record exports, verify policy evidence and retain existing HR access controls.","inLanguage":"en","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/use-cases/people-analytics/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dativo.io/"},{"@type":"ListItem","position":2,"name":"Use cases","item":"https://dativo.io/use-cases/"},{"@type":"ListItem","position":3,"name":"People Analytics","item":"https://dativo.io/use-cases/people-analytics/"}]}]}</script>
+<script defer src="/site-nav.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
+</head><body>
+<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/" aria-label="Dativo Talon home"><img class="brand-logo" src="/public/assets/talon-icon.svg?v=2" alt="Dativo Talon mark" /><span>Dativo Talon</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation"><span></span><span></span><span></span></button><nav class="nav-links" id="primary-navigation" aria-label="Primary navigation"><a href="/">Operate</a><a href="/ai-cost-control/">Cost</a><a href="/ai-action-control/">Actions</a><a href="/llm-governance-gateway/">Policy</a><a href="/coding-agent-governance/">Sessions</a><details class="nav-dropdown"><summary>Use cases</summary><div class="nav-dropdown-menu"><a href="/use-cases/coding-agents/">Coding agents</a><a href="/use-cases/customer-support/">Customer support</a><a href="/use-cases/people-analytics/">People Analytics</a><a href="/use-cases/vendor-contract-review/">Vendor contract review</a><a href="/use-cases/">All use cases</a></div></details><a href="/talon/docs/">Docs</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
+<main>
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Use case · People Analytics</div><h1>Give People Analytics AI access to trends, not unrestricted employee records.</h1><p class="hero-subtitle">A workforce analytics copilot should answer aggregate questions about headcount, attrition and tenure, not inherit every permission of a privileged HR service. Talon's existing model and MCP governance controls can enforce an AI-use-case-specific tool boundary on intercepted traffic—with signed decision evidence.</p><div class="hero-actions"><a class="button primary" href="/mcp-tool-governance/">Explore MCP tool controls</a><a class="button secondary" href="https://github.com/dativo-io/talon-full-demo/pull/39">View the example implementation</a><a class="button ghost" href="/use-cases/">All use cases</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>workforce-analytics AI use case
+  → Talon-authenticated model / MCP path
+  → policy: aggregate tools only
+
+headcount_aggregate  ALLOW
+attrition_aggregate  ALLOW
+tenure_aggregate     ALLOW
+employee_export      DENY
+
+direct database access:
+  must be blocked by HR IAM + deployment
+signed Talon evidence: intercepted calls</code></pre></div></div></section>
+<section class="strip"><div class="wrap strip-inner"><span>AI-use-case identity</span><span>Limited HR tools</span><span>Pre-call MCP denial</span><span>Backend access controls</span><span>Signed decisions</span></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">The business problem</p><h2>Existing warehouse governance is necessary, but AI introduces a new action surface.</h2><p>An HR warehouse may already have department permissions, aggregation rules and sensitive employee fields protected by established access controls. Adding an AI assistant should not mean passing privileged raw-data credentials into the new runtime. The useful boundary is an authenticated analytics use case that can invoke only the permitted reporting operations.</p></div><div class="grid three">
+<article class="card"><h3>Aggregate insights</h3><p>Offer fixed, parameterized headcount, attrition and tenure tools. The analytics backend remains responsible for valid SQL, cohort size and preventing sensitive rows from appearing in results.</p></article>
+<article class="card"><h3>Prevent employee exports</h3><p>When an agent attempts a forbidden <code>employee_export</code> MCP call through Talon, policy can deny it before the upstream tool executes and record the denial. Hiding a tool alone is not direct-call authorization.</p></article>
+<article class="card"><h3>Preserve auditability</h3><p>Attribute routed requests and allowed/denied calls to the authenticated AI use case. Signed Talon evidence supports verification of observed decisions; it is not a complete HR activity log.</p></article>
+</div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Two enforcement layers</p><h2>Talon governs routed AI actions; HR infrastructure prevents bypass.</h2><p>Talon applies company policy at the model gateway and MCP proxy to traffic it receives. But a compromised AI application could bypass a proxy if it also has credentials, filesystem access or network reachability to the private HR warehouse. That protection must come from established HR authorization, separate service identities, network restrictions and data-storage isolation.</p><p>The <a href="https://github.com/dativo-io/talon-full-demo/pull/39">synthetic workforce example</a> uses DuckDB and separate services to illustrate both layers. Its isolated browser/AI container does not mount the database or have a direct network route to the private HR service. The separate aggregate dashboard backend serves fixed metrics without exposing arbitrary SQL. These are deployment decisions, not hidden Talon features.</p><div class="link-row"><a href="/talon/docs/authentication-and-key-scopes/">Authentication and key scopes</a><a href="/talon/docs/mcp-governance-extension/">MCP governance reference</a></div></div><div class="code-panel"><pre><code>AI application
+  ├─ model traffic → Talon gateway
+  ├─ HR tool call  → Talon MCP proxy
+  │     ├─ aggregate metrics: allowed
+  │     └─ employee export: denied
+  └─ raw database access: no route
+       ↑ external IAM + network isolation
+
+Talon evidence: observed policy actions
+HR service logs: backend activity
+neither replaces the other</code></pre></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">How to evaluate</p><h2>Prove a useful answer and zero forbidden exports.</h2><p>Use fictional employees only. Compare a deliberately privileged direct HR-backend call against an isolated AI deployment; do not claim Talon blocked that privileged direct call. Then show a permitted aggregate request routed through Talon and deliberately invoke a forbidden export through its MCP proxy. Inspect the backend dispatch counter and signed evidence independently.</p></div><div class="grid three">
+<article class="card"><h3>1. Ask an aggregate question</h3><p>Which department has the highest attrition over six months? Require parameterized aggregate tool results and avoid invented causes for differences.</p></article>
+<article class="card"><h3>2. Attempt an individual export</h3><p>Submit a forbidden employee-record export through the governed MCP path. A denial should prevent the upstream export handler from running.</p></article>
+<article class="card"><h3>3. Verify both boundaries</h3><p>Confirm the AI runtime cannot directly reach raw HR data, then verify that allowed/denied Talon records match the actual intercepted calls.</p></article>
+</div><p class="boundary-note">The example is synthetic, not a Workday or other production HRIS integration. This use case relies on capabilities already implemented in Talon; the end-to-end demonstration and optional real-provider smoke are being integrated separately in <a href="https://github.com/dativo-io/talon-full-demo/pull/39">talon-full-demo PR #39</a>. Do not represent an unexecuted provider smoke as passed, or claim production GDPR compliance, universal data isolation, or complete agent activity visibility.</p></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Bring one reporting operation</p><h2>Keep analytics useful. Stop unrestricted employee access.</h2><p>Start with a single aggregate HR tool and one forbidden export. Identify the actual policy enforcement point and the separate infrastructure controls that prevent bypass.</p><div class="hero-actions"><a class="button primary" href="/mcp-tool-governance/">Review MCP permissions</a><a class="button secondary" href="https://github.com/dativo-io/talon-full-demo/pull/39">Read the synthetic implementation</a><a class="button ghost" href="/use-cases/">Other use cases</a></div></div></div></section>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Demonstrations use synthetic data and govern only supported paths routed through Talon. Never infer control of bypassed local actions.</span></div></footer>
+<script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+</body></html>
