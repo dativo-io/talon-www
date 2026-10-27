@@ -4,8 +4,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(process.argv[2] || 'dist');
 const origin = (process.env.SITE_URL || 'https://dativo.io').replace(/\/$/, '');
-const pages = ['/', '/ai-action-control/', '/comparisons/', '/mcp-tool-governance/', '/ai-agent-audit-trail/', '/comparisons/talon-vs-litellm/'];
-const guides = ['/mcp-tool-governance/', '/ai-agent-audit-trail/', '/comparisons/talon-vs-litellm/'];
+const pages = ['/', '/ai-action-control/', '/comparisons/', '/mcp-tool-governance/', '/ai-agent-audit-trail/', '/comparisons/talon-vs-litellm/', '/use-cases/', '/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/'];
+const guides = ['/mcp-tool-governance/', '/ai-agent-audit-trail/', '/comparisons/talon-vs-litellm/', '/use-cases/', '/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/'];
 const errors = [];
 function requirePage(route) {
   const file = path.join(root, route === '/' ? 'index.html' : route.slice(1) + 'index.html');
@@ -55,6 +55,15 @@ for (const route of pages) {
 const home = built.get('/') || '';
 if (!home.includes('Control consequential AI actions. Prove what happened.')) errors.push('Action-first headline lost');
 for (const route of guides) if (!home.includes('href="' + route + '"')) errors.push('Orphan buyer guide ' + route);
+const casesHub = built.get('/use-cases/') || '';
+for (const route of ['/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/']) {
+  if (!casesHub.includes('href="' + route + '"')) errors.push('Use-case hub missing ' + route);
+}
+for (const route of ['/use-cases/', '/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/']) {
+  const html = built.get(route) || '';
+  if (html.includes('In development · Not a released demo case')) errors.push('Outdated use-case status in ' + route);
+}
+
 const sitemap = path.join(root, 'sitemap.xml');
 if (!fs.existsSync(sitemap)) errors.push('Missing sitemap');
 else {

@@ -11,6 +11,11 @@ const required = [
   'talon/docs/mcp-2026-migration/index.html',
   'talon/docs/openshell/index.html',
   'talon/docs/observability/index.html',
+  'use-cases/index.html',
+  'use-cases/coding-agents/index.html',
+  'use-cases/customer-support/index.html',
+  'use-cases/people-analytics/index.html',
+  'use-cases/vendor-contract-review/index.html',
   'mcp-tool-governance/index.html',
   'ai-agent-audit-trail/index.html',
   'comparisons/talon-vs-litellm/index.html',
@@ -28,6 +33,12 @@ for (const [rel, expressions] of pages) {
   if (!fs.existsSync(target)) { failures.push(`Missing current page: ${rel}`); continue; }
   const body = fs.readFileSync(target, 'utf8');
   for (const expression of expressions) if (expression.test(body)) failures.push(`Retired wording ${expression} in ${rel}`);
+}
+const caseNav = path.join(root, 'use-cases/index.html');
+if (fs.existsSync(caseNav)) {
+  const html = fs.readFileSync(caseNav, 'utf8');
+  if (!html.includes('/use-cases/people-analytics/')) failures.push('People Analytics must be a first-class use case');
+  if (html.includes('We will add it to the navigation')) failures.push('Outdated People Analytics demo gate');
 }
 const homepage = path.join(root, 'index.html');
 if (fs.existsSync(homepage)) {
