@@ -4,17 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/" />
-  <title>Dativo Talon — Control Consequential AI Actions</title>
-  <meta name="description" content="Dativo Talon is the open-source, self-hostable control plane for production AI use cases. Govern intercepted actions and model access with shared policy and verifiable evidence; operate costs, reliability and sessions in one place." />
+  <title>AI Agent Action Control & Governance | Dativo Talon</title>
+  <meta name="description" content="Control consequential AI agent actions at supported boundaries. Shared company policy, MCP tool-call denial, exact HTTP action authorization and verifiable evidence. Open source and self-hostable." />
   <meta name="keywords" content="AI policy enforcement, AI control plane, company AI policy, AI use case governance, AI action authorization, MCP governance, self-hosted AI governance, LLM gateway policy, signed AI evidence" />
-  <meta property="og:title" content="Dativo Talon — Control Consequential AI Actions" />
-  <meta property="og:description" content="Give production agents boundaries: deny disallowed MCP and provider calls, authorize exact HTTP actions on supported paths, and verify the resulting decisions." />
+  <meta property="og:title" content="AI Agent Action Control & Governance | Dativo Talon" />
+  <meta property="og:description" content="Control consequential AI agent actions at supported boundaries. Shared company policy, MCP tool-call denial, exact HTTP action authorization and verifiable evidence. Open source and self-hostable." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://dativo.io/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Dativo Talon — Control Consequential AI Actions" />
-  <meta name="twitter:description" content="Control intercepted agent actions, enforce company policy and investigate decisions with signed evidence. Cost and reliability stay built in." />
+  <meta name="twitter:title" content="AI Agent Action Control & Governance | Dativo Talon" />
+  <meta name="twitter:description" content="Control consequential AI agent actions at supported boundaries. Shared company policy, MCP tool-call denial, exact HTTP action authorization and verifiable evidence. Open source and self-hostable." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="16x16" href="/public/assets/favicon-16x16.png" />
@@ -115,6 +115,17 @@
           <article class="card"><div class="line-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 7h-7a5 5 0 0 0-5 5v8M4 17l4 4 4-4M16 3l4 4-4 4"/></svg></div><h3>Action → stop</h3><p>Deny an intercepted MCP tool, or use the shipped HTTP Action Gateway to bind a consequential action to an exact approval and at-most-once dispatch.</p><a href="/talon/docs/action-gateway-proof/">Run exact-action proof →</a></article>
           <article class="card"><div class="line-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 6.5c0-1.4-1.8-2.5-4-2.5S9 5.1 9 6.5 10.8 9 13 9s4 1.1 4 2.5S15.2 14 13 14s-4 1.1-4 2.5S10.8 19 13 19s4-1.1 4-2.5"/></svg></div><h3>Policy → prevent</h3><p>Configure a company constraint, trigger a disallowed provider/data/tool path, and verify that the governed request cannot silently weaken the baseline.</p><a href="/llm-governance-gateway/">Policy proof →</a></article>
           <article class="card"><div class="line-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.4 8.4-8 9-4.6-.6-8-4-8-9V7l8-4zM8 8l8 8M16 8l-8 8"/></svg></div><h3>Budget → stop</h3><p>Cross a use-case or session limit, confirm the next provider request is denied, and inspect the signed reason as a supporting policy control.</p><a href="/ai-cost-control/">Cost proof →</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="learn-agent-control">
+      <div class="wrap">
+        <div class="section-heading wide-heading"><p class="eyebrow">Technical buyer guides</p><h2>Understand agent action governance before you deploy it.</h2><p>Practical guides for platform teams choosing MCP tool permissions, reconstructing agent decisions, and comparing an AI control plane with a model gateway. Every guide distinguishes actual interception from unobserved activity.</p></div>
+        <div class="grid three">
+          <a class="card" href="/mcp-tool-governance/"><h3>MCP tool permissions</h3><p>Tool discovery versus pre-call denial, approval boundaries and what Talon can intercept.</p><span>Understand MCP governance →</span></a>
+          <a class="card" href="/ai-agent-audit-trail/"><h3>AI agent audit trails</h3><p>Separate session attribution, operational logs, action attempts and signed evidence.</p><span>Investigate agent actions →</span></a>
+          <a class="card" href="/comparisons/talon-vs-litellm/"><h3>Talon vs LiteLLM</h3><p>When to choose provider routing and MCP key permissions versus specific action authorization.</p><span>Compare architectures →</span></a>
         </div>
       </div>
     </section>
