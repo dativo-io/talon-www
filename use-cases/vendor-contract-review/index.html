@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="canonical" href="https://dativo.io/use-cases/vendor-contract-review/" />
+<title>AI Vendor Contract Review: Confidential Data Governance | Talon</title>
+<meta name="description" content="See a reproducible n8n vendor contract AI review: deny unapproved model egress, redact synthetic contact fields, allow the approved provider and verify signed evidence." />
+<meta property="og:title" content="AI Vendor Contract Review: Confidential Data Governance | Talon" />
+<meta property="og:description" content="See a reproducible n8n vendor contract AI review: deny unapproved model egress, redact synthetic contact fields, allow the approved provider and verify signed evidence." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dativo.io/use-cases/vendor-contract-review/" />
+<meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AI Vendor Contract Review: Confidential Data Governance | Talon" />
+<meta name="twitter:description" content="See a reproducible n8n vendor contract AI review: deny unapproved model egress, redact synthetic contact fields, allow the approved provider and verify signed evidence." />
+<meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
+<link rel="stylesheet" href="/styles.css" />
+<link rel="icon" type="image/svg+xml" href="/public/assets/talon-icon.svg" />
+<link rel="stylesheet" href="/site-nav.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Use AI for vendor reviews without sending confidential documents everywhere.","description":"See a reproducible n8n vendor contract AI review: deny unapproved model egress, redact synthetic contact fields, allow the approved provider and verify signed evidence.","inLanguage":"en","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/use-cases/vendor-contract-review/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dativo.io/"},{"@type":"ListItem","position":2,"name":"Use cases","item":"https://dativo.io/use-cases/"},{"@type":"ListItem","position":3,"name":"Vendor contract review","item":"https://dativo.io/use-cases/vendor-contract-review/"}]}]}</script>
+<script defer src="/site-nav.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
+</head><body>
+<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/" aria-label="Dativo Talon home"><img class="brand-logo" src="/public/assets/talon-icon.svg?v=2" alt="Dativo Talon mark" /><span>Dativo Talon</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation"><span></span><span></span><span></span></button><nav class="nav-links" id="primary-navigation" aria-label="Primary navigation"><a href="/">Operate</a><a href="/ai-cost-control/">Cost</a><a href="/ai-action-control/">Actions</a><a href="/llm-governance-gateway/">Policy</a><a href="/coding-agent-governance/">Sessions</a><details class="nav-dropdown"><summary>Use cases</summary><div class="nav-dropdown-menu"><a href="/use-cases/coding-agents/">Coding agents</a><a href="/use-cases/customer-support/">Customer support</a><a href="/use-cases/people-analytics/">People Analytics</a><a href="/use-cases/vendor-contract-review/">Vendor contract review</a><a href="/use-cases/">All use cases</a></div></details><a href="/talon/docs/">Docs</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
+<main>
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Use case · Procurement and legal operations</div><h1>Use AI for vendor reviews without sending confidential documents everywhere.</h1><p class="hero-subtitle">Procurement and legal teams can use AI to draft advisory reviews while company policy restricts where confidential inputs may be sent. Talon's n8n demonstration proves a disallowed provider path was rejected before access and an approved, redacted path still produced useful output.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon-full-demo#n8n-vendor-contract-review">Review the actual workflow</a><a class="button secondary" href="/llm-governance-gateway/">Shared company policy</a><a class="button ghost" href="/ai-governance-evidence-store/">Signed evidence</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>synthetic vendor documents
+   profile + proposed DPA + review criteria
+          ↓ confidential classification
+   OpenAI egress → DENIED (zero provider call)
+          ↓ allowed route only
+   email + IBAN redaction
+   Anthropic → advisory review draft
+          ↓ signed session evidence</code></pre></div></div></section>
+<section class="strip"><div class="wrap strip-inner"><span>Confidential documents</span><span>Destination restriction</span><span>PII transformation</span><span>Approved model route</span><span>Signed session</span></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Business scenario</p><h2>A confidential vendor package should not be routable to any model.</h2><p>The <a href="https://github.com/dativo-io/talon-full-demo/tree/main/integrations/n8n">pinned n8n demonstration</a> assembles a fictional vendor profile, a proposed data-processing addendum and the company's internal review criteria. The workflow attempts one forbidden destination probe and then one permitted review, using the same authenticated vendor-review use case and session.</p></div><div class="grid three">
+<article class="card"><h3>Preventive egress decision</h3><p>An agent-specific rule rejects the first confidential package bound for OpenAI before provider access, incurring no provider cost for that denied call.</p></article>
+<article class="card"><h3>Keep useful business work</h3><p>An allowed Anthropic route receives redacted contact email and IBAN values and creates a synthetic advisory review packet.</p></article>
+<article class="card"><h3>Verify the reason</h3><p>The resulting session evidence links the blocked and permitted model decisions, data-handling facts and signatures without asserting control of out-of-band document sharing.</p></article>
+</div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">One effective policy, two outcomes</p><h2>Deny the wrong destination. Continue on the authorized one.</h2><p>The provider list alone is not enough. Talon checks the configured AI use case's effective policy, including the document's confidentiality and destination constraints. The failed OpenAI probe is a real negative-policy test, not a synthetic request with missing credentials.</p><p>Content review remains advisory. The output does not substitute for a human legal, data-protection, security or procurement decision, and the demo makes no claim of automatic regulatory compliance.</p><div class="link-row"><a href="/llm-governance-gateway/">Policy design</a><a href="/talon/docs/policy-cookbook/">Policy cookbook</a></div></div><div class="code-panel"><pre><code>vendor-contract-review identity
+          ↓ policy + confidentiality
+  OpenAI egress        DENY
+    provider calls     zero
+          ↓
+  Anthropic route      ALLOW
+    synthetic PII      redacted
+    advisory draft     produced
+          ↓
+  signed decision evidence</code></pre></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Evaluate the actual perimeter</p><h2>Questions procurement and platform teams should ask</h2></div><div class="grid three">
+<article class="card"><h3>What data is classified?</h3><p>Which application input is marked confidential? Can the use case weaken a company-level provider or sovereignty constraint?</p></article>
+<article class="card"><h3>What can the LLM reach?</h3><p>Does every relevant model request traverse Talon? Direct attachments, emails and API uploads outside the path are not covered.</p></article>
+<article class="card"><h3>What proves compliance with a rule?</h3><p>Which denied and allowed requests have independently verifiable records? A valid signature supports integrity, not complete legal compliance.</p></article>
+</div></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Reproduce confidential egress control</p><h2>Test a forbidden provider before relying on the positive path.</h2><p>Compare the blocked first request with the approved review. The same evidence set should explain both outcomes.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon-full-demo#n8n-vendor-contract-review">Reproduce vendor review</a><a class="button secondary" href="/ai-governance-evidence-store/">Evidence model</a><a class="button ghost" href="/use-cases/">All use cases</a></div></div></div></section>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Demonstrations use synthetic data and govern only supported paths routed through Talon. Never infer control of bypassed local actions.</span></div></footer><script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+</body></html>

@@ -32,6 +32,11 @@ jobs:
           test -f dist/mcp-tool-governance/index.html
           test -f dist/ai-agent-audit-trail/index.html
           test -f dist/comparisons/talon-vs-litellm/index.html
+          test -f dist/use-cases/index.html
+          test -f dist/use-cases/coding-agents/index.html
+          test -f dist/use-cases/customer-support/index.html
+          test -f dist/use-cases/people-analytics/index.html
+          test -f dist/use-cases/vendor-contract-review/index.html
           test -f dist/sitemap.xml
           test -f dist/ai-cost-control/index.html
           test -f dist/ai-action-control/index.html

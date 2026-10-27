@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="canonical" href="https://dativo.io/use-cases/customer-support/" />
+<title>AI Customer Support Automation: PII, Refund Controls | Talon</title>
+<meta name="description" content="A real n8n customer support demo governed by Talon: PII redaction, policy-safe fallback, refund-tool denial, signed evidence and a separate human approval step." />
+<meta property="og:title" content="AI Customer Support Automation: PII, Refund Controls | Talon" />
+<meta property="og:description" content="A real n8n customer support demo governed by Talon: PII redaction, policy-safe fallback, refund-tool denial, signed evidence and a separate human approval step." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dativo.io/use-cases/customer-support/" />
+<meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AI Customer Support Automation: PII, Refund Controls | Talon" />
+<meta name="twitter:description" content="A real n8n customer support demo governed by Talon: PII redaction, policy-safe fallback, refund-tool denial, signed evidence and a separate human approval step." />
+<meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
+<link rel="stylesheet" href="/styles.css" />
+<link rel="icon" type="image/svg+xml" href="/public/assets/talon-icon.svg" />
+<link rel="stylesheet" href="/site-nav.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Let AI draft customer replies without granting refund authority.","description":"A real n8n customer support demo governed by Talon: PII redaction, policy-safe fallback, refund-tool denial, signed evidence and a separate human approval step.","inLanguage":"en","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/use-cases/customer-support/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dativo.io/"},{"@type":"ListItem","position":2,"name":"Use cases","item":"https://dativo.io/use-cases/"},{"@type":"ListItem","position":3,"name":"Customer support","item":"https://dativo.io/use-cases/customer-support/"}]}]}</script>
+<script defer src="/site-nav.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
+</head><body>
+<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/" aria-label="Dativo Talon home"><img class="brand-logo" src="/public/assets/talon-icon.svg?v=2" alt="Dativo Talon mark" /><span>Dativo Talon</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation"><span></span><span></span><span></span></button><nav class="nav-links" id="primary-navigation" aria-label="Primary navigation"><a href="/">Operate</a><a href="/ai-cost-control/">Cost</a><a href="/ai-action-control/">Actions</a><a href="/llm-governance-gateway/">Policy</a><a href="/coding-agent-governance/">Sessions</a><details class="nav-dropdown"><summary>Use cases</summary><div class="nav-dropdown-menu"><a href="/use-cases/coding-agents/">Coding agents</a><a href="/use-cases/customer-support/">Customer support</a><a href="/use-cases/people-analytics/">People Analytics</a><a href="/use-cases/vendor-contract-review/">Vendor contract review</a><a href="/use-cases/">All use cases</a></div></details><a href="/talon/docs/">Docs</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
+<main>
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Use case · Support operations</div><h1>Let AI draft customer replies without granting refund authority.</h1><p class="hero-subtitle">Support workflows need useful answers, safe handling of customer data and clear boundaries around financial actions. In Talon's synthetic n8n demonstration, a support reply is completed through an approved model path while a disallowed refund-related tool is blocked before provider dispatch.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon-full-demo#n8n-customer-support-resolution">Inspect reproducible workflow</a><a class="button secondary" href="/ai-action-control/">Action boundaries</a><a class="button ghost" href="/talon/docs/product-demo/">Product demo</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>duplicate-charge support ticket
+  → email + IBAN handling
+  → permitted provider fallback
+  → customer reply draft
+
+issue_refund offered to model?
+  → DENY before provider request
+
+operator approval in n8n
+  → separate synthetic finance handoff
+  → NO actual refund executed</code></pre></div></div></section>
+<section class="strip"><div class="wrap strip-inner"><span>Customer support</span><span>PII redaction</span><span>Policy-valid fallback</span><span>Tool-schema denial</span><span>Separate human gate</span><span>Signed decisions</span></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Concrete support workflow</p><h2>Useful drafts should survive a blocked financial action.</h2><p>The existing <a href="https://github.com/dativo-io/talon-full-demo/tree/main/integrations/n8n">n8n customer-support resolution demo</a> starts with a fictional duplicate-charge ticket, account context and refund policy. A preferred local model route fails; Talon skips a forbidden provider candidate and allows an approved OpenAI fallback on the redacted request. The draft can be completed even though the subsequent request exposing <code>issue_refund</code> is denied before upstream model dispatch.</p></div><div class="grid three">
+<article class="card"><h3>Data handling</h3><p>The synthetic input contains an email and IBAN. The governed model path records redaction decisions; it is not a blanket DLP guarantee for systems outside Talon.</p></article>
+<article class="card"><h3>Provider reliability</h3><p>Fallback candidates are checked against the use-case's provider and data policy. A model-provider failure is not proof that the complete support workflow has failed.</p></article>
+<article class="card"><h3>Preventive tool restriction</h3><p>The disallowed <code>issue_refund</code> tool schema cannot pass this governed provider request. This does not assert control of every directly invoked payment API.</p></article>
+</div></div></section>
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Where approval actually happens</p><h2>The n8n operator gate is not a Talon-initiated refund.</h2><p>After Talon denies the disallowed model request, n8n enters a literal human approval state. The workflow waits until a demo operator approves or rejects the exact synthetic EUR 249 finance request. On approval it creates a finance-handoff artifact; on rejection no handoff is created. Neither branch issues an actual refund.</p><p>That human gate belongs to the n8n demo workflow. It is <strong>not</strong> the separately shipped HTTP Action Gateway's authorization/dispatch lifecycle and should not be presented as Talon automatically approving payment execution.</p><div class="link-row"><a href="/ai-action-control/">Talon action authorization</a><a href="/talon/docs/action-gateway/">Exact HTTP action reference</a></div></div><div class="code-panel"><pre><code>ticket + account context
+     ↓ model request through Talon
+PII redaction + allowed fallback
+     ↓
+useful customer reply draft
+     ↓ issue_refund tool denied
+n8n operator gate (SEPARATE)
+     ↓ approved? create finance request
+       rejected? no handoff
+
+No payment or refund is executed.</code></pre></div></div></section>
+<section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">What a buyer can inspect</p><h2>Two perspectives on the same synthetic workflow</h2></div><div class="grid three">
+<article class="card"><h3>Support lead</h3><p>The reply draft remains available. The application explicitly records that refund processing requires a separate human decision.</p></article>
+<article class="card"><h3>Platform engineer</h3><p>The configured <code>customer-support</code> identity, approved provider fallback, denial, estimated cost and relevant session records can be inspected.</p></article>
+<article class="card"><h3>Security reviewer</h3><p>Verify signed Talon decisions for routed traffic and separately signed demo-operator receipts. No claim extends to direct calls bypassing the controlled path.</p></article>
+</div><p class="boundary-note">The support inputs and financial handoff are synthetic. A separate Zendesk-adapter scenario exists, but installation and UI observations in a real Zendesk account require additional operator confirmation.</p></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Run the controlled scene</p><h2>Can your support assistant generate a draft and still stop a forbidden action?</h2><p>Reproduce the n8n workflow and review the signed Talon records. Do not confuse a tool schema denial with an executed payment or complete endpoint containment.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon-full-demo#n8n-customer-support-resolution">Run n8n support case</a><a class="button secondary" href="/github-copilot-governance/">See coding tool control</a><a class="button ghost" href="/use-cases/">Other use cases</a></div></div></div></section>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Demonstrations use synthetic data and govern only supported paths routed through Talon. Never infer control of bypassed local actions.</span></div></footer><script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+</body></html>

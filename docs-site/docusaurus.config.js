@@ -101,10 +101,11 @@ const config = {
           label: 'Use cases',
           position: 'left',
           items: [
-            {
-              to: '/github-copilot-cli-governance/',
-              label: 'GitHub Copilot governance',
-            },
+            {href: '/use-cases/coding-agents/', label: 'Coding agents'},
+            {href: '/use-cases/customer-support/', label: 'Customer support'},
+            {href: '/use-cases/people-analytics/', label: 'People Analytics'},
+            {href: '/use-cases/vendor-contract-review/', label: 'Vendor contract review'},
+            {href: '/use-cases/', label: 'All use cases'},
           ],
         },
         {
@@ -126,6 +127,7 @@ const config = {
           title: 'Get started',
           items: [
             {label: 'Product demo — three use cases', to: '/product-demo/'},
+            {label: 'Business use cases', href: '/use-cases/'},
             {label: 'GitHub Copilot governance', to: '/github-copilot-cli-governance/'},
             {label: '60-second no-key demo', to: '/quickstart-demo/'},
             {label: 'Add Talon to an existing app', to: '/add-talon-to-existing-app/'},

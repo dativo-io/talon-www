@@ -21,7 +21,11 @@ const canonicalHeader = `<header class="site-nav">
         <details class="nav-dropdown">
           <summary>Use cases</summary>
           <div class="nav-dropdown-menu">
-            <a href="/github-copilot-governance/">GitHub Copilot governance</a>
+            <a href="/use-cases/coding-agents/">Coding agents</a>
+            <a href="/use-cases/customer-support/">Customer support</a>
+            <a href="/use-cases/people-analytics/">People Analytics</a>
+            <a href="/use-cases/vendor-contract-review/">Vendor contract review</a>
+            <a href="/use-cases/">All use cases</a>
           </div>
         </details>
         <a href="/talon/docs/">Docs</a>
@@ -43,7 +47,11 @@ const expectedLabels = [
   'Policy',
   'Sessions',
   'Use cases',
-  'GitHub Copilot governance',
+  'Coding agents',
+  'Customer support',
+  'People Analytics',
+  'Vendor contract review',
+  'All use cases',
   'Docs',
   'Compare',
   'GitHub',
@@ -116,7 +124,7 @@ for (const file of pagesWithSiteNav) {
   if (!header.includes('class="nav-toggle"') || !header.includes('id="primary-navigation"')) {
     throw new Error(`Responsive navigation controls missing from ${file}`);
   }
-  if (!header.includes('class="nav-dropdown"') || !header.includes('/github-copilot-governance/')) {
+  if (!header.includes('class="nav-dropdown"') || !header.includes('/use-cases/coding-agents/') || !header.includes('/use-cases/people-analytics/')) {
     throw new Error(`Use-case navigation missing from ${file}`);
   }
   if (!header.includes('/public/assets/talon-icon.svg?v=2')) {

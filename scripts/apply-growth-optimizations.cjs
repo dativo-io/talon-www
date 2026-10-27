@@ -22,6 +22,11 @@ const metadata = {
   '/talon/docs/add-talon-to-existing-app/': ['Add Talon to an OpenAI or Anthropic App in Minutes', 'Put Talon in front of an existing OpenAI or Anthropic app with a base-URL change, then add cost, policy, reliability, session visibility, and signed evidence.'],
   '/ai-governance-evidence-store/': ['Signed AI Runtime Evidence Store: Verify & Export | Talon', 'Inspect and verify Talon runtime evidence for AI policy, cost, routing, PII, tools, and sessions. Export signed records for review and audit workflows.'],
   '/coding-agent-governance/': ['Coding Agent Governance: Cost, Tools & Session Visibility | Talon', 'Govern coding-agent model traffic and intercepted MCP calls with shared budgets, policy, session attribution, and signed evidence. Local actions remain outside Talon.'],
+  '/use-cases/': ['AI Use Cases Governed by Dativo Talon | Examples', 'Explore Talon-governed AI use cases: coding agents, customer support, People Analytics and vendor review. See practical policy, action boundaries and evidence.'],
+  '/use-cases/coding-agents/': ['Coding Agents: TokenEconomizer and Copilot | Talon', 'See real coding-agent governance with Talon: TokenEconomizer cost experiments and Copilot MCP release controls. Verified budgets and evidence, without unsupported savings claims.'],
+  '/use-cases/customer-support/': ['AI Customer Support Automation: PII, Refund Controls | Talon', 'A real n8n customer support demo governed by Talon: PII redaction, policy-safe fallback, refund-tool denial, signed evidence and a separate human approval step.'],
+  '/use-cases/people-analytics/': ['People Analytics AI Governance: HR Data Access | Talon', 'Govern AI workforce analytics with Talon: allow aggregate HR tools, deny intercepted employee-record exports, verify policy evidence and retain existing HR access controls.'],
+  '/use-cases/vendor-contract-review/': ['AI Vendor Contract Review: Confidential Data Governance | Talon', 'See a reproducible n8n vendor contract AI review: deny unapproved model egress, redact synthetic contact fields, allow the approved provider and verify signed evidence.'],
 };
 
 function htmlFiles(dir) {
