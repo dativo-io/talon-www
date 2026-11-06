@@ -65,6 +65,8 @@ mkdir -p "$OUT_DIR"
 
 # Keep the canonical mark, app icon, and docs copies present and non-empty.
 node "$ROOT_DIR/scripts/verify-talon-brand-assets.cjs" "$ROOT_DIR"
+# Guard the canonical marketing nav against stale assertions as it evolves.
+node "$ROOT_DIR/scripts/test-normalize-site-nav.cjs"
 
 # Copy the existing static marketing site as-is.
 # Cloudflare Workers build images do not include rsync, so use portable shell/cp.
