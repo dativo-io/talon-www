@@ -32,7 +32,7 @@ const config = {
           editUrl: ({docPath}) => {
             const sourceMap = require('./src/source-map.cjs');
             const sourcePath = sourceMap[docPath];
-            if (!sourcePath) return 'https://github.com/dativo-io/talon';
+            if (!sourcePath) return `https://github.com/dativo-io/talon-www/edit/main/docs-site/docs/${docPath}`;
             return `https://github.com/dativo-io/talon/edit/main/${sourcePath}`;
           },
         },
