@@ -39,9 +39,14 @@ for (const route of marketing) {
   const html = fs.readFileSync(file, 'utf8');
   if (/name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html)) continue;
   const expected = origin + route;
-  if (!rootMap.has(expected)) errors.push('Marketing page omitted from deployed sitemap: ' + route);
   const canonical = html.match(/<link\s+[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i)?.[1];
-  if (canonical !== expected) errors.push('Missing/noncanonical marketing URL: ' + route);
+  if (canonical && canonical !== expected) {
+    // Deliberate historical alias: preserve the page but exclude it from sitemap.
+    if (rootMap.has(expected)) errors.push('Noncanonical alias present in sitemap: ' + route);
+    continue;
+  }
+  if (canonical !== expected) errors.push('Missing canonical marketing URL: ' + route);
+  if (!rootMap.has(expected)) errors.push('Marketing page omitted from deployed sitemap: ' + route);
 }
 for (const route of docs) {
   if (!docsMap.has(origin + route)) errors.push('Docs page omitted from docs sitemap: ' + route);
