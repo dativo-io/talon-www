@@ -4,20 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/integrations/langgraph-agent-governance/" />
-  <title>Operate a LangGraph AI Use Case with Talon</title>
-  <meta name="description" content="Keep LangGraph as the orchestrator and add Dativo Talon as the runtime control plane: one authenticated agent identity, effective policy, cost controls, reliability paths, sessions and signed evidence." />
-  <meta property="og:title" content="Operate a LangGraph AI Use Case with Talon" />
+  <title>LangGraph Tool Calling: Govern MCP vs Local Tools | Talon</title>
+  <meta name="description" content="LangGraph tool calling crosses different boundaries. Learn what Talon can enforce for routed model requests and MCP calls, what local ToolNode execution bypasses, and how to verify a denial." />
+  <meta property="og:title" content="LangGraph Tool Calling: Govern MCP vs Local Tools | Talon" />
   <meta property="og:description" content="LangGraph orchestrates the agent. Talon authenticates the use case and applies one effective policy on the governed provider path." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://dativo.io/integrations/langgraph-agent-governance/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Operate a LangGraph AI Use Case with Talon" />
+  <meta name="twitter:title" content="LangGraph Tool Calling: Govern MCP vs Local Tools | Talon" />
   <meta name="twitter:description" content="Keep orchestration in LangGraph; add authenticated agent identity, shared cost, effective policy and runtime evidence with Talon." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/styles.css" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Operate a LangGraph AI Use Case with Talon","description":"A practical integration pattern for keeping LangGraph orchestration while authenticating the AI use case and routing model traffic through Dativo Talon’s control plane.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/integrations/langgraph-agent-governance/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"LangGraph Tool Calling: Govern MCP vs Local Tools | Talon","description":"A practical integration pattern for keeping LangGraph orchestration while authenticating the AI use case and routing model traffic through Dativo Talon’s control plane.","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/integrations/langgraph-agent-governance/"}</script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
 </head>
 <body>
@@ -59,6 +59,21 @@ llm = ChatOpenAI(
 # Use llm inside LangGraph nodes as usual.</code></pre></div></div></section>
 <section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">What the key controls</p><h2>Identity, budget and policy stay bound to the AI use case.</h2></div><div class="table-wrap comparison-table"><table><thead><tr><th>Concern</th><th>Runtime behavior</th></tr></thead><tbody><tr><td>Identity</td><td>The bearer key resolves the Talon agent and tenant; the request cannot substitute another identity.</td></tr><tr><td>Cost</td><td>Per-request, daily, monthly and session limits come from the agent's resolved effective policy.</td></tr><tr><td>Models/providers</td><td>Organization, agent and provider restrictions are evaluated on the primary route and every fallback candidate.</td></tr><tr><td>Evidence</td><td>Agent, tenant, policy digests, provider path and decision outcome are signed in the runtime record.</td></tr></tbody></table></div></div></section>
 <section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Boundary</p><h2>Talon governs the path, not the whole graph.</h2><p>Model requests routed through Talon can be controlled and evidenced. Tool schemas visible to the gateway can be filtered. Local Python actions, direct APIs and tool execution that bypass Talon remain outside its view.</p></div><div class="table-wrap comparison-table"><table><thead><tr><th>LangGraph activity</th><th>Talon visibility</th></tr></thead><tbody><tr><td>Model API request routed through Talon</td><td>Authenticated, governed and evidenced.</td></tr><tr><td>Tool schema included in governed LLM request</td><td>Can be filtered or blocked by supported gateway policy.</td></tr><tr><td>MCP/tool call routed through Talon interception</td><td>Can be governed on the supported path.</td></tr><tr><td>Local node code, shell command or direct API bypass</td><td>Invisible and uncontrolled by Talon.</td></tr></tbody></table></div></div></section>
+<section class="section" id="langgraph-tool-calling">
+<div class="wrap">
+  <div class="section-heading"><p class="eyebrow">LangGraph tool calling · practical boundary test</p><h2>Tool selection is not tool execution.</h2><p>When a LangGraph graph asks a model to choose a tool, the selected tool name is only intent. Whether Talon can block the resulting action depends on the path that actually executes it. Test this before describing a graph as governed.</p></div>
+  <div class="grid three">
+    <article class="card"><h3>1. Model sees a tool schema</h3><p>If the LLM request passes through Talon, configured policy can filter or block forbidden tool definitions before the model sees them. This is not proof that local code cannot call the same tool.</p></article>
+    <article class="card"><h3>2. Graph calls a tool over MCP</h3><p>When the MCP <code>tools/call</code> goes through Talon's interception point, policy can deny that specific call before the upstream MCP handler executes. Inspect its signed decision evidence.</p></article>
+    <article class="card"><h3>3. ToolNode runs local Python or direct HTTP</h3><p>If LangGraph executes a local function or calls an external API outside Talon, the action is invisible to Talon. Use application authorization, service credentials and isolation at that separate boundary.</p></article>
+  </div>
+  <div class="table-wrap comparison-table"><table><thead><tr><th>Test input</th><th>Expected observable proof</th></tr></thead><tbody>
+    <tr><td>Allow a harmless read via the configured MCP proxy</td><td>Upstream call occurs; intercepted decision and outcome can be inspected.</td></tr>
+    <tr><td>Deny a forbidden write via the same MCP proxy</td><td>Upstream handler is not invoked; denied call has a signed Talon record.</td></tr>
+    <tr><td>Run a local ToolNode bypassing the proxy</td><td>No Talon execution claim; enforce this path in your application instead.</td></tr>
+  </tbody></table></div>
+  <p class="boundary-note">A model suggestion, a tool denial and a completed business effect are different facts. Verify only the path Talon observed. For an implementation checklist see <a href="/mcp-tool-governance/">MCP tool permissions and call governance</a>; for concrete receipts see <a href="/talon/docs/mcp-governance-extension/">the MCP governance documentation</a>.</p>
+</div></section>
 <section class="section split-section"><div class="wrap split"><div><p class="eyebrow">Sessions and subagents</p><h2>Attribute the workflow inside the authenticated agent boundary.</h2><p>A custom orchestrator can pass an asserted session id and free-form subagent labels. They explain fan-out but do not replace the authenticated Talon agent. Session state and budget remain scoped to tenant plus agent.</p></div><div class="code-panel"><pre><code>X-Talon-Session-ID: sess-support-4711
 X-Talon-Agent-ID: researcher
 X-Talon-Parent-Agent-ID: planner
@@ -73,7 +88,7 @@ talon audit show &lt;evidence-id&gt;
 talon audit verify &lt;evidence-id&gt;
 
 talon costs --agent langgraph-support</code></pre></div></div></section>
-<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Start with one graph</p><h2>Give one LangGraph use case an identity on the common path.</h2><p>Choose a workflow with real spend, sensitive data or repeated model calls. Create its agent file, mint the key, route provider traffic through Talon and inspect the resulting runtime decisions.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/add-talon-to-existing-app/">Add Talon to an app</a><a class="button secondary" href="/ai-cost-control/">Start with cost</a><a class="button ghost" href="/comparisons/talon-vs-agent-governance-toolkits/">Compare boundaries</a></div></div></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Start with one graph</p><h2>Give one LangGraph use case an identity on the common path.</h2><p>Choose a workflow with real spend, sensitive data or repeated model calls. Create its agent file, mint the key, route provider traffic through Talon and inspect the resulting runtime decisions.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/add-talon-to-existing-app/">Add Talon to an app</a><a class="button secondary" href="/ai-cost-control/">Start with cost</a><a class="button ghost" href="https://www.linkedin.com/in/sergeyenin/" rel="noopener noreferrer" data-growth-intent="pilot-contact" data-growth-placement="cta-section">Discuss one pilot use case</a></div></div></div></section>
 </main>
 <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>LangGraph remains the orchestrator. Talon authenticates the use case and governs only supported traffic and actions routed through its interception paths.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body></html>
