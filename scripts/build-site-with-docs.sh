@@ -117,6 +117,8 @@ cp -R "$DOCS_DIR/build/." "$OUT_DIR/talon/docs/"
 # Keep the canonical evaluator demo, use-case guides, and the four control-plane
 # journeys present in every production artifact.
 test -f "$OUT_DIR/talon/docs/product-demo/index.html"
+test -f "$OUT_DIR/talon/docs/use-case-playbooks/index.html"
+test -f "$OUT_DIR/talon/docs/evaluation-checklist/index.html"
 test -f "$OUT_DIR/talon/docs/github-copilot-cli-governance/index.html"
 test -f "$OUT_DIR/talon/docs/manual-governed-session/index.html"
 test -f "$OUT_DIR/talon/docs/control-plane/index.html"
