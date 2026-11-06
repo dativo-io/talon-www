@@ -1,4 +1,5 @@
-/* Case-first homepage. Intentionally independent from the older hero/accordion overrides. */ body[data-case-first-home] {
+/* Case-first homepage, independent of the removed legacy hero and accordion CSS. */
+body[data-case-first-home] {
   background:#070b14;
 }
 
