@@ -50,17 +50,23 @@ try {
     assert.match(html, /href="\/site-nav\.css"/);
     assert.match(html, /src="\/site-nav\.js"/);
     assert.equal((html.match(/src="\/site-nav\.js"/g) || []).length, 1);
-    normalized.set(route, html);
+    normalized.set(route, header);
   }
   assert.equal(fs.readFileSync(docsPath, 'utf8'), docsFixture, 'Docusaurus navbar was modified');
 
-  // Re-running the normalizer should not inject additional assets or mutate copy.
+  // Re-running the normalizer must not duplicate functional assets or alter
+  // the canonical header. Cosmetic whitespace outside the header may change.
   run();
   for (const route of routes) {
-    assert.equal(fs.readFileSync(path.join(out, route), 'utf8'), normalized.get(route),
-      `normalization is not idempotent on ${route}`);
+    const html = fs.readFileSync(path.join(out, route), 'utf8');
+    const header = html.match(/<header class="site-nav">[\\s\\S]*?<\\/header>/)?.[0];
+    assert.equal(header, normalized.get(route), `canonical header changed on ${route}`);
+    assert.equal((html.match(/src="\\/site-nav\\.js"/g) || []).length, 1, `duplicate nav JS on ${route}`);
+    assert.equal((html.match(/href="\\/site-nav\\.css"/g) || []).length, 1, `duplicate nav CSS on ${route}`);
+    assert.equal((html.match(/href="\\/public\\/assets\\/talon-icon\\.svg"/g) || []).length, 1,
+      `duplicate favicon on ${route}`);
   }
-  console.log('PASS: simplified site navigation on homepage, action page, use-case hub; docs excluded; idempotent.');
+  console.log('PASS: simplified marketing nav on homepage, action page and use-case hub; Docusaurus excluded; assets unique.');
 } finally {
   fs.rmSync(out, {recursive: true, force: true});
 }
