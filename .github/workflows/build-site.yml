@@ -50,6 +50,8 @@ jobs:
           test -f dist/coding-agent-governance/index.html
           test -f dist/github-copilot-governance/index.html
           test -f dist/talon/docs/index.html
+          test -f dist/talon/docs/use-case-playbooks/index.html
+          test -f dist/talon/docs/evaluation-checklist/index.html
           test -f dist/talon/docs/sitemap.xml
           test -f dist/talon/docs/air-gapped-deployment/index.html
           test -f dist/talon/docs/external-scanners/index.html
