@@ -66,6 +66,15 @@
     const intent = classifyIntent(link);
     if (!intent || !window.umami || typeof window.umami.track !== 'function') return;
 
+    // Contact-path clicks are a leading indicator, NOT a qualified lead or a booked pilot.
+    if (intent === 'pilot-contact') {
+      window.umami.track('Pilot Contact Click', {
+        page,
+        placement: placementFor(link),
+        channel: 'linkedin',
+      });
+    }
+
     window.umami.track('Funnel CTA', {
       page,
       intent,
