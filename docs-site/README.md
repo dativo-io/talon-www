@@ -1,3 +1,19 @@
+## Evaluator-first documentation
+
+The published docs root (`/talon/docs/`) now leads with one AI use case, not the
+internal module inventory. Navigation groups the common tasks into:
+
+- **Get started**: no-key proof, path selection, app integration and full demo.
+- **Use cases**: four business playbooks plus the existing technical proof guides.
+- **Apply controls** and **Operate and verify**: hands-on implementation.
+- **Integrations**, **Architecture and reference**, **Compliance and advanced**:
+  more specialized material, kept collapsed until needed.
+
+`docs/index.md`, `docs/use-case-playbooks.md` and
+`docs/evaluation-checklist.md` are maintained in **talon-www** as editorial
+navigation and evaluator aids. Detailed technical docs are still synchronized from
+**dativo-io/talon**, and original public URLs are preserved.
+
 # Dativo Talon docs site
 
 This directory contains the Docusaurus documentation site published under:

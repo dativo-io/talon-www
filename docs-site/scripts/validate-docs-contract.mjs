@@ -18,6 +18,8 @@ const talonRoot = explicitTalonRepoPath ?? siblingTalonRepoPath;
 const localOwnedDocs = new Map([
   ['index', 'index.md'],
   ['coding-agents-demo', 'coding-agents-demo.md'],
+  ['use-case-playbooks', 'use-case-playbooks.md'],
+  ['evaluation-checklist', 'evaluation-checklist.md'],
 ]);
 
 async function exists(filePath) {
@@ -108,6 +110,8 @@ if (!sourcesOnly) {
 
   const requiredFirstClassDocs = [
     'product-demo',
+    'use-case-playbooks',
+    'evaluation-checklist',
     'github-copilot-cli-governance',
     'control-plane',
     'cost-governance-by-agent',

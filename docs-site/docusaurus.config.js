@@ -1,6 +1,6 @@
 const config = {
   title: 'Dativo Talon Docs',
-  tagline: 'Turn company AI policy into enforceable, use-case-specific controls.',
+  tagline: 'Connect one AI use case, enforce shared policy and verify decisions.',
   favicon: 'img/favicon.svg',
 
   url: 'https://dativo.io',
@@ -32,7 +32,7 @@ const config = {
           editUrl: ({docPath}) => {
             const sourceMap = require('./src/source-map.cjs');
             const sourcePath = sourceMap[docPath];
-            if (!sourcePath) return 'https://github.com/dativo-io/talon';
+            if (!sourcePath) return `https://github.com/dativo-io/talon-www/edit/main/docs-site/docs/${docPath}`;
             return `https://github.com/dativo-io/talon/edit/main/${sourcePath}`;
           },
         },
@@ -65,119 +65,34 @@ const config = {
         src: 'img/talon-mark.svg',
       },
       items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'docsSidebar',
-          position: 'left',
-          label: 'Overview',
-        },
-        {
-          to: '/product-demo/',
-          label: 'Product demo',
-          position: 'left',
-        },
-        {
-          to: '/policy-cookbook/',
-          label: 'Policy',
-          position: 'left',
-        },
-        {
-          href: '/ai-action-control/',
-          label: 'Actions',
-          position: 'left',
-        },
-        {
-          to: '/configuration/#provider-fallback-chains-error-driven-failover',
-          label: 'Reliability',
-          position: 'left',
-        },
-        {
-          to: '/governing-coding-agents/',
-          label: 'Sessions',
-          position: 'left',
-        },
-        {
-          type: 'dropdown',
-          label: 'Use cases',
-          position: 'left',
-          items: [
-            {href: '/use-cases/coding-agents/', label: 'Coding agents'},
-            {href: '/use-cases/customer-support/', label: 'Customer support'},
-            {href: '/use-cases/people-analytics/', label: 'People Analytics'},
-            {href: '/use-cases/vendor-contract-review/', label: 'Vendor contract review'},
-            {href: '/use-cases/', label: 'All use cases'},
-          ],
-        },
-        {
-          href: '/',
-          label: 'Website',
-          position: 'right',
-        },
-        {
-          href: 'https://github.com/dativo-io/talon',
-          label: 'GitHub',
-          position: 'right',
-        },
+        {type: 'docSidebar', sidebarId: 'docsSidebar', position: 'left', label: 'Docs'},
+        {to: '/use-case-playbooks/', label: 'Use cases', position: 'left'},
+        {to: '/quickstart-demo/', label: 'Get started', position: 'left'},
+        {to: '/evaluation-checklist/', label: 'Evaluate', position: 'left'},
+        {href: '/', label: 'Website', position: 'right'},
+        {href: 'https://github.com/dativo-io/talon', label: 'GitHub', position: 'right'},
       ],
     },
     footer: {
       style: 'dark',
       links: [
-        {
-          title: 'Get started',
-          items: [
-            {label: 'Product demo — three use cases', to: '/product-demo/'},
-            {label: 'Business use cases', href: '/use-cases/'},
-            {label: 'GitHub Copilot governance', to: '/github-copilot-cli-governance/'},
-            {label: '60-second no-key demo', to: '/quickstart-demo/'},
-            {label: 'Add Talon to an existing app', to: '/add-talon-to-existing-app/'},
-            {label: 'Choose an integration path', to: '/choosing-integration-path/'},
-          ],
-        },
-        {
-          title: 'Apply policy',
-          items: [
-            {label: 'What the control layer does', to: '/control-plane/'},
-            {label: 'Reproduce a governed session', to: '/manual-governed-session/'},
-            {label: 'Gateway dashboard', to: '/gateway-dashboard/'},
-          ],
-        },
-        {
-          title: 'Control',
-          items: [
-            {label: 'Company policy', to: '/policy-cookbook/'},
-            {label: 'Action control', href: '/ai-action-control/'},
-            {label: 'MCP tool permissions', href: '/mcp-tool-governance/'},
-            {label: 'Cost and budgets', to: '/cost-governance-by-agent/'},
-            {label: 'Policy-preserving fallback', to: '/configuration/#provider-fallback-chains-error-driven-failover'},
-            {label: 'Request lifecycle', to: '/what-talon-does-to-your-request/'},
-          ],
-        },
-        {
-          title: 'Understand',
-          items: [
-            {label: 'Coding-agent sessions', to: '/governing-coding-agents/'},
-            {label: 'Incident response', to: '/incident-response-playbook/'},
-            {label: 'Logs, traces and metrics', to: '/observability/'},
-          ],
-        },
-        {
-          title: 'Trust and evidence',
-          items: [
-            {label: 'Evidence store', to: '/evidence-store/'},
-            {label: 'AI agent audit trails', href: '/ai-agent-audit-trail/'},
-            {label: 'Verify evidence integrity', to: '/evidence-integrity-demo/'},
-            {label: 'EU and privacy controls', to: '/governance-control-matrix/'},
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {label: 'GitHub', href: 'https://github.com/dativo-io/talon'},
-            {label: 'Website', href: '/'},
-            {label: 'Discuss a pilot privately', href: 'https://www.linkedin.com/in/sergeyenin/'},
-          ],
-        },
+        {title: 'Start', items: [
+          {label: 'Quickstart', to: '/quickstart-demo/'},
+          {label: 'Use-case playbooks', to: '/use-case-playbooks/'},
+          {label: 'Product demo', to: '/product-demo/'},
+          {label: 'Evaluation checklist', to: '/evaluation-checklist/'},
+        ]},
+        {title: 'Build and operate', items: [
+          {label: 'Integration paths', to: '/choosing-integration-path/'},
+          {label: 'Policy cookbook', to: '/policy-cookbook/'},
+          {label: 'MCP governance', to: '/mcp-governance-extension/'},
+          {label: 'Signed evidence', to: '/evidence-store/'},
+        ]},
+        {title: 'Dativo', items: [
+          {label: 'Website', href: '/'},
+          {label: 'Open source', href: 'https://github.com/dativo-io/talon'},
+          {label: 'Discuss a pilot', href: 'https://www.linkedin.com/in/sergeyenin/'},
+        ]},
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Dativo. Built with Docusaurus.`,
     },
