@@ -91,8 +91,19 @@ for (const file of pagesWithSiteNav) {
   if (!header.includes('class="nav-toggle"') || !header.includes('id="primary-navigation"')) {
     throw new Error(`Responsive navigation controls missing from ${file}`);
   }
-  if (!header.includes('class="nav-dropdown"') || !header.includes('/use-cases/coding-agents/') || !header.includes('/use-cases/people-analytics/')) {
-    throw new Error(`Use-case navigation missing from ${file}`);
+  // The top-level marketing nav intentionally links to the use-case hub.
+  // Individual cases live on the homepage and /use-cases/, not in a dropdown.
+  const requiredDestinations = [
+    'href="/use-cases/"',
+    'href="/#how-it-works"',
+    'href="/talon/docs/"',
+    'href="https://github.com/dativo-io/talon"',
+    'href="https://www.linkedin.com/in/sergeyenin/"',
+  ];
+  for (const destination of requiredDestinations) {
+    if (!header.includes(destination)) {
+      throw new Error(`Canonical navigation is missing ${destination} in ${file}`);
+    }
   }
   if (!header.includes('/public/assets/talon-icon.svg?v=2')) {
     throw new Error(`Canonical Talon mark missing from ${file}`);
