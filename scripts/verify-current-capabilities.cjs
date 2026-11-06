@@ -43,9 +43,12 @@ if (fs.existsSync(caseNav)) {
 const homepage = path.join(root, 'index.html');
 if (fs.existsSync(homepage)) {
   const html = fs.readFileSync(homepage, 'utf8');
-  if (!html.includes('Control consequential AI actions. Prove what happened.')) failures.push('Homepage lost the action-first product promise');
-  if (!html.includes('routed through it')) failures.push('Homepage lost its interception-boundary qualification');
-  if (html.indexOf('<h3>Action → stop</h3>') >= html.indexOf('<h3>Policy → prevent</h3>')) failures.push('Homepage action proof is no longer the first proof story');
+  if (!html.includes('Your AI use cases. One company policy.')) failures.push('Homepage lost its case-first promise');
+  if (!html.includes('supported interception paths')) failures.push('Homepage lost its interception boundary');
+  for (const route of ['/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/']) {
+    if (!html.includes('href="' + route + '"')) failures.push('Homepage missing use-case entry: ' + route);
+  }
+  if (!html.includes('href="/talon/docs/product-demo/"')) failures.push('Homepage must link to reproducible demo');
 } else failures.push('Missing homepage');
 for (const rel of ['index.html', 'ai-action-control/index.html']) {
   const target = path.join(root, rel);
