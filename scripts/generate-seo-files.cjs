@@ -50,7 +50,17 @@ function walkHtmlRoutes(rootDir, prefix = '') {
       }
       if (entry.isFile() && entry.name.endsWith('.html')) {
         const route = routeFromHtml(fullPath, rootDir, prefix);
-        if (route) routes.add(route);
+        if (route) {
+          // A canonical alias must not be advertised as another indexable URL.
+          // Marketing pages may keep the compatibility page for old links.
+          if (!route.startsWith('/talon/docs/')) {
+            const html = fs.readFileSync(fullPath, 'utf8');
+            const canonical = html.match(/<link\s+[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i)?.[1];
+            if (canonical && canonical !== urlForRoute(route)) continue;
+            if (/name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html)) continue;
+          }
+          routes.add(route);
+        }
       }
     }
   }

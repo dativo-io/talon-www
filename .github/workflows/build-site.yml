@@ -26,6 +26,12 @@ jobs:
       - name: Validate published SEO metadata and sitemap
         run: node scripts/verify-seo.cjs dist
 
+      - name: Verify generated marketing and documentation sitemap completeness
+        run: node scripts/verify-sitemap-completeness.cjs dist
+
+      - name: Unit test clean-traffic reporting
+        run: node scripts/test-report-traffic.cjs
+
       - name: Verify expected outputs
         run: |
           test -f dist/index.html
