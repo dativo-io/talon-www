@@ -4,178 +4,139 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/" />
-  <title>AI Agent Action Control & Governance | Dativo Talon</title>
-  <meta name="description" content="One self-hosted control plane for company AI use cases: shared policy, cost limits, reliability and session visibility. See Talon deny intercepted AI actions and verify the evidence." />
-  <meta name="keywords" content="AI policy enforcement, AI control plane, company AI policy, AI use case governance, AI action authorization, MCP governance, self-hosted AI governance, LLM gateway policy, signed AI evidence" />
-  <meta property="og:title" content="AI Agent Action Control & Governance | Dativo Talon" />
-  <meta property="og:description" content="One self-hosted control plane for company AI use cases: shared policy, cost limits, reliability and session visibility. See Talon deny intercepted AI actions and verify the evidence." />
+  <title>Govern AI Use Cases with One Company Policy | Dativo Talon</title>
+  <meta name="description" content="Govern AI support, coding, analytics and document workflows with one company policy. See real Talon use cases, preventive action controls and verifiable evidence." />
+  <meta property="og:title" content="Govern AI Use Cases with One Company Policy | Dativo Talon" />
+  <meta property="og:description" content="Four practical AI use cases. One shared policy, controlled actions and verifiable decisions. Explore what Talon can enforce on supported paths." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://dativo.io/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="AI Agent Action Control & Governance | Dativo Talon" />
-  <meta name="twitter:description" content="One self-hosted control plane for company AI use cases: shared policy, cost limits, reliability and session visibility. See Talon deny intercepted AI actions and verify the evidence." />
+  <meta name="twitter:title" content="Govern AI Use Cases with One Company Policy | Dativo Talon" />
+  <meta name="twitter:description" content="Four practical AI use cases. One shared policy, controlled actions and verifiable decisions." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
-  <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/public/assets/favicon-16x16.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/public/assets/favicon-32x32.png" />
-  <link rel="apple-touch-icon" href="/public/assets/apple-touch-icon.png" />
-  <link rel="manifest" href="/public/assets/site.webmanifest" />
-  <meta name="theme-color" content="#07111f" />
+  <link rel="icon" type="image/svg+xml" href="/public/assets/talon-icon.svg" />
   <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="/homepage-overrides.css" />
-  <link rel="stylesheet" href="/homepage-mobile-ux.css" />
-  <link rel="stylesheet" href="/homepage-polish.css" />
-  <style>.attention-queue td:last-child{color:#cbd5e1}.boundary-note{font-size:.95rem;color:#94a3b8}.hero-demo-media{position:relative;display:grid;aspect-ratio:979/694;overflow:hidden;background:#020617}.hero-demo-poster,.hero-demo-animation{grid-area:1/1;width:100%;height:100%}.hero-demo-animation{display:block;object-fit:cover;opacity:0;transition:opacity .2s ease}.hero-demo-poster{display:flex;flex-direction:column;padding:clamp(18px,3vw,30px);background:radial-gradient(circle at 78% 18%,rgba(59,130,246,.18),transparent 38%),linear-gradient(145deg,#07111f,#020617);color:#cbd5e1;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.hero-demo-poster-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:14px;border-bottom:1px solid rgba(148,163,184,.16);font-size:12px}.hero-demo-poster-bar strong{color:#93c5fd;font-weight:700;text-transform:uppercase;letter-spacing:.1em}.hero-demo-poster-body{display:grid;gap:clamp(8px,1.5vw,14px);align-content:center;flex:1}.hero-demo-line{display:grid;grid-template-columns:minmax(70px,.26fr) 1fr;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(148,163,184,.1);font-size:clamp(11px,1.3vw,14px)}.hero-demo-line b{color:#bfdbfe;letter-spacing:.06em}.hero-demo-line.blocked b{color:#fecaca}.hero-demo-line.verified b{color:#a7f3d0}.hero-demo-play{position:absolute;right:16px;bottom:16px;z-index:2;min-height:40px;padding:0 14px;border:1px solid rgba(147,197,253,.34);border-radius:999px;background:rgba(2,6,23,.88);color:#dbeafe;font:inherit;font-size:12px;font-weight:750;cursor:pointer;box-shadow:0 10px 30px rgba(2,6,23,.34)}.hero-demo-play:hover{border-color:rgba(147,197,253,.62);background:#0f172a}.hero-demo-media.is-playing .hero-demo-animation{opacity:1}.hero-demo-media.is-playing .hero-demo-poster,.hero-demo-media.is-playing .hero-demo-play{opacity:0;pointer-events:none}.hero-demo-caption{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 16px 14px;border-top:1px solid rgba(148,163,184,.14);color:#94a3b8;font-size:12px;line-height:1.4}.hero-demo-caption strong{color:#dbeafe;font-weight:600;white-space:nowrap}.hero-demo-caption a{color:#bfdbfe;font-weight:650;white-space:nowrap}@media(min-width:1081px){.hero-grid{grid-template-columns:minmax(0,.82fr) minmax(620px,1.18fr);gap:50px}.hero-terminal{width:100%;max-width:720px;min-height:0}}@media(max-width:720px){.hero-demo-caption{align-items:flex-start;flex-direction:column;gap:4px}.hero-demo-poster{padding:18px}.hero-demo-line{grid-template-columns:72px 1fr;gap:10px}.hero-demo-play{right:12px;bottom:12px}}@media(prefers-reduced-motion:reduce){.hero-demo-animation{transition:none}}</style>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Dativo Talon","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows, Docker","description":"Open-source, self-hostable control plane for production AI use cases: govern intercepted actions and model access with shared policy, costs, reliability, sessions and signed evidence.","url":"https://dativo.io/","codeRepository":"https://github.com/dativo-io/talon","license":"https://www.apache.org/licenses/LICENSE-2.0","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"audience":{"@type":"Audience","audienceType":"CTOs, AI and platform teams, engineering leaders, and security teams governing production AI use cases"}}</script>
-  <script defer src="/homepage-ux.js"></script>
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
+  <link rel="stylesheet" href="/site-nav.css" />
+  <link rel="stylesheet" href="/homepage-clean.css" />
+  <script defer src="/site-nav.js"></script>
 </head>
-<body>
+<body data-case-first-home>
   <header class="site-nav">
     <div class="wrap nav-inner">
-      <a class="brand" href="/" aria-label="Dativo Talon home"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a>
+      <a class="brand" href="/" aria-label="Dativo Talon home"><img class="brand-logo" src="/public/assets/talon-icon.svg?v=2" alt="Dativo Talon mark" /><span>Dativo Talon</span></a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation"><span></span><span></span><span></span></button>
-      <nav class="nav-links" id="primary-navigation" aria-label="Primary navigation"><a href="/llm-governance-gateway/">Policy</a><a href="/ai-action-control/">Actions</a><a href="/ai-agent-governance/">Use cases</a><a href="/ai-governance-evidence-store/">Evidence</a><a href="/talon/docs/">Docs</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav>
+      <nav class="nav-links" id="primary-navigation" aria-label="Primary navigation">
+        <a href="/use-cases/">Use cases</a>
+        <a href="/#how-it-works">How it works</a>
+        <a href="/talon/docs/">Docs</a>
+        <a href="https://github.com/dativo-io/talon">GitHub</a>
+        <a class="nav-button" href="https://www.linkedin.com/in/sergeyenin/" rel="noopener noreferrer" data-growth-intent="pilot-contact">Discuss a pilot</a>
+      </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero hero-dense">
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Open source · Self-hostable · Production agent control</div>
-          <h1>Control consequential AI actions. Prove what happened.</h1>
-          <p class="hero-subtitle">Every support bot, coding agent and internal copilot brings its own tool permissions, model access, budgets and failure behavior. Talon puts a shared operating layer in front of the AI paths you route through it: one company policy, cost controls, policy-valid fallback and session visibility. The sharpest proof is preventive: intercept a consequential action, deny what is disallowed, and verify the decision.</p>
-          <div class="hero-actions"><a class="button primary" href="https://www.linkedin.com/in/sergeyenin/" rel="noopener noreferrer" data-growth-intent="pilot-contact" data-growth-placement="hero" data-growth-primary="true" aria-label="Message the Dativo Talon founder on LinkedIn about a pilot">Discuss one pilot use case</a><a class="button secondary" href="/talon/docs/action-gateway-proof/" data-growth-intent="action-control">See the action-control proof</a><a class="hero-github-link" href="/talon/docs/product-demo/">Watch the full demo →</a></div>
-          <div class="trust-row" aria-label="Talon product value"><span>Intercepted actions</span><span>Shared policy</span><span>Incident evidence</span><span>Self-hosted</span></div>
-        </div>
-        <div class="terminal-card hero-terminal" aria-label="Talon product demo across three AI use cases">
-          <div class="terminal-header"><span></span><span></span><span></span></div>
-          <div class="hero-demo-media" data-demo-src="https://raw.githubusercontent.com/dativo-io/talon/cd5fa330f05c4bf85911b883aa00081e9fd41f9c/docs/assets/talon_hero.gif">
-            <div class="hero-demo-poster" aria-hidden="true"><div class="hero-demo-poster-bar"><span>3 AI use cases · 1 Talon control plane</span><strong>live product proof</strong></div><div class="hero-demo-poster-body"><span class="hero-demo-line"><b>SUPPORT</b><span>Local model fails; policy-valid fallback selects an allowed provider</span></span><span class="hero-demo-line"><b>PRIVACY</b><span>Customer email and IBAN are redacted before egress</span></span><span class="hero-demo-line blocked"><b>CODING</b><span>Organization policy blocks a destructive admin_* tool</span></span><span class="hero-demo-line blocked"><b>COST</b><span>Projected session spend prevents the next provider call</span></span><span class="hero-demo-line verified"><b>PROOF</b><span>Session history exports and verifies offline</span></span></div></div>
-            <img class="hero-demo-animation" width="979" height="694" alt="Animated Talon product demo operating customer support, coding assistant, and document summary use cases with policy-valid fallback, PII redaction, tool controls, budget enforcement, session visibility, and signed evidence verification." decoding="async" />
-            <button class="hero-demo-play" type="button" aria-label="Play the three-use-case Talon product demo">▶ Play demo</button>
+    <section class="case-hero">
+      <div class="wrap case-hero-grid">
+        <div>
+          <p class="case-kicker">Open source · Self-hostable · AI use-case control</p>
+          <h1>Your AI use cases. One company policy.</h1>
+          <p class="case-lead">A support bot, a coding agent and an internal analyst should not each invent their own permissions, cost limits and audit trail. Talon applies shared controls on the model and action paths you route through it.</p>
+          <div class="case-actions">
+            <a class="button primary" href="#use-cases" data-growth-intent="case-hub" data-growth-placement="hero" data-growth-primary="true">Explore use cases</a>
+            <a class="button secondary" href="/talon/docs/product-demo/" data-growth-intent="product-demo" data-growth-placement="hero">See the product demo</a>
           </div>
-          <div class="hero-demo-caption"><span>Three AI use cases · preventive controls · one signed history</span><strong>Live, evidence-backed</strong><a href="/talon/docs/product-demo/">Run it yourself →</a></div>
+          <p class="case-small">Start with one workflow. Keep your existing orchestrator and applications.</p>
+        </div>
+        <div class="case-overview" aria-label="Examples of decisions across AI use cases">
+          <div class="case-overview-top"><span>One shared control plane</span><span class="case-on">Policy enforced</span></div>
+          <div class="case-overview-row"><span><strong>Support assistant</strong><small>Customer data</small></span><b class="case-label safe">Redact before egress</b></div>
+          <div class="case-overview-row"><span><strong>Coding agent</strong><small>Disallowed admin tool</small></span><b class="case-label denied">Deny disallowed call</b></div>
+          <div class="case-overview-row"><span><strong>Document summary</strong><small>Session budget</small></span><b class="case-label denied">Stop provider request</b></div>
+          <div class="case-overview-bottom">Examples from documented Talon proof flows · <a href="/talon/docs/product-demo/">Inspect the demo</a></div>
         </div>
       </div>
     </section>
 
-    <section class="strip" aria-label="Core operator questions"><div class="wrap strip-inner"><span>What did the agent attempt?</span><span>Was the action allowed?</span><span>Did it reach the destination?</span><span>Can we verify the decision?</span></div></section>
-
-    <section class="section" id="operate">
+    <section id="use-cases" class="case-section case-use-cases">
       <div class="wrap">
-        <div class="section-heading wide-heading"><p class="eyebrow">For platform teams operating production agents</p><h2>When an agent can change something, a trace is not enough.</h2><p>A support workflow can request a refund. A coding agent can propose a release. When one of these paths fails, the platform team needs to identify the authenticated AI use case, the attempted action, the applicable policy, and what Talon actually observed—not guess what happened inside an agent it cannot see.</p></div>
-        <div class="grid three compact-problem-grid">
-          <article class="card"><div class="line-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m8 0h3a2 2 0 0 0 2-2v-3M8 8h8v8H8z"/></svg></div><h3>Permissions are scattered</h3><p>Each agent or integration implements tool, data and model permissions separately. It becomes harder to know which company rule will govern the next intercepted call.</p></article>
-          <article class="card"><div class="line-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 7h-7a5 5 0 0 0-5 5v8M4 17l4 4 4-4M16 3l4 4-4 4"/></svg></div><h3>Incidents are hard to reconstruct</h3><p>A trace can help debug latency, but it is not proof of authorization. Operators need attributed requests, policy decisions and the available operation, attempt and evidence references to understand a governed outcome.</p></article>
-          <article class="card"><div class="line-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 7v5l3 2"/></svg></div><h3>Intent becomes an action</h3><p>An agent may propose a publish, delete, export or refund. Controls need to run at a supported interception point before that proposal becomes an external effect.</p></article>
+        <div class="case-heading"><div><p class="case-kicker">Use cases first</p><h2>What are you trying to control?</h2></div><a href="/use-cases/">All use cases →</a></div>
+        <div class="case-grid">
+          <article class="case-card">
+            <span class="case-number">01 / Customer operations</span>
+            <h3>Customer support</h3>
+            <p>Allow useful replies, protect customer data and stop a refund action the assistant is not authorized to take.</p>
+            <div class="case-decision"><span>Control</span><strong>PII rules + intercepted tool denial</strong></div>
+            <a href="/use-cases/customer-support/" data-growth-intent="case-support">Explore support workflow →</a>
+          </article>
+          <article class="case-card">
+            <span class="case-number">02 / Engineering</span>
+            <h3>Coding agents</h3>
+            <p>Keep coding assistance productive without allowing an intercepted release or publish tool to cross company policy.</p>
+            <div class="case-decision"><span>Control</span><strong>Tool permissions + signed decisions</strong></div>
+            <a href="/use-cases/coding-agents/" data-growth-intent="case-coding">Explore coding workflow →</a>
+          </article>
+          <article class="case-card">
+            <span class="case-number">03 / Sensitive data</span>
+            <h3>People Analytics</h3>
+            <p>Let an analyst ask aggregate workforce questions while preventing intercepted employee-record exports.</p>
+            <div class="case-decision"><span>Control</span><strong>Aggregate access + export denial</strong></div>
+            <a href="/use-cases/people-analytics/" data-growth-intent="case-people">Explore analytics scenario →</a>
+          </article>
+          <article class="case-card">
+            <span class="case-number">04 / Procurement</span>
+            <h3>Vendor contract review</h3>
+            <p>Use models for a confidential vendor package without routing it to an unapproved provider or destination.</p>
+            <div class="case-decision"><span>Control</span><strong>Provider and data egress policy</strong></div>
+            <a href="/use-cases/vendor-contract-review/" data-growth-intent="case-procurement">Explore contract workflow →</a>
+          </article>
         </div>
+        <p class="case-disclaimer">These pages distinguish reproducible demonstrations from synthetic or in-progress integrations. They are not customer-production case studies.</p>
       </div>
     </section>
 
-    <section class="section outcomes-section" id="pillars">
+    <section id="how-it-works" class="case-section case-process">
       <div class="wrap">
-        <div class="section-heading wide-heading"><p class="eyebrow">From prevention to explanation</p><h2>Set the boundary. Decide on the action. Keep the evidence.</h2><p>Action authorization is the entry point. Shared company policy, session reconstruction, budgets and provider reliability make that boundary useful when multiple AI use cases reach production.</p></div>
-        <div class="outcome-grid">
-          <details class="outcome-card responsive-card" open><summary><span class="outcome-symbol"><svg viewBox="0 0 24 24"><path d="M20 7h-7a5 5 0 0 0-5 5v8M4 17l4 4 4-4M16 3l4 4-4 4"/></svg></span><span><strong>Action authorization</strong><small>Decide before a consequential effect.</small></span></summary><div class="outcome-detail"><p>Intercepted MCP tools can be denied today. The HTTP Action Gateway already binds exact operations and supports <code>ALLOW | DENY | REQUIRE_APPROVAL</code>; native/MCP convergence is still in progress.</p><a href="/ai-action-control/">See action control →</a></div></details>
-          <details class="outcome-card responsive-card" open><summary><span class="outcome-symbol"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 6.5c0-1.4-1.8-2.5-4-2.5S9 5.1 9 6.5 10.8 9 13 9s4 1.1 4 2.5S15.2 14 13 14s-4 1.1-4 2.5S10.8 19 13 19s4-1.1 4-2.5"/></svg></span><span><strong>Company policy</strong><small>One control model, use-case-specific effective rules.</small></span></summary><div class="outcome-detail"><p>Resolve organization rules into one effective policy for each AI use case, with hard company constraints that use-case configuration cannot weaken.</p><a href="/llm-governance-gateway/">See the policy model →</a></div></details>
-          <details class="outcome-card responsive-card" open><summary><span class="outcome-symbol"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.4 8.4-8 9-4.6-.6-8-4-8-9V7l8-4zM9 12l2 2 4-4"/></svg></span><span><strong>Verifiable proof</strong><small>Show which rule produced the decision.</small></span></summary><div class="outcome-detail"><p>Signed evidence records the identity, policy and decisive outcome Talon observed or enforced, so operators can inspect and verify the control later.</p><a href="/ai-governance-evidence-store/">See the evidence layer →</a></div></details>
-          <details class="outcome-card responsive-card" open><summary><span class="outcome-symbol"><svg viewBox="0 0 24 24"><path d="M7 3h10v4H7zM4 10h16v4H4zM7 17h10v4H7zM12 7v3M12 14v3"/></svg></span><span><strong>Operate and investigate</strong><small>Cost, reliability, attribution and diagnostics.</small></span></summary><div class="outcome-detail"><p>Shared budgets and policy-valid fallback make model calls operable. Requests are attributed to an authenticated AI use case; real asserted sessions group related calls. JSON logs and optional OTel traces/metrics support diagnosis, while separately signed evidence records verifiable decisions and observed outcomes. None replaces the others.</p><a href="/ai-agent-governance/">See use-case operations →</a></div></details>
+        <div class="case-heading"><div><p class="case-kicker">How Talon fits</p><h2>Keep the application. Govern the boundary.</h2></div></div>
+        <div class="case-steps">
+          <div><span>01</span><h3>Route one supported path</h3><p>Keep the existing agent or workflow. Connect model traffic, intercepted MCP calls or exact HTTP actions where supported.</p></div>
+          <div><span>02</span><h3>Apply company rules</h3><p>Resolve the organization baseline and the AI use case's explicit policy. Deny disallowed access before dispatch.</p></div>
+          <div><span>03</span><h3>Inspect what happened</h3><p>See decisions, cost, provider paths and signed evidence for what Talon actually intercepted.</p></div>
+        </div>
+        <a class="case-text-link" href="/talon/docs/choosing-integration-path/" data-growth-intent="integration">Choose an integration path →</a>
+      </div>
+    </section>
+
+    <section class="case-section case-proof">
+      <div class="wrap case-proof-layout">
+        <div><p class="case-kicker">See it work</p><h2>Three ways to verify the claim.</h2><p>Start with a no-key example, reproduce the multi-use-case scenario, or inspect an exact-action denial and approval sequence.</p></div>
+        <div class="case-proof-links">
+          <a href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart"><strong>60-second demo</strong><span>Mock provider · no API key <i>→</i></span></a>
+          <a href="/talon/docs/product-demo/" data-growth-intent="product-demo"><strong>Full product demo</strong><span>Support, coding and document summary <i>→</i></span></a>
+          <a href="/talon/docs/action-gateway-proof/" data-growth-intent="action-control"><strong>Exact-action proof</strong><span>HTTP action authorization · no provider key <i>→</i></span></a>
         </div>
       </div>
     </section>
 
-    <section class="section flow-section" id="how-it-works">
-      <div class="wrap">
-        <div class="section-heading centered-heading"><p class="eyebrow">How it works</p><h2>Company policy becomes effective rules at the boundary of each AI use case.</h2></div>
-        <div class="visual-flow">
-          <article class="visual-step"><div class="step-icon"><svg viewBox="0 0 24 24"><path d="M8 9h8M8 13h5M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg></div><strong>Company policy + use case</strong><span>Keep the existing app or runtime. Define company constraints and only the bounded facts that make this use case different.</span></article>
-          <div class="visual-arrow" aria-hidden="true">→</div>
-          <article class="visual-step highlight"><div class="step-icon"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.4 8.4-8 9-4.6-.6-8-4-8-9V7l8-4zM9 12l2 2 4-4"/></svg></div><strong>Talon effective policy</strong><span>Resolve the company baseline and use-case rules once, then apply them through the strongest supported interception or runtime boundary.</span></article>
-          <div class="visual-arrow" aria-hidden="true">→</div>
-          <article class="visual-step"><div class="step-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 12l3 3 5-6"/></svg></div><strong>Runtime effect + proof</strong><span>Allow the permitted path, prevent the disallowed one, and record the policy decision and relevant runtime facts as verifiable evidence.</span></article>
-        </div>
-        <div class="flow-actions"><a class="button secondary" href="/talon/docs/what-talon-does-to-your-request/">See the request lifecycle</a></div>
+    <section class="case-section case-cta" id="pilot">
+      <div class="wrap case-cta-inner">
+        <div><p class="case-kicker">Bring one real workflow</p><h2>Let's test a boundary that matters.</h2><p>Start with one policy problem: an unsafe tool, a sensitive destination, runaway spend or an incident you cannot explain.</p></div>
+        <div class="case-cta-buttons"><a class="button primary" href="https://www.linkedin.com/in/sergeyenin/" rel="noopener noreferrer" data-growth-intent="pilot-contact" data-growth-placement="cta-section" data-growth-primary="true">Discuss a pilot</a><span>Private LinkedIn conversation · not a booking form</span></div>
       </div>
     </section>
-
-    <section class="section receipt-section" aria-labelledby="receipt-heading">
-      <div class="wrap receipt-layout">
-        <div class="receipt-copy"><p class="eyebrow">A preventive decision you can inspect</p><h2 id="receipt-heading">Enforcement should leave proof, not just a log line.</h2><p>This shipped budget denial is one concrete example of the broader policy model: Talon evaluates the effective rule before provider access, prevents the disallowed call, and records the decision as signed evidence. Intercepted-action authorization follows the same preventive principle at action boundaries.</p><a href="/ai-governance-evidence-store/">Explore signed runtime evidence →</a></div>
-        <div class="decision-receipt" aria-label="Example verified Talon projected budget denial receipt"><div class="receipt-status"><span>DENIED</span><strong>session_budget_exceeded</strong></div><dl><div><dt>AI use case</dt><dd>document-summary</dd></div><div><dt>Session</dt><dd>sess-4711</dd></div><div><dt>Spent</dt><dd>$0.0094</dd></div><div><dt>Estimated next request</dt><dd>$0.0031</dd></div><div><dt>Session limit</dt><dd>$0.0100</dd></div><div><dt>Projected total</dt><dd>$0.0125</dd></div><div><dt>Provider call</dt><dd>Prevented</dd></div></dl><div class="receipt-verification"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.4 8.4-8 9-4.6-.6-8-4-8-9V7l8-4zM9 12l2 2 4-4"/></svg><span>Evidence verified</span><code>hmac: valid</code></div></div>
-      </div>
-    </section>
-
-    <section class="section proof-section">
-      <div class="wrap">
-        <div class="section-heading wide-heading"><p class="eyebrow">Three reproducible proof stories</p><h2>Start with a consequential action. Verify the outcome.</h2></div>
-        <div class="grid three proof-story-grid">
-          <article class="card"><div class="line-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 7h-7a5 5 0 0 0-5 5v8M4 17l4 4 4-4M16 3l4 4-4 4"/></svg></div><h3>Action → stop</h3><p>Deny an intercepted MCP tool, or use the shipped HTTP Action Gateway to bind a consequential action to an exact approval and at-most-once dispatch.</p><a href="/talon/docs/action-gateway-proof/">Run exact-action proof →</a></article>
-          <article class="card"><div class="line-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 6.5c0-1.4-1.8-2.5-4-2.5S9 5.1 9 6.5 10.8 9 13 9s4 1.1 4 2.5S15.2 14 13 14s-4 1.1-4 2.5S10.8 19 13 19s4-1.1 4-2.5"/></svg></div><h3>Policy → prevent</h3><p>Configure a company constraint, trigger a disallowed provider/data/tool path, and verify that the governed request cannot silently weaken the baseline.</p><a href="/llm-governance-gateway/">Policy proof →</a></article>
-          <article class="card"><div class="line-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.4 8.4-8 9-4.6-.6-8-4-8-9V7l8-4zM8 8l8 8M16 8l-8 8"/></svg></div><h3>Budget → stop</h3><p>Cross a use-case or session limit, confirm the next provider request is denied, and inspect the signed reason as a supporting policy control.</p><a href="/ai-cost-control/">Cost proof →</a></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="learn-agent-control">
-      <div class="wrap">
-        <div class="section-heading wide-heading"><p class="eyebrow">Technical buyer guides</p><h2>Understand agent action governance before you deploy it.</h2><p>Practical guides for platform teams choosing MCP tool permissions, reconstructing agent decisions, and comparing an AI control plane with a model gateway. Every guide distinguishes actual interception from unobserved activity.</p></div>
-        <div class="grid three">
-          <a class="card" href="/mcp-tool-governance/"><h3>MCP tool permissions</h3><p>Tool discovery versus pre-call denial, approval boundaries and what Talon can intercept.</p><span>Understand MCP governance →</span></a>
-          <a class="card" href="/ai-agent-audit-trail/"><h3>AI agent audit trails</h3><p>Separate session attribution, operational logs, action attempts and signed evidence.</p><span>Investigate agent actions →</span></a>
-          <a class="card" href="/comparisons/talon-vs-litellm/"><h3>Talon vs LiteLLM</h3><p>When to choose provider routing and MCP key permissions versus specific action authorization.</p><span>Compare architectures →</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="business-use-cases">
-      <div class="wrap">
-        <div class="section-heading wide-heading"><p class="eyebrow">The same control plane across real work</p><h2>Four AI use cases. One shared policy foundation.</h2><p>See concrete coding, support, workforce analytics and procurement workflows—not another list of AI governance features. Controls apply only to paths Talon intercepts; the applications and their native permissions still matter.</p></div>
-        <div class="grid two">
-          <a class="card" href="/use-cases/coding-agents/"><h3>Coding agents</h3><p>Govern model cost, external optimization experiments and restricted release tools—with signed evidence.</p><span>Explore coding agents →</span></a>
-          <a class="card" href="/use-cases/customer-support/"><h3>Customer support</h3><p>Generate a reply through approved providers; stop a disallowed refund tool and preserve the human business gate.</p><span>Explore support automation →</span></a>
-          <a class="card" href="/use-cases/people-analytics/"><h3>People Analytics</h3><p>Permit aggregate HR insight tools while preventing intercepted employee-export calls; preserve data-platform isolation.</p><span>Explore People Analytics →</span></a>
-          <a class="card" href="/use-cases/vendor-contract-review/"><h3>Vendor contract review</h3><p>Keep confidential review packets on approved providers, redact fields and verify policy decisions.</p><span>Explore procurement workflows →</span></a>
-        </div>
-        <div class="link-row"><a href="/use-cases/">Explore all use cases →</a></div>
-      </div>
-    </section>
-
-    <section class="technical-stack" aria-labelledby="technical-heading">
-      <div class="wrap"><div class="section-heading wide-heading"><p class="eyebrow">Technical and operator detail</p><h2 id="technical-heading">Open only the implementation detail you need.</h2></div>
-        <div class="technical-accordion">
-          <details class="technical-item responsive-technical" open><summary><span>Configuration and policy semantics</span><small>One use-case config resolves one effective policy.</small></summary><div class="technical-item-body split"><div><h3>The request cannot choose a different operating boundary.</h3><p>Talon resolves the presented vault-bound key to the configured agent and tenant, then combines the organization baseline and the use-case override into one effective snapshot. Unknown keys fail; hard organization constraints cannot be weakened.</p><div class="link-row"><a href="/talon/docs/authentication-and-key-scopes/">Authentication</a><a href="/llm-governance-gateway/">Effective policy</a></div></div><div class="code-panel"><pre><code>AI use case key
-→ configured agent + tenant
-→ organization policy + use-case override
-→ effective policy snapshot
-→ primary / fallback / reporting / evidence</code></pre></div></div></details>
-          <details class="technical-item responsive-technical" open><summary><span>Reliability semantics</span><small>Fallback candidates remain inside effective policy.</small></summary><div class="technical-item-body split"><div><h3>A provider failure does not erase the rules.</h3><p>On supported transient failures such as timeouts, connection errors, 429s and provider 5xx responses, Talon evaluates an ordered fallback chain. Every candidate is re-checked against provider, model, sovereignty and budget constraints.</p><div class="link-row"><a href="/talon/docs/configuration/">Fallback configuration</a><a href="/ai-governance-evidence-store/">Failover evidence</a></div></div><div class="code-panel"><pre><code>primary request
-→ transient failure
-→ evaluate explicit fallback candidate
-→ re-check effective policy
-→ serve allowed candidate OR fail closed
-→ record signed evidence</code></pre></div></div></details>
-          <details class="technical-item responsive-technical" open><summary><span>Operator commands</span><small>Move from the installation view to one session and one decision.</small></summary><div class="technical-item-body"><p>The public product language is “AI use case.” The concrete Talon configuration object is the agent.</p><div class="operator-grid"><article class="operator-card"><h3>What needs attention?</h3><code>talon agents</code><p>Configuration state, health, cost and explicit causes across the installed use cases.</p></article><article class="operator-card"><h3>What is spending?</h3><code>talon costs --agent &lt;name&gt;</code><p>Attributed cost and effective caps for one use case.</p></article><article class="operator-card"><h3>What happened?</h3><code>talon audit list --session &lt;id&gt;</code><p>Requests, providers, models, denials and history for the session.</p></article><article class="operator-card"><h3>Why, and can I trust it?</h3><code>talon audit show &lt;id&gt; && talon audit verify &lt;id&gt;</code><p>Inspect the decisive reason, then verify record integrity.</p></article></div><p class="boundary-note">Investigating an intercepted action: identify the authenticated use case, locate the relevant request and any operation/attempt records, read the policy decision, and distinguish blocked, known completion/failure, or unknown dispatch outcome. Consult available logs and traces for diagnosis; verify signed evidence for substantiated facts. A request is not automatically a durable session.</p><div class="link-row"><a href="/talon/docs/observability/">Logs and OpenTelemetry</a><a href="/talon/docs/action-gateway/">Action lifecycle</a></div></div></details>
-          <details class="technical-item responsive-technical" open id="reliability"><summary><span>Interception boundary</span><small>Talon controls only the traffic and actions it can see.</small></summary><div class="technical-item-body split"><div><h3>Talon controls only the paths it can intercept.</h3><p>Provider traffic routed through Talon can be governed and evidenced. Visible tool schemas and intercepted MCP calls can be controlled. Local shell commands, file edits, browser actions or direct API calls that bypass Talon remain invisible.</p><p class="boundary-note">The configured agent is authenticated by its vault-bound key. Client-supplied subagent and session metadata is attribution, not cryptographic workload identity. Session-budget admission uses atomic reservation of the pre-request estimate; one request can still overshoot if actual cost exceeds that estimate.</p></div><div class="code-panel"><pre><code>through Talon
-→ effective policy
-→ control + evidence
-
-bypasses Talon
-→ not controlled
-→ not observed
-
-signed evidence
-→ tamper-evident runtime proof
-→ not a compliance certificate</code></pre></div></div></details>
-        </div>
-      </div>
-    </section>
-
-    <section class="section cta-section" id="pilot"><div class="wrap"><div class="cta-card"><p class="eyebrow">Evaluate with a real AI use case</p><h2>Pick one workflow. Test one control. Inspect the proof.</h2><p>Bring a support bot, coding agent or internal workflow with a concrete spending, reliability or intercepted-action concern. We will identify where Talon can sit, what it can enforce, and what remains outside its visibility. Start with one bounded evaluation—not a company-wide migration.</p><div class="hero-actions"><a class="button primary" href="https://www.linkedin.com/in/sergeyenin/" rel="noopener noreferrer" data-growth-intent="pilot-contact" data-growth-placement="cta-section" data-growth-primary="true" aria-label="Message the Dativo Talon founder on LinkedIn about a pilot">Discuss a pilot</a><a class="button secondary" href="/talon/docs/action-gateway-proof/" data-growth-intent="action-control">Run the action proof</a><a class="hero-github-link" href="/talon/docs/product-demo/">Full product demo →</a></div><p class="boundary-note">Looking at a real support, coding or internal AI workflow? Send the founder a brief description of the action or operating problem you want to control. LinkedIn opens a private conversation, not a booking or intake form. Do not share secrets, customer data or production payloads.</p></div></div></section>
   </main>
-
-  <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Talon is self-hostable Apache-2.0 software. It governs only traffic and actions that cross its interception paths. Product information supports technical evaluation and does not replace legal or compliance advice.</span></div></footer>
+  <footer class="case-footer">
+    <div class="wrap case-footer-row">
+      <div><strong>Dativo Talon</strong><p>Applies policy only to traffic and actions routed through supported interception paths. Signed evidence is tamper-evident, not a compliance certificate.</p></div>
+      <nav aria-label="Further technical resources">
+        <a href="/mcp-tool-governance/">MCP tools</a>
+        <a href="/ai-agent-audit-trail/">Audit evidence</a>
+        <a href="/comparisons/talon-vs-litellm/">Talon vs LiteLLM</a>
+        <a href="/talon/docs/">Documentation</a>
+        <a href="https://github.com/dativo-io/talon">Source code</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>

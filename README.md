@@ -6,6 +6,17 @@ Production domain: https://dativo.io
 Blog: https://blog.dativo.io  
 Product repo: https://github.com/dativo-io/talon
 
+## Website information architecture
+
+The main page intentionally contains only: a short company-policy promise, the four
+concrete AI use cases (support, coding, People Analytics, vendor review), a three-step
+integration overview, proof links, and one pilot contact path.
+
+Detailed enforcement semantics and all advanced examples belong in
+`/talon/docs/` and the existing search-oriented technical pages. The main page
+does not embed product documentation or a secondary generated CTA section.
+The production build replaces marketing-page navigation with a shared five-link header.
+
 ## Local preview
 
 Preview the static marketing pages directly:
@@ -36,7 +47,7 @@ dist
 
 The build script copies the static marketing site, builds Docusaurus, mounts docs under `/talon/docs/`, generates root SEO files, injects Umami analytics into every generated HTML page, and fails the build if the final artifact has a missing or duplicate tracker or contains legacy analytics code.
 
-The homepage hero and the published docs are sourced from the same Talon checkout. During the production build, `docs/assets/talon_hero.gif` is copied into `dist/public/assets/` under a Talon-commit-fingerprinted filename and the built homepage is rewritten to that same-origin URL. The source `index.html` keeps its pinned GitHub URL only so the no-build local preview above can still play the demo.
+The homepage is a case-first overview, with reproducible technical demonstrations linked from their canonical documentation pages. The Talon checkout remains the source of truth for published docs. No animated hero asset is needed for the homepage.
 
 The compatibility route `/docs/talon/` redirects users to `/talon/docs/` and is included in the same analytics verification.
 

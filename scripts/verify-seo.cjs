@@ -53,8 +53,11 @@ for (const route of pages) {
   }
 }
 const home = built.get('/') || '';
-if (!home.includes('Control consequential AI actions. Prove what happened.')) errors.push('Action-first headline lost');
-for (const route of guides) if (!home.includes('href="' + route + '"')) errors.push('Orphan buyer guide ' + route);
+if (!home.includes('Your AI use cases. One company policy.')) errors.push('Case-first homepage H1 lost');
+for (const route of ['/use-cases/', '/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/', '/talon/docs/']) {
+  if (!home.includes('href="' + route + '"')) errors.push('Homepage missing priority path ' + route);
+}
+// Specialist guides remain discoverable through related use-case and docs journeys.
 const casesHub = built.get('/use-cases/') || '';
 for (const route of ['/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/']) {
   if (!casesHub.includes('href="' + route + '"')) errors.push('Use-case hub missing ' + route);

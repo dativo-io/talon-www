@@ -5,32 +5,14 @@ const root = path.resolve(process.argv[2] || 'dist');
 
 const canonicalHeader = `<header class="site-nav">
     <div class="wrap nav-inner">
-      <a class="brand" href="/" aria-label="Dativo Talon home">
-        <img class="brand-logo" src="/public/assets/talon-icon.svg?v=2" alt="Dativo Talon mark" />
-        <span>Dativo Talon</span>
-      </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation">
-        <span></span><span></span><span></span>
-      </button>
+      <a class="brand" href="/" aria-label="Dativo Talon home"><img class="brand-logo" src="/public/assets/talon-icon.svg?v=2" alt="Dativo Talon mark" /><span>Dativo Talon</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation"><span></span><span></span><span></span></button>
       <nav class="nav-links" id="primary-navigation" aria-label="Primary navigation">
-        <a href="/">Operate</a>
-        <a href="/ai-cost-control/">Cost</a>
-        <a href="/ai-action-control/">Actions</a>
-        <a href="/llm-governance-gateway/">Policy</a>
-        <a href="/coding-agent-governance/">Sessions</a>
-        <details class="nav-dropdown">
-          <summary>Use cases</summary>
-          <div class="nav-dropdown-menu">
-            <a href="/use-cases/coding-agents/">Coding agents</a>
-            <a href="/use-cases/customer-support/">Customer support</a>
-            <a href="/use-cases/people-analytics/">People Analytics</a>
-            <a href="/use-cases/vendor-contract-review/">Vendor contract review</a>
-            <a href="/use-cases/">All use cases</a>
-          </div>
-        </details>
+        <a href="/use-cases/">Use cases</a>
+        <a href="/#how-it-works">How it works</a>
         <a href="/talon/docs/">Docs</a>
-        <a href="/comparisons/">Compare</a>
-        <a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a>
+        <a href="https://github.com/dativo-io/talon">GitHub</a>
+        <a class="nav-button" href="https://www.linkedin.com/in/sergeyenin/" rel="noopener noreferrer" data-growth-intent="pilot-contact">Discuss a pilot</a>
       </nav>
     </div>
   </header>`;
@@ -40,22 +22,7 @@ const iconPattern = /\s*<link\s+rel="icon"[^>]*>\s*/gi;
 const faviconTag = '<link rel="icon" type="image/svg+xml" href="/public/assets/talon-icon.svg" />';
 const navStylesheet = '<link rel="stylesheet" href="/site-nav.css" />';
 const navScript = '<script defer src="/site-nav.js"></script>';
-const expectedLabels = [
-  'Operate',
-  'Cost',
-  'Actions',
-  'Policy',
-  'Sessions',
-  'Use cases',
-  'Coding agents',
-  'Customer support',
-  'People Analytics',
-  'Vendor contract review',
-  'All use cases',
-  'Docs',
-  'Compare',
-  'GitHub',
-];
+const expectedLabels = ['Use cases', 'How it works', 'Docs', 'GitHub', 'Discuss a pilot'];
 
 function listHtmlFiles(dir) {
   const files = [];

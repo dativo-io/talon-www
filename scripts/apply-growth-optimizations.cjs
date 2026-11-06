@@ -8,7 +8,7 @@ const assets = [
   '<script defer src="/growth.js" data-talon-growth="script"></script>',
 ];
 const metadata = {
-  '/': ['AI Agent Action Control & Governance | Dativo Talon', 'One self-hosted control plane for company AI use cases: shared policy, cost limits, reliability and session visibility. See Talon deny intercepted AI actions and verify the evidence.'],
+  '/': ['Govern AI Use Cases with One Company Policy | Dativo Talon', 'Govern AI support, coding, analytics and document workflows with one company policy. See real Talon use cases, preventive action controls and verifiable evidence.'],
   '/ai-action-control/': ['AI Agent Action Approval & Authorization | Dativo Talon', 'Govern intercepted AI agent actions before execution. Talon supports MCP tool-call denial and exact HTTP action authorization with signed lifecycle evidence.'],
   '/ai-agent-governance/': ['AI Agent Governance by Use Case | Dativo Talon', 'Govern production AI agents with one company policy and use-case-specific rules for models, tools, spending, reliability and signed runtime decisions.'],
   '/comparisons/': ['Compare AI Control Planes, Gateways and Observability | Talon', 'Talon governs intercepted AI actions and verifies decisions; existing observability platforms handle log search, traces, metrics, alerts, dashboards and evaluation.'],
