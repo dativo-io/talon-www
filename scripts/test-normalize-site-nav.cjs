@@ -59,11 +59,11 @@ try {
   run();
   for (const route of routes) {
     const html = fs.readFileSync(path.join(out, route), 'utf8');
-    const header = html.match(/<header class="site-nav">[\\s\\S]*?<\\/header>/)?.[0];
+    const header = html.match(/<header class="site-nav">[\s\S]*?<\/header>/)?.[0];
     assert.equal(header, normalized.get(route), `canonical header changed on ${route}`);
-    assert.equal((html.match(/src="\\/site-nav\\.js"/g) || []).length, 1, `duplicate nav JS on ${route}`);
-    assert.equal((html.match(/href="\\/site-nav\\.css"/g) || []).length, 1, `duplicate nav CSS on ${route}`);
-    assert.equal((html.match(/href="\\/public\\/assets\\/talon-icon\\.svg"/g) || []).length, 1,
+    assert.equal((html.match(/src="\/site-nav\.js"/g) || []).length, 1, `duplicate nav JS on ${route}`);
+    assert.equal((html.match(/href="\/site-nav\.css"/g) || []).length, 1, `duplicate nav CSS on ${route}`);
+    assert.equal((html.match(/href="\/public\/assets\/talon-icon\.svg"/g) || []).length, 1,
       `duplicate favicon on ${route}`);
   }
   console.log('PASS: simplified marketing nav on homepage, action page and use-case hub; Docusaurus excluded; assets unique.');
