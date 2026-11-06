@@ -85,7 +85,8 @@
     });
   });
 
-  if (page !== '/') return;
+  // This homepage already contains focused use-case journeys.
+  if (page !== '/' || document.querySelector('[data-case-first-home]')) return;
   if (document.querySelector('.growth-paths')) return;
 
   const anchor = document.querySelector('.strip') || document.querySelector('.hero');
