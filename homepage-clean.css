@@ -458,3 +458,14 @@ body[data-case-first-home] h1,body[data-case-first-home] h2,body[data-case-first
     scroll-behavior:auto!important;
   }
 }
+
+/* Edition comparison: table is scrollable on small screens without hiding status. */
+.enterprise-table-wrap {overflow-x:auto; width:100%; border:1px solid rgba(148,163,184,.2); border-radius:16px;}
+.enterprise-table {width:100%; border-collapse:collapse; min-width:660px; font-size:14px; line-height:1.55;}
+.enterprise-table th,.enterprise-table td {padding:16px 18px; border-bottom:1px solid rgba(148,163,184,.15); text-align:left; vertical-align:top;}
+.enterprise-table thead {background:#142033; color:#eff6ff;}
+.enterprise-table tbody th {width:37%; font-weight:650; color:#e2e8f0;}
+.enterprise-table tbody td {color:#bcd0e5;}
+.enterprise-table tbody tr:last-child th,.enterprise-table tbody tr:last-child td {border-bottom:0;}
+.case-editions {border-top:1px solid rgba(148,163,184,.08); background:rgba(15,23,42,.22);}
+@media(max-width:670px) {.enterprise-table {font-size:13px;}}
