@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(process.argv[2] || 'dist');
 const origin = (process.env.SITE_URL || 'https://dativo.io').replace(/\/$/, '');
-const pages = ['/', '/ai-action-control/', '/comparisons/', '/mcp-tool-governance/', '/ai-agent-audit-trail/', '/comparisons/talon-vs-litellm/', '/use-cases/', '/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/'];
+const pages = ['/', '/enterprise/', '/ai-action-control/', '/comparisons/', '/mcp-tool-governance/', '/ai-agent-audit-trail/', '/comparisons/talon-vs-litellm/', '/use-cases/', '/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/'];
 const guides = ['/mcp-tool-governance/', '/ai-agent-audit-trail/', '/comparisons/talon-vs-litellm/', '/use-cases/', '/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/'];
 const errors = [];
 function requirePage(route) {
@@ -53,8 +53,8 @@ for (const route of pages) {
   }
 }
 const home = built.get('/') || '';
-if (!home.includes('Your AI use cases. One company policy.')) errors.push('Case-first homepage H1 lost');
-for (const route of ['/use-cases/', '/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/', '/talon/docs/']) {
+if (!home.includes('AI use cases are multiplying. Your control shouldn’t fragment.')) errors.push('Case-first homepage H1 lost');
+for (const route of ['/use-cases/', '/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/', '/talon/docs/', '/enterprise/']) {
   if (!home.includes('href="' + route + '"')) errors.push('Homepage missing priority path ' + route);
 }
 // Specialist guides remain discoverable through related use-case and docs journeys.
