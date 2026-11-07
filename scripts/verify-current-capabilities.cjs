@@ -41,6 +41,15 @@ if (fs.existsSync(caseNav)) {
   if (!html.includes('/use-cases/people-analytics/')) failures.push('People Analytics must be a first-class use case');
   if (html.includes('We will add it to the navigation')) failures.push('Outdated People Analytics demo gate');
 }
+const editionPage = path.join(root, 'enterprise/index.html');
+if (fs.existsSync(editionPage)) {
+  const html = fs.readFileSync(editionPage, 'utf8');
+  if (!html.includes('Talon OSS') || !html.includes('Talon Enterprise')) failures.push('Edition comparison incomplete');
+  if (!html.includes('Planned; not released') || !html.includes('not released product features')) failures.push('Enterprise roadmap must be explicitly unshipped');
+  if (!html.includes('corporate') && !html.includes('Corporate')) failures.push('Corporate integration narrative missing');
+  if (!html.includes('SIEM') || !html.includes('approval')) failures.push('Enterprise security/workflow integration status missing');
+  if (html.includes('github.com/dativo-io/talon-enterprise')) failures.push('Private Enterprise implementation link exposed');
+}
 const homepage = path.join(root, 'index.html');
 if (fs.existsSync(homepage)) {
   const html = fs.readFileSync(homepage, 'utf8');
