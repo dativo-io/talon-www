@@ -11,6 +11,7 @@ const required = [
   'talon/docs/mcp-2026-migration/index.html',
   'talon/docs/openshell/index.html',
   'talon/docs/observability/index.html',
+  'enterprise/index.html',
   'use-cases/index.html',
   'use-cases/coding-agents/index.html',
   'use-cases/customer-support/index.html',
@@ -43,11 +44,12 @@ if (fs.existsSync(caseNav)) {
 const homepage = path.join(root, 'index.html');
 if (fs.existsSync(homepage)) {
   const html = fs.readFileSync(homepage, 'utf8');
-  if (!html.includes('Your AI use cases. One company policy.')) failures.push('Homepage lost its case-first promise');
+  if (!html.includes('AI use cases are multiplying. Your control shouldn’t fragment.')) failures.push('Homepage lost its case-first promise');
   if (!html.includes('supported interception paths')) failures.push('Homepage lost its interception boundary');
   for (const route of ['/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/']) {
     if (!html.includes('href="' + route + '"')) failures.push('Homepage missing use-case entry: ' + route);
   }
+  if (!html.includes('href="/enterprise/"')) failures.push('Homepage missing edition overview');
   if (!html.includes('href="/talon/docs/product-demo/"')) failures.push('Homepage must link to reproducible demo');
 } else failures.push('Missing homepage');
 for (const rel of ['index.html', 'ai-action-control/index.html']) {
