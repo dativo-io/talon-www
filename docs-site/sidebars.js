@@ -16,6 +16,7 @@ const sidebars = {
         doc('product-demo', 'Three-use-case product demo'),
         doc('action-gateway-proof', 'Exact HTTP action proof'),
         doc('evaluation-checklist', 'Evaluation checklist'),
+        doc('open-source-and-enterprise', 'OSS and Enterprise editions'),
       ],
     },
     {
