@@ -20,6 +20,7 @@ const localOwnedDocs = new Map([
   ['coding-agents-demo', 'coding-agents-demo.md'],
   ['use-case-playbooks', 'use-case-playbooks.md'],
   ['evaluation-checklist', 'evaluation-checklist.md'],
+  ['open-source-and-enterprise', 'open-source-and-enterprise.md'],
 ]);
 
 async function exists(filePath) {
