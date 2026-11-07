@@ -9,7 +9,7 @@ const {execFileSync} = require('node:child_process');
 
 const siteRoot = path.resolve(__dirname, '..');
 const out = fs.mkdtempSync(path.join(os.tmpdir(), 'talon-nav-'));
-const routes = ['index.html', 'ai-action-control/index.html', 'use-cases/index.html'];
+const routes = ['index.html', 'ai-action-control/index.html', 'use-cases/index.html', 'enterprise/index.html'];
 const script = path.join(__dirname, 'normalize-site-nav.cjs');
 
 try {
@@ -34,7 +34,7 @@ try {
     const header = html.match(/<header class="site-nav">[\s\S]*?<\/header>/)?.[0];
     assert.ok(header, `missing marketing nav on ${route}`);
 
-    const labels = ['Use cases', 'How it works', 'Docs', 'GitHub', 'Discuss a pilot'];
+    const labels = ['Use cases', 'How it works', 'Enterprise', 'Docs', 'GitHub', 'Discuss a pilot'];
     let previous = -1;
     for (const label of labels) {
       const position = header.indexOf(`>${label}<`);
@@ -42,6 +42,7 @@ try {
       previous = position;
     }
     assert.ok(header.includes('href="/use-cases/"'), `missing use-case hub on ${route}`);
+    assert.ok(header.includes('href="/enterprise/"'), `missing Enterprise edition route on ${route}`);
     assert.ok(header.includes('href="/talon/docs/"'), `missing docs on ${route}`);
     assert.ok(!header.includes('class="nav-dropdown"'), `legacy dropdown reappeared on ${route}`);
     assert.match(header, /class="nav-toggle"/);

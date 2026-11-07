@@ -20,6 +20,7 @@ You do **not** need to rebuild your agent in Talon. Start with one workflow and 
 | Evaluate a real application | [Add Talon to your app](./add-talon-to-existing-app.md) | One authenticated use case, one effective policy and a traceable decision |
 | Govern a consequential business action | [Exact-action proof](./action-gateway-proof.md) | HTTP action denial, separate approval and controlled dispatch (no provider key) |
 | See several use cases in one gateway | [Product demo](./product-demo.md) | Support PII/fallback, coding tool policy, document budget denial and verified evidence |
+| Compare open-source and Enterprise integration options | [OSS and Enterprise](./open-source-and-enterprise.md) | What's shipped in the OSS core vs planned corporate identity, SIEM and workflow integration |
 | Decide what Talon can intercept | [Integration paths](./choosing-integration-path.md) | Model, MCP, HTTP action and delegated-runtime boundaries, distinguished precisely |
 
 ## Explore four business use cases
@@ -59,5 +60,7 @@ talon audit verify <evidence-id>
 | Security and scope limits | [Control-plane boundaries](./control-plane-boundaries.md), [governance control matrix](./governance-control-matrix.md), [threat model](./threat-model.md) |
 
 **Important boundary:** Talon does not control local shell commands, file edits, direct HTTP requests or other operations that bypass it. Agent keys authenticate the configured use case; session and subagent labels are attribution, not independent identities. HMAC verification proves record integrity, not that a downstream business operation succeeded or that a deployment is legally compliant.
+
+**Edition boundary:** Talon OSS keeps canonical policy, exact-action authorization, local approvals and independently verifiable evidence. Corporate OIDC, SIEM delivery profiles, external approval systems and multi-deployment operations belong to a **planned**, not yet generally available Enterprise edition. See [the status comparison](./open-source-and-enterprise.md).
 
 Technical documentation is maintained primarily in the [Talon repository](https://github.com/dativo-io/talon); this website provides the case-first navigation and publication layer.

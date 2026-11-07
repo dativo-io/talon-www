@@ -10,6 +10,7 @@ const canonicalHeader = `<header class="site-nav">
       <nav class="nav-links" id="primary-navigation" aria-label="Primary navigation">
         <a href="/use-cases/">Use cases</a>
         <a href="/#how-it-works">How it works</a>
+        <a href="/enterprise/">Enterprise</a>
         <a href="/talon/docs/">Docs</a>
         <a href="https://github.com/dativo-io/talon">GitHub</a>
         <a class="nav-button" href="https://www.linkedin.com/in/sergeyenin/" rel="noopener noreferrer" data-growth-intent="pilot-contact">Discuss a pilot</a>
@@ -22,7 +23,7 @@ const iconPattern = /\s*<link\s+rel="icon"[^>]*>\s*/gi;
 const faviconTag = '<link rel="icon" type="image/svg+xml" href="/public/assets/talon-icon.svg" />';
 const navStylesheet = '<link rel="stylesheet" href="/site-nav.css" />';
 const navScript = '<script defer src="/site-nav.js"></script>';
-const expectedLabels = ['Use cases', 'How it works', 'Docs', 'GitHub', 'Discuss a pilot'];
+const expectedLabels = ['Use cases', 'How it works', 'Enterprise', 'Docs', 'GitHub', 'Discuss a pilot'];
 
 function listHtmlFiles(dir) {
   const files = [];
@@ -96,6 +97,7 @@ for (const file of pagesWithSiteNav) {
   const requiredDestinations = [
     'href="/use-cases/"',
     'href="/#how-it-works"',
+    'href="/enterprise/"',
     'href="/talon/docs/"',
     'href="https://github.com/dativo-io/talon"',
     'href="https://www.linkedin.com/in/sergeyenin/"',
