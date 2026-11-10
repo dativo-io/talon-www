@@ -51,6 +51,7 @@ module.exports = {
   'provider-registry.md': 'docs/reference/provider-registry.md',
   'gateway-dashboard.md': 'docs/reference/gateway-dashboard.md',
   'operational-control-plane.md': 'docs/reference/operational-control-plane.md',
+  'operations-console.md': 'docs/guides/operations-console.md',
   'external-scanners.md': 'docs/reference/external-scanners.md',
   'governance-control-matrix.md': 'docs/reference/governance-control-matrix.md',
   'evidence-integrity-spec.md': 'docs/reference/evidence-integrity-spec.md',

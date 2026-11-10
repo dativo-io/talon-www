@@ -52,6 +52,7 @@ const sidebars = {
       collapsed: true,
       items: [
         doc('operational-control-plane', 'Manage use cases'),
+        doc('operations-console', 'Operations Console (screenshots)'),
         doc('gateway-dashboard', 'Dashboard reference'),
         doc('manual-governed-session', 'Inspect a governed session'),
         doc('governing-coding-agents', 'Coding-agent sessions'),

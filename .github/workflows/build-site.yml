@@ -57,6 +57,7 @@ jobs:
           test -f dist/talon/docs/external-scanners/index.html
           test -f dist/talon/docs/local-scanner-engines/index.html
           test -f dist/talon/docs/operational-control-plane/index.html
+          test -f dist/talon/docs/operations-console/index.html
           test -f dist/talon/docs/proxy-quickstart/index.html
           test -f dist/talon/docs/explanation-catalog/index.html
           test -f dist/talon/docs/copaw-integration/index.html
