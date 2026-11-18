@@ -90,8 +90,16 @@ node "$ROOT_DIR/scripts/verify-agent-identity-contract.cjs" "$ROOT_DIR"
 # this one checkout, keeping the homepage proof and /talon/docs on the same ref.
 prepare_talon_checkout
 
-# The case-first homepage no longer uses an animated hero asset.
-# The checked-out Talon revision remains the source for published technical docs.
+# Publish reviewed console visuals from the same Talon checkout as the docs.
+# The tracked marketing images remain useful for static previews; production
+# builds must not keep an old collage after Talon's curated baseline changes.
+CONSOLE_ASSETS="$TALON_REPO_PATH/docs/assets/console"
+for image in showcase overview-attention use-case-summary session-investigation evidence-verification; do
+  test -s "$CONSOLE_ASSETS/$image.webp"
+  cp "$CONSOLE_ASSETS/$image.webp" "$OUT_DIR/public/assets/console-$image.webp"
+done
+cp "$CONSOLE_ASSETS/showcase.webp" "$DOCS_DIR/static/img/console-showcase.webp"
+
 
 # Fail fast, before npm install and Docusaurus compilation, if talon/main changed
 # a mapped docs path without the corresponding talon-www publication update.
