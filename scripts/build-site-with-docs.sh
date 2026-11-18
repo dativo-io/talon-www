@@ -92,6 +92,10 @@ prepare_talon_checkout
 export TALON_DOCS_REF="$(git -C "$TALON_REPO_PATH" rev-parse HEAD)"
 echo "Publishing Talon source $TALON_DOCS_REF"
 
+# Never silently adopt new upstream images during a build. The website PR
+# must contain the reviewed lock for the exact screenshot set being published.
+node "$ROOT_DIR/scripts/console-screenshot-lock.cjs" check "$TALON_REPO_PATH"
+
 # Only the build output owns marketing image copies, not the website repo.
 CONSOLE_ASSETS="$TALON_REPO_PATH/docs/assets/console"
 mkdir -p "$OUT_DIR/public/assets"

@@ -18,6 +18,18 @@ jobs:
         with:
           node-version: 20
 
+      - name: Test screenshot freshness gate
+        run: node --test scripts/test-console-screenshot-lock.cjs
+
+      # Every PR checks the current upstream production branch, never a
+      # candidate screenshot artifact or a caller-selected Talon branch.
+      - name: Check approved screenshot set against Talon main
+        run: |
+          git clone --depth 1 --single-branch --branch main https://github.com/dativo-io/talon.git "$RUNNER_TEMP/talon-docs"
+          git -C "$RUNNER_TEMP/talon-docs" rev-parse HEAD
+          node scripts/console-screenshot-lock.cjs check "$RUNNER_TEMP/talon-docs"
+          echo "TALON_REPO_PATH=$RUNNER_TEMP/talon-docs" >> "$GITHUB_ENV"
+
       - name: Build static site and Docusaurus docs
         run: bash scripts/build-site-with-docs.sh
 

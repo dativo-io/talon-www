@@ -52,18 +52,27 @@ The homepage is a buyer-problem-first overview, with reproducible technical demo
 
 ### Console screenshot publication
 
-Talon owns the approved WebP screenshots and collage in `docs/assets/console/`. The website fetches one Talon revision (default `main`), copies the marketing assets into `dist/public/assets/`, and synchronizes the guide images and landing-page collage into Docusaurus. The build fails if required images are missing or differ from the canonical files. It does not start Talon or regenerate screenshots. The actual source commit is printed in the build log.
+Talon owns the approved screenshot set in `docs/assets/console/`. This repository commits `console-screenshots.lock.json` (file names and content-derived Git blob IDs), not duplicate binaries.
 
-For a preview of an upstream PR before it merges:
+Every website PR checks the lock against the **actual screenshot files on Talon main**. Added, removed, renamed or changed images fail CI. Changes to Talon's baseline metadata or unrelated code do not fail this check. If the upstream checkout or its screenshots are unavailable, CI fails rather than using stale images.
+
+To adopt an updated set, review the upstream images and their placement and captions, then run from the website checkout:
 
 ```bash
-# From a fresh website checkout without a sibling Talon checkout:
-TALON_DOCS_REF=docs/console-showcase-20261110 ./scripts/build-site-with-docs.sh
-# Or pass an already checked-out Talon branch explicitly:
-TALON_REPO_PATH=/path/to/talon ./scripts/build-site-with-docs.sh
+# Use a fresh checkout of Talon main.
+git clone --depth 1 --single-branch --branch main https://github.com/dativo-io/talon.git ../talon-console-source
+node scripts/console-screenshot-lock.cjs check ../talon-console-source
+# After reviewing the reported differences:
+node scripts/console-screenshot-lock.cjs refresh ../talon-console-source
+git add console-screenshots.lock.json
+TALON_REPO_PATH="$(cd ../talon-console-source && pwd)" ./scripts/build-site-with-docs.sh
 ```
 
-Cloudflare Workers Builds remains the production publisher. Normal website changes trigger the existing Git integration; approved console image or guide changes on Talon `main` can trigger the same build through a branch-specific Cloudflare Deploy Hook. The hook URL is a secret in the Talon repository, never in this repository or public build output. See the upstream console asset README for setup and recovery. No automatic screenshot commits or second deployment pipeline are needed.
+Commit the updated lock and any necessary homepage, guide-link or caption changes in a website PR. The initial website PR depends on Talon PR #559: its screenshot lock is seeded from the approved candidate in that PR and can only pass normal CI against `main` once the matching assets have merged upstream.
+
+The website build uses the same checked-out Talon revision for the freshness check, docs, and images. It verifies published image bytes and logs the source revision. It does not run Talon or generate screenshots. A local preview can use an explicit `TALON_REPO_PATH` containing the matching locked set; website CI always checks upstream `main`. No build updates the lock automatically.
+
+Cloudflare Workers Builds remains the production publisher through the website's existing Git integration. Talon does not trigger website deployments. If Talon changes after a website PR's last passing run, rerun its CI before merging; the production build also rejects mismatched images rather than silently publishing them.
 
 The compatibility route `/docs/talon/` redirects users to `/talon/docs/` and is included in the same analytics verification.
 
