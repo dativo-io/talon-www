@@ -25,6 +25,9 @@ jobs:
       - name: Test screenshot freshness gate
         run: node --test scripts/test-console-screenshot-lock.cjs
 
+      - name: Test SEO metadata encoding
+        run: node --test scripts/test-growth-metadata.cjs
+
       # Every PR checks the current upstream production branch, never a
       # candidate screenshot artifact or a caller-selected Talon branch.
       - name: Check approved screenshot set against Talon main

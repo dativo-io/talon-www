@@ -52,7 +52,7 @@ function setTitle(html, title) {
   const start = html.indexOf('<title>');
   const end = html.indexOf('</title>', start + 7);
   if (start < 0 || end < 0) return html;
-  return `${html.slice(0, start)}<title>${title}</title>${html.slice(end + 8)}`;
+  return `${html.slice(0, start)}<title>${escapeAttr(title)}</title>${html.slice(end + 8)}`;
 }
 
 function escapeAttr(value) {
@@ -87,36 +87,41 @@ function injectAssets(html) {
   return `${html.slice(0, headEnd)}  ${missing.join('\n  ')}\n${html.slice(headEnd)}`;
 }
 
-const seen = new Set();
-let changed = 0;
-for (const file of htmlFiles(outDir)) {
-  const route = routeFor(file);
-  if (!route) continue;
-  seen.add(route);
-  let html = fs.readFileSync(file, 'utf8');
-  if (metadata[route]) {
-    const [title, description] = metadata[route];
-    html = setTitle(html, title);
-    html = setMeta(html, 'name="description"', description);
-    html = setMeta(html, 'property="og:title"', title);
-    html = setMeta(html, 'property="og:description"', description);
-    html = setMeta(html, 'name="twitter:title"', title);
-    html = setMeta(html, 'name="twitter:description"', description);
+function main() {
+  const seen = new Set();
+  let changed = 0;
+  for (const file of htmlFiles(outDir)) {
+    const route = routeFor(file);
+    if (!route) continue;
+    seen.add(route);
+    let html = fs.readFileSync(file, 'utf8');
+    if (metadata[route]) {
+      const [title, description] = metadata[route];
+      html = setTitle(html, title);
+      html = setMeta(html, 'name="description"', description);
+      html = setMeta(html, 'property="og:title"', title);
+      html = setMeta(html, 'property="og:description"', description);
+      html = setMeta(html, 'name="twitter:title"', title);
+      html = setMeta(html, 'name="twitter:description"', description);
+    }
+    html = injectAssets(html);
+    fs.writeFileSync(file, html);
+    changed += 1;
   }
-  html = injectAssets(html);
-  fs.writeFileSync(file, html);
-  changed += 1;
+
+  for (const route of Object.keys(metadata)) {
+    if (!seen.has(route)) throw new Error(`Growth metadata route missing from build: ${route}`);
+  }
+  for (const file of htmlFiles(outDir)) {
+    const route = routeFor(file);
+    if (!route) continue;
+    const html = fs.readFileSync(file, 'utf8');
+    for (const tag of assets) {
+      if (!html.includes(tag)) throw new Error(`Growth asset missing from ${route}`);
+    }
+  }
+  console.log(`Applied growth assets to ${changed} HTML pages and search metadata to ${Object.keys(metadata).length} priority routes.`);
 }
 
-for (const route of Object.keys(metadata)) {
-  if (!seen.has(route)) throw new Error(`Growth metadata route missing from build: ${route}`);
-}
-for (const file of htmlFiles(outDir)) {
-  const route = routeFor(file);
-  if (!route) continue;
-  const html = fs.readFileSync(file, 'utf8');
-  for (const tag of assets) {
-    if (!html.includes(tag)) throw new Error(`Growth asset missing from ${route}`);
-  }
-}
-console.log(`Applied growth assets to ${changed} HTML pages and search metadata to ${Object.keys(metadata).length} priority routes.`);
+if (require.main === module) main();
+module.exports = {setTitle, setMeta, metadata};
