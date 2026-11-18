@@ -49,7 +49,6 @@ module.exports = {
   'configuration.md': 'docs/reference/configuration.md',
   'authentication-and-key-scopes.md': 'docs/reference/authentication-and-key-scopes.md',
   'provider-registry.md': 'docs/reference/provider-registry.md',
-  'gateway-dashboard.md': 'docs/reference/gateway-dashboard.md',
   'operational-control-plane.md': 'docs/reference/operational-control-plane.md',
   'operations-console.md': 'docs/guides/operations-console.md',
   'external-scanners.md': 'docs/reference/external-scanners.md',

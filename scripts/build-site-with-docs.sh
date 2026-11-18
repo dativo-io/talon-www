@@ -133,6 +133,9 @@ test -f "$OUT_DIR/talon/docs/mcp-governance-extension/index.html"
 test -f "$OUT_DIR/talon/docs/mcp-2026-migration/index.html"
 # Fail the build if any published image differs from its canonical source.
 test -f "$OUT_DIR/talon/docs/operations-console/index.html"
+# Do not publish the retired dashboard; preserve its public docs URL via redirect.
+test ! -e "$OUT_DIR/talon/docs/gateway-dashboard/index.html"
+grep -Fxq '/talon/docs/gateway-dashboard/ /talon/docs/operations-console/ 301' "$OUT_DIR/_redirects"
 for image in showcase overview-attention session-investigation evidence-verification; do
   cmp "$CONSOLE_ASSETS/$image.webp" "$OUT_DIR/public/assets/console-$image.webp"
 done

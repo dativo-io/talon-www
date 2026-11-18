@@ -259,6 +259,8 @@ function addFrontMatter(markdown, docPath) {
 }
 
 await fs.mkdir(docsDir, {recursive: true});
+// Retired generated document: do not retain the removed dashboard on incremental local builds.
+await fs.rm(path.join(docsDir, 'gateway-dashboard.md'), {force: true});
 
 for (const [docPath, sourcePath] of Object.entries(sourceMap)) {
   const source = await readSource(sourcePath);
