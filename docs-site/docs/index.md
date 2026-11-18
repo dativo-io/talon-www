@@ -1,12 +1,14 @@
 ---
 title: Dativo Talon documentation
-description: Choose a production AI use case, connect a supported interception path, enforce company policy and verify the result.
+description: "One company policy for your AI use cases. Self-hosted control of models, data, tools, budgets and provider failures, with sessions and signed evidence."
 slug: /
 ---
 
-# Start with an AI use case
+# One company policy for your AI use cases.
 
-Talon applies **company policy** to model requests and actions that pass through its supported interception paths. It also helps teams operate their AI use cases with cost controls, policy-valid fallback, sessions, and **signed, tamper-evident evidence**.
+Talon is an open-source, self-hosted AI control plane. Control model access, data and tool permissions, enforce budgets, handle provider failures, and investigate decisions with signed evidence — on the paths you route through Talon.
+
+Start with one AI use case. The four jobs are cost control, reliability, shared policy and session understanding, backed by signed, tamper-evident evidence.
 
 You do **not** need to rebuild your agent in Talon. Start with one workflow and a control you can test.
 
@@ -22,6 +24,14 @@ You do **not** need to rebuild your agent in Talon. Start with one workflow and 
 | See several use cases in one gateway | [Product demo](./product-demo.md) | Support PII/fallback, coding tool policy, document budget denial and verified evidence |
 | Compare open-source and Enterprise integration options | [OSS and Enterprise](./open-source-and-enterprise.md) | What's shipped in the OSS core vs planned corporate identity, SIEM and workflow integration |
 | Decide what Talon can intercept | [Integration paths](./choosing-integration-path.md) | Model, MCP, HTTP action and delegated-runtime boundaries, distinguished precisely |
+
+## See the Operations Console
+
+[![Talon Operations Console: readiness, AI use cases, sessions, costs, configuration, and signed evidence](/img/console-showcase.webp)](./operations-console.md)
+
+The OSS [Operations Console](./operations-console.md) is a **local, paired, read-only** view: start with installation readiness and actionable findings, inspect a tenant-scoped AI use case, follow its session decisions, and verify a signed evidence record. Runtime health is not inferred from historical requests, and a signature does not prove external business outcomes.
+
+*Actual console screenshots from a synthetic Playwright fixture. The failed gateway and other degraded states are intentionally included to demonstrate failure reporting, not a customer incident.*
 
 ## Explore four business use cases
 

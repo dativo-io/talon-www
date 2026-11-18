@@ -119,6 +119,7 @@ if (!sourcesOnly) {
     'configuration',
     'policy-cookbook',
     'governing-coding-agents',
+    'operations-console',
   ];
   const absentFirstClassDocs = requiredFirstClassDocs.filter(
     (docId) => !sidebarDocIds.has(docId),

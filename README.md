@@ -8,7 +8,7 @@ Product repo: https://github.com/dativo-io/talon
 
 ## Website information architecture
 
-The main page leads with the fragmentation problem (AI use cases multiply while company controls fragment), the four concrete use cases (support, coding, People Analytics, vendor review), a three-step integration overview, an OSS versus planned Enterprise adoption choice, reproducible proof links, and one private pilot contact path. The `/enterprise/` page is a directional capability/status comparison; it must never label roadmap integrations as released.
+The main page leads with the canonical Talon README positioning: **One company policy for your AI use cases.** Talon is an open-source, self-hosted AI control plane. Present its four jobs (cost control, reliability, shared policy and session understanding), then the four concrete use cases (support, coding, People Analytics, vendor review), integration overview, OSS versus planned Enterprise adoption choice, reproducible proof and one private pilot contact path. Capability pages and SEO must not redefine Talon as an action approval, MCP, PII or cost-only product. The `/enterprise/` page is a directional capability/status comparison; it must never label roadmap integrations as released.
 
 Detailed enforcement semantics and all advanced examples belong in
 `/talon/docs/` and the existing search-oriented technical pages. The main page
@@ -17,11 +17,14 @@ The production build replaces marketing-page navigation with a shared five-link 
 
 ## Local preview
 
-Preview the static marketing pages directly:
+For a complete local preview (including generated console images and technical docs), build first and serve the output:
 
 ```bash
-python3 -m http.server 8080
+./scripts/build-site-with-docs.sh
+python3 -m http.server 8080 --directory dist
 ```
+
+Serving the source tree directly is a text/layout-only preview: the console images are intentionally not checked into this repository.
 
 Then open:
 
@@ -46,6 +49,30 @@ dist
 The build script copies the static marketing site, builds Docusaurus, mounts docs under `/talon/docs/`, generates root SEO files, injects Umami analytics into every generated HTML page, and fails the build if the final artifact has a missing or duplicate tracker or contains legacy analytics code.
 
 The homepage is a buyer-problem-first overview, with reproducible technical demonstrations linked from their canonical documentation pages. The Talon checkout remains the source of truth for published docs. No animated hero asset is needed for the homepage.
+
+### Console screenshot publication
+
+Talon owns the approved screenshot set in `docs/assets/console/`. This repository commits `console-screenshots.lock.json` (file names and content-derived Git blob IDs), not duplicate binaries.
+
+Every website PR checks the lock against the **actual screenshot files on Talon main**. Added, removed, renamed or changed images fail CI. Changes to Talon's baseline metadata or unrelated code do not fail this check. If the upstream checkout or its screenshots are unavailable, CI fails rather than using stale images.
+
+To adopt an updated set, review the upstream images and their placement and captions, then run from the website checkout:
+
+```bash
+# Use a fresh checkout of Talon main.
+git clone --depth 1 --single-branch --branch main https://github.com/dativo-io/talon.git ../talon-console-source
+node scripts/console-screenshot-lock.cjs check ../talon-console-source
+# After reviewing the reported differences:
+node scripts/console-screenshot-lock.cjs refresh ../talon-console-source
+git add console-screenshots.lock.json
+TALON_REPO_PATH="$(cd ../talon-console-source && pwd)" ./scripts/build-site-with-docs.sh
+```
+
+Commit the updated lock and any necessary homepage, guide-link or caption changes in a website PR. The initial website PR depends on Talon PR #559: its screenshot lock is seeded from the approved candidate in that PR and can only pass normal CI against `main` once the matching assets have merged upstream.
+
+The website build uses the same checked-out Talon revision for the freshness check, docs, and images. It verifies published image bytes and logs the source revision. It does not run Talon or generate screenshots. A local preview can use an explicit `TALON_REPO_PATH` containing the matching locked set; website CI always checks upstream `main`. No build updates the lock automatically.
+
+Cloudflare Workers Builds remains the production publisher through the website's existing Git integration. Talon does not trigger website deployments. If Talon changes after a website PR's last passing run, rerun its CI before merging; the production build also rejects mismatched images rather than silently publishing them.
 
 The compatibility route `/docs/talon/` redirects users to `/talon/docs/` and is included in the same analytics verification.
 

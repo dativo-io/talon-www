@@ -8,21 +8,21 @@ const assets = [
   '<script defer src="/growth.js" data-talon-growth="script"></script>',
 ];
 const metadata = {
-  '/': ['Govern AI Use Cases with One Company Policy | Dativo Talon', 'Govern AI support, coding, analytics and document workflows with one company policy. See real Talon use cases, preventive action controls and verifiable evidence.'],
-  '/ai-action-control/': ['AI Agent Action Approval & Authorization | Dativo Talon', 'Govern intercepted AI agent actions before execution. Talon supports MCP tool-call denial and exact HTTP action authorization with signed lifecycle evidence.'],
-  '/ai-agent-governance/': ['AI Agent Governance by Use Case | Dativo Talon', 'Govern production AI agents with one company policy and use-case-specific rules for models, tools, spending, reliability and signed runtime decisions.'],
-  '/comparisons/': ['Compare AI Control Planes, Gateways and Observability | Talon', 'Talon governs intercepted AI actions and verifies decisions; existing observability platforms handle log search, traces, metrics, alerts, dashboards and evaluation.'],
-  '/mcp-tool-governance/': ['MCP Tool Permissions & Call Governance | Dativo Talon', 'A practical guide to MCP tool permissions: discovery filtering, pre-call denial, exact-action approval boundaries and verifiable evidence. See what Talon enforces today.'],
-  '/ai-agent-audit-trail/': ['AI Agent Audit Trails: Logs vs Signed Evidence | Talon', 'How to investigate an AI agent action: identities, requests, policy decisions, operation attempts, observed or unknown outcomes, operational logs and signed evidence.'],
-  '/comparisons/talon-vs-litellm/': ['Talon vs LiteLLM: AI Agent Governance or LLM Gateway?', 'Compare Dativo Talon and LiteLLM fairly: model routing, virtual keys, MCP permissions, exact HTTP action authorization, deployment and verifiable evidence.'],
-  '/talon/docs/': ['Talon Docs — AI Cost Control, Policy, Reliability & Sessions', 'Install, integrate, and operate Talon: AI cost caps, policy-valid fallback, model/tool/data controls, session visibility, and verifiable evidence.'],
+  '/': ["Dativo Talon — Open-Source AI Control Plane", "One company policy for your AI use cases. Self-hosted control of models, data, tools, budgets and provider failures, with sessions and signed evidence."],
+  '/ai-action-control/': ["Tool & Action Control for AI Use Cases | Dativo Talon", "Talon's AI control plane enforces shared tool policy on intercepted paths. Exact HTTP action authorization and human approval are one supported capability."],
+  '/ai-agent-governance/': ["One Company Policy for AI Use Cases | Dativo Talon", "Use Talon's open-source AI control plane to govern agents and applications with shared rules for models, data, tools, budgets, reliability and signed evidence."],
+  '/comparisons/': ["AI Control Planes, Gateways & Observability | Dativo Talon", "Compare Talon's open-source AI control plane for company policy, cost, reliability and session understanding with gateways and observability platforms."],
+  '/mcp-tool-governance/': ["MCP Tool Permissions & Policy Enforcement | Dativo Talon", "Apply company tool policy to AI use cases on Talon's supported MCP path. Discovery filtering and call denial are distinct from exact HTTP action approval."],
+  '/ai-agent-audit-trail/': ["AI Use Case Decisions & Signed Evidence | Dativo Talon", "Investigate routed model requests and intercepted actions: policy, costs, provider paths, sessions and signed evidence, distinct from downstream effects."],
+  '/comparisons/talon-vs-litellm/': ["Talon vs LiteLLM: AI Control Plane vs Model Gateway", "Compare company and use-case policy, model access, budgets, provider reliability, tool controls, session visibility and signed evidence."],
+  '/talon/docs/': ["Dativo Talon Docs — Open-Source AI Control Plane", "One company policy for your AI use cases. Self-hosted control of models, data, tools, budgets and provider failures, with sessions and signed evidence."],
   '/talon/docs/compliance-export-runbook/': ['Export Verifiable AI Audit Evidence for Auditors | Talon', 'Export, verify, and hand off signed Talon evidence for audits and customer reviews. Practical commands, integrity checks, and review-ready evidence workflows.'],
   '/talon/docs/codex-cli-integration/': ['Govern Codex CLI: Cost, Policy & Session Evidence | Talon', 'Route Codex CLI through Talon for agent-attributed cost controls, model and data policy, session visibility, and signed evidence—without claiming local tool control.'],
-  '/talon/docs/evidence-store/': ['Signed AI Audit Evidence: Verify & Export | Talon', 'See how Talon signs, stores, verifies, and exports AI runtime evidence. Inspect policy decisions, cost, PII findings, sessions, and HMAC integrity.'],
+  '/talon/docs/evidence-store/': ["Signed AI Control Plane Evidence: Verify & Export | Talon", "See how Talon signs, stores, verifies and exports evidence of routed AI use-case decisions, costs, data policy, tools, provider paths and sessions."],
   '/talon/docs/add-talon-to-existing-app/': ['Add Talon to an OpenAI or Anthropic App in Minutes', 'Put Talon in front of an existing OpenAI or Anthropic app with a base-URL change, then add cost, policy, reliability, session visibility, and signed evidence.'],
-  '/ai-governance-evidence-store/': ['Signed AI Runtime Evidence Store: Verify & Export | Talon', 'Inspect and verify Talon runtime evidence for AI policy, cost, routing, PII, tools, and sessions. Export signed records for review and audit workflows.'],
-  '/coding-agent-governance/': ['Coding Agent Governance: Cost, Tools & Session Visibility | Talon', 'Govern coding-agent model traffic and intercepted MCP calls with shared budgets, policy, session attribution, and signed evidence. Local actions remain outside Talon.'],
-  '/use-cases/': ['AI Use Cases Governed by Dativo Talon | Examples', 'Explore Talon-governed AI use cases: coding agents, customer support, People Analytics and vendor review. See practical policy, action boundaries and evidence.'],
+  '/ai-governance-evidence-store/': ["Signed AI Control Plane Evidence | Dativo Talon", "Inspect and verify AI use-case decisions across shared policy, cost, routing, fallback, tools and sessions. Signed evidence is the proof layer, not the product category."],
+  '/coding-agent-governance/': ["Coding Use Cases: Policy, Cost & Sessions | Dativo Talon", "Apply company policy to routed coding-agent requests and intercepted MCP calls. Investigate sessions, budgets, provider paths and signed decisions."],
+  '/use-cases/': ["AI Use Cases Under One Company Policy | Dativo Talon", "Explore support, coding, People Analytics and vendor review under one AI control plane: shared policy, spending, reliability, sessions and verifiable evidence."],
   '/use-cases/coding-agents/': ['Coding Agents: TokenEconomizer and Copilot | Talon', 'See real coding-agent governance with Talon: TokenEconomizer cost experiments and Copilot MCP release controls. Verified budgets and evidence, without unsupported savings claims.'],
   '/use-cases/customer-support/': ['AI Customer Support Automation: PII, Refund Controls | Talon', 'A real n8n customer support demo governed by Talon: PII redaction, policy-safe fallback, refund-tool denial, signed evidence and a separate human approval step.'],
   '/use-cases/people-analytics/': ['People Analytics AI Governance: HR Data Access | Talon', 'Govern AI workforce analytics with Talon: allow aggregate HR tools, deny intercepted employee-record exports, verify policy evidence and retain existing HR access controls.'],
@@ -52,7 +52,7 @@ function setTitle(html, title) {
   const start = html.indexOf('<title>');
   const end = html.indexOf('</title>', start + 7);
   if (start < 0 || end < 0) return html;
-  return `${html.slice(0, start)}<title>${title}</title>${html.slice(end + 8)}`;
+  return `${html.slice(0, start)}<title>${escapeAttr(title)}</title>${html.slice(end + 8)}`;
 }
 
 function escapeAttr(value) {
@@ -87,36 +87,41 @@ function injectAssets(html) {
   return `${html.slice(0, headEnd)}  ${missing.join('\n  ')}\n${html.slice(headEnd)}`;
 }
 
-const seen = new Set();
-let changed = 0;
-for (const file of htmlFiles(outDir)) {
-  const route = routeFor(file);
-  if (!route) continue;
-  seen.add(route);
-  let html = fs.readFileSync(file, 'utf8');
-  if (metadata[route]) {
-    const [title, description] = metadata[route];
-    html = setTitle(html, title);
-    html = setMeta(html, 'name="description"', description);
-    html = setMeta(html, 'property="og:title"', title);
-    html = setMeta(html, 'property="og:description"', description);
-    html = setMeta(html, 'name="twitter:title"', title);
-    html = setMeta(html, 'name="twitter:description"', description);
+function main() {
+  const seen = new Set();
+  let changed = 0;
+  for (const file of htmlFiles(outDir)) {
+    const route = routeFor(file);
+    if (!route) continue;
+    seen.add(route);
+    let html = fs.readFileSync(file, 'utf8');
+    if (metadata[route]) {
+      const [title, description] = metadata[route];
+      html = setTitle(html, title);
+      html = setMeta(html, 'name="description"', description);
+      html = setMeta(html, 'property="og:title"', title);
+      html = setMeta(html, 'property="og:description"', description);
+      html = setMeta(html, 'name="twitter:title"', title);
+      html = setMeta(html, 'name="twitter:description"', description);
+    }
+    html = injectAssets(html);
+    fs.writeFileSync(file, html);
+    changed += 1;
   }
-  html = injectAssets(html);
-  fs.writeFileSync(file, html);
-  changed += 1;
+
+  for (const route of Object.keys(metadata)) {
+    if (!seen.has(route)) throw new Error(`Growth metadata route missing from build: ${route}`);
+  }
+  for (const file of htmlFiles(outDir)) {
+    const route = routeFor(file);
+    if (!route) continue;
+    const html = fs.readFileSync(file, 'utf8');
+    for (const tag of assets) {
+      if (!html.includes(tag)) throw new Error(`Growth asset missing from ${route}`);
+    }
+  }
+  console.log(`Applied growth assets to ${changed} HTML pages and search metadata to ${Object.keys(metadata).length} priority routes.`);
 }
 
-for (const route of Object.keys(metadata)) {
-  if (!seen.has(route)) throw new Error(`Growth metadata route missing from build: ${route}`);
-}
-for (const file of htmlFiles(outDir)) {
-  const route = routeFor(file);
-  if (!route) continue;
-  const html = fs.readFileSync(file, 'utf8');
-  for (const tag of assets) {
-    if (!html.includes(tag)) throw new Error(`Growth asset missing from ${route}`);
-  }
-}
-console.log(`Applied growth assets to ${changed} HTML pages and search metadata to ${Object.keys(metadata).length} priority routes.`);
+if (require.main === module) main();
+module.exports = {setTitle, setMeta, metadata};

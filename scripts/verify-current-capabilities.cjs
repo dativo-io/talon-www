@@ -25,6 +25,8 @@ let failures = [];
 for (const rel of required) { if (!fs.existsSync(path.join(root, rel))) failures.push(`Missing public route: ${rel}`); }
 const pages = [
   ['ai-action-control/index.html', [/Preview gate #458/i]],
+  ['ai-cost-control/index.html', [/soft[- ]caps?/i]],
+  ['comparisons/talon-vs-pii-proxy/index.html', [/soft[- ]caps?/i]],
   ['comparisons/index.html', [/direct OTLP log export is shipped/i]],
   ['llm-governance-gateway/index.html', [/does not yet inspect provider responses/i]],
   ['talon/docs/index.html', [/Response scanning and Talon-side retry\/fallback are not available on this path/i, /start in shadow mode/i]],
@@ -53,7 +55,11 @@ if (fs.existsSync(editionPage)) {
 const homepage = path.join(root, 'index.html');
 if (fs.existsSync(homepage)) {
   const html = fs.readFileSync(homepage, 'utf8');
-  if (!html.includes('AI use cases are multiplying. Your control shouldn’t fragment.')) failures.push('Homepage lost its case-first promise');
+  if (!html.includes('<h1>One company policy for your AI use cases.</h1>')) failures.push('Homepage lost its canonical company-policy promise');
+  if (!html.includes("Talon is an open-source, self-hosted AI control plane. Control model access, data and tool permissions, enforce budgets, handle provider failures, and investigate decisions with signed evidence — on the paths you route through Talon.")) failures.push('Homepage lost its canonical AI control plane description');
+  for (const job of ['Cost control', 'Reliability', 'Shared policy', 'Session understanding']) {
+    if (!html.includes('<strong>' + job + '</strong>')) failures.push('Homepage missing control-plane job: ' + job);
+  }
   if (!html.includes('supported interception paths')) failures.push('Homepage lost its interception boundary');
   for (const route of ['/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/']) {
     if (!html.includes('href="' + route + '"')) failures.push('Homepage missing use-case entry: ' + route);
@@ -73,6 +79,11 @@ if (fs.existsSync(actionPage)) {
   const body = fs.readFileSync(actionPage, 'utf8');
   if (!body.includes('How do you investigate an agent action?')) failures.push('Action incident explanation missing');
   if (!body.includes('approval ≠ dispatch')) failures.push('Action approval/dispatch separation missing');
+}
+const mcpPage = path.join(root, 'mcp-tool-governance/index.html');
+if (fs.existsSync(mcpPage)) {
+  const body = fs.readFileSync(mcpPage, 'utf8');
+  if (!body.includes('2026-07-28 protocol only') || !body.includes('/talon/docs/mcp-2026-migration/')) failures.push('MCP protocol boundary missing');
 }
 const comparisonPage = path.join(root, 'comparisons/index.html');
 if (fs.existsSync(comparisonPage) && !fs.readFileSync(comparisonPage, 'utf8').includes('observability/evaluation tools')) failures.push('Observability complementarity missing');

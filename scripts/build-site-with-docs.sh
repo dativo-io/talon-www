@@ -86,12 +86,23 @@ node "$ROOT_DIR/scripts/normalize-site-nav.cjs" "$OUT_DIR"
 # shipped agent identity model. Historical routes are allowed only in _redirects.
 node "$ROOT_DIR/scripts/verify-agent-identity-contract.cjs" "$ROOT_DIR"
 
-# Fetch the Talon source once. The docs sync script and hero publisher read from
-# this one checkout, keeping the homepage proof and /talon/docs on the same ref.
+# Fetch the Talon source once; pin provenance links to the actual checkout.
+# All published technical docs and console images use that same source.
 prepare_talon_checkout
+export TALON_DOCS_REF="$(git -C "$TALON_REPO_PATH" rev-parse HEAD)"
+echo "Publishing Talon source $TALON_DOCS_REF"
 
-# The case-first homepage no longer uses an animated hero asset.
-# The checked-out Talon revision remains the source for published technical docs.
+# Never silently adopt new upstream images during a build. The website PR
+# must contain the reviewed lock for the exact screenshot set being published.
+node "$ROOT_DIR/scripts/console-screenshot-lock.cjs" check "$TALON_REPO_PATH"
+
+# Only the build output owns marketing image copies, not the website repo.
+CONSOLE_ASSETS="$TALON_REPO_PATH/docs/assets/console"
+mkdir -p "$OUT_DIR/public/assets"
+for image in showcase overview-attention session-investigation evidence-verification; do
+  test -s "$CONSOLE_ASSETS/$image.webp"
+  cp "$CONSOLE_ASSETS/$image.webp" "$OUT_DIR/public/assets/console-$image.webp"
+done
 
 # Fail fast, before npm install and Docusaurus compilation, if talon/main changed
 # a mapped docs path without the corresponding talon-www publication update.
@@ -120,6 +131,18 @@ test -f "$OUT_DIR/talon/docs/governing-coding-agents/index.html"
 test -f "$OUT_DIR/talon/docs/action-gateway-proof/index.html"
 test -f "$OUT_DIR/talon/docs/mcp-governance-extension/index.html"
 test -f "$OUT_DIR/talon/docs/mcp-2026-migration/index.html"
+# Fail the build if any published image differs from its canonical source.
+test -f "$OUT_DIR/talon/docs/operations-console/index.html"
+# Do not publish the retired dashboard; preserve its public docs URL via redirect.
+test ! -e "$OUT_DIR/talon/docs/gateway-dashboard/index.html"
+grep -Fxq '/talon/docs/gateway-dashboard/ /talon/docs/operations-console/ 301' "$OUT_DIR/_redirects"
+for image in showcase overview-attention session-investigation evidence-verification; do
+  cmp "$CONSOLE_ASSETS/$image.webp" "$OUT_DIR/public/assets/console-$image.webp"
+done
+cmp "$CONSOLE_ASSETS/showcase.webp" "$OUT_DIR/talon/docs/img/console-showcase.webp"
+for image in overview-attention.webp use-case-summary.webp session-investigation.webp evidence-verification.webp costs.webp configuration.webp system-diagnostics.webp; do
+  cmp "$CONSOLE_ASSETS/$image" "$OUT_DIR/talon/docs/img/console/$image"
+done
 
 # Prevent historical repo-relative link mistakes from becoming public web routes.
 node "$ROOT_DIR/scripts/verify-internal-link-shapes.cjs" "$OUT_DIR"

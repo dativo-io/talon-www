@@ -5,6 +5,10 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -17,6 +21,21 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+
+      - name: Test screenshot freshness gate
+        run: node --test scripts/test-console-screenshot-lock.cjs
+
+      - name: Test SEO metadata encoding
+        run: node --test scripts/test-growth-metadata.cjs
+
+      # Every PR checks the current upstream production branch, never a
+      # candidate screenshot artifact or a caller-selected Talon branch.
+      - name: Check approved screenshot set against Talon main
+        run: |
+          git clone --depth 1 --single-branch --branch main https://github.com/dativo-io/talon.git "$RUNNER_TEMP/talon-docs"
+          git -C "$RUNNER_TEMP/talon-docs" rev-parse HEAD
+          node scripts/console-screenshot-lock.cjs check "$RUNNER_TEMP/talon-docs"
+          echo "TALON_REPO_PATH=$RUNNER_TEMP/talon-docs" >> "$GITHUB_ENV"
 
       - name: Build static site and Docusaurus docs
         run: bash scripts/build-site-with-docs.sh
@@ -57,6 +76,7 @@ jobs:
           test -f dist/talon/docs/external-scanners/index.html
           test -f dist/talon/docs/local-scanner-engines/index.html
           test -f dist/talon/docs/operational-control-plane/index.html
+          test -f dist/talon/docs/operations-console/index.html
           test -f dist/talon/docs/proxy-quickstart/index.html
           test -f dist/talon/docs/explanation-catalog/index.html
           test -f dist/talon/docs/copaw-integration/index.html

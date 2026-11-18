@@ -32,3 +32,7 @@
 /talon/docs/multi-tenant-msp/cost-governance-by-caller.md/ /talon/docs/cost-governance-by-agent/ 301
 /talon/docs/evidence-store/explanation-catalog.md/ /talon/docs/explanation-catalog/ 301
 /talon/docs/VENDOR_INTEGRATION_GUIDE.md/ /talon/docs/vendor-integration-guide/ 301
+
+# The removed legacy dashboard is superseded by the Operations Console guide.
+/talon/docs/gateway-dashboard/ /talon/docs/operations-console/ 301
+/talon/docs/gateway-dashboard /talon/docs/operations-console/ 301

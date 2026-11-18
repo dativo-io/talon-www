@@ -12,9 +12,10 @@ const explicitTalonRepoPath = process.env.TALON_REPO_PATH
   : null;
 const talonRoot = explicitTalonRepoPath
   ?? path.resolve(siteRoot, '..', '..', 'talon');
-const rawBase = 'https://raw.githubusercontent.com/dativo-io/talon/main';
-const githubBlobBase = 'https://github.com/dativo-io/talon/blob/main';
-const githubTreeBase = 'https://github.com/dativo-io/talon/tree/main';
+const talonRef = process.env.TALON_DOCS_REF || 'main';
+const rawBase = `https://raw.githubusercontent.com/dativo-io/talon/${talonRef}`;
+const githubBlobBase = `https://github.com/dativo-io/talon/blob/${talonRef}`;
+const githubTreeBase = `https://github.com/dativo-io/talon/tree/${talonRef}`;
 
 const sourceToPublicDoc = new Map(
   Object.entries(sourceMap).map(([docPath, sourcePath]) => [
@@ -147,8 +148,63 @@ async function rewriteRelativeMarkdownLinks(markdown, sourcePath) {
   return result;
 }
 
+// Generate all documentation image copies from the selected Talon source.
+// The website repository does not keep its own binary baselines.
+async function readConsoleImage(filename) {
+  const assetPath = 'docs/assets/console/' + filename;
+  const localPath = path.join(talonRoot, assetPath);
+  let bytes;
+  if (await exists(localPath)) {
+    bytes = await fs.readFile(localPath);
+  } else {
+    if (explicitTalonRepoPath) {
+      throw new Error('Missing console screenshot in selected Talon checkout: ' + localPath);
+    }
+    const response = await fetch(rawBase + '/' + assetPath);
+    if (!response.ok) {
+      throw new Error('Cannot fetch console screenshot: ' + assetPath + ' (' + response.status + ')');
+    }
+    bytes = Buffer.from(await response.arrayBuffer());
+  }
+  if (bytes.length < 12 || bytes.toString('ascii', 0, 4) !== 'RIFF' ||
+      bytes.toString('ascii', 8, 12) !== 'WEBP' || bytes.readUInt32LE(4) + 8 !== bytes.length) {
+    throw new Error('Invalid WebP console screenshot: ' + assetPath);
+  }
+  return bytes;
+}
+
+async function publishConsoleImage(filename, destination) {
+  const bytes = await readConsoleImage(filename);
+  await fs.mkdir(path.dirname(destination), {recursive: true});
+  await fs.writeFile(destination, bytes);
+}
+
+async function syncConsoleImages(markdown, sourcePath) {
+  if (sourcePath !== 'docs/guides/operations-console.md') return markdown;
+
+  const pattern = /(!\[[^\]\n]*\]\()\.\.\/assets\/console\/([a-z0-9-]+\.webp)(\))/g;
+  const outputDir = path.join(siteRoot, 'static', 'img', 'console');
+  // The locally owned docs landing page uses this same canonical collage.
+  await publishConsoleImage('showcase.webp', path.join(siteRoot, 'static', 'img', 'console-showcase.webp'));
+  let result = '';
+  let lastIndex = 0;
+
+  for (const match of markdown.matchAll(pattern)) {
+    const filename = match[2];
+    await publishConsoleImage(filename, path.join(outputDir, filename));
+    result += markdown.slice(lastIndex, match.index) + match[1] + '/img/console/' + filename + match[3];
+    lastIndex = match.index + match[0].length;
+  }
+  result += markdown.slice(lastIndex);
+
+  return result.replace(
+    /\]\(\.\.\/assets\/console\/([a-z0-9-]+\.webp|README\.md)\)/g,
+    (_, filename) => '](' + githubBlobBase + '/docs/assets/console/' + filename + ')',
+  );
+}
+
 async function normalizeLinks(markdown, sourcePath) {
-  let normalized = markdown
+  let normalized = (await syncConsoleImages(markdown, sourcePath))
     // Historical internal-only document removed from the public Talon tree.
     .replace(
       /\[comment-playbook\]\(docs\/community\/comment-playbook\.md\)/g,
@@ -203,6 +259,8 @@ function addFrontMatter(markdown, docPath) {
 }
 
 await fs.mkdir(docsDir, {recursive: true});
+// Retired generated document: do not retain the removed dashboard on incremental local builds.
+await fs.rm(path.join(docsDir, 'gateway-dashboard.md'), {force: true});
 
 for (const [docPath, sourcePath] of Object.entries(sourceMap)) {
   const source = await readSource(sourcePath);

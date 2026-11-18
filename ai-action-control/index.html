@@ -4,17 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/ai-action-control/" />
-  <title>AI Agent Action Approval & Authorization | Dativo Talon</title>
-  <meta name="description" content="Govern intercepted AI agent actions before execution. Talon supports MCP tool-call denial and exact HTTP action authorization with signed lifecycle evidence." />
+  <title>Tool &amp; Action Control for AI Use Cases | Dativo Talon</title>
+  <meta name="description" content="Talon's AI control plane enforces shared tool policy on intercepted paths. Exact HTTP action authorization and human approval are one supported capability." />
   <meta name="keywords" content="AI action control, AI agent approval, MCP governance, tool call governance, AI action gateway, human approval AI agent, agent action policy" />
-  <meta property="og:title" content="AI Agent Action Approval & Authorization | Dativo Talon" />
-  <meta property="og:description" content="Govern intercepted AI agent actions before execution. Talon supports MCP tool-call denial and exact HTTP action authorization with signed lifecycle evidence." />
+  <meta property="og:title" content="Tool &amp; Action Control for AI Use Cases | Dativo Talon" />
+  <meta property="og:description" content="Talon's AI control plane enforces shared tool policy on intercepted paths. Exact HTTP action authorization and human approval are one supported capability." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://dativo.io/ai-action-control/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="AI Agent Action Approval & Authorization | Dativo Talon" />
-  <meta name="twitter:description" content="Govern intercepted AI agent actions before execution. Talon supports MCP tool-call denial and exact HTTP action authorization with signed lifecycle evidence." />
+  <meta name="twitter:title" content="Tool &amp; Action Control for AI Use Cases | Dativo Talon" />
+  <meta name="twitter:description" content="Talon's AI control plane enforces shared tool policy on intercepted paths. Exact HTTP action authorization and human approval are one supported capability." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/styles.css" />
@@ -24,7 +24,7 @@
 <body>
 <header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/llm-governance-gateway/">Policy</a><a href="/ai-action-control/">Actions</a><a href="/ai-agent-governance/">Use cases</a><a href="/ai-governance-evidence-store/">Evidence</a><a href="/talon/docs/">Docs</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
 <main>
-<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Preventive control · Intercepted actions</div><h1>Control the action before it becomes a business effect.</h1><p class="hero-subtitle">A safe model response is not enough if the next step is a refund, publish, delete, export or production change. Talon governs the action paths it can actually intercept: decide before upstream execution, keep the exact boundary explicit, and leave verifiable evidence behind the decision.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/product-demo/">Run the product demo</a><a class="button secondary" href="/talon/docs/action-gateway/">Read the Action Gateway guide</a><a class="button ghost" href="/llm-governance-gateway/">See shared policy</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>AI proposes: create_refund_request
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Preventive control · Intercepted actions</div><h1>Control the action before it becomes a business effect.</h1><p class="hero-subtitle">Tool and action permissions are one part of Talon’s open-source AI control plane, alongside budgets, provider reliability and session understanding. For routed actions, Talon applies company policy before execution. Exact HTTP action approval is a separate supported boundary; it does not authorize local or bypassed effects.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/product-demo/">Run the product demo</a><a class="button secondary" href="/talon/docs/action-gateway/">Read the Action Gateway guide</a><a class="button ghost" href="/llm-governance-gateway/">See shared policy</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>AI proposes: create_refund_request
 amount: EUR 50.00
 
 intercepted action
@@ -81,7 +81,7 @@ signed evidence → verifiable facts</code></pre></div></div></section>
 
 <section class="section"><div class="wrap"><div class="section-heading"><p class="eyebrow">A concrete evaluation for AI platform teams</p><h2>Can you stop a disallowed write—and explain the result?</h2></div><div class="table-wrap comparison-table"><table><thead><tr><th>Step</th><th>What the HTTP Action Gateway can prove</th></tr></thead><tbody><tr><td>AI attempts one consequential action</td><td>One exact authorization subject is established from trusted action metadata and the final material arguments.</td></tr><tr><td>Policy requires approval</td><td>Downstream call count remains zero.</td></tr><tr><td>Authorized reviewer approves</td><td>The decision records authorization but still performs zero dispatch.</td></tr><tr><td>Runtime resumes</td><td>The runtime claims an attempt; Talon revalidates the bound action and current policy before at-most-once HTTP dispatch. Approval itself never dispatches.</td></tr><tr><td>Outcome is known or unknown</td><td>Known success/failure is recorded; ambiguous post-dispatch state is conservative and never blind-retried.</td></tr><tr><td>Evidence is verified</td><td>Policy, approval, attempt and outcome form one signed lifecycle that can be checked later.</td></tr></tbody></table></div></div></section>
 
-<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">What Talon is not</p><h2>Not an MCP gateway company. Not a workflow engine. Not endpoint security.</h2><p>MCP is one standards-native transport beneath the control plane. External orchestrators keep workflow and waiting responsibility. Talon focuses on deterministic company policy, exact intercepted-action authorization and proof—not on owning every connector or every local effect.</p></div><div class="code-panel"><pre><code>Talon owns:
+<section class="section split-section"><div class="wrap split"><div><p class="eyebrow">What Talon is not</p><h2>Not an MCP gateway company. Not a workflow engine. Not endpoint security.</h2><p>MCP is one standards-native transport beneath the control plane. External orchestrators keep workflow and waiting responsibility. Talon focuses on operating AI use cases under shared policy: cost, reliability, model/data/tool permissions and session understanding, backed by signed evidence—not on owning every connector or every local effect.</p></div><div class="code-panel"><pre><code>Talon owns:
 policy boundary
 action authorization
 operation identity

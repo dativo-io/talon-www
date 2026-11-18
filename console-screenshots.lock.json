@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "algorithm": "git-blob-sha1",
+  "images": {
+    "configuration.webp": "612b81d2fc1b34dd08bc6e821e1c95e2ca2b7f8c",
+    "costs.webp": "1fa6543c429a0e2671d556dd021338433325ccbf",
+    "evidence-verification.webp": "bda76bd77b8b10e186a0732d8d04ca7503a20cb9",
+    "overview-attention.webp": "b2cf0028d117a72a084fde410bf53309f95a51b3",
+    "overview-mobile.webp": "13b72ec12efbb46c0ad47f19867ea1a90f875351",
+    "session-investigation.webp": "dfb9e5b54d28ed69aeef152fb176cf4c74e711ae",
+    "showcase.webp": "9b2ab6ba24441bc74fb727bf1a5c276b3e1919d1",
+    "system-diagnostics.webp": "655e27846c131944ce7ac91ccbaaa36010472495",
+    "tamper-detection.webp": "61325e35fa99348554e18c23045cf98b9c95e022",
+    "use-case-summary.webp": "3ebbe6269141f54014f494f0f26a091e59023807"
+  }
+}
