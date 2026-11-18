@@ -4,16 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/mcp-tool-governance/" />
-  <title>MCP Tool Permissions &amp; Call Governance | Dativo Talon</title>
-  <meta name="description" content="A practical guide to MCP tool permissions: discovery filtering, pre-call denial, exact-action approval boundaries and verifiable evidence. See what Talon enforces today." />
-  <meta property="og:title" content="MCP Tool Permissions &amp; Call Governance | Dativo Talon" />
-  <meta property="og:description" content="A practical guide to MCP tool permissions: discovery filtering, pre-call denial, exact-action approval boundaries and verifiable evidence. See what Talon enforces today." />
+  <title>MCP Tool Permissions &amp; Policy Enforcement | Dativo Talon</title>
+  <meta name="description" content="Apply company tool policy to AI use cases on Talon's supported MCP path. Discovery filtering and call denial are distinct from exact HTTP action approval." />
+  <meta property="og:title" content="MCP Tool Permissions &amp; Policy Enforcement | Dativo Talon" />
+  <meta property="og:description" content="Apply company tool policy to AI use cases on Talon's supported MCP path. Discovery filtering and call denial are distinct from exact HTTP action approval." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://dativo.io/mcp-tool-governance/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="MCP Tool Permissions &amp; Call Governance | Dativo Talon" />
-  <meta name="twitter:description" content="A practical guide to MCP tool permissions: discovery filtering, pre-call denial, exact-action approval boundaries and verifiable evidence. See what Talon enforces today." />
+  <meta name="twitter:title" content="MCP Tool Permissions &amp; Policy Enforcement | Dativo Talon" />
+  <meta name="twitter:description" content="Apply company tool policy to AI use cases on Talon's supported MCP path. Discovery filtering and call denial are distinct from exact HTTP action approval." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
   <link rel="icon" href="/public/assets/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/styles.css" />
@@ -23,7 +23,7 @@
 <body>
 <header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/"><img class="brand-logo" src="/public/assets/talon-logo.png" alt="Dativo Talon logo" /><span>Dativo Talon</span></a><nav class="nav-links"><a href="/llm-governance-gateway/">Policy</a><a href="/ai-action-control/">Actions</a><a href="/ai-agent-governance/">Use cases</a><a href="/ai-governance-evidence-store/">Evidence</a><a href="/talon/docs/">Docs</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
 <main>
-<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>MCP security · Tool permissions · Actual enforcement</div><h1>MCP tool permissions should govern calls, not just tool lists.</h1><p class="hero-subtitle">Giving an agent a tool is not the same as authorizing it to run. Learn where MCP discovery restrictions end, where <code>tools/call</code> denial begins, and why exact-action approval is a separate capability. Talon applies company policy only to the paths it actually intercepts.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/mcp-governance-extension/">MCP governance reference</a><a class="button secondary" href="/talon/docs/action-gateway-proof/">Run exact-action proof</a><a class="button ghost" href="/ai-action-control/">See action control</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>AGENT → MCP PROXY → TOOLS/CALL
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>MCP security · Tool permissions · Actual enforcement</div><h1>MCP tool permissions should govern calls, not just tool lists.</h1><p class="hero-subtitle">Giving an agent a tool is not the same as authorizing it to run. Learn where MCP discovery restrictions end, where <code>tools/call</code> denial begins, and why exact-action approval is a separate capability. MCP tool permissions are one part of Talon's self-hosted AI control plane, alongside model access, cost, reliability and sessions. Talon applies company policy only to the paths it actually intercepts.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/mcp-governance-extension/">MCP governance reference</a><a class="button secondary" href="/talon/docs/action-gateway-proof/">Run exact-action proof</a><a class="button ghost" href="/ai-action-control/">See action control</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>AGENT → MCP PROXY → TOOLS/CALL
    authenticated use case
    policy decision: DENY
    upstream calls: 0

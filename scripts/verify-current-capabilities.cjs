@@ -53,7 +53,11 @@ if (fs.existsSync(editionPage)) {
 const homepage = path.join(root, 'index.html');
 if (fs.existsSync(homepage)) {
   const html = fs.readFileSync(homepage, 'utf8');
-  if (!html.includes('AI use cases are multiplying. Your control shouldn’t fragment.')) failures.push('Homepage lost its case-first promise');
+  if (!html.includes('<h1>One company policy for your AI use cases.</h1>')) failures.push('Homepage lost its canonical company-policy promise');
+  if (!html.includes("Talon is an open-source, self-hosted AI control plane. Control model access, data and tool permissions, enforce budgets, handle provider failures, and investigate decisions with signed evidence — on the paths you route through Talon.")) failures.push('Homepage lost its canonical AI control plane description');
+  for (const job of ['Cost control', 'Reliability', 'Shared policy', 'Session understanding']) {
+    if (!html.includes('<strong>' + job + '</strong>')) failures.push('Homepage missing control-plane job: ' + job);
+  }
   if (!html.includes('supported interception paths')) failures.push('Homepage lost its interception boundary');
   for (const route of ['/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/']) {
     if (!html.includes('href="' + route + '"')) failures.push('Homepage missing use-case entry: ' + route);

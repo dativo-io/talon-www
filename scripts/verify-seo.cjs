@@ -53,7 +53,8 @@ for (const route of pages) {
   }
 }
 const home = built.get('/') || '';
-if (!home.includes('AI use cases are multiplying. Your control shouldn’t fragment.')) errors.push('Case-first homepage H1 lost');
+if (!home.includes('<h1>One company policy for your AI use cases.</h1>')) errors.push('Canonical homepage H1 lost');
+if (!home.includes('<title>Dativo Talon — Open-Source AI Control Plane</title>')) errors.push('Homepage category must be AI control plane');
 for (const route of ['/use-cases/', '/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/', '/talon/docs/', '/enterprise/']) {
   if (!home.includes('href="' + route + '"')) errors.push('Homepage missing priority path ' + route);
 }

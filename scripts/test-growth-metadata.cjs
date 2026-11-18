@@ -38,3 +38,11 @@ test('reapplying metadata does not double-escape the title', () => {
   updated = setMeta(updated, 'name="twitter:title"', title);
   assert.equal(updated, initial);
 });
+
+test('product identity stays broad and task pages are capabilities', () => {
+  assert.equal(metadata['/'][0], "Dativo Talon — Open-Source AI Control Plane");
+  assert.ok(metadata['/'][1].startsWith("One company policy for your AI use cases."));
+  assert.ok(metadata['/talon/docs/'][0].includes('AI Control Plane'));
+  assert.ok(metadata['/ai-action-control/'][1].includes('one supported capability'));
+  assert.ok(!metadata['/ai-action-control/'][0].startsWith('AI Agent Action Approval'));
+});

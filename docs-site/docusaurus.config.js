@@ -1,6 +1,6 @@
 const config = {
   title: 'Dativo Talon Docs',
-  tagline: 'Connect one AI use case, enforce shared policy and verify decisions.',
+  tagline: 'One company policy for your AI use cases.',
   favicon: 'img/favicon.svg',
 
   url: 'https://dativo.io',
@@ -50,7 +50,7 @@ const config = {
       {
         name: 'description',
         content:
-          'Dativo Talon is the open-source control layer for company AI use cases: turn company policy into use-case-specific effective rules, enforce them at supported model, data and action boundaries, and keep verifiable evidence.',
+          'Talon is an open-source, self-hosted AI control plane. Control model access, data and tool permissions, enforce budgets, handle provider failures, and investigate decisions with signed evidence — on the paths you route through Talon.',
       },
       {
         name: 'keywords',

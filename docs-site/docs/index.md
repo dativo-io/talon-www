@@ -1,12 +1,14 @@
 ---
 title: Dativo Talon documentation
-description: Choose a production AI use case, connect a supported interception path, enforce company policy and verify the result.
+description: "One company policy for your AI use cases. Self-hosted control of models, data, tools, budgets and provider failures, with sessions and signed evidence."
 slug: /
 ---
 
-# Start with an AI use case
+# One company policy for your AI use cases.
 
-Talon applies **company policy** to model requests and actions that pass through its supported interception paths. It also helps teams operate their AI use cases with cost controls, policy-valid fallback, sessions, and **signed, tamper-evident evidence**.
+Talon is an open-source, self-hosted AI control plane. Control model access, data and tool permissions, enforce budgets, handle provider failures, and investigate decisions with signed evidence — on the paths you route through Talon.
+
+Start with one AI use case. The four jobs are cost control, reliability, shared policy and session understanding, backed by signed, tamper-evident evidence.
 
 You do **not** need to rebuild your agent in Talon. Start with one workflow and a control you can test.
 
