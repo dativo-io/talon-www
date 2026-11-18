@@ -120,6 +120,11 @@ test -f "$OUT_DIR/talon/docs/governing-coding-agents/index.html"
 test -f "$OUT_DIR/talon/docs/action-gateway-proof/index.html"
 test -f "$OUT_DIR/talon/docs/mcp-governance-extension/index.html"
 test -f "$OUT_DIR/talon/docs/mcp-2026-migration/index.html"
+# The console guide must publish its screenshot bytes alongside the docs.
+test -f "$OUT_DIR/talon/docs/operations-console/index.html"
+for image in overview-attention.webp use-case-summary.webp session-investigation.webp evidence-verification.webp costs.webp configuration.webp system-diagnostics.webp; do
+  test -s "$OUT_DIR/talon/docs/img/console/$image"
+done
 
 # Prevent historical repo-relative link mistakes from becoming public web routes.
 node "$ROOT_DIR/scripts/verify-internal-link-shapes.cjs" "$OUT_DIR"
