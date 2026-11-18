@@ -17,11 +17,14 @@ The production build replaces marketing-page navigation with a shared five-link 
 
 ## Local preview
 
-Preview the static marketing pages directly:
+For a complete local preview (including generated console images and technical docs), build first and serve the output:
 
 ```bash
-python3 -m http.server 8080
+./scripts/build-site-with-docs.sh
+python3 -m http.server 8080 --directory dist
 ```
+
+Serving the source tree directly is a text/layout-only preview: the console images are intentionally not checked into this repository.
 
 Then open:
 
@@ -46,6 +49,21 @@ dist
 The build script copies the static marketing site, builds Docusaurus, mounts docs under `/talon/docs/`, generates root SEO files, injects Umami analytics into every generated HTML page, and fails the build if the final artifact has a missing or duplicate tracker or contains legacy analytics code.
 
 The homepage is a buyer-problem-first overview, with reproducible technical demonstrations linked from their canonical documentation pages. The Talon checkout remains the source of truth for published docs. No animated hero asset is needed for the homepage.
+
+### Console screenshot publication
+
+Talon owns the approved WebP screenshots and collage in `docs/assets/console/`. The website fetches one Talon revision (default `main`), copies the marketing assets into `dist/public/assets/`, and synchronizes the guide images and landing-page collage into Docusaurus. The build fails if required images are missing or differ from the canonical files. It does not start Talon or regenerate screenshots. The actual source commit is printed in the build log.
+
+For a preview of an upstream PR before it merges:
+
+```bash
+# From a fresh website checkout without a sibling Talon checkout:
+TALON_DOCS_REF=docs/console-showcase-20261110 ./scripts/build-site-with-docs.sh
+# Or pass an already checked-out Talon branch explicitly:
+TALON_REPO_PATH=/path/to/talon ./scripts/build-site-with-docs.sh
+```
+
+Cloudflare Workers Builds remains the production publisher. Normal website changes trigger the existing Git integration; approved console image or guide changes on Talon `main` can trigger the same build through a branch-specific Cloudflare Deploy Hook. The hook URL is a secret in the Talon repository, never in this repository or public build output. See the upstream console asset README for setup and recovery. No automatic screenshot commits or second deployment pipeline are needed.
 
 The compatibility route `/docs/talon/` redirects users to `/talon/docs/` and is included in the same analytics verification.
 

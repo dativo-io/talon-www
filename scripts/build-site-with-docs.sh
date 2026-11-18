@@ -86,20 +86,19 @@ node "$ROOT_DIR/scripts/normalize-site-nav.cjs" "$OUT_DIR"
 # shipped agent identity model. Historical routes are allowed only in _redirects.
 node "$ROOT_DIR/scripts/verify-agent-identity-contract.cjs" "$ROOT_DIR"
 
-# Fetch the Talon source once. The docs sync script and hero publisher read from
-# this one checkout, keeping the homepage proof and /talon/docs on the same ref.
+# Fetch the Talon source once; pin provenance links to the actual checkout.
+# All published technical docs and console images use that same source.
 prepare_talon_checkout
+export TALON_DOCS_REF="$(git -C "$TALON_REPO_PATH" rev-parse HEAD)"
+echo "Publishing Talon source $TALON_DOCS_REF"
 
-# Publish reviewed console visuals from the same Talon checkout as the docs.
-# The tracked marketing images remain useful for static previews; production
-# builds must not keep an old collage after Talon's curated baseline changes.
+# Only the build output owns marketing image copies, not the website repo.
 CONSOLE_ASSETS="$TALON_REPO_PATH/docs/assets/console"
-for image in showcase overview-attention use-case-summary session-investigation evidence-verification; do
+mkdir -p "$OUT_DIR/public/assets"
+for image in showcase overview-attention session-investigation evidence-verification; do
   test -s "$CONSOLE_ASSETS/$image.webp"
   cp "$CONSOLE_ASSETS/$image.webp" "$OUT_DIR/public/assets/console-$image.webp"
 done
-cp "$CONSOLE_ASSETS/showcase.webp" "$DOCS_DIR/static/img/console-showcase.webp"
-
 
 # Fail fast, before npm install and Docusaurus compilation, if talon/main changed
 # a mapped docs path without the corresponding talon-www publication update.
@@ -128,10 +127,14 @@ test -f "$OUT_DIR/talon/docs/governing-coding-agents/index.html"
 test -f "$OUT_DIR/talon/docs/action-gateway-proof/index.html"
 test -f "$OUT_DIR/talon/docs/mcp-governance-extension/index.html"
 test -f "$OUT_DIR/talon/docs/mcp-2026-migration/index.html"
-# The console guide must publish its screenshot bytes alongside the docs.
+# Fail the build if any published image differs from its canonical source.
 test -f "$OUT_DIR/talon/docs/operations-console/index.html"
+for image in showcase overview-attention session-investigation evidence-verification; do
+  cmp "$CONSOLE_ASSETS/$image.webp" "$OUT_DIR/public/assets/console-$image.webp"
+done
+cmp "$CONSOLE_ASSETS/showcase.webp" "$OUT_DIR/talon/docs/img/console-showcase.webp"
 for image in overview-attention.webp use-case-summary.webp session-investigation.webp evidence-verification.webp costs.webp configuration.webp system-diagnostics.webp; do
-  test -s "$OUT_DIR/talon/docs/img/console/$image"
+  cmp "$CONSOLE_ASSETS/$image" "$OUT_DIR/talon/docs/img/console/$image"
 done
 
 # Prevent historical repo-relative link mistakes from becoming public web routes.

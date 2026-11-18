@@ -148,45 +148,55 @@ async function rewriteRelativeMarkdownLinks(markdown, sourcePath) {
   return result;
 }
 
-// The source guide uses branch-relative image paths for GitHub previews.
-// Publish the exact same bytes from the selected Talon checkout with the docs.
+// Generate all documentation image copies from the selected Talon source.
+// The website repository does not keep its own binary baselines.
+async function readConsoleImage(filename) {
+  const assetPath = 'docs/assets/console/' + filename;
+  const localPath = path.join(talonRoot, assetPath);
+  let bytes;
+  if (await exists(localPath)) {
+    bytes = await fs.readFile(localPath);
+  } else {
+    if (explicitTalonRepoPath) {
+      throw new Error('Missing console screenshot in selected Talon checkout: ' + localPath);
+    }
+    const response = await fetch(rawBase + '/' + assetPath);
+    if (!response.ok) {
+      throw new Error('Cannot fetch console screenshot: ' + assetPath + ' (' + response.status + ')');
+    }
+    bytes = Buffer.from(await response.arrayBuffer());
+  }
+  if (bytes.length < 12 || bytes.toString('ascii', 0, 4) !== 'RIFF' ||
+      bytes.toString('ascii', 8, 12) !== 'WEBP' || bytes.readUInt32LE(4) + 8 !== bytes.length) {
+    throw new Error('Invalid WebP console screenshot: ' + assetPath);
+  }
+  return bytes;
+}
+
+async function publishConsoleImage(filename, destination) {
+  const bytes = await readConsoleImage(filename);
+  await fs.mkdir(path.dirname(destination), {recursive: true});
+  await fs.writeFile(destination, bytes);
+}
+
 async function syncConsoleImages(markdown, sourcePath) {
   if (sourcePath !== 'docs/guides/operations-console.md') return markdown;
 
   const pattern = /(!\[[^\]\n]*\]\()\.\.\/assets\/console\/([a-z0-9-]+\.webp)(\))/g;
   const outputDir = path.join(siteRoot, 'static', 'img', 'console');
+  // The locally owned docs landing page uses this same canonical collage.
+  await publishConsoleImage('showcase.webp', path.join(siteRoot, 'static', 'img', 'console-showcase.webp'));
   let result = '';
   let lastIndex = 0;
 
   for (const match of markdown.matchAll(pattern)) {
     const filename = match[2];
-    const assetPath = 'docs/assets/console/' + filename;
-    const localPath = path.join(talonRoot, assetPath);
-    let bytes;
-    if (await exists(localPath)) {
-      bytes = await fs.readFile(localPath);
-    } else {
-      if (explicitTalonRepoPath) {
-        throw new Error('Missing console screenshot in selected Talon checkout: ' + localPath);
-      }
-      const response = await fetch(rawBase + '/' + assetPath);
-      if (!response.ok) {
-        throw new Error('Cannot fetch console screenshot: ' + assetPath + ' (' + response.status + ')');
-      }
-      bytes = Buffer.from(await response.arrayBuffer());
-    }
-    if (bytes.length < 12 || bytes.toString('ascii', 0, 4) !== 'RIFF' || bytes.toString('ascii', 8, 12) !== 'WEBP') {
-      throw new Error('Invalid WebP console screenshot: ' + assetPath);
-    }
-    await fs.mkdir(outputDir, {recursive: true});
-    await fs.writeFile(path.join(outputDir, filename), bytes);
+    await publishConsoleImage(filename, path.join(outputDir, filename));
     result += markdown.slice(lastIndex, match.index) + match[1] + '/img/console/' + filename + match[3];
     lastIndex = match.index + match[0].length;
   }
   result += markdown.slice(lastIndex);
 
-  // Ordinary provenance/download links remain links to the upstream source,
-  // not Docusaurus pages. Relative image links above are served locally.
   return result.replace(
     /\]\(\.\.\/assets\/console\/([a-z0-9-]+\.webp|README\.md)\)/g,
     (_, filename) => '](' + githubBlobBase + '/docs/assets/console/' + filename + ')',
