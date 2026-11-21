@@ -29,9 +29,9 @@ You do **not** need to rebuild your agent in Talon. Start with one workflow and 
 
 ## See the Operations Console
 
-[![Talon Operations Console: readiness, AI use cases, sessions, costs, configuration, and signed evidence](/img/console-showcase.webp)](./operations-console.md)
+[![Talon Operations Console: readiness, AI use cases, approval decisions, action policies, sessions and signed evidence](/img/console-showcase.webp)](./operations-console.md)
 
-The OSS [Operations Console](./operations-console.md) is a **local, paired, read-only** view: start with installation readiness and actionable findings, inspect a tenant-scoped AI use case, follow its session decisions, and verify a signed evidence record. Runtime health is not inferred from historical requests, and a signature does not prove external business outcomes.
+The OSS [Operations Console](./operations-console.md) is a **local, paired, read-only** view: start with installation readiness and actionable findings, inspect a tenant-scoped AI use case and effective action policy, examine pending approvals and session decisions, and verify a signed evidence record. Runtime health is not inferred from historical requests, and a signature does not prove external business outcomes.
 
 *Actual console screenshots from a synthetic Playwright fixture. The failed gateway and other degraded states are intentionally included to demonstrate failure reporting, not a customer incident.*
 
