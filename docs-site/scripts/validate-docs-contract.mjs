@@ -19,7 +19,6 @@ const localOwnedDocs = new Map([
   ['index', 'index.md'],
   ['coding-agents-demo', 'coding-agents-demo.md'],
   ['use-case-playbooks', 'use-case-playbooks.md'],
-  ['n8n-refund-approvals', 'n8n-refund-approvals.md'],
   ['evaluation-checklist', 'evaluation-checklist.md'],
   ['open-source-and-enterprise', 'open-source-and-enterprise.md'],
 ]);
