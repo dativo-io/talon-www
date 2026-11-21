@@ -56,6 +56,28 @@
     <p class="case-disclaimer">Amounts are illustrative EUR policy rules, not built-in refund logic. The runnable example uses a deterministic counting service, not a live payment processor.</p>
   </div>
 </section>
+<section class="case-section case-console">
+  <div class="wrap">
+    <div class="case-heading">
+      <div><p class="case-kicker">Inspect it in the Operations Console</p><h2>See the rule, the reviewer queue and the signed attempt.</h2><p>The console is a read-only projection of the same decisions and evidence available to the CLI. These images come from Talon's synthetic action-and-approval fixture.</p></div>
+      <a href="/talon/docs/operations-console/" data-growth-intent="console-docs">Explore the console →</a>
+    </div>
+    <div class="case-console-trail">
+      <article><a href="/talon/docs/operations-console/">
+        <img src="/public/assets/console-action-policy.webp" loading="lazy" decoding="async" alt="Talon action policy showing company and support-workflow argument rules with their origin." />
+        <h3>1. Inspect the composed policy</h3><p>See which rule came from the company and which came from the use case.</p>
+      </a></article>
+      <article><a href="/talon/docs/operations-console/">
+        <img src="/public/assets/console-approvals.webp" loading="lazy" decoding="async" alt="Read-only Talon approvals queue for a refund-bot use case, showing waiting and expired requests." />
+        <h3>2. Inspect approvals</h3><p>See which operation waits for a person and why.</p>
+      </a></article>
+      <article><a href="/talon/docs/operations-console/">
+        <img src="/public/assets/console-action-evidence.webp" loading="lazy" decoding="async" alt="Signed Talon evidence for a refund operation that required reviewer approval before dispatch." />
+        <h3>3. Verify the action lifecycle</h3><p>Trace the bound decision and attempt, then compare with the adapter's result.</p>
+      </a></article>
+    </div>
+  </div>
+</section>
 <section class="case-section case-process">
   <div class="wrap">
     <div class="case-heading"><div><p class="case-kicker">How it works</p><h2>n8n orchestrates. Talon authorizes and dispatches.</h2></div></div>
