@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Fail publication if October 2026 feature docs vanish or retired public claims reappear.
+// Fail publication if current product/operating journeys vanish or retired public claims reappear.
 // Scope intentionally limited to the current flagship routes; historical changelog is not rewritten.
 const fs = require('node:fs');
 const path = require('node:path');
@@ -17,6 +17,11 @@ const required = [
   'use-cases/customer-support/index.html',
   'use-cases/people-analytics/index.html',
   'use-cases/vendor-contract-review/index.html',
+  'use-cases/refund-approvals/index.html',
+  'talon/docs/n8n-refund-approvals/index.html',
+  'talon/docs/operate-ai-use-cases/index.html',
+  'talon/docs/production-pilot/index.html',
+  'talon/docs/single-node-production/index.html',
   'mcp-tool-governance/index.html',
   'ai-agent-audit-trail/index.html',
   'comparisons/talon-vs-litellm/index.html',
@@ -56,16 +61,18 @@ const homepage = path.join(root, 'index.html');
 if (fs.existsSync(homepage)) {
   const html = fs.readFileSync(homepage, 'utf8');
   if (!html.includes('<h1>One company policy for your AI use cases.</h1>')) failures.push('Homepage lost its canonical company-policy promise');
-  if (!html.includes("Talon is an open-source, self-hosted AI control plane. Control model access, data and tool permissions, enforce budgets, handle provider failures, and investigate decisions with signed evidence — on the paths you route through Talon.")) failures.push('Homepage lost its canonical AI control plane description');
+  if (!html.includes('Register your AI use cases under one company policy.') || !html.includes('Operations Console')) failures.push('Homepage lost its operator-focused control plane description');
   for (const job of ['Cost control', 'Reliability', 'Shared policy', 'Session understanding']) {
     if (!html.includes('<strong>' + job + '</strong>')) failures.push('Homepage missing control-plane job: ' + job);
   }
   if (!html.includes('supported interception paths')) failures.push('Homepage lost its interception boundary');
-  for (const route of ['/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/']) {
+  for (const route of ['/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/', '/use-cases/refund-approvals/']) {
     if (!html.includes('href="' + route + '"')) failures.push('Homepage missing use-case entry: ' + route);
   }
   if (!html.includes('href="/enterprise/"')) failures.push('Homepage missing edition overview');
   if (!html.includes('href="/talon/docs/product-demo/"')) failures.push('Homepage must link to reproducible demo');
+  if (!html.includes('href="/talon/docs/add-talon-to-existing-app/"')) failures.push('Homepage lost application onboarding');
+  if (!html.includes('href="/talon/docs/n8n-refund-approvals/"')) failures.push('Homepage lost governed n8n action walkthrough');
 } else failures.push('Missing homepage');
 for (const rel of ['index.html', 'ai-action-control/index.html']) {
   const target = path.join(root, rel);
