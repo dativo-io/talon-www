@@ -19,6 +19,7 @@ const localOwnedDocs = new Map([
   ['index', 'index.md'],
   ['coding-agents-demo', 'coding-agents-demo.md'],
   ['use-case-playbooks', 'use-case-playbooks.md'],
+  ['n8n-refund-approvals', 'n8n-refund-approvals.md'],
   ['evaluation-checklist', 'evaluation-checklist.md'],
   ['open-source-and-enterprise', 'open-source-and-enterprise.md'],
 ]);
@@ -120,6 +121,8 @@ if (!sourcesOnly) {
     'policy-cookbook',
     'governing-coding-agents',
     'operations-console',
+    'n8n-refund-approvals',
+    'production-pilot',
   ];
   const absentFirstClassDocs = requiredFirstClassDocs.filter(
     (docId) => !sidebarDocIds.has(docId),
