@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="canonical" href="https://dativo.io/use-cases/refund-approvals/" />
+<title>n8n Refund Approvals with AI Action Control | Dativo Talon</title>
+<meta name="description" content="Keep your n8n workflow. Apply company policy to exact refund actions: allow, require human approval, or deny, then verify controlled dispatch with signed evidence." />
+<meta property="og:title" content="n8n Refund Approvals with AI Action Control | Dativo Talon" />
+<meta property="og:description" content="Keep your n8n workflow. Apply company policy to exact refund actions: allow, require human approval, or deny, then verify controlled dispatch with signed evidence." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dativo.io/use-cases/refund-approvals/" />
+<meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="n8n Refund Approvals with AI Action Control | Dativo Talon" />
+<meta name="twitter:description" content="Keep your n8n workflow. Apply company policy to exact refund actions: allow, require human approval, or deny, then verify controlled dispatch with signed evidence." />
+<meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
+<link rel="stylesheet" href="/styles.css" />
+<link rel="stylesheet" href="/site-nav.css" />
+<link rel="stylesheet" href="/homepage-clean.css" />
+<link rel="icon" type="image/svg+xml" href="/public/assets/talon-icon.svg" />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Govern refund approvals in an n8n workflow with Talon","description":"Company policy, exact HTTP action authorization, reviewer decisions and signed dispatch evidence for an existing n8n workflow.","inLanguage":"en","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/use-cases/refund-approvals/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dativo.io/"},{"@type":"ListItem","position":2,"name":"Use cases","item":"https://dativo.io/use-cases/"},{"@type":"ListItem","position":3,"name":"Refund approvals","item":"https://dativo.io/use-cases/refund-approvals/"}]}]}</script>
+<script defer src="/site-nav.js"></script>
+</head><body>
+<header class="site-nav">
+<div class="wrap nav-inner">
+<a class="brand" href="/" aria-label="Dativo Talon home"><img class="brand-logo" src="/public/assets/talon-icon.svg?v=2" alt="Dativo Talon mark" /><span>Dativo Talon</span></a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation"><span></span><span></span><span></span></button>
+<nav class="nav-links" id="primary-navigation" aria-label="Primary navigation">
+<a href="/use-cases/">Use cases</a><a href="/#how-it-works">How it works</a><a href="/enterprise/">Enterprise</a><a href="/talon/docs/">Docs</a><a href="https://github.com/dativo-io/talon">GitHub</a><a class="nav-button" href="https://www.linkedin.com/in/sergeyenin/" rel="noopener noreferrer" data-growth-intent="pilot-contact">Discuss a pilot</a>
+</nav>
+</div>
+</header>
+<main class="case-page">
+<section class="case-hero">
+  <div class="wrap">
+    <p class="case-kicker">Use case · Support operations · n8n</p>
+    <h1>Keep the workflow. Put refund decisions under company policy.</h1>
+    <p class="case-lead">Your n8n automation handles the request. Talon decides whether the exact refund action can run, holds it for a human when needed, and dispatches only a valid claim. Every decision and attempt has a signed record you can inspect.</p>
+    <div class="case-actions">
+      <a class="button primary" href="/talon/docs/n8n-refund-approvals/" data-growth-intent="n8n-guide" data-growth-primary="true">Set up the n8n workflow</a>
+      <a class="button secondary" href="https://github.com/dativo-io/talon/tree/main/examples/n8n-refund" data-growth-intent="github-n8n">Inspect the importable reference</a>
+    </div>
+    <p class="case-small">Self-hosted · Company policy + one use-case override · No replacement orchestrator required</p>
+  </div>
+</section>
+<section class="case-section case-use-cases">
+  <div class="wrap">
+    <div class="case-heading">
+      <div><p class="case-kicker">Three outcomes, one policy</p><h2>Not every requested refund should execute.</h2><p>The reference example uses a company-wide upper bound and a narrower reviewer rule for the support use case. n8n branches on Talon's verdict—not on a copy of those thresholds.</p></div>
+    </div>
+    <div class="case-grid">
+      <article class="case-card"><span class="case-number">01 / Allowed</span><h3>€30</h3><p>Policy allows the requested operation. n8n claims it; Talon dispatches to the trusted destination.</p><div class="case-decision"><span>Decision</span><strong>ALLOW</strong></div></article>
+      <article class="case-card"><span class="case-number">02 / Human review</span><h3>€75</h3><p>A support lead reviews the bound operation. A decision alone never sends a refund; a later claim is required.</p><div class="case-decision"><span>Decision</span><strong>REQUIRE_APPROVAL</strong></div></article>
+      <article class="case-card"><span class="case-number">03 / Denied</span><h3>€900</h3><p>The company limit blocks the action, even if the use case attempts to loosen its own rules.</p><div class="case-decision"><span>Decision</span><strong>DENY</strong></div></article>
+    </div>
+    <p class="case-disclaimer">Amounts are illustrative EUR policy rules, not built-in refund logic. The runnable example uses a deterministic counting service, not a live payment processor.</p>
+  </div>
+</section>
+<section class="case-section case-process">
+  <div class="wrap">
+    <div class="case-heading"><div><p class="case-kicker">How it works</p><h2>n8n orchestrates. Talon authorizes and dispatches.</h2></div></div>
+    <div class="case-steps">
+      <div><span>01</span><h3>Register the AI use case</h3><p>Run <code>talon agents add</code>, receive its key, connect the importable workflow and configure the exact action under company and use-case policy.</p></div>
+      <div><span>02</span><h3>Decide or request approval</h3><p>Talon binds the operation and typed arguments. Reviewers have their own credentials and can approve or reject requests in the CLI or reviewer API.</p></div>
+      <div><span>03</span><h3>Claim and verify</h3><p>n8n claims the authorized operation. Talon dispatches to the business adapter and records decision, review, attempt and outcome in verifiable evidence.</p></div>
+    </div>
+    <a class="case-text-link" href="/talon/docs/n8n-refund-approvals/" data-growth-intent="n8n-guide">Follow the complete operator walkthrough →</a>
+  </div>
+</section>
+<section class="case-section case-use-cases">
+  <div class="wrap">
+    <div class="case-heading"><div><p class="case-kicker">Operate and investigate</p><h2>A reviewer decision is not a business effect.</h2></div></div>
+    <div class="case-grid">
+      <article class="case-card"><span class="case-number">Effective policy</span><h3>Know which rule fired</h3><p>Inspect the composed company and use-case action policy with rule provenance. Typed argument rules decide the requested amount.</p></article>
+      <article class="case-card"><span class="case-number">Separate identity</span><h3>Keep approvers distinct</h3><p>The n8n webhook caller, use-case key, reviewer credential and operator admin key have different authority. The use-case key cannot approve.</p></article>
+      <article class="case-card"><span class="case-number">Signed lifecycle</span><h3>Show what Talon did</h3><p>Investigate the operation, approval and attempt. Verify the signed lifecycle and compare it with the destination's own result.</p></article>
+    </div>
+    <p class="case-disclaimer">This is the HTTP Action Gateway path. MCP tool permission checks do not inherit its exact-operation approval/claim guarantees. Direct calls that bypass Talon remain outside its control.</p>
+    <div class="case-actions">
+      <a class="button secondary" href="/talon/docs/operations-console/" data-growth-intent="console-docs">Explore the Operations Console</a>
+      <a class="button secondary" href="/talon/docs/production-pilot/" data-growth-intent="production-pilot">Follow a full pilot</a>
+    </div>
+  </div>
+</section>
+<section class="case-section case-proof">
+  <div class="wrap case-proof-layout">
+    <div><p class="case-kicker">Reproduce the proof</p><h2>Three test inputs. Inspect the decision and the actual attempt.</h2><p>Import the workflow, run the sample requests, make a reviewer decision and check Talon's signed operation lifecycle against the counting adapter.</p></div>
+    <div class="case-proof-links">
+      <a href="/talon/docs/n8n-refund-approvals/" data-growth-intent="n8n-guide"><strong>n8n setup guide</strong><span>Import · configure · approve · verify <i>→</i></span></a>
+      <a href="https://github.com/dativo-io/talon/tree/main/examples/n8n-refund" data-growth-intent="github-n8n"><strong>Importable workflow and tests</strong><span>Reference files · deterministic destination <i>→</i></span></a>
+      <a href="/talon/docs/action-gateway/" data-growth-intent="action-control"><strong>Action Gateway reference</strong><span>Exact-operation and dispatch contract <i>→</i></span></a>
+    </div>
+  </div>
+</section>
+<section class="case-section case-cta">
+  <div class="wrap case-cta-inner">
+    <div><p class="case-kicker">Bring your own workflow</p><h2>Which business action needs an approval boundary?</h2><p>Start with a refund, account change, deployment or external message. Keep the orchestrator; route the consequential action through Talon.</p></div>
+    <div class="case-cta-buttons"><a class="button primary" href="https://www.linkedin.com/in/sergeyenin/" rel="noopener noreferrer" data-growth-intent="pilot-contact" data-growth-primary="true">Discuss a pilot</a></div>
+  </div>
+</section>
+</main>
+<footer class="case-footer"><div class="wrap case-footer-row"><div><strong>Dativo Talon</strong><p>Only model traffic and actions routed through supported Talon boundaries are governed. Evidence is tamper-evident and is not a compliance certification or proof of downstream business correctness.</p></div><div><a href="/use-cases/">More use cases</a> · <a href="/talon/docs/">Docs</a> · <a href="https://github.com/dativo-io/talon">GitHub</a></div></div></footer>
+</body></html>
