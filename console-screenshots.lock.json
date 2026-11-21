@@ -2,15 +2,19 @@
   "schema": 1,
   "algorithm": "git-blob-sha1",
   "images": {
-    "configuration.webp": "612b81d2fc1b34dd08bc6e821e1c95e2ca2b7f8c",
-    "costs.webp": "1fa6543c429a0e2671d556dd021338433325ccbf",
-    "evidence-verification.webp": "bda76bd77b8b10e186a0732d8d04ca7503a20cb9",
-    "overview-attention.webp": "b2cf0028d117a72a084fde410bf53309f95a51b3",
-    "overview-mobile.webp": "13b72ec12efbb46c0ad47f19867ea1a90f875351",
-    "session-investigation.webp": "dfb9e5b54d28ed69aeef152fb176cf4c74e711ae",
-    "showcase.webp": "9b2ab6ba24441bc74fb727bf1a5c276b3e1919d1",
-    "system-diagnostics.webp": "655e27846c131944ce7ac91ccbaaa36010472495",
-    "tamper-detection.webp": "61325e35fa99348554e18c23045cf98b9c95e022",
-    "use-case-summary.webp": "3ebbe6269141f54014f494f0f26a091e59023807"
+    "action-evidence.webp": "c3d1e0fdb25bf2dd15cb5c0edcf15a5eca7cc063",
+    "action-policy.webp": "6923ecbbc0f7e4b17bd28a4bcbf70de5cfb093ba",
+    "approval-detail.webp": "f889a8052abf7095306292c9c5951b88542749cc",
+    "approvals.webp": "77c9ded97514997f7043dfac64e128cc4ef18552",
+    "configuration.webp": "24da85b29ba50ff25cb6d0dd506692086d8180ea",
+    "costs.webp": "dd4c24907fe5e7159ccb0f8ea978d2f763159612",
+    "evidence-verification.webp": "b813171f9d82c3ee55b04ef256206210636caa39",
+    "overview-attention.webp": "054aa52473da36dde132c95777a5699bb918ae59",
+    "overview-mobile.webp": "6e9eb0aa770187a7ec7c5eb5004ee79649489fbd",
+    "session-investigation.webp": "5360a8aea6f5fa4bc95c4714124b46e49ef00c4a",
+    "showcase.webp": "08ee68274cc88a7ab8babcdd7e732bea0104e08a",
+    "system-diagnostics.webp": "06794ef16d7e94de1a552794603aa47802e45cc6",
+    "tamper-detection.webp": "a9a84a75be3e8c5181f1819c497f2b93231540ee",
+    "use-case-summary.webp": "ddf2371c8d39c26d64efcde2bbcc99d3a844f648"
   }
 }

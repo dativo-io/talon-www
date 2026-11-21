@@ -99,7 +99,7 @@ node "$ROOT_DIR/scripts/console-screenshot-lock.cjs" check "$TALON_REPO_PATH"
 # Only the build output owns marketing image copies, not the website repo.
 CONSOLE_ASSETS="$TALON_REPO_PATH/docs/assets/console"
 mkdir -p "$OUT_DIR/public/assets"
-for image in showcase overview-attention session-investigation evidence-verification; do
+for image in showcase overview-attention session-investigation evidence-verification approvals action-policy action-evidence; do
   test -s "$CONSOLE_ASSETS/$image.webp"
   cp "$CONSOLE_ASSETS/$image.webp" "$OUT_DIR/public/assets/console-$image.webp"
 done
@@ -133,10 +133,15 @@ test -f "$OUT_DIR/talon/docs/mcp-governance-extension/index.html"
 test -f "$OUT_DIR/talon/docs/mcp-2026-migration/index.html"
 # Fail the build if any published image differs from its canonical source.
 test -f "$OUT_DIR/talon/docs/operations-console/index.html"
+test -f "$OUT_DIR/talon/docs/n8n-refund-approvals/index.html"
+test -f "$OUT_DIR/talon/docs/operate-ai-use-cases/index.html"
+test -f "$OUT_DIR/talon/docs/production-pilot/index.html"
+test -f "$OUT_DIR/talon/docs/single-node-production/index.html"
+test -f "$OUT_DIR/use-cases/refund-approvals/index.html"
 # Do not publish the retired dashboard; preserve its public docs URL via redirect.
 test ! -e "$OUT_DIR/talon/docs/gateway-dashboard/index.html"
 grep -Fxq '/talon/docs/gateway-dashboard/ /talon/docs/operations-console/ 301' "$OUT_DIR/_redirects"
-for image in showcase overview-attention session-investigation evidence-verification; do
+for image in showcase overview-attention session-investigation evidence-verification approvals action-policy action-evidence; do
   cmp "$CONSOLE_ASSETS/$image.webp" "$OUT_DIR/public/assets/console-$image.webp"
 done
 cmp "$CONSOLE_ASSETS/showcase.webp" "$OUT_DIR/talon/docs/img/console-showcase.webp"

@@ -1,6 +1,6 @@
 ---
 title: AI use-case playbooks
-description: Four realistic Talon evaluation scenarios, with integration boundaries, proof steps, evidence to inspect and explicit limitations.
+description: Talon use-case playbooks for support, n8n refunds, coding, People Analytics and vendor review, with reproducible proof and accurate execution boundaries.
 slug: /use-case-playbooks/
 ---
 
@@ -8,7 +8,7 @@ slug: /use-case-playbooks/
 
 Choose the business workflow first. For each scenario, identify **which execution path Talon actually intercepts**, trigger an allowed action and a forbidden action, then inspect the evidence. A model's proposed tool call is not proof that the tool executed.
 
-The four scenarios below use documented Talon capabilities, but **they are not all equally mature demos**. Consult the linked case page for the current reproduction status before describing one as a completed integration.
+The scenarios below use documented Talon capabilities, but **they are not all equally mature demos**. Consult the linked case page for the current reproduction status before describing one as a completed integration.
 
 ## Customer support
 
@@ -24,6 +24,22 @@ The four scenarios below use documented Talon capabilities, but **they are not a
 | **Do not infer** | Talon itself performs a human refund-approval workflow; or that a live Zendesk account has been tested |
 
 **How to evaluate:** Begin with [customer-support case details](https://dativo.io/use-cases/customer-support/) and [first-line support guide](./internal-support-agent.md). For the shared control-plane product demo run [three-use-case proof](./product-demo.md). Verify the blocked call separately; a drafted reply is not authority to execute a refund.
+
+## n8n refund approvals
+
+**Business question:** Can an existing workflow request a financial action without deciding its own approval thresholds or dispatching the action directly?
+
+| | |
+|---|---|
+| **Workflow** | Importable n8n refund workflow with an authenticated webhook caller and a separate Talon use-case credential |
+| **Boundary** | Talon HTTP Action Gateway: exact argument policy, separate human approval and claim-driven dispatch |
+| **Allow case** | €30 action allowed; one Talon dispatch to the deterministic counting adapter |
+| **Approval case** | €75 operation waits for a support-lead reviewer; approval itself dispatches nothing |
+| **Deny case** | €900 action blocked by the company policy; no adapter call |
+| **Evidence** | Effective action policy and rule provenance, approval status, attempt outcome and signed operation lifecycle |
+| **Do not infer** | The counting fixture processes real payments, or MCP tool calls inherit the HTTP Action Gateway approval/claim lifecycle |
+
+**How to evaluate:** Start with the [n8n refund approval walkthrough](./n8n-refund-approvals.md) or [business use-case page](https://dativo.io/use-cases/refund-approvals/). Import the [reference workflow](https://github.com/dativo-io/talon/tree/main/examples/n8n-refund), run all three inputs and compare the signed action lifecycle with the destination call counter. This is distinct from the customer-support demo above, whose n8n approval step is a separate synthetic operator gate.
 
 ## Coding agents
 
@@ -77,6 +93,7 @@ The four scenarios below use documented Talon capabilities, but **they are not a
 | Inspect the simplest governed LLM request | [60-second demo](./quickstart-demo.md) | Docker; no provider key |
 | See support, coding and document-summary controls together | [Product demo](./product-demo.md) | Local Talon checkout; real paid provider keys |
 | Prove exact-action denial, human approval and attempt control | [Action proof](./action-gateway-proof.md) | Go/test tooling; no provider key; HTTP Action Gateway |
+| Run an importable n8n workflow with human approval | [n8n refund approvals](./n8n-refund-approvals.md) | n8n, Talon, a test adapter and separated credentials |
 | Test a coding session with dual model APIs | [Coding-agents demo](./coding-agents-demo.md) | Integration test or Docker; no provider key |
 | Test a real Copilot MCP release boundary | [GitHub Copilot guide](./github-copilot-cli-governance.md) | Specific documented demo setup |
 

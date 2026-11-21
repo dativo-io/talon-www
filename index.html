@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/" />
   <title>Dativo Talon — Open-Source AI Control Plane</title>
-  <meta name="description" content="One company policy for your AI use cases. Self-hosted control of models, data, tools, budgets and provider failures, with sessions and signed evidence." />
+  <meta name="description" content="Connect your AI use cases to one self-hosted control plane. Enforce budgets and company policy, authorize sensitive actions, and investigate sessions and signed decisions." />
   <meta property="og:title" content="Dativo Talon — Open-Source AI Control Plane" />
-  <meta property="og:description" content="One company policy for your AI use cases. Self-hosted control of models, data, tools, budgets and provider failures, with sessions and signed evidence." />
+  <meta property="og:description" content="Connect your AI use cases to one self-hosted control plane. Enforce budgets and company policy, authorize sensitive actions, and investigate sessions and signed decisions." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://dativo.io/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Dativo Talon — Open-Source AI Control Plane" />
-  <meta name="twitter:description" content="One company policy for your AI use cases. Self-hosted control of models, data, tools, budgets and provider failures, with sessions and signed evidence." />
+  <meta name="twitter:description" content="Connect your AI use cases to one self-hosted control plane. Enforce budgets and company policy, authorize sensitive actions, and investigate sessions and signed decisions." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
   <link rel="icon" type="image/svg+xml" href="/public/assets/talon-icon.svg" />
   <link rel="stylesheet" href="/styles.css" />
@@ -43,12 +43,12 @@
         <div>
           <p class="case-kicker">Dativo Talon · Open-source AI control plane</p>
           <h1>One company policy for your AI use cases.</h1>
-          <p class="case-lead">Talon is an open-source, self-hosted AI control plane. Control model access, data and tool permissions, enforce budgets, handle provider failures, and investigate decisions with signed evidence — on the paths you route through Talon.</p>
+          <p class="case-lead">Register your AI use cases under one company policy. Control models, sensitive data, tools, budgets and provider failures; require human approval for consequential HTTP actions; and investigate sessions, outcomes and signed evidence in one operating view.</p>
           <div class="case-actions">
-            <a class="button primary" href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart" data-growth-placement="hero" data-growth-primary="true">Try Talon OSS</a>
-            <a class="button secondary" href="/talon/docs/product-demo/" data-growth-intent="product-demo" data-growth-placement="hero">See the product demo</a>
+            <a class="button primary" href="/talon/docs/add-talon-to-existing-app/" data-growth-intent="connect-app" data-growth-placement="hero" data-growth-primary="true">Connect an AI app</a>
+            <a class="button secondary" href="/use-cases/refund-approvals/" data-growth-intent="case-refund" data-growth-placement="hero">See refund approvals</a>
           </div>
-          <p class="case-small">Apache 2.0 · Self-hosted · Start with one workflow. Keep your existing applications and orchestrator.</p>
+          <p class="case-small">Apache 2.0 · Self-hosted · Keep your existing applications and orchestrator. <a href="/talon/docs/quickstart-demo/">Or try the no-key demo →</a></p>
         </div>
         <div class="case-overview" aria-label="One control plane, four jobs">
           <div class="case-overview-top"><span>One control plane, four jobs</span></div>
@@ -102,11 +102,46 @@
       <div class="wrap">
         <div class="case-heading"><div><p class="case-kicker">How Talon fits</p><h2>Keep the application. Govern the boundary.</h2></div></div>
         <div class="case-steps">
-          <div><span>01</span><h3>Route one supported path</h3><p>Keep the existing agent or workflow. Connect model traffic, intercepted MCP calls or exact HTTP actions where supported.</p></div>
-          <div><span>02</span><h3>Apply company rules</h3><p>Resolve the organization baseline and the AI use case's explicit policy. Deny disallowed access before dispatch.</p></div>
-          <div><span>03</span><h3>Inspect what happened</h3><p>See decisions, cost, provider paths and signed evidence for what Talon actually intercepted.</p></div>
+          <div><span>01</span><h3>Register and connect</h3><p>Use <code>talon agents add</code>, then route an existing model SDK, MCP call or exact HTTP action through Talon.</p></div>
+          <div><span>02</span><h3>Enforce the effective policy</h3><p>Combine company rules and use-case constraints for models, data and actions; allow, hold for review or deny exact HTTP actions.</p></div>
+          <div><span>03</span><h3>Operate and investigate</h3><p>Use <code>talon agents</code> and the read-only Operations Console to see readiness, policies, sessions, approvals and signed evidence.</p></div>
         </div>
-        <a class="case-text-link" href="/talon/docs/choosing-integration-path/" data-growth-intent="integration">Choose an integration path →</a>
+        <a class="case-text-link" href="/talon/docs/add-talon-to-existing-app/" data-growth-intent="connect-app">Connect your first application →</a>
+      </div>
+    </section>
+
+    <section id="governed-actions" class="case-section case-use-cases">
+      <div class="wrap">
+        <div class="case-heading">
+          <div>
+            <p class="case-kicker">Existing workflows · Exact business actions</p>
+            <h2>Keep your n8n workflow. Control the refund before it happens.</h2>
+            <p>For consequential HTTP actions, Talon combines the company policy with the use case's rules. The workflow asks; Talon returns a decision, binds a required human approval to the exact operation, and dispatches only a valid claim.</p>
+          </div>
+          <a href="/use-cases/refund-approvals/" data-growth-intent="case-refund">Explore the workflow →</a>
+        </div>
+        <div class="case-grid">
+          <article class="case-card">
+            <span class="case-number">01 / Allow</span>
+            <h3>€30 refund</h3>
+            <p>The action matches the allowed policy. n8n claims it and Talon dispatches to the configured business adapter.</p>
+            <div class="case-decision"><span>Verdict</span><strong>ALLOW</strong></div>
+          </article>
+          <article class="case-card">
+            <span class="case-number">02 / Human approval</span>
+            <h3>€75 refund</h3>
+            <p>The operation waits for a support lead. Approval itself executes nothing; Talon dispatches after an authorized claim.</p>
+            <div class="case-decision"><span>Verdict</span><strong>REQUIRE_APPROVAL</strong></div>
+          </article>
+          <article class="case-card">
+            <span class="case-number">03 / Deny</span>
+            <h3>€900 refund</h3>
+            <p>The company rule takes precedence. Talon denies the operation before any refund-adapter call.</p>
+            <div class="case-decision"><span>Verdict</span><strong>DENY</strong></div>
+          </article>
+        </div>
+        <p class="case-disclaimer">A reproducible n8n reference uses a deterministic counting adapter, not a real payment processor. Each decision leaves a signed lifecycle that can be verified.</p>
+        <a class="case-text-link" href="/talon/docs/n8n-refund-approvals/" data-growth-intent="n8n-guide">Connect n8n and reproduce all three decisions →</a>
       </div>
     </section>
 
@@ -116,13 +151,13 @@
           <div>
             <p class="case-kicker">Run it. Understand it. Prove it.</p>
             <h2>One operating view for the AI use cases you govern.</h2>
-            <p class="case-console-intro">See installation readiness, which use cases need attention, the decisions Talon recorded, and the signed evidence behind them. The read-only OSS console keeps the tenant context and separates Talon's decisions from downstream business outcomes.</p>
+            <p class="case-console-intro">See installation readiness, which use cases need attention, effective policy and human approvals, the decisions Talon recorded, and the signed evidence behind them. The read-only OSS console keeps the tenant context and separates Talon's decisions from downstream business outcomes.</p>
           </div>
           <a href="/talon/docs/operations-console/" data-growth-intent="console-docs">Explore the console →</a>
         </div>
         <figure class="case-console-showcase">
           <a href="/talon/docs/operations-console/" aria-label="See the Operations Console walkthrough">
-            <img src="/public/assets/console-showcase.webp" width="1920" height="1550" loading="lazy" decoding="async" alt="Talon Operations Console: seven real UI views including operational readiness, an HR Analytics use case, session decisions, signed evidence, costs, configuration and runtime diagnostics." />
+            <img src="/public/assets/console-showcase.webp" width="1920" height="1550" loading="lazy" decoding="async" alt="Talon Operations Console: operational readiness, AI use cases, action approvals, composed policies, session decisions, costs and signed evidence." />
           </a>
           <figcaption>Synthetic Playwright demo data. Some runtime failures are intentionally induced to demonstrate degraded-state reporting; no production customer data is shown.</figcaption>
         </figure>
@@ -180,6 +215,7 @@
           <a href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart"><strong>60-second demo</strong><span>Mock provider · no API key <i>→</i></span></a>
           <a href="/talon/docs/product-demo/" data-growth-intent="product-demo"><strong>Full product demo</strong><span>Support, coding and document summary <i>→</i></span></a>
           <a href="/talon/docs/action-gateway-proof/" data-growth-intent="action-control"><strong>Exact-action proof</strong><span>HTTP action authorization · no provider key <i>→</i></span></a>
+          <a href="/talon/docs/n8n-refund-approvals/" data-growth-intent="n8n-guide"><strong>n8n refund approval</strong><span>Workflow import · human review · signed dispatch <i>→</i></span></a>
         </div>
       </div>
     </section>

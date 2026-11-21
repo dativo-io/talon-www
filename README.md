@@ -8,7 +8,7 @@ Product repo: https://github.com/dativo-io/talon
 
 ## Website information architecture
 
-The main page leads with the canonical Talon README positioning: **One company policy for your AI use cases.** Talon is an open-source, self-hosted AI control plane. Present its four jobs (cost control, reliability, shared policy and session understanding), then the four concrete use cases (support, coding, People Analytics, vendor review), integration overview, OSS versus planned Enterprise adoption choice, reproducible proof and one private pilot contact path. Capability pages and SEO must not redefine Talon as an action approval, MCP, PII or cost-only product. The `/enterprise/` page is a directional capability/status comparison; it must never label roadmap integrations as released.
+The main page leads with the canonical Talon README positioning: **One company policy for your AI use cases.** Talon is an open-source, self-hosted AI control plane. Present its four jobs (cost control, reliability, shared policy and session understanding), then concrete use cases (support, coding, People Analytics, vendor review, and the importable n8n refund-approval workflow), application onboarding, the Operations Console, OSS versus planned Enterprise adoption, reproducible proof and one private pilot contact path. Capability pages and SEO must not redefine Talon as an action approval, MCP, PII or cost-only product. The `/enterprise/` page is a directional capability/status comparison; it must never label roadmap integrations as released.
 
 Detailed enforcement semantics and all advanced examples belong in
 `/talon/docs/` and the existing search-oriented technical pages. The main page
