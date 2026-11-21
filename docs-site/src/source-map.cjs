@@ -11,6 +11,7 @@ module.exports = {
   'first-governed-agent.md': 'docs/tutorials/first-governed-agent.md',
   'choosing-integration-path.md': 'docs/guides/choosing-integration-path.md',
   'add-talon-to-existing-app.md': 'docs/guides/add-talon-to-existing-app.md',
+  'n8n-refund-approvals.md': 'docs/guides/n8n-refund-approvals.md',
   'operate-ai-use-cases.md': 'docs/guides/operate-ai-use-cases.md',
   'production-pilot.md': 'docs/guides/production-pilot.md',
   'single-node-production.md': 'docs/guides/single-node-production.md',
