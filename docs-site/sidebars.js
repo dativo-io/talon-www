@@ -13,7 +13,6 @@ const sidebars = {
         doc('quickstart-demo', '60-second no-key demo'),
         doc('choosing-integration-path', 'Choose an interception path'),
         doc('add-talon-to-existing-app', 'Connect an existing app'),
-        doc('n8n-refund-approvals', 'n8n refund approvals'),
         doc('production-pilot', 'Production pilot'),
         doc('product-demo', 'Three-use-case product demo'),
         doc('action-gateway-proof', 'Exact HTTP action proof'),
@@ -26,7 +25,8 @@ const sidebars = {
       label: 'Use cases',
       collapsed: false,
       items: [
-        doc('use-case-playbooks', 'Four business use-case playbooks'),
+        doc('use-case-playbooks', 'Business use-case playbooks'),
+        doc('n8n-refund-approvals', 'n8n: refund approval workflow'),
         doc('github-copilot-cli-governance', 'Coding: Copilot release tools'),
         doc('internal-support-agent', 'Customer support bot'),
         doc('coding-agents-demo', 'Coding: budget and session demo'),

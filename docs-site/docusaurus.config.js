@@ -67,7 +67,8 @@ const config = {
       items: [
         {type: 'docSidebar', sidebarId: 'docsSidebar', position: 'left', label: 'Docs'},
         {to: '/use-case-playbooks/', label: 'Use cases', position: 'left'},
-        {to: '/quickstart-demo/', label: 'Get started', position: 'left'},
+        {to: '/add-talon-to-existing-app/', label: 'Connect an app', position: 'left'},
+        {to: '/operations-console/', label: 'Operations', position: 'left'},
         {to: '/evaluation-checklist/', label: 'Evaluate', position: 'left'},
         {href: '/', label: 'Website', position: 'right'},
         {href: 'https://github.com/dativo-io/talon', label: 'GitHub', position: 'right'},
@@ -77,12 +78,17 @@ const config = {
       style: 'dark',
       links: [
         {title: 'Start', items: [
-          {label: 'Quickstart', to: '/quickstart-demo/'},
+          {label: 'Connect an app', to: '/add-talon-to-existing-app/'},
+          {label: 'No-key demo', to: '/quickstart-demo/'},
+          {label: 'n8n refund approvals', to: '/n8n-refund-approvals/'},
           {label: 'Use-case playbooks', to: '/use-case-playbooks/'},
           {label: 'Product demo', to: '/product-demo/'},
           {label: 'Evaluation checklist', to: '/evaluation-checklist/'},
         ]},
         {title: 'Build and operate', items: [
+          {label: 'Production pilot', to: '/production-pilot/'},
+          {label: 'Operations Console', to: '/operations-console/'},
+          {label: 'Day-two operations', to: '/operate-ai-use-cases/'},
           {label: 'Integration paths', to: '/choosing-integration-path/'},
           {label: 'Policy cookbook', to: '/policy-cookbook/'},
           {label: 'MCP governance', to: '/mcp-governance-extension/'},

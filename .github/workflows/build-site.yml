@@ -20,7 +20,12 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version-file: .node-version
+
+      - name: Show build runtime
+        run: |
+          node --version
+          npm --version
 
       - name: Test screenshot freshness gate
         run: node --test scripts/test-console-screenshot-lock.cjs

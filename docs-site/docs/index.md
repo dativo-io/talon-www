@@ -27,6 +27,23 @@ You do **not** need to rebuild your agent in Talon. Start with one workflow and 
 | Compare open-source and Enterprise integration options | [OSS and Enterprise](./open-source-and-enterprise.md) | Open-source enforcement and planned corporate-system integrations |
 | Decide what Talon can intercept | [Integration paths](./choosing-integration-path.md) | Model, MCP, HTTP action and delegated-runtime boundaries, distinguished precisely |
 
+## Connect one application, then operate it
+
+Create a use-case identity on the Talon host, connect your application on a supported route, and inspect the result. You keep the application's existing SDK or orchestrator.
+
+```bash
+talon agents add customer-support --owner support-engineering
+# Save the issued key and set the application base URL as the setup guide describes.
+talon agents show customer-support
+talon agents show customer-support --effective
+talon agents
+talon ui
+```
+
+The CLI shows whether the use case is connected, which company and use-case rules apply, and the next step if something needs attention. The console provides a read-only view of the same installation and signed decisions. Follow [Connect an existing application](./add-talon-to-existing-app.md) for keys and transport settings, then [Operate AI use cases](./operate-ai-use-cases.md) for day-two tasks.
+
+For a business action, the [importable n8n refund workflow](./n8n-refund-approvals.md) exercises three different policy outcomes. **Approval is not execution:** a separate reviewer authorizes the bound HTTP action, while Talon dispatches only after an authorized claim. The [production pilot runbook](./production-pilot.md) covers this lifecycle alongside installation, verification and backup/recovery.
+
 ## See the Operations Console
 
 [![Talon Operations Console: readiness, AI use cases, approval decisions, action policies, sessions and signed evidence](/img/console-showcase.webp)](./operations-console.md)

@@ -3,8 +3,8 @@
 The published docs root (`/talon/docs/`) now leads with one AI use case, not the
 internal module inventory. Navigation groups the common tasks into:
 
-- **Get started**: no-key proof, path selection, app integration and full demo.
-- **Use cases**: four business playbooks plus the existing technical proof guides.
+- **Get started**: app registration and connection, no-key proof, path selection, a production pilot and a full demo.
+- **Use cases**: business playbooks, the importable n8n refund-approval reference and existing technical proof guides.
 - **Apply controls** and **Operate and verify**: hands-on implementation.
 - **Integrations**, **Architecture and reference**, **Compliance and advanced**:
   more specialized material, kept collapsed until needed.
@@ -83,7 +83,7 @@ TALON_REPO_PATH=/path/to/talon node ./scripts/validate-docs-contract.mjs --sourc
 npm run validate:docs-contract
 ```
 
-## Cloudflare Pages settings
+## Cloudflare Workers Builds settings
 
 Use these settings for the combined marketing site + docs deployment:
 
@@ -91,6 +91,7 @@ Use these settings for the combined marketing site + docs deployment:
 Build command: bash scripts/build-site-with-docs.sh
 Build output directory: dist
 Root directory: /
+Node version: use the repository-root .node-version (Node 22), also used by GitHub Actions
 ```
 
 ## Source mapping
@@ -101,4 +102,4 @@ The source-to-published-doc mapping lives in:
 docs-site/src/source-map.cjs
 ```
 
-Add docs there when you want another Talon markdown file to be synced and published. Do not copy upstream Talon markdown into a second local version merely to change navigation or positioning; change the source map, sidebar, landing page, or upstream source as appropriate.
+Add docs there when you want another Talon markdown file to be synced and published. The n8n refund walkthrough, the production pilot, day-two operations, recovery and the Operations Console are all mapped to Talon-maintained sources; the website does not keep separate copies of them. Do not copy upstream Talon markdown into a second local version merely to change navigation or positioning; change the source map, sidebar, landing page, or upstream source as appropriate.
