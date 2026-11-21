@@ -13,6 +13,8 @@ const sidebars = {
         doc('quickstart-demo', '60-second no-key demo'),
         doc('choosing-integration-path', 'Choose an interception path'),
         doc('add-talon-to-existing-app', 'Connect an existing app'),
+        doc('n8n-refund-approvals', 'n8n refund approvals'),
+        doc('production-pilot', 'Production pilot'),
         doc('product-demo', 'Three-use-case product demo'),
         doc('action-gateway-proof', 'Exact HTTP action proof'),
         doc('evaluation-checklist', 'Evaluation checklist'),
@@ -52,7 +54,9 @@ const sidebars = {
       collapsed: true,
       items: [
         doc('operational-control-plane', 'Manage use cases'),
+        doc('operate-ai-use-cases', 'Day-two operations'),
         doc('operations-console', 'Operations Console'),
+        doc('single-node-production', 'Backup, restore and recovery'),
         doc('manual-governed-session', 'Inspect a governed session'),
         doc('governing-coding-agents', 'Coding-agent sessions'),
         doc('observability', 'Logs, traces and metrics'),
