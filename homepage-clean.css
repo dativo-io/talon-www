@@ -517,6 +517,7 @@ body[data-case-first-home] h1,body[data-case-first-home] h2,body[data-case-first
 .home-next-grid .case-card h3 {font-size:22px;}
 .home-next-foot {margin:23px 0 0;color:#a9bbcf;font-size:13px;line-height:1.7;}
 .home-next-foot a {color:#bfdbfe;text-decoration:underline;text-underline-offset:3px;}
+.home-next-foot + .home-next-foot {margin-top:8px;}
 .home-operator {background:rgba(10,18,35,.32);}
 .home-operator-grid {display:grid;grid-template-columns:minmax(230px,.68fr) minmax(0,1.32fr);gap:48px;align-items:center;}
 .home-operator-grid p:not(.case-kicker) {max-width:460px;color:#b7c4d6;font-size:15px;line-height:1.7;}
