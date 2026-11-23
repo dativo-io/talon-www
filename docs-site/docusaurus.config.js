@@ -97,7 +97,7 @@ const config = {
         {title: 'Dativo', items: [
           {label: 'Website', href: '/'},
           {label: 'Open source', href: 'https://github.com/dativo-io/talon'},
-          {label: 'Discuss a pilot', href: 'https://www.linkedin.com/in/sergeyenin/'},
+          {label: 'Discuss a pilot', href: 'https://dativo.io/pilot/'},
         ]},
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Dativo. Built with Docusaurus.`,
