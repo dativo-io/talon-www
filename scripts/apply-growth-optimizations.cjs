@@ -9,6 +9,7 @@ const assets = [
 ];
 const metadata = {
   '/': ["Dativo Talon — Open-Source AI Control Plane", "One company policy for your AI use cases. Self-hosted control of models, data, tools, budgets and provider failures, with sessions and signed evidence."],
+  '/pilot/': ['Pilot One Governed AI Use Case | Dativo Talon', 'Bring one existing AI workflow and one consequential-action or company-policy boundary. Book a founder-led technical fit call to explore a scoped Talon pilot.'],
   '/ai-action-control/': ["Tool & Action Control for AI Use Cases | Dativo Talon", "Talon's AI control plane enforces shared tool policy on intercepted paths. Exact HTTP action authorization and human approval are one supported capability."],
   '/ai-agent-governance/': ["One Company Policy for AI Use Cases | Dativo Talon", "Use Talon's open-source AI control plane to govern agents and applications with shared rules for models, data, tools, budgets, reliability and signed evidence."],
   '/comparisons/': ["AI Control Planes, Gateways & Observability | Dativo Talon", "Compare Talon's open-source AI control plane for company policy, cost, reliability and session understanding with gateways and observability platforms."],

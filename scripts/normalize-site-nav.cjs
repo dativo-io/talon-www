@@ -13,7 +13,7 @@ const canonicalHeader = `<header class="site-nav">
         <a href="/enterprise/">Enterprise</a>
         <a href="/talon/docs/">Docs</a>
         <a href="https://github.com/dativo-io/talon">GitHub</a>
-        <a class="nav-button" href="https://www.linkedin.com/in/sergeyenin/" rel="noopener noreferrer" data-growth-intent="pilot-contact">Discuss a pilot</a>
+        <a class="nav-button" href="/pilot/" data-growth-intent="pilot-offer">Discuss a pilot</a>
       </nav>
     </div>
   </header>`;
@@ -100,7 +100,7 @@ for (const file of pagesWithSiteNav) {
     'href="/enterprise/"',
     'href="/talon/docs/"',
     'href="https://github.com/dativo-io/talon"',
-    'href="https://www.linkedin.com/in/sergeyenin/"',
+    'href="/pilot/"',
   ];
   for (const destination of requiredDestinations) {
     if (!header.includes(destination)) {

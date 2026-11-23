@@ -67,6 +67,8 @@ mkdir -p "$OUT_DIR"
 node "$ROOT_DIR/scripts/verify-talon-brand-assets.cjs" "$ROOT_DIR"
 # Guard the canonical marketing nav against stale assertions as it evolves.
 node "$ROOT_DIR/scripts/test-normalize-site-nav.cjs"
+node "$ROOT_DIR/scripts/test-pilot-conversion.cjs"
+node "$ROOT_DIR/scripts/test-report-traffic.cjs"
 
 # Copy the existing static marketing site as-is.
 # Cloudflare Workers build images do not include rsync, so use portable shell/cp.

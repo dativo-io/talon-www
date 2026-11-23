@@ -169,24 +169,53 @@ Extract `website_event.csv` from a native Umami ZIP export and run:
 ```bash
 node scripts/report-traffic.cjs path/to/website_event.csv
 node scripts/test-report-traffic.cjs
+node scripts/test-pilot-conversion.cjs
 ```
 
 The filter does not block bots and may miss other crawlers. Keep raw data.
 
-`Pilot Contact Click` records an outbound click to the founder's LinkedIn.
-It is **not** a submitted contact form, booked meeting, qualified lead, or pilot.
-Track confirmed conversations in a separate, privacy-safe lead ledger.
-Never send customer payloads or identifiers as analytics properties.
+The dedicated `/pilot/` landing page offers a founder-led technical fit call
+through a publicly shareable Google Calendar booking URL. It has **no contact
+form and no website-side submission endpoint**: calendar details are handled
+by Google, not collected by this website. The private notification recipient
+is deliberately **not** committed to the public repository. If a future
+contact form is implemented, configure its recipient using a server-side
+deployment secret, with private delivery and anti-abuse measures.
+
+`Funnel CTA` with `intent=pilot-offer` means someone clicked through to
+the pilot page. `Pilot Booking Click` means someone opened the external
+scheduling URL; this single event is **not** double-counted as a generic
+`Funnel CTA`. Neither event proves a booking, qualified conversation or
+pilot start. Confirmed bookings and qualification belong in a separate,
+privacy-safe lead ledger, reconciled against Google Calendar.
+
+`Funnel CTA` records a safe destination (internal pathname or external
+hostname), not the raw link or URL query string. Never send customer payloads,
+email addresses, UTM values containing identifiers, or free-text form answers
+as analytics event properties.
+
+Use campaign links such as:
+
+```text
+https://dativo.io/pilot/?utm_source=linkedin&utm_medium=founder_outreach&utm_campaign=pilot_nov2026
+```
+
+Keep UTM values aggregate/non-identifying. Umami's landing-page tracking
+records campaign parameters; do not append a recipient name or email to
+public URLs. Local builds and Cloudflare previews must stay out of the
+production Umami project via `UMAMI_DOMAINS`.
 
 ### Recommended Umami dashboard setup
 
 Create these Goals in Umami:
 
-1. `Product Demo Click` — primary technical evaluation signal.
-2. `Quickstart Demo Click` — low-friction evaluation signal.
-3. `GitHub Click` — implementation/repository intent.
-4. `Evidence Click` — proof/audit interest.
-5. `Demo Play` — product-proof engagement.
+1. `Pilot Booking Click` — outbound scheduling intent, **not confirmed bookings**.
+2. `Funnel CTA` filtered by `intent=pilot-offer` — visits initiated from tracked pilot CTAs.
+3. `Product Demo Click` — primary technical evaluation signal.
+4. `Quickstart Demo Click` — low-friction evaluation signal.
+5. `GitHub Click` — implementation/repository intent.
+6. `Evidence Click` — proof/audit interest.
+7. `Demo Play` — product-proof engagement.
 
 Keep `Docs Click` and `Checklist Click` as supporting events rather than headline conversions.
 
