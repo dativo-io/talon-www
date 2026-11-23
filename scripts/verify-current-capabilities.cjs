@@ -79,7 +79,7 @@ if (fs.existsSync(homepage)) {
   if (!html.includes('href="/talon/docs/action-gateway-proof/"')) failures.push('Homepage must link to reproducible exact-action proof');
   if (!html.includes('href="/talon/docs/quickstart-demo/"')) failures.push('Homepage must preserve the no-key start path');
   if (!html.includes('Synthetic example') || !html.includes('counting test adapter')) failures.push('Homepage action proof must clearly label synthetic, non-payment behavior');
-  if ((html.match(/<section\\b/g) || []).length !== 5) failures.push('Homepage must retain five focused sections, not an exhaustive feature catalog');
+  if ((html.match(/<section\b/g) || []).length !== 5) failures.push('Homepage must retain five focused sections, not an exhaustive feature catalog');
   if (html.includes('case-console-trail') || html.includes('case-editions')) failures.push('Homepage reintroduced redundant console carousel or full edition comparison');
   if (!html.includes('href="/enterprise/"')) failures.push('Homepage missing edition overview');
   if (!html.includes('href="/talon/docs/product-demo/"')) failures.push('Homepage must link to reproducible demo');
