@@ -7,25 +7,21 @@ const sidebars = {
     {type: 'doc', id: 'index', label: 'Overview'},
     {
       type: 'category',
-      label: 'Get started',
+      label: 'Start here',
       collapsed: false,
       items: [
-        doc('quickstart-demo', '60-second no-key demo'),
-        doc('choosing-integration-path', 'Choose an interception path'),
+        doc('quickstart-demo', 'Try Talon: no-key demo'),
         doc('add-talon-to-existing-app', 'Connect an existing app'),
-        doc('production-pilot', 'Production pilot'),
-        doc('product-demo', 'Three-use-case product demo'),
-        doc('action-gateway-proof', 'Exact HTTP action proof'),
-        doc('evaluation-checklist', 'Evaluation checklist'),
-        doc('open-source-and-enterprise', 'OSS and Enterprise editions'),
+        doc('action-gateway-proof', 'Verify an exact action'),
       ],
     },
     {
       type: 'category',
       label: 'Use cases',
-      collapsed: false,
+      collapsed: true,
       items: [
         doc('use-case-playbooks', 'Business use-case playbooks'),
+        doc('product-demo', 'Three-use-case product demo'),
         doc('n8n-refund-approvals', 'n8n: refund approval workflow'),
         doc('github-copilot-cli-governance', 'Coding: Copilot release tools'),
         doc('internal-support-agent', 'Customer support bot'),
@@ -37,6 +33,7 @@ const sidebars = {
       label: 'Apply controls',
       collapsed: true,
       items: [
+        doc('choosing-integration-path', 'Choose an interception path'),
         doc('policy-cookbook', 'Organization and use-case policy'),
         doc('action-gateway', 'Exact HTTP authorization'),
         doc('mcp-governance-extension', 'MCP tool permissions'),
@@ -54,6 +51,8 @@ const sidebars = {
       collapsed: true,
       items: [
         doc('operational-control-plane', 'Manage use cases'),
+        doc('production-pilot', 'Production pilot'),
+        doc('evaluation-checklist', 'Evaluation checklist'),
         doc('operate-ai-use-cases', 'Day-two operations'),
         doc('operations-console', 'Operations Console'),
         doc('single-node-production', 'Backup, restore and recovery'),
@@ -91,6 +90,7 @@ const sidebars = {
       label: 'Architecture and reference',
       collapsed: true,
       items: [
+        doc('open-source-and-enterprise', 'OSS versus planned Enterprise'),
         'control-plane',
         'control-plane-boundaries',
         'object-model',
