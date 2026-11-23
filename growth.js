@@ -16,7 +16,9 @@
     const external = href.toLowerCase();
 
     if (link.dataset.growthIntent) return link.dataset.growthIntent;
-    if (external.includes('linkedin.com/in/sergeyenin/')) return 'pilot-contact';
+    if (external.includes('calendar.app.google/')) return 'pilot-booking';
+    if (normalized === '/pilot/' || normalized.startsWith('/pilot/?')) return 'pilot-offer';
+    if (external.includes('linkedin.com/in/sergeyenin/')) return 'founder-profile';
     if (normalized.includes('/quickstart-demo/')) return 'quickstart';
     if (normalized.includes('/product-demo/')) return 'product-demo';
     if (normalized.includes('/add-talon-to-existing-app/') || normalized.includes('/proxy-quickstart/')) return 'integration';
@@ -60,26 +62,37 @@
     return 'body';
   };
 
+  const safeDestination = (href) => {
+    try {
+      const url = new URL(href, window.location.origin);
+      return url.origin === window.location.origin ? url.pathname : `external:${url.hostname}`;
+    } catch {
+      return 'unknown';
+    }
+  };
+
   document.addEventListener('click', (event) => {
     const link = event.target?.closest?.('a[href]');
     if (!link) return;
     const intent = classifyIntent(link);
     if (!intent || !window.umami || typeof window.umami.track !== 'function') return;
 
-    // Contact-path clicks are a leading indicator, NOT a qualified lead or a booked pilot.
-    if (intent === 'pilot-contact') {
-      window.umami.track('Pilot Contact Click', {
+    // A calendar click is NOT a confirmed booking or qualified conversation.
+    // Emit one dedicated conversion event, not a second generic CTA event.
+    if (intent === 'pilot-booking') {
+      window.umami.track('Pilot Booking Click', {
         page,
         placement: placementFor(link),
-        channel: 'linkedin',
+        channel: 'google_calendar',
       });
+      return;
     }
 
     window.umami.track('Funnel CTA', {
       page,
       intent,
       placement: placementFor(link),
-      href: (link.getAttribute('href') || '').slice(0, 240),
+      destination: safeDestination(link.getAttribute('href') || ''),
       text: (link.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120),
       primary: String(link.matches('.button.primary, .nav-button, [data-growth-primary="true"]')),
     });
