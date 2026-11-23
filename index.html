@@ -38,192 +38,100 @@
   </header>
 
   <main>
-    <section class="case-hero">
+    <section class="case-hero talon-home-hero">
       <div class="wrap case-hero-grid">
         <div>
           <p class="case-kicker">Dativo Talon · Open-source AI control plane</p>
           <h1>One company policy for your AI use cases.</h1>
-          <p class="case-lead">Register your AI use cases under one company policy. Enforce budgets, model and data rules, and exact-action approval where Talon is connected. Keep your workflows, and investigate decisions with signed evidence.</p>
+          <p class="case-lead">Your support bots, coding agents and AI workflows should not each reinvent company rules. Talon enforces shared policy on the model calls and business actions you route through it—and records why each decision was made.</p>
           <div class="case-actions">
-            <a class="button primary" href="/talon/docs/action-gateway-proof/" data-growth-intent="action-control" data-growth-placement="hero" data-growth-primary="true">See the exact-action proof</a>
-            <a class="button secondary" href="/pilot/" data-growth-intent="pilot-offer" data-growth-placement="hero">Discuss a pilot</a>
+            <a class="button primary" href="/talon/docs/action-gateway-proof/" data-growth-intent="action-control" data-growth-placement="hero" data-growth-primary="true">See a governed action</a>
+            <a class="button secondary" href="/pilot/" data-growth-intent="pilot-offer" data-growth-placement="hero">Pilot one use case</a>
           </div>
-          <p class="case-small">Apache 2.0 · Self-hosted · Keep your existing applications and orchestrator. <a href="/talon/docs/quickstart-demo/">Or try the no-key demo →</a></p>
+          <p class="case-small">Apache 2.0 · Self-hosted · Keep your existing applications. <a href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart" data-growth-placement="hero">Try the no-key demo →</a></p>
         </div>
-        <div class="case-overview" aria-label="One control plane, four jobs">
-          <div class="case-overview-top"><span>One control plane, four jobs</span></div>
-          <div class="case-overview-row"><span><strong>Cost control</strong><small>Enforce budgets before the next provider call.</small></span></div>
-          <div class="case-overview-row"><span><strong>Reliability</strong><small>Handle provider failures with policy-valid fallback.</small></span></div>
-          <div class="case-overview-row"><span><strong>Shared policy</strong><small>Control model access, data and tool permissions.</small></span></div>
-          <div class="case-overview-row"><span><strong>Session understanding</strong><small>Investigate recorded decisions, costs and provider paths.</small></span></div>
-          <div class="case-overview-bottom">Underneath all four: signed, verifiable evidence. <a href="/talon/docs/product-demo/">Inspect the demo →</a></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="use-cases" class="case-section case-use-cases">
-      <div class="wrap">
-        <div class="case-heading"><div><p class="case-kicker">One policy, different use cases</p><h2>Put company policy to work.</h2></div><a href="/use-cases/">All use cases →</a></div>
-        <div class="case-grid">
-          <article class="case-card">
-            <span class="case-number">01 / Customer operations</span>
-            <h3>Customer support</h3>
-            <p>Allow useful replies, protect customer data and stop a refund action the assistant is not authorized to take.</p>
-            <div class="case-decision"><span>Control</span><strong>PII rules + intercepted tool denial</strong></div>
-            <a href="/use-cases/customer-support/" data-growth-intent="case-support">Explore support workflow →</a>
-          </article>
-          <article class="case-card">
-            <span class="case-number">02 / Engineering</span>
-            <h3>Coding agents</h3>
-            <p>Keep coding assistance productive without allowing an intercepted release or publish tool to cross company policy.</p>
-            <div class="case-decision"><span>Control</span><strong>Tool permissions + signed decisions</strong></div>
-            <a href="/use-cases/coding-agents/" data-growth-intent="case-coding">Explore coding workflow →</a>
-          </article>
-          <article class="case-card">
-            <span class="case-number">03 / Sensitive data</span>
-            <h3>People Analytics</h3>
-            <p>Let an analyst ask aggregate workforce questions while preventing intercepted employee-record exports.</p>
-            <div class="case-decision"><span>Control</span><strong>Aggregate access + export denial</strong></div>
-            <a href="/use-cases/people-analytics/" data-growth-intent="case-people">Explore analytics scenario →</a>
-          </article>
-          <article class="case-card">
-            <span class="case-number">04 / Procurement</span>
-            <h3>Vendor contract review</h3>
-            <p>Use models for a confidential vendor package without routing it to an unapproved provider or destination.</p>
-            <div class="case-decision"><span>Control</span><strong>Provider and data egress policy</strong></div>
-            <a href="/use-cases/vendor-contract-review/" data-growth-intent="case-procurement">Explore contract workflow →</a>
-          </article>
-        </div>
-        <p class="case-disclaimer">These pages distinguish reproducible demonstrations from synthetic or in-progress integrations. They are not customer-production case studies.</p>
-      </div>
-    </section>
-
-    <section id="how-it-works" class="case-section case-process">
-      <div class="wrap">
-        <div class="case-heading"><div><p class="case-kicker">How Talon fits</p><h2>Keep the application. Govern the boundary.</h2></div></div>
-        <div class="case-steps">
-          <div><span>01</span><h3>Register and connect</h3><p>Use <code>talon agents add</code>, then route an existing model SDK, MCP call or exact HTTP action through Talon.</p></div>
-          <div><span>02</span><h3>Enforce the effective policy</h3><p>Combine company rules and use-case constraints for models, data and actions; allow, hold for review or deny exact HTTP actions.</p></div>
-          <div><span>03</span><h3>Operate and investigate</h3><p>Use <code>talon agents</code> and the read-only Operations Console to see readiness, policies, sessions, approvals and signed evidence.</p></div>
-        </div>
-        <a class="case-text-link" href="/talon/docs/add-talon-to-existing-app/" data-growth-intent="connect-app">Connect your first application →</a>
-      </div>
-    </section>
-
-    <section id="governed-actions" class="case-section case-use-cases">
-      <div class="wrap">
-        <div class="case-heading">
-          <div>
-            <p class="case-kicker">Existing workflows · Exact business actions</p>
-            <h2>Keep your n8n workflow. Control the refund before it happens.</h2>
-            <p>For consequential HTTP actions, Talon combines the company policy with the use case's rules. The workflow asks; Talon returns a decision, binds a required human approval to the exact operation, and dispatches only a valid claim.</p>
+        <div class="home-proof" id="governed-actions" aria-labelledby="home-proof-title">
+          <div class="home-proof-top"><span>One decision, visible before the action</span><span class="home-proof-pill">Synthetic example</span></div>
+          <h2 id="home-proof-title">An AI workflow requests a €75 refund.</h2>
+          <p>The company rule requires a separate, authorized reviewer.</p>
+          <div class="home-proof-verdict"><span>Talon policy verdict</span><strong>REQUIRE_APPROVAL</strong></div>
+          <div class="home-proof-counts" aria-label="Synthetic dispatch counts">
+            <div><strong>0</strong><span>Downstream calls before approval and authorized claim</span></div>
+            <div><strong>1</strong><span>Downstream call after approval and authorized claim</span></div>
           </div>
-          <a href="/use-cases/refund-approvals/" data-growth-intent="case-refund">Explore the workflow →</a>
+          <p class="home-proof-note">Approval does not execute a refund. The reproducible example uses a counting test adapter, not real payments.</p>
+          <a class="home-proof-link" href="/talon/docs/n8n-refund-approvals/" data-growth-intent="n8n-guide" data-growth-placement="hero-proof">Reproduce the n8n workflow →</a>
         </div>
-        <div class="case-grid">
-          <article class="case-card">
-            <span class="case-number">01 / Allow</span>
-            <h3>€30 refund</h3>
-            <p>The action matches the allowed policy. n8n claims it and Talon dispatches to the configured business adapter.</p>
-            <div class="case-decision"><span>Verdict</span><strong>ALLOW</strong></div>
-          </article>
-          <article class="case-card">
-            <span class="case-number">02 / Human approval</span>
-            <h3>€75 refund</h3>
-            <p>The operation waits for a support lead. Approval itself executes nothing; Talon dispatches after an authorized claim.</p>
-            <div class="case-decision"><span>Verdict</span><strong>REQUIRE_APPROVAL</strong></div>
-          </article>
-          <article class="case-card">
-            <span class="case-number">03 / Deny</span>
-            <h3>€900 refund</h3>
-            <p>The company rule takes precedence. Talon denies the operation before any refund-adapter call.</p>
-            <div class="case-decision"><span>Verdict</span><strong>DENY</strong></div>
-          </article>
-        </div>
-        <p class="case-disclaimer">A reproducible n8n reference uses a deterministic counting adapter, not a real payment processor. Each decision leaves a signed lifecycle that can be verified.</p>
-        <a class="case-text-link" href="/talon/docs/n8n-refund-approvals/" data-growth-intent="n8n-guide">Connect n8n and reproduce all three decisions →</a>
       </div>
     </section>
 
-    <section id="operations-console" class="case-section case-console">
+    <section class="case-section home-controls" id="how-it-works">
       <div class="wrap">
-        <div class="case-heading">
-          <div>
-            <p class="case-kicker">Run it. Understand it. Prove it.</p>
-            <h2>One operating view for the AI use cases you govern.</h2>
-            <p class="case-console-intro">See installation readiness, which use cases need attention, effective policy and human approvals, the decisions Talon recorded, and the signed evidence behind them. The read-only OSS console keeps the tenant context and separates Talon's decisions from downstream business outcomes.</p>
-          </div>
-          <a href="/talon/docs/operations-console/" data-growth-intent="console-docs">Explore the console →</a>
+        <p class="case-kicker">One operating layer, four jobs</p>
+        <h2>Same controls. Every connected use case.</h2>
+        <div class="home-jobs" aria-label="Four control-plane jobs">
+          <article><strong>Cost control</strong><p>Decide whether a request can spend before calling the provider.</p></article>
+          <article><strong>Reliability</strong><p>Use fallback paths that still satisfy company policy.</p></article>
+          <article><strong>Shared policy</strong><p>Apply organization rules to models, data and governed actions.</p></article>
+          <article><strong>Session understanding</strong><p>Investigate decisions, costs, failures and signed evidence.</p></article>
         </div>
-        <figure class="case-console-showcase">
-          <a href="/talon/docs/operations-console/" aria-label="See the Operations Console walkthrough">
-            <img src="/public/assets/console-showcase.webp" width="1920" height="1550" loading="lazy" decoding="async" alt="Talon Operations Console: operational readiness, AI use cases, action approvals, composed policies, session decisions, costs and signed evidence." />
+        <div class="case-steps home-steps">
+          <div><span>01 / Connect</span><h3>Keep your app.</h3><p>Route one supported model, MCP or HTTP action path through Talon.</p></div>
+          <div><span>02 / Enforce</span><h3>Apply the company rule.</h3><p>Combine the organization baseline with the use case's effective policy.</p></div>
+          <div><span>03 / Verify</span><h3>See what happened.</h3><p>Inspect the decision and signed records in the Operations Console.</p></div>
+        </div>
+        <p class="case-disclaimer">Talon governs only traffic and actions routed through supported interception paths. Unobserved actions stay outside its control.</p>
+      </div>
+    </section>
+
+    <section class="case-section case-use-cases home-next" id="use-cases">
+      <div class="wrap">
+        <div class="case-heading"><div><p class="case-kicker">Choose your starting point</p><h2>One problem. One useful next step.</h2></div></div>
+        <div class="home-next-grid">
+          <article class="case-card">
+            <span class="case-number">Explore / No credentials</span>
+            <h3>Try Talon</h3>
+            <p>Run a small demonstration with a mock provider and verify a signed decision.</p>
+            <a href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart">Run the no-key demo →</a>
+          </article>
+          <article class="case-card">
+            <span class="case-number">Build / Existing AI app</span>
+            <h3>Connect your app</h3>
+            <p>Keep the SDK or workflow. Register one use case and test one rule.</p>
+            <a href="/talon/docs/add-talon-to-existing-app/" data-growth-intent="connect-app">Connect an existing app →</a>
+          </article>
+          <article class="case-card">
+            <span class="case-number">Evaluate / Real team</span>
+            <h3>Find your use case</h3>
+            <p>See how support, coding and other workflows use shared controls.</p>
+            <a href="/use-cases/" data-growth-intent="case-hub">Explore use cases →</a>
+          </article>
+        </div>
+        <p class="home-next-foot">Want the broader proof? <a href="/talon/docs/product-demo/" data-growth-intent="product-demo">Explore the three-use-case demo</a>. Evaluating company integrations? <a href="/enterprise/" data-growth-intent="enterprise">See OSS versus planned Enterprise</a>.</p>
+      </div>
+    </section>
+
+    <section class="case-section home-operator" id="operations-console">
+      <div class="wrap home-operator-grid">
+        <div>
+          <p class="case-kicker">For the operator</p>
+          <h2>Decisions you can investigate.</h2>
+          <p>Find which use case needs attention, inspect the policy that applied, and verify a signed record. The open-source Operations Console is read-only and shows only what Talon observed.</p>
+          <a class="case-text-link" href="/talon/docs/operations-console/" data-growth-intent="console-docs">Explore the Operations Console →</a>
+        </div>
+        <figure class="home-operator-image">
+          <a href="/talon/docs/operations-console/" aria-label="Open the Talon Operations Console guide">
+            <img src="/public/assets/console-showcase.webp" width="1920" height="1550" loading="lazy" decoding="async" alt="Synthetic Talon Operations Console showing readiness, governed AI use cases, session investigation and verified evidence." />
           </a>
-          <figcaption>Synthetic Playwright demo data. Some runtime failures are intentionally induced to demonstrate degraded-state reporting; no production customer data is shown.</figcaption>
+          <figcaption>Illustrative console screenshots from a synthetic test fixture, not production customer data.</figcaption>
         </figure>
-        <div class="case-console-trail" aria-label="Operator investigation journey">
-          <article>
-            <a href="/talon/docs/operations-console/">
-              <img src="/public/assets/console-overview-attention.webp" width="1360" height="800" loading="lazy" decoding="async" alt="Overview showing a gateway startup failure and an installation-wide finding." />
-              <h3>1. Find what needs attention</h3>
-              <p>Operational readiness is distinct from fleet health. Shared failures remain visible across tenant scopes.</p>
-            </a>
-          </article>
-          <article>
-            <a href="/talon/docs/operations-console/">
-              <img src="/public/assets/console-session-investigation.webp" width="1360" height="1120" loading="lazy" decoding="async" alt="Session timeline distinguishing a permitted aggregate, blocked export and downstream SQL rejection." />
-              <h3>2. Investigate a session</h3>
-              <p>Follow use case → session → decision and distinguish Talon's authorization from a destination result.</p>
-            </a>
-          </article>
-          <article>
-            <a href="/talon/docs/operations-console/">
-              <img src="/public/assets/console-evidence-verification.webp" width="1360" height="1180" loading="lazy" decoding="async" alt="A signed employee-export denial, marked not dispatched and signature verified." />
-              <h3>3. Verify the evidence</h3>
-              <p>Check signed records while keeping application-side actions and unobserved effects explicit.</p>
-            </a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="case-section case-editions">
-      <div class="wrap">
-        <div class="case-heading"><div><p class="case-kicker">Two adoption paths</p><h2>Open-source control. Company-wide operations.</h2></div><a href="/enterprise/">Compare editions →</a></div>
-        <div class="case-grid">
-          <article class="case-card">
-            <span class="case-number">Talon OSS · Apache 2.0</span><h3>Enforce and verify locally.</h3>
-            <p>Use the complete self-hosted control core: company/use-case policy, budget admission, reliability, supported action authorization, local human approval and signed evidence. No arbitrary licensed use-case cap.</p>
-            <div class="case-decision"><span>Best first step</span><strong>Govern one real AI use case and verify the allow/deny result.</strong></div>
-            <a href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart">Try the no-key demo →</a>
-          </article>
-          <article class="case-card">
-            <span class="case-number">Talon Enterprise · In development</span><h3>Integrate with the company.</h3>
-            <p>Planned corporate OIDC and group lifecycle, SIEM/SOC feeds, existing approval workflow connections, delegated operations and supported production profiles. The OSS enforcement semantics stay the same.</p>
-            <div class="case-decision"><span>Best first step</span><strong>Identify one corporate integration that blocks a real deployment.</strong></div>
-            <a href="/enterprise/" data-growth-intent="enterprise">Explore planned Enterprise capabilities →</a>
-          </article>
-        </div>
-        <p class="case-disclaimer">Enterprise integrations are roadmap direction, not shipped features. OSS retains basic approvals, signed evidence and independent verification.</p>
-      </div>
-    </section>
-
-    <section class="case-section case-proof">
-      <div class="wrap case-proof-layout">
-        <div><p class="case-kicker">See it work</p><h2>Three ways to verify the claim.</h2><p>Start with a no-key example, reproduce the multi-use-case scenario, or inspect an exact-action denial and approval sequence.</p></div>
-        <div class="case-proof-links">
-          <a href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart"><strong>60-second demo</strong><span>Mock provider · no API key <i>→</i></span></a>
-          <a href="/talon/docs/product-demo/" data-growth-intent="product-demo"><strong>Full product demo</strong><span>Support, coding and document summary <i>→</i></span></a>
-          <a href="/talon/docs/action-gateway-proof/" data-growth-intent="action-control"><strong>Exact-action proof</strong><span>HTTP action authorization · no provider key <i>→</i></span></a>
-          <a href="/talon/docs/n8n-refund-approvals/" data-growth-intent="n8n-guide"><strong>n8n refund approval</strong><span>Workflow import · human review · signed dispatch <i>→</i></span></a>
-        </div>
       </div>
     </section>
 
     <section class="case-section case-cta" id="pilot">
       <div class="wrap case-cta-inner">
-        <div><p class="case-kicker">Bring one real workflow</p><h2>Let's test a boundary that matters.</h2><p>Start with one policy problem: an unsafe tool, a sensitive destination, runaway spend or an incident you cannot explain.</p></div>
-        <div class="case-cta-buttons"><a class="button primary" href="/pilot/" data-growth-intent="pilot-offer" data-growth-placement="cta-section" data-growth-primary="true">Discuss a pilot</a><span>20-minute fit call · scheduled through Google Calendar</span></div>
+        <div><p class="case-kicker">Bring one real workflow</p><h2>Let's test one boundary that matters.</h2><p>In a short technical fit call, identify a supported integration path and a rule worth proving.</p></div>
+        <div class="case-cta-buttons"><a class="button primary" href="/pilot/" data-growth-intent="pilot-offer" data-growth-placement="cta-section" data-growth-primary="true">Discuss a pilot</a><span>Founder-led · 20-minute Google Calendar call</span></div>
       </div>
     </section>
   </main>
