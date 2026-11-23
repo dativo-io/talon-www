@@ -8,7 +8,7 @@ const assets = [
   '<script defer src="/growth.js" data-talon-growth="script"></script>',
 ];
 const metadata = {
-  '/': ["Dativo Talon — Open-Source AI Control Plane", "One company policy for your AI use cases. Self-hosted control of models, data, tools, budgets and provider failures, with sessions and signed evidence."],
+  '/': ["Dativo Talon — Open-Source AI Control Plane", "One company policy for your AI use cases. Govern connected model requests and consequential actions. Verify a real control in the open-source demo or scope a pilot."],
   '/pilot/': ['Pilot One Governed AI Use Case | Dativo Talon', 'Bring one existing AI workflow and one consequential-action or company-policy boundary. Book a founder-led technical fit call to explore a scoped Talon pilot.'],
   '/ai-action-control/': ["Tool & Action Control for AI Use Cases | Dativo Talon", "Talon's AI control plane enforces shared tool policy on intercepted paths. Exact HTTP action authorization and human approval are one supported capability."],
   '/ai-agent-governance/': ["One Company Policy for AI Use Cases | Dativo Talon", "Use Talon's open-source AI control plane to govern agents and applications with shared rules for models, data, tools, budgets, reliability and signed evidence."],
@@ -16,7 +16,7 @@ const metadata = {
   '/mcp-tool-governance/': ["MCP Tool Permissions & Policy Enforcement | Dativo Talon", "Apply company tool policy to AI use cases on Talon's supported MCP path. Discovery filtering and call denial are distinct from exact HTTP action approval."],
   '/ai-agent-audit-trail/': ["AI Use Case Decisions & Signed Evidence | Dativo Talon", "Investigate routed model requests and intercepted actions: policy, costs, provider paths, sessions and signed evidence, distinct from downstream effects."],
   '/comparisons/talon-vs-litellm/': ["Talon vs LiteLLM: AI Control Plane vs Model Gateway", "Compare company and use-case policy, model access, budgets, provider reliability, tool controls, session visibility and signed evidence."],
-  '/talon/docs/': ["Dativo Talon Docs — Open-Source AI Control Plane", "One company policy for your AI use cases. Self-hosted control of models, data, tools, budgets and provider failures, with sessions and signed evidence."],
+  '/talon/docs/': ["Dativo Talon Docs — Open-Source AI Control Plane", "Start with one AI use case. Try Talon without provider keys, connect an existing application, or verify an intercepted business action and signed decision."],
   '/talon/docs/compliance-export-runbook/': ['Export Verifiable AI Audit Evidence for Auditors | Talon', 'Export, verify, and hand off signed Talon evidence for audits and customer reviews. Practical commands, integrity checks, and review-ready evidence workflows.'],
   '/talon/docs/codex-cli-integration/': ['Govern Codex CLI: Cost, Policy & Session Evidence | Talon', 'Route Codex CLI through Talon for agent-attributed cost controls, model and data policy, session visibility, and signed evidence—without claiming local tool control.'],
   '/talon/docs/evidence-store/': ["Signed AI Control Plane Evidence: Verify & Export | Talon", "See how Talon signs, stores, verifies and exports evidence of routed AI use-case decisions, costs, data policy, tools, provider paths and sessions."],

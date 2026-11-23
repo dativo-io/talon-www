@@ -485,3 +485,56 @@ body[data-case-first-home] h1,body[data-case-first-home] h2,body[data-case-first
 .case-console-trail p {font-size:14px;color:#aebdd2;line-height:1.65;margin:0 19px 21px;}
 .case-console-trail a:hover h3 {color:#93c5fd;}
 @media(max-width:960px) {.case-console-trail {grid-template-columns:1fr;}.case-console-trail img {max-height:260px;}}
+
+/* Buyer-first homepage: one decision, four operating outcomes, three clear paths. */
+.talon-home-hero .case-hero-grid {grid-template-columns:minmax(0,1.05fr) minmax(325px,.95fr);gap:48px;}
+.home-proof {padding:29px;border-radius:20px;border:1px solid rgba(147,197,253,.23);background:linear-gradient(165deg,#132136,#0b1321);box-shadow:0 24px 64px rgba(0,0,0,.23);}
+.home-proof-top {display:flex;align-items:center;justify-content:space-between;gap:12px;color:#a6bad4;font-size:12px;font-weight:700;}
+.home-proof-pill {white-space:nowrap;border-radius:100px;padding:6px 9px;background:rgba(148,163,184,.13);color:#d6e5f5;font-size:11px;}
+.home-proof h2 {font-size:clamp(23px,2.2vw,32px);margin:24px 0 10px;max-width:470px;}
+.home-proof p {font-size:14px;line-height:1.65;color:#b1c2d6;margin:0;}
+.home-proof-verdict {display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:25px;padding:16px;border-radius:12px;background:rgba(2,6,23,.55);border:1px solid rgba(148,163,184,.15);}
+.home-proof-verdict span {font-size:12px;color:#b6c5d8;}
+.home-proof-verdict strong {color:#fde68a;font-size:13px;letter-spacing:.02em;}
+.home-proof-counts {display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
+.home-proof-counts div {padding:14px;border-radius:10px;border:1px solid rgba(148,163,184,.14);}
+.home-proof-counts strong {display:block;font-size:27px;color:#f8fafc;}
+.home-proof-counts span {display:block;font-size:12px;color:#a6b9d0;line-height:1.5;}
+.home-proof .home-proof-note {font-size:12px;color:#91a8c1;margin:12px 0;}
+.home-proof-link {display:inline-block;margin-top:13px;font-size:13px;font-weight:750;color:#bfdbfe;text-underline-offset:3px;}
+.home-controls h2,.home-operator h2 {font-size:clamp(30px,3.4vw,44px);max-width:760px;margin:0;}
+.home-jobs {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:28px 0 35px;}
+.home-jobs article {border:1px solid rgba(148,163,184,.15);background:rgba(15,23,42,.46);border-radius:14px;padding:20px 18px;}
+.home-jobs strong {display:block;color:#f1f5f9;font-size:15px;}
+.home-jobs p {font-size:13px;line-height:1.6;color:#adbed2;margin:9px 0 0;}
+.home-steps {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;}
+.home-steps>div {border-top:1px solid rgba(147,197,253,.3);padding-top:17px;}
+.home-steps span {font-size:12px;color:#93c5fd;font-weight:800;}
+.home-steps h3 {font-size:19px;margin:10px 0 6px;}
+.home-steps p {font-size:14px;color:#adbed2;line-height:1.6;margin:0;}
+.home-next-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;}
+.home-next-grid .case-card {min-height:260px;padding:24px;}
+.home-next-grid .case-card h3 {font-size:22px;}
+.home-next-foot {margin:23px 0 0;color:#a9bbcf;font-size:13px;line-height:1.7;}
+.home-next-foot a {color:#bfdbfe;text-decoration:underline;text-underline-offset:3px;}
+.home-next-foot + .home-next-foot {margin-top:8px;}
+.home-operator {background:rgba(10,18,35,.32);}
+.home-operator-grid {display:grid;grid-template-columns:minmax(230px,.68fr) minmax(0,1.32fr);gap:48px;align-items:center;}
+.home-operator-grid p:not(.case-kicker) {max-width:460px;color:#b7c4d6;font-size:15px;line-height:1.7;}
+.home-operator-image {margin:0;}
+.home-operator-image a {display:block;border:1px solid rgba(147,197,253,.2);border-radius:16px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.22);background:#f5f8ff;}
+.home-operator-image img {display:block;width:100%;height:auto;}
+.home-operator-image figcaption {color:#92a7bf;font-size:11px;line-height:1.5;margin:10px 0 0;}
+@media(max-width:960px) {
+  .talon-home-hero .case-hero-grid,.home-operator-grid {grid-template-columns:1fr;gap:29px;}
+  .home-jobs {grid-template-columns:repeat(2,minmax(0,1fr));}
+  .home-next-grid {grid-template-columns:1fr;}
+  .home-next-grid .case-card {min-height:0;}
+}
+@media(max-width:670px) {
+  .home-proof {padding:20px;}
+  .home-proof-top {align-items:flex-start;flex-direction:column;}
+  .home-proof-verdict {align-items:flex-start;flex-direction:column;gap:8px;}
+  .home-jobs,.home-steps {grid-template-columns:1fr;}
+  .home-jobs {margin:24px 0 28px;}
+}
