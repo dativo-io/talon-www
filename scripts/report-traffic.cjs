@@ -68,7 +68,7 @@ function report(csv) {
     remaining_custom_events: keptEvents,
     caveats: [
       'Referral-based exclusion may miss other bots or remove a real session.',
-      'Clicks to LinkedIn are contact intent, not confirmed conversations or form submissions.',
+      'Pilot Booking Click is an outbound scheduling-link click, not a confirmed booking, conversation or pilot.',
       'No personally identifiable event properties or raw session identifiers are printed.'
     ]
   };
