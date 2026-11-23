@@ -12,6 +12,7 @@ const required = [
   'talon/docs/openshell/index.html',
   'talon/docs/observability/index.html',
   'enterprise/index.html',
+  'pilot/index.html',
   'use-cases/index.html',
   'use-cases/coding-agents/index.html',
   'use-cases/customer-support/index.html',
@@ -79,7 +80,15 @@ for (const rel of ['index.html', 'ai-action-control/index.html']) {
   if (!fs.existsSync(target)) continue;
   const body = fs.readFileSync(target, 'utf8');
   if (body.includes('github.com/dativo-io/talon/issues/new?title=Pilot')) failures.push('Public pilot issue intake on ' + rel);
-  if (!body.includes('linkedin.com/in/sergeyenin/')) failures.push('Private founder contact missing on ' + rel);
+  if (!body.includes('href="/pilot/"')) failures.push('Private pilot offer missing on ' + rel);
+}
+const pilotPage = path.join(root, 'pilot/index.html');
+if (fs.existsSync(pilotPage)) {
+  const html = fs.readFileSync(pilotPage, 'utf8');
+  if (!html.includes('https://calendar.app.google/bfNg6wuqyCaKa8nV9')) failures.push('Pilot page missing configured booking destination');
+  if ((html.match(/data-growth-intent="pilot-booking"/g) || []).length !== 2) failures.push('Pilot page must have two measurable booking CTAs');
+  if (!html.includes('No workflow data or contact details are collected by this page.')) failures.push('Pilot page missing truthful intake/privacy boundary');
+  if (/\<form\b/i.test(html)) failures.push('Pilot page must not expose an unconfigured contact form');
 }
 const actionPage = path.join(root, 'ai-action-control/index.html');
 if (fs.existsSync(actionPage)) {
