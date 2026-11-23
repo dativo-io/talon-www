@@ -36,3 +36,7 @@
 # The removed legacy dashboard is superseded by the Operations Console guide.
 /talon/docs/gateway-dashboard/ /talon/docs/operations-console/ 301
 /talon/docs/gateway-dashboard /talon/docs/operations-console/ 301
+
+# Superseded docs removed from Talon main; preserve their established public routes.
+/talon/docs/vendor-integration-guide/ /talon/docs/choosing-integration-path/ 301
+/talon/docs/architecture-mcp-proxy/ /talon/docs/control-plane-boundaries/ 301
