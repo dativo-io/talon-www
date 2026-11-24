@@ -1,0 +1,75 @@
+/* Enterprise edition page — scoped to preserve the marketing nav and homepage. */
+.enterprise-page{background:#070c16;color:#f5f7fb}
+.enterprise-page *{box-sizing:border-box}
+.enterprise-page .wrap{max-width:1110px;margin-inline:auto;padding-inline:34px}
+.enterprise-page a:focus-visible{outline:3px solid #93c5fd;outline-offset:4px}
+.enterprise-page h1,.enterprise-page h2,.enterprise-page h3{letter-spacing:-.04em;line-height:1.15;color:#f5f7fb}
+.enterprise-page .ep-eyebrow{margin:0 0 19px;font-size:11px;letter-spacing:.17em;text-transform:uppercase;font-weight:800;color:#93c5fd}
+.enterprise-page .ep-hero{padding:93px 0 80px;background:radial-gradient(ellipse at 85% 30%,rgba(50,109,189,.18),transparent 52%)}
+.enterprise-page .ep-hero h1{font-size:clamp(41px,5.4vw,69px);max-width:870px;line-height:1.06;letter-spacing:-.055em;margin:0 0 23px;font-weight:760}
+.enterprise-page .ep-lead{font-size:clamp(16px,1.7vw,19px);line-height:1.7;color:#becce0;max-width:780px;margin:0 0 32px}
+.enterprise-page .ep-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.enterprise-page .ep-button{display:inline-flex;align-items:center;gap:10px;justify-content:center;padding:14px 21px;border-radius:9px;min-height:47px;font-size:14px;font-weight:750;text-decoration:none;transition:background .15s ease,transform .15s ease}
+.enterprise-page .ep-button:hover{transform:translateY(-1px)}
+.enterprise-page .ep-button-primary{color:#061225;background:#8ec5ff;box-shadow:0 12px 30px #25477b40}
+.enterprise-page .ep-button-primary:hover{background:#b2d9ff;color:#061225}
+.enterprise-page .ep-button-outline{border:1px solid #455977;background:#142236;color:#e7f0fd}
+.enterprise-page .ep-button-outline:hover{background:#1d3149;color:#fff}
+.enterprise-page .ep-subtle{margin:20px 0 0;font-size:13px;color:#8da2bb;line-height:1.6}
+.enterprise-page .ep-section{padding:72px 0}
+.enterprise-page .ep-section-alt{background:#0b1523;border-block:1px solid #1c2a3d}
+.enterprise-page h2{font-size:clamp(29px,3.5vw,44px);line-height:1.13;margin:0 0 17px}
+.enterprise-page .ep-description{font-size:16px;line-height:1.7;color:#aebed2;max-width:760px;margin:0}
+.enterprise-page .ep-value-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;margin-top:35px}
+.enterprise-page .ep-value{border:1px solid #2a3a52;border-radius:17px;padding:27px;background:linear-gradient(150deg,#17243a,#0d1727);min-height:226px}
+.enterprise-page .ep-value-number{display:grid;place-items:center;width:40px;height:40px;margin-bottom:21px;border-radius:12px;background:#24446b;color:#b8deff;font-size:17px;font-weight:800}
+.enterprise-page .ep-value h3{font-size:19px;line-height:1.3;margin:0 0 11px}
+.enterprise-page .ep-value p{font-size:14px;line-height:1.7;color:#abbcd0;margin:0}
+.enterprise-page .ep-value p strong{color:#e7f0fa;font-weight:650}
+.enterprise-page .ep-table-wrap{overflow-x:auto;border:1px solid #314057;border-radius:17px;background:#101b2a;margin-top:28px;scrollbar-color:#435b78 #132137}
+.enterprise-page .ep-table-wrap:focus-visible{outline:3px solid #93c5fd;outline-offset:3px}
+.enterprise-page .ep-table{width:100%;min-width:690px;border-collapse:collapse;text-align:left;table-layout:fixed;margin:0;color:#e5ecf6}
+.enterprise-page .ep-table th,.enterprise-page .ep-table td{padding:18px 21px;border:0;border-bottom:1px solid #29384c;font-size:14px;line-height:1.5;vertical-align:middle;background:transparent;text-align:left}
+.enterprise-page .ep-table thead th{background:#152338;font-size:16px;font-weight:750}
+.enterprise-page .ep-table thead th:first-child{width:46%;font-size:12px;letter-spacing:.1em;color:#9cb2ca;text-transform:uppercase}
+.enterprise-page .ep-table thead th:nth-child(2){width:24%}
+.enterprise-page .ep-table thead th:nth-child(3){width:30%;background:#1a314e}
+.enterprise-page .ep-table thead small{display:block;font-weight:450;color:#98acc4;font-size:12px;line-height:1.4;margin-top:5px}
+.enterprise-page .ep-table tbody th[scope="row"]{color:#e5ecf6;font-weight:550}
+.enterprise-page .ep-table tbody th[scope="row"] small{display:block;color:#8fa3bc;font-size:12px;margin-top:4px;font-weight:400}
+.enterprise-page .ep-table tbody td:last-child{background:#14243a78}
+.enterprise-page .ep-table tbody tr.ep-group th{padding:15px 21px;background:#0b1522;border-bottom:1px solid #2b3a50;color:#93c5fd;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.enterprise-page .ep-check{display:inline-grid;place-items:center;border:1px solid #286a60;background:#153e3b;border-radius:50%;width:25px;height:25px;color:#8ae1c7;font-size:16px;font-weight:800}
+.enterprise-page .ep-community{font-size:12px!important;color:#a2b3c9}
+.enterprise-page .ep-minus{font-size:17px;color:#9aacc2;font-weight:700;margin-right:9px}
+.enterprise-page .ep-table tbody tr:last-child td,.enterprise-page .ep-table tbody tr:last-child th{border-bottom:0}
+.enterprise-page .ep-table-note{margin:16px 0 0;color:#90a4be;font-size:12px;line-height:1.6}
+.enterprise-page .ep-text-link{display:inline-block;color:#bfdbfe;font-size:13px;font-weight:700;margin-top:17px}
+.enterprise-page .ep-text-link:hover{text-decoration:underline}
+.enterprise-page .ep-pilot{padding:68px 0 77px;background:radial-gradient(ellipse at 75% 100%,#1e3458 0,#0d1728 58%,#09121e 100%);border-top:1px solid #2b3c54}
+.enterprise-page .ep-pilot-inner{display:flex;justify-content:space-between;gap:42px;align-items:center}
+.enterprise-page .ep-pilot .ep-description{max-width:650px}
+.enterprise-page .ep-pilot-note{font-size:12px;color:#9baec5;margin:10px 0 0}
+.enterprise-page .ep-pilot .ep-button{flex-shrink:0}
+.enterprise-page .ep-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:780px){
+  .enterprise-page .wrap{padding-inline:22px}
+  .enterprise-page .ep-hero{padding:67px 0 58px}
+  .enterprise-page .ep-section{padding:56px 0}
+  .enterprise-page .ep-value-grid{grid-template-columns:1fr}
+  .enterprise-page .ep-value{min-height:0}
+  .enterprise-page .ep-pilot-inner{display:block}
+  .enterprise-page .ep-pilot .ep-button{margin-top:25px}
+  .enterprise-page .ep-table th,.enterprise-page .ep-table td{padding:14px 15px}
+  .enterprise-page .ep-table tbody tr.ep-group th{padding:12px 15px}
+}
+@media(max-width:440px){
+  .enterprise-page .wrap{padding-inline:18px}
+  .enterprise-page .ep-hero h1{font-size:43px}
+  .enterprise-page .ep-actions .ep-button{width:100%}
+  .enterprise-page .ep-table-note{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){
+  .enterprise-page .ep-button{transition:none}
+  .enterprise-page .ep-button:hover{transform:none}
+}
