@@ -41,6 +41,7 @@ for (const [i, e] of events.entries()) {
   assert.equal(e.props.placement, i === 0 ? 'enterprise-hero' : 'enterprise-bottom');
   assert.equal(e.props.destination, '/pilot/');
   assert.equal(e.props.primary, 'true');
+  assert.ok(!Object.prototype.hasOwnProperty.call(e.props, 'text'), 'CTA text must not be forwarded');
   assert.ok(!JSON.stringify(e).includes('private@example.com'), 'private URL query leaked');
 }
 assert.equal(events.filter(e => e.name === 'Pilot Booking Click').length, 0, 'opening the pilot offer is not a booking');
