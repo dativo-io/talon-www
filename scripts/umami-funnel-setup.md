@@ -25,7 +25,7 @@ this repository, browser scripts or GitHub issues.
 | `Evidence Click` / `Docs Click` | Triggered events | Supporting technical-evaluation activity |
 
 `Funnel CTA` is a generic classified click with non-sensitive `page`,
-`intent`, `placement`, `destination`, and CTA-label metadata. It can
+`intent`, `placement`, `destination`, and a primary-CTA flag. It can
 coexist with a legacy named event on the **same** click: do not add event
 counts together to infer unique evaluators. `Pilot Booking Click` is
 deliberately not duplicated as `Funnel CTA`.
@@ -70,6 +70,7 @@ in order; other pageviews between them are allowed.
 | Funnel | Ordered steps | Question |
 | --- | --- | --- |
 | Buyer to calendar | Viewed `/` → Viewed `/pilot/` → Event `Pilot Booking Click` | Does the homepage convert into scheduling intent? |
+| Enterprise to calendar | Viewed `/enterprise/` → Viewed `/pilot/` → Event `Pilot Booking Click` | Do edition comparisons generate scheduling intent? |
 | Proof to calendar | Viewed `/talon/docs/action-gateway-proof/` → Viewed `/pilot/` → Event `Pilot Booking Click` | Do evaluators seeing reproducible proof enter a pilot conversation? |
 | Docs to calendar | Viewed `/talon/docs/` → Viewed `/pilot/` → Event `Pilot Booking Click` | Does the docs front door reach commercial intent? |
 | Pilot landing efficiency | Viewed `/pilot/` → Event `Pilot Booking Click` | What is the scheduling-link click rate for pilot-page visitors? |
@@ -81,6 +82,30 @@ path: some will arrive at the pilot page from an outbound campaign.
 If funnels support per-step property filters, use them for source-specific
 analyses; avoid requiring `Funnel CTA` as an extra step because
 `/pilot/` pageviews are a more stable canonical step.
+
+### Enterprise pilot CTA placements
+
+On `/enterprise/`, the two "Try a pilot" buttons emit `Funnel CTA`
+with `intent=pilot-offer`, `page=/enterprise/`, `destination=/pilot/`
+and `placement=enterprise-hero` or `enterprise-bottom`.
+In the **Events** screen select `Funnel CTA`, then inspect its **Properties**
+and filter to `page=/enterprise/` and `intent=pilot-offer` to compare
+these placements. The generic event is shared by other CTAs: never use its
+unfiltered total as the Enterprise pilot conversion metric.
+
+Umami Goals based on `Triggered event` use the event name; this runbook
+does not assume the Goals screen can constrain event properties. Use the
+saved Enterprise-to-calendar Funnel for end-to-end progression and the
+Events property breakdown for CTA-placement analysis.
+
+### Optional founder conversion Board
+
+Under **Boards**, create a private `Talon — Pilot acquisition` Board
+using available traffic/event/funnel components: visitors, pilot-page
+visitors, calendar-opening events, the saved Enterprise and homepage
+funnels, and sources/UTM campaigns. Compare a raw view with a consistently
+filtered view excluding known referral spam. Do not publish a private lead
+ledger or personal appointment details on a public board.
 
 ## 4. Clean traffic and attribution
 
@@ -107,20 +132,26 @@ analyses; avoid requiring `Funnel CTA` as an extra step because
    evidence of a scheduled appointment.
 3. On `/`, click **Pilot one use case** and confirm
    `Funnel CTA`, `intent=pilot-offer`, then a `/pilot/` pageview.
-4. Click the no-key demo and action proof links; check relevant named
+4. On `/enterprise/`, click **Try a pilot** in the hero and bottom section
+   separately; confirm `Funnel CTA`, `page=/enterprise/`,
+   `intent=pilot-offer`, correct `enterprise-hero` or `enterprise-bottom`
+   placement, and one `/pilot/` pageview per navigation.
+5. Click the no-key demo and action proof links; check relevant named
    events and safe internal-path properties without URL query strings.
-5. Test a campaign URL with anonymous UTM values. Verify source
+6. Test a campaign URL with anonymous UTM values. Verify source
    attribution appears in the Umami dashboard.
-6. In a separate private check, book and cancel one real test meeting;
+7. In a separate private check, book and cancel one real test meeting;
    verify the Google Calendar invite, not Umami, proves completion.
-7. Record whether all Goals and Funnels above were **actually created**
+8. Record whether all Goals and Funnels above were **actually created**
    in the workspace. This cannot be inferred from a successful website
    build or this runbook.
 
 Code tests:
 `node scripts/test-pilot-conversion.cjs`,
-`node scripts/test-umami-event-privacy.cjs`, and
+`node scripts/test-umami-event-privacy.cjs`,
+`node scripts/test-enterprise-pilot-funnel.cjs`, and
 `node scripts/test-report-traffic.cjs`.
 
 Documentation: https://docs.umami.is/docs/goals and
-https://docs.umami.is/docs/funnel.
+https://docs.umami.is/docs/funnel, and
+https://docs.umami.is/docs/design-a-board.
