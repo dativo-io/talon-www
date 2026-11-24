@@ -70,6 +70,7 @@ node "$ROOT_DIR/scripts/test-normalize-site-nav.cjs"
 # Prevent the buyer/docs entrances from growing back into an exhaustive catalog.
 node "$ROOT_DIR/scripts/test-first-run-journeys.cjs"
 node "$ROOT_DIR/scripts/test-pilot-conversion.cjs"
+node "$ROOT_DIR/scripts/test-enterprise-pilot-funnel.cjs"
 node "$ROOT_DIR/scripts/test-report-traffic.cjs"
 
 # Copy the existing static marketing site as-is.
