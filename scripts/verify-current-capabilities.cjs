@@ -52,10 +52,16 @@ if (fs.existsSync(caseNav)) {
 const editionPage = path.join(root, 'enterprise/index.html');
 if (fs.existsSync(editionPage)) {
   const html = fs.readFileSync(editionPage, 'utf8');
-  if (!html.includes('Talon OSS') || !html.includes('Talon Enterprise')) failures.push('Edition comparison incomplete');
-  if (!html.includes('Planned; not released') || !html.includes('not released product features')) failures.push('Enterprise roadmap must be explicitly unshipped');
+  if (!html.includes('Talon Community') || !html.includes('Talon Enterprise')) failures.push('Community/Enterprise edition comparison incomplete');
+  if (!html.includes('Enterprise capabilities are evaluated and scoped with design partners') || !html.includes('validate the selected integration and supported deployment profile')) failures.push('Enterprise pilot-only scope and released-profile guard missing');
   if (!html.includes('corporate') && !html.includes('Corporate')) failures.push('Corporate integration narrative missing');
-  if (!html.includes('SIEM') || !html.includes('approval')) failures.push('Enterprise security/workflow integration status missing');
+  if (!/SIEM/i.test(html) || !/approvals?/i.test(html)) failures.push('Enterprise security/workflow integration narrative missing');
+  if ((html.match(/class="ep-check"/g) || []).length !== 19) failures.push('Edition table should show five shared rows and nine Enterprise-only rows with a two-column checkmark matrix');
+  for (const feature of ['Teams register and manage their own AI apps', 'Who changed policies, keys and access', 'High-load and high-availability deployments', 'Enterprise-level support']) {
+    if (!html.includes(feature)) failures.push('Enterprise buyer-oriented feature missing: ' + feature);
+  }
+  if ((html.match(/data-growth-intent="pilot-offer" data-growth-placement="enterprise-(?:hero|bottom)"/g) || []).length !== 2) failures.push('Enterprise page missing instrumented hero or bottom Try a pilot CTA');
+  if (!html.includes('href="/enterprise/enterprise.css"')) failures.push('Enterprise edition styling missing');
   if (html.includes('github.com/dativo-io/talon-enterprise')) failures.push('Private Enterprise implementation link exposed');
 }
 const docsHome = path.join(root, 'talon/docs/index.html');
