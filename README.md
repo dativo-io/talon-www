@@ -185,7 +185,7 @@ The injected helper emits these buyer-intent events:
 - `GitHub Click`
 - `Docs Click`
 
-The named event helper sends only the current page path and a safe destination (internal pathname or external hostname), never raw link URLs, query strings, fragments, or arbitrary link text. `Funnel CTA` includes classified intent, placement, safe destination and a bounded CTA label from the site markup. Cloudflare Web Analytics remains present on the static marketing pages as a secondary infrastructure-level signal.
+The named event helper sends only the current page path and a safe destination (internal pathname or external hostname), never raw link URLs, query strings, fragments, or arbitrary link text. `Funnel CTA` includes classified intent, placement, safe destination and primary-CTA flag; it does not send arbitrary link text. Cloudflare Web Analytics remains present on the static marketing pages as a secondary infrastructure-level signal.
 
 ### Clean-traffic reporting and pilot intent
 
