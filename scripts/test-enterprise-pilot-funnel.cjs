@@ -16,7 +16,7 @@ const browser = {
 vm.runInNewContext(fs.readFileSync(path.join(root, 'growth.js'), 'utf8'), browser);
 assert.equal(typeof listeners.click, 'function');
 
-const primary = [...html.matchAll(/<a\b[^>]*data-growth-intent="pilot-offer"[^>]*>/g)];
+const primary = [...html.matchAll(/<a\b[^>]*data-growth-intent="pilot-offer"[^>]*>/g)].filter(m => /data-growth-placement="enterprise-(?:hero|bottom)"/.test(m[0]));
 assert.equal(primary.length, 2, 'the Enterprise hero and bottom CTAs must both be tracked');
 for (const [i, anchor] of primary.entries()) {
   const href = anchor[0].match(/href="([^"]+)"/)?.[1];
