@@ -93,7 +93,8 @@
       intent,
       placement: placementFor(link),
       destination: safeDestination(link.getAttribute('href') || ''),
-      text: (link.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120),
+      // Placement + intent are sufficient for aggregate CTA analysis; arbitrary
+      // visible link text can contain contact details or personalized content.
       primary: String(link.matches('.button.primary, .nav-button, [data-growth-primary="true"]')),
     });
   });

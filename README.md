@@ -185,7 +185,7 @@ The injected helper emits these buyer-intent events:
 - `GitHub Click`
 - `Docs Click`
 
-Link events include the current page, destination, and truncated CTA text as event properties. Cloudflare Web Analytics remains present on the static marketing pages as a secondary infrastructure-level signal.
+The named event helper sends only the current page path and a safe destination (internal pathname or external hostname), never raw link URLs, query strings, fragments, or arbitrary link text. `Funnel CTA` includes classified intent, placement, safe destination and primary-CTA flag; it does not send arbitrary link text. Cloudflare Web Analytics remains present on the static marketing pages as a secondary infrastructure-level signal.
 
 ### Clean-traffic reporting and pilot intent
 
@@ -234,37 +234,25 @@ records campaign parameters; do not append a recipient name or email to
 public URLs. Local builds and Cloudflare previews must stay out of the
 production Umami project via `UMAMI_DOMAINS`.
 
-### Recommended Umami dashboard setup
+### Configuring Umami Goals, Funnels and the operator dashboard
 
-Create these Goals in Umami:
+**Website-side events are implemented, but saved Umami Cloud reports are not
+provisioned by this repository.** A passing website build does not confirm
+which Goals or Funnels exist in the live Umami workspace.
 
-1. `Pilot Booking Click` — outbound scheduling intent, **not confirmed bookings**.
-2. `Funnel CTA` filtered by `intent=pilot-offer` — visits initiated from tracked pilot CTAs.
-3. `Product Demo Click` — primary technical evaluation signal.
-4. `Quickstart Demo Click` — low-friction evaluation signal.
-5. `GitHub Click` — implementation/repository intent.
-6. `Evidence Click` — proof/audit interest.
-7. `Demo Play` — product-proof engagement.
+The exact goal names, ordered funnels, event/property semantics, privacy
+constraints, QA steps, bot-traffic caveats and manual booking reconciliation
+are in [the Umami setup runbook](scripts/umami-funnel-setup.md).
 
-Keep `Docs Click` and `Checklist Click` as supporting events rather than headline conversions.
+Primary conversion journey:
 
-Create at least these Funnels:
+```text
+Homepage /  →  Pilot page /pilot/  →  Pilot Booking Click
+```
 
-- Homepage evaluation: `/` → `Product Demo Click` → `GitHub Click`.
-- Low-friction evaluation: `/` → `Quickstart Demo Click` → `GitHub Click`.
-- Comparison evaluation: `/comparisons/` → `Product Demo Click` or `Quickstart Demo Click` → `GitHub Click`.
+A `Pilot Booking Click` is **outbound scheduling intent**, not a confirmed
+appointment or qualified lead. Google Calendar remains the source of truth
+for completed bookings; maintain the private lead ledger separately.
 
-Use consistent UTM parameters on every external campaign link:
-
-- `utm_source`: `linkedin`, `reddit`, `github`, `blog`, `email`, `direct_outreach`
-- `utm_medium`: `organic_social`, `community`, `referral`, `newsletter`, `outreach`
-- `utm_campaign`: stable topic/campaign identifier
-- `utm_content`: individual post, creative, or placement
-
-For routine product review, separate three questions:
-
-1. **Acquisition:** which sources and landing pages bring relevant visitors?
-2. **Evaluation:** which visitors trigger demo, quickstart, evidence, or GitHub events?
-3. **Conversion:** which journeys progress through the defined Goals and Funnels?
-
-Do not identify visitors or attach email/form values to analytics events. Keep event properties limited to non-sensitive navigation and CTA context.
+Compare clean traffic (excluding known `aocr.org` referral noise) with raw
+traffic, and preserve the same filtering methodology across periods.

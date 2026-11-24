@@ -45,6 +45,7 @@ assert.equal(sent.length, 2);
 assert.equal(sent[1].name, 'Funnel CTA');
 assert.equal(sent[1].properties.intent, 'pilot-offer');
 assert.equal(sent[1].properties.destination, '/pilot/', 'query string must be stripped');
+assert.ok(!Object.prototype.hasOwnProperty.call(sent[1].properties, 'text'), 'CTA link text must not be transmitted');
 assert.ok(!JSON.stringify(sent[1]).includes('visitor@example.com'), 'query string leaked into analytics');
 
 click('https://github.com/dativo-io/talon?code=private', 'github', 'footer');
