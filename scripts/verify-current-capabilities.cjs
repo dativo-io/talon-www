@@ -145,11 +145,15 @@ for (const rel of ['index.html','talon/docs/index.html','talon/docs/open-source-
   const body=fs.readFileSync(target,'utf8');
   if (/planned Enterprise|Enterprise direction \(planned\)|Enterprise is in development|MCP\/native convergence remains|canonical MCP convergence is in progress|do not inherit its exact-operation approval|MCP tool calls inherit the HTTP Action Gateway approval/i.test(body)) failures.push('Retired edition or MCP claim: '+rel);
 }
-const {validate: editionRows,html: editionHtml}=require('./edition-comparison.cjs');
+const {validate: editionRows}=require('./edition-comparison.cjs');
 const docsEdition=path.join(root,'talon/docs/open-source-and-enterprise/index.html');
 if(fs.existsSync(docsEdition)){
  const body=fs.readFileSync(docsEdition,'utf8');
- for(const row of editionRows()) if(!body.includes(row.label)) failures.push('Docs edition comparison missing: '+row.label);
+ const expected=editionRows().map(r=>[r.label,r.community.status==='included'?'Included':r.community.label,r.enterprise.status==='included'?'Included':'Pilot scope']);
+ const tables=[...body.matchAll(/<table\b[^>]*>([\s\S]*?)<\/table>/g)];
+ const edition=tables.find(t=>t[1].includes('Talon Community')&&t[1].includes('Talon Enterprise'));
+ const cells=edition?[...edition[1].matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/g)].map(r=>[...r[1].matchAll(/<td\b[^>]*>([\s\S]*?)<\/td>/g)].map(c=>c[1].replace(/<[^>]*>/g,'').replace(/&amp;/g,'&').trim())).filter(r=>r.length):[];
+ if(JSON.stringify(cells)!==JSON.stringify(expected)) failures.push('Built docs edition table differs from canonical source');
  if(!body.includes('Pilot scope')||!body.includes('https://dativo.io/pilot/')||body.includes('linkedin.com/in/sergeyenin')) failures.push('Docs edition scope or canonical pilot route missing');
 }
 if (failures.length) { for (const failure of failures) console.error(`FAIL: ${failure}`); process.exit(1); }
