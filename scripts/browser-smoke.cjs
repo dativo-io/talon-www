@@ -96,6 +96,7 @@ const fileName=(route,viewport)=>(route==='/'?'home':route.replace(/^\/|\/$/g,''
    await check(booking.first(),'Pilot Booking Click');
    report.journeys.push({viewport:device.name,status:'passed'});
   }catch(e){issue('acquisition journeys',device.name,'journey',e.message)}
+  let docsStage='open';
   try{
    const docsRoute='/talon/docs/';
    await page.goto(base+docsRoute,{waitUntil:'load'});
@@ -109,28 +110,44 @@ const fileName=(route,viewport)=>(route==='/'?'home':route.replace(/^\/|\/$/g,''
     await search.focus();await page.keyboard.press('Control+k');
     const dialog=page.getByRole('dialog',{name:'Search documentation'});
     await dialog.waitFor({state:'visible',timeout:10000});
-    const field=dialog.getByRole('searchbox',{name:'Search documentation'});
+    const field=dialog.getByRole('combobox',{name:'Search documentation'});
     assert.equal(await field.evaluate(el=>el===document.activeElement),true,'search input focus');
     await field.fill('governed MCP tools');
     const result=dialog.locator('a[href="/talon/docs/mcp-governed-tools/"]');
     await result.waitFor({state:'visible',timeout:15000});
     assert.equal(await dialog.locator('.qc-search-results a').first().getAttribute('href'),'/talon/docs/mcp-governed-tools/','exact title should rank first');
+    docsStage='arrow-down';
     await field.press('ArrowDown');
-    await page.waitForFunction(()=>document.activeElement?.getAttribute('href')==='/talon/docs/mcp-governed-tools/');
-    assert.equal(await result.evaluate(el=>el===document.activeElement),true,'keyboard search result focus');
-    await page.keyboard.press('ArrowUp');
-    assert.equal(await field.evaluate(el=>el===document.activeElement),true,'ArrowUp returns to query');
+    await page.waitForFunction(()=>document.querySelector('.qc-search-input')?.getAttribute('aria-activedescendant')===document.querySelector('.qc-search-results a')?.id && document.querySelector('.qc-search-results a')?.getAttribute('aria-selected')==='true');
+    assert.equal(await field.evaluate(el=>el===document.activeElement),true,'combobox retains input focus');
+    assert.equal(await result.getAttribute('aria-selected'),'true','ArrowDown selects first result');
+    docsStage='arrow-up';
+    await field.press('ArrowUp');
+    assert.equal(await field.getAttribute('aria-activedescendant'),null,'ArrowUp clears selection');
+    assert.equal(await result.getAttribute('aria-selected'),'false');
+    assert.equal(await field.evaluate(el=>el===document.activeElement),true,'input retains focus');
+    docsStage='escape';
     await page.keyboard.press('Escape');
     await dialog.waitFor({state:'hidden'});
     assert.equal(await search.evaluate(el=>el===document.activeElement),true,'Escape restores focus');
+    docsStage='no-results';
     await search.click();await field.fill('zzzxnoresultsxyzz');
     await dialog.getByRole('status').filter({hasText:'No matching pages'}).waitFor();
     await field.fill('governed MCP tools');await result.waitFor({state:'visible'});
+    docsStage='result-navigation';
+    await field.press('ArrowDown');
+    assert.equal(await result.getAttribute('aria-selected'),'true');
+    await Promise.all([page.waitForURL('**/talon/docs/mcp-governed-tools/'),field.press('Enter')]);
+    docsStage='pointer-navigation';
+    await page.goto(base+docsRoute,{waitUntil:'load'});
+    await search.click();await field.fill('governed MCP tools');await result.waitFor({state:'visible'});
     await Promise.all([page.waitForURL('**/talon/docs/mcp-governed-tools/'),result.click()]);
+    assert.equal(new URL(page.url()).pathname,'/talon/docs/mcp-governed-tools/');
     assert.ok(requests.some(u=>new URL(u).pathname==='/talon/docs/search-index.json'),'same-origin search index loaded');
     assert.ok(!requests.some(u=>/zzzxnoresultsxyzz|governed(?:%20|\+)MCP/i.test(u)),'search query must not leave browser');
    }finally{page.off('request',observe);}
-   await page.evaluate(()=>localStorage.setItem('theme','dark'));
+   docsStage='dark-mode';
+   await page.emulateMedia({colorScheme:'dark'});
    await page.reload({waitUntil:'load'});
    await page.waitForFunction(()=>document.documentElement.getAttribute('data-theme')==='dark');
    const dark=await page.evaluate(()=>({width:document.documentElement.scrollWidth,viewport:innerWidth,background:getComputedStyle(document.body).backgroundColor}));
@@ -140,9 +157,9 @@ const fileName=(route,viewport)=>(route==='/'?'home':route.replace(/^\/|\/$/g,''
    await page.addScriptTag({path:require.resolve('axe-core/axe.min.js')});
    const axe=await page.evaluate(async()=>await window.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}}));
    for(const v of axe.violations)issue('/talon/docs/mcp-governed-tools/',device.name+' dark','axe '+v.impact,{id:v.id,description:v.description,nodes:v.nodes.map(n=>n.target)},v.impact==='critical'||strict);
-   await page.evaluate(()=>localStorage.removeItem('theme'));
+   await page.emulateMedia({colorScheme:'light'});
    report.journeys.push({viewport:device.name,journey:'docs search and dark mode',status:'passed'});
-  }catch(e){issue('docs experience',device.name,'journey',e.message)}
+  }catch(e){issue('docs experience',device.name,'journey',docsStage+': '+e.message)}
   await ctx.close();
  }
  }finally{await browser.close();fs.writeFileSync(path.join(out,'browser-report.json'),JSON.stringify(report,null,2)+'\n');}
