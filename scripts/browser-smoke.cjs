@@ -110,7 +110,7 @@ const fileName=(route,viewport)=>(route==='/'?'home':route.replace(/^\/|\/$/g,''
     await search.focus();await page.keyboard.press('Control+k');
     const dialog=page.getByRole('dialog',{name:'Search documentation'});
     await dialog.waitFor({state:'visible',timeout:10000});
-    const field=dialog.getByRole('searchbox',{name:'Search documentation'});
+    const field=dialog.getByRole('combobox',{name:'Search documentation'});
     assert.equal(await field.evaluate(el=>el===document.activeElement),true,'search input focus');
     await field.fill('governed MCP tools');
     const result=dialog.locator('a[href="/talon/docs/mcp-governed-tools/"]');
@@ -118,11 +118,14 @@ const fileName=(route,viewport)=>(route==='/'?'home':route.replace(/^\/|\/$/g,''
     assert.equal(await dialog.locator('.qc-search-results a').first().getAttribute('href'),'/talon/docs/mcp-governed-tools/','exact title should rank first');
     docsStage='arrow-down';
     await field.press('ArrowDown');
-    console.log('Docs focus after ArrowDown:',device.name,await page.evaluate(()=>({tag:document.activeElement?.tagName,href:document.activeElement?.getAttribute('href'),id:document.activeElement?.id,dialogOpen:document.querySelector('.qc-search-dialog')?.open})));
-    assert.equal(await result.evaluate(el=>el===document.activeElement),true,'keyboard search result focus');
+    await page.waitForFunction(()=>document.querySelector('.qc-search-input')?.getAttribute('aria-activedescendant')===document.querySelector('.qc-search-results a')?.id && document.querySelector('.qc-search-results a')?.getAttribute('aria-selected')==='true');
+    assert.equal(await field.evaluate(el=>el===document.activeElement),true,'combobox retains input focus');
+    assert.equal(await result.getAttribute('aria-selected'),'true','ArrowDown selects first result');
     docsStage='arrow-up';
-    await page.keyboard.press('ArrowUp');
-    assert.equal(await field.evaluate(el=>el===document.activeElement),true,'ArrowUp returns to query');
+    await field.press('ArrowUp');
+    assert.equal(await field.getAttribute('aria-activedescendant'),null,'ArrowUp clears selection');
+    assert.equal(await result.getAttribute('aria-selected'),'false');
+    assert.equal(await field.evaluate(el=>el===document.activeElement),true,'input retains focus');
     docsStage='escape';
     await page.keyboard.press('Escape');
     await dialog.waitFor({state:'hidden'});
@@ -132,7 +135,14 @@ const fileName=(route,viewport)=>(route==='/'?'home':route.replace(/^\/|\/$/g,''
     await dialog.getByRole('status').filter({hasText:'No matching pages'}).waitFor();
     await field.fill('governed MCP tools');await result.waitFor({state:'visible'});
     docsStage='result-navigation';
+    await field.press('ArrowDown');
+    assert.equal(await result.getAttribute('aria-selected'),'true');
+    await Promise.all([page.waitForURL('**/talon/docs/mcp-governed-tools/'),field.press('Enter')]);
+    docsStage='pointer-navigation';
+    await page.goto(base+docsRoute,{waitUntil:'load'});
+    await search.click();await field.fill('governed MCP tools');await result.waitFor({state:'visible'});
     await Promise.all([page.waitForURL('**/talon/docs/mcp-governed-tools/'),result.click()]);
+    assert.equal(new URL(page.url()).pathname,'/talon/docs/mcp-governed-tools/');
     assert.ok(requests.some(u=>new URL(u).pathname==='/talon/docs/search-index.json'),'same-origin search index loaded');
     assert.ok(!requests.some(u=>/zzzxnoresultsxyzz|governed(?:%20|\+)MCP/i.test(u)),'search query must not leave browser');
    }finally{page.off('request',observe);}

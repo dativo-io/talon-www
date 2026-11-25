@@ -140,3 +140,5 @@ div[class*='announcementBar_'] { border-bottom-color: var(--qc-line); }
 @media(prefers-reduced-motion:reduce) {
  .qc-search-dialog,.qc-search-trigger { transition: none; }
 }
+
+.qc-search-results [aria-selected='true'] { background: var(--qc-accent); outline: 2px solid var(--qc-focus); outline-offset: -2px; }
