@@ -4,8 +4,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(process.argv[2] || 'dist');
 const origin = (process.env.SITE_URL || 'https://dativo.io').replace(/\/$/, '');
-const pages = ['/', '/enterprise/', '/ai-action-control/', '/comparisons/', '/mcp-tool-governance/', '/ai-agent-audit-trail/', '/comparisons/talon-vs-litellm/', '/use-cases/', '/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/'];
-const guides = ['/mcp-tool-governance/', '/ai-agent-audit-trail/', '/comparisons/talon-vs-litellm/', '/use-cases/', '/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/'];
+const pages = ['/', '/enterprise/', '/ai-action-control/', '/comparisons/', '/mcp-tool-governance/', '/ai-agent-audit-trail/', '/comparisons/talon-vs-litellm/', '/use-cases/', '/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/', '/solutions/n8n/'];
+const guides = ['/mcp-tool-governance/', '/ai-agent-audit-trail/', '/comparisons/talon-vs-litellm/', '/use-cases/', '/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/', '/solutions/n8n/'];
 const errors = [];
 function requirePage(route) {
   const file = path.join(root, route === '/' ? 'index.html' : route.slice(1) + 'index.html');
@@ -53,8 +53,8 @@ for (const route of pages) {
   }
 }
 const home = built.get('/') || '';
-if (!home.includes('<h1>One company policy for your AI use cases.</h1>')) errors.push('Canonical homepage H1 lost');
-if (!home.includes('<title>Dativo Talon — Open-Source AI Control Plane</title>')) errors.push('Homepage category must be AI control plane');
+if (!home.includes('<h1>Stay in control as AI scales</h1>')) errors.push('Canonical homepage H1 lost');
+if (!home.includes('<title>Dativo Talon | Open-source AI control plane</title>')) errors.push('Homepage category must be AI control plane');
 for (const route of ['/use-cases/', '/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/', '/talon/docs/', '/enterprise/']) {
   if (!home.includes('href="' + route + '"')) errors.push('Homepage missing priority path ' + route);
 }
