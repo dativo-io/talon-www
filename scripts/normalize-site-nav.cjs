@@ -22,16 +22,16 @@ const canonicalHeader = `<header class="site-nav">
             <a href="/use-cases/customer-support/" data-growth-intent="case-support">Customer support</a>
             <a href="/use-cases/vendor-contract-review/" data-growth-intent="case-procurement">Document processing</a>
             <a href="/use-cases/people-analytics/" data-growth-intent="case-people">People Analytics</a>
-            <a href="/talon/docs/n8n-refund-approvals/" data-growth-intent="n8n-guide">n8n workflow example</a>
+            <a href="/solutions/n8n/" data-growth-intent="integration-n8n">Talon for n8n</a>
             <a href="/use-cases/coding-agents/" data-growth-intent="case-coding">Coding assistants</a>
           </div>
         </details>
-        <details class="nav-dropdown"><summary>Developers</summary>
+        <details class="nav-dropdown"><summary>Open Source</summary>
           <div class="nav-dropdown-menu">
+            <a href="https://github.com/dativo-io/talon" data-growth-intent="github">GitHub</a>
             <a href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart">Quickstart</a>
             <a href="/talon/docs/" data-growth-intent="docs">Documentation</a>
             <a href="/talon/docs/choosing-integration-path/" data-growth-intent="integration">Integration guides</a>
-            <a href="https://github.com/dativo-io/talon" data-growth-intent="github">GitHub</a>
           </div>
         </details>
         <a class="nav-button" href="/pilot/" data-growth-intent="pilot-offer">Discuss a pilot</a>
@@ -44,7 +44,7 @@ const iconPattern = /\s*<link\s+rel="icon"[^>]*>\s*/gi;
 const faviconTag = '<link rel="icon" type="image/svg+xml" href="/public/assets/talon-icon.svg" />';
 const navStylesheet = '<link rel="stylesheet" href="/site-nav.css" />';
 const navScript = '<script defer src="/site-nav.js"></script>';
-const expectedLabels = ["Product","Solutions","Developers","Discuss a pilot"];
+const expectedLabels = ["Product","Solutions","Open Source","Discuss a pilot"];
 
 function listHtmlFiles(dir) {
   const files = [];
@@ -114,7 +114,7 @@ for (const file of pagesWithSiteNav) {
     throw new Error(`Responsive navigation controls missing from ${file}`);
   }
   if ((header.match(/<details class="nav-dropdown">/g) || []).length !== 3) throw new Error(`Expected three navigation groups in ${file}`);
-  const requiredDestinations = ["href=\"/#how-it-works\"","href=\"/#operations-console\"","href=\"/ai-agent-governance/\"","href=\"/enterprise/\"","href=\"/use-cases/\"","href=\"/use-cases/customer-support/\"","href=\"/use-cases/vendor-contract-review/\"","href=\"/use-cases/people-analytics/\"","href=\"/talon/docs/n8n-refund-approvals/\"","href=\"/use-cases/coding-agents/\"","href=\"/talon/docs/quickstart-demo/\"","href=\"/talon/docs/\"","href=\"/talon/docs/choosing-integration-path/\"","href=\"https://github.com/dativo-io/talon\"","href=\"/pilot/\""];
+  const requiredDestinations = ["href=\"/#how-it-works\"","href=\"/#operations-console\"","href=\"/ai-agent-governance/\"","href=\"/enterprise/\"","href=\"/use-cases/\"","href=\"/use-cases/customer-support/\"","href=\"/use-cases/vendor-contract-review/\"","href=\"/use-cases/people-analytics/\"","href=\"/solutions/n8n/\"","href=\"/use-cases/coding-agents/\"","href=\"/talon/docs/quickstart-demo/\"","href=\"/talon/docs/\"","href=\"/talon/docs/choosing-integration-path/\"","href=\"https://github.com/dativo-io/talon\"","href=\"/pilot/\""];
   for (const destination of requiredDestinations) {
     if (!header.includes(destination)) {
       throw new Error(`Canonical navigation is missing ${destination} in ${file}`);
