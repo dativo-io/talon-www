@@ -17,7 +17,11 @@ The primary problem is cognitive load, not simply page length. Repeated slogans,
 - Present cost, policy (including data and actions), reliability and operational visibility/evidence as connected outcomes. Action control is a concrete differentiator, not the entire product.
 - Do not introduce claims of guaranteed security, compliance, uptime, cost savings, or coverage of every AI action.
 
-Approved step 3 hero:
+Approved step 3 hero, refined in step 4:
+
+- Value-first kicker: Reduce AI costs and protect sensitive data.
+- Diagram labels existing use cases and existing providers/tools. Caption: Keep your AI workflows and providers. Simply configure Talon in between.
+- Preserve open-source control-plane category in metadata and visible footer; supported interception boundary remains in How it works and footer.
 
 > Stay in control as AI scales
 >
@@ -87,7 +91,7 @@ The repository is static HTML/CSS/JS plus Docusaurus, not an Astro/React migrati
 - `index.html`, `styles.css`, `homepage-clean.css`, `site-nav.css`, `growth.css`: review cascade and scope; growth styles load at build time after source styles.
 - `scripts/normalize-site-nav.cjs` is the canonical built marketing navigation. Edit it and its tests when changing navigation; avoid source-only changes overwritten in dist.
 - `scripts/apply-growth-optimizations.cjs` owns production metadata overrides and growth asset injection. Align updated homepage metadata there and in source; inspect actual dist.
-- Keep `scripts/test-first-run-journeys.cjs` (five sections, main markup <8,500 chars, main copy <=435 words until step 4, hero <80 words and two CTAs, route/anchor and synthetic proof assertions), nav checks, current-capabilities checks, brand checks, docs source contracts, screenshot lock and SEO guards. Update structural assertions only with a reviewed equivalent; never weaken truth assertions.
+- Keep `scripts/test-first-run-journeys.cjs` (five sections, main markup <8,000 chars, main copy <=300 words from step 4, hero <80 words and two CTAs, route/anchor and synthetic proof assertions), nav checks, current-capabilities checks, brand checks, docs source contracts, screenshot lock and SEO guards. Update structural assertions only with a reviewed equivalent; never weaken truth assertions.
 - Preserve Docusaurus first-run paths and upstream Talon docs provenance. Keep root/docs sitemaps, canonicals, redirects, internal links and indexing controls intact.
 - Preserve existing growth intent/placement/primary attributes and Umami events, especially Funnel CTA and Pilot Booking Click. Do not duplicate tracking or log payloads, personal data, raw URLs or booking tokens. A click is not a booking.
 - Use `./scripts/build-site-with-docs.sh` for deployable preview and CI; raw HTML preview lacks generated screenshots and build-time transformations. Do not deploy from feature branches or merge on behalf of the reviewer.

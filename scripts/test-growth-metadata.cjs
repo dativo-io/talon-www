@@ -40,8 +40,9 @@ test('reapplying metadata does not double-escape the title', () => {
 });
 
 test('product identity stays broad and task pages are capabilities', () => {
-  assert.equal(metadata['/'][0], "Dativo Talon — Open-Source AI Control Plane");
-  assert.ok(metadata['/'][1].startsWith("One company policy for your AI use cases."));
+  assert.equal(metadata['/'][0], "Dativo Talon | Open-source AI control plane");
+  assert.ok(metadata['/'][1].startsWith("Manage AI policies, costs and reliability in one place"));
+  assert.ok(metadata['/'][1].includes("open-source, self-hosted control plane for connected AI workflows"));
   assert.ok(metadata['/talon/docs/'][0].includes('AI Control Plane'));
   assert.ok(metadata['/ai-action-control/'][1].includes('one supported capability'));
   assert.ok(!metadata['/ai-action-control/'][0].startsWith('AI Agent Action Approval'));

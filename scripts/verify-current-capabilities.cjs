@@ -79,9 +79,9 @@ if (fs.existsSync(docsHome)) {
 const homepage = path.join(root, 'index.html');
 if (fs.existsSync(homepage)) {
   const html = fs.readFileSync(homepage, 'utf8');
-  if (!html.includes('<h1>Stay in control as AI scales</h1>') || !html.includes('Manage AI policies, costs and reliability in one place.') || !html.includes('Open-source AI control plane')) failures.push('Homepage lost its approved business outcome and shared control-plane promise');
+  if (!html.includes('<h1>Stay in control as AI scales</h1>') || !html.includes('Manage AI policies, costs and reliability in one place.') || !html.includes('Open-source AI control plane') || !html.includes('Reduce AI costs and protect sensitive data') || !html.includes('Keep your AI workflows and providers. Simply configure Talon in between.')) failures.push('Homepage lost its approved business outcome and shared control-plane promise');
   if (!html.includes('Operations Console') || !html.includes('company policy')) failures.push('Homepage lost its buyer-first operating problem or console proof');
-  for (const job of ['Cost control', 'Reliability', 'Shared policy', 'Session understanding']) {
+  for (const job of ['Protect sensitive data', 'Control spending', 'Keep workflows reliable', 'Understand decisions']) {
     if (!html.includes('<strong>' + job + '</strong>')) failures.push('Homepage missing control-plane job: ' + job);
   }
   if (!html.includes('supported interception paths')) failures.push('Homepage lost its interception boundary');

@@ -11,13 +11,21 @@ const sections = [...home.matchAll(/<section\b/g)];
 assert.equal(sections.length, 5, 'homepage should have five focused sections');
 // Grouped navigation adds markup; bound the actual marketing content separately.
 const main = home.match(/<main>[\s\S]*?<\/main>/)?.[0];
-assert.ok(main && main.length < 8500, 'homepage main markup has accumulated an exhaustive feature catalog');
+assert.ok(main && main.length < 8000, 'homepage main markup has accumulated an exhaustive feature catalog');
 const words = html => html.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(token => /[\p{L}\p{N}]/u.test(token)).length;
-assert.ok(words(main) <= 435, 'main copy must not exceed the pre-redesign baseline');
+assert.ok(words(main) <= 300, 'homepage main copy must remain within the storytelling budget');
+assert.ok(main.includes('read-only Operations Console') && main.includes('Shows only observed activity'), 'console capability boundary must remain visible');
+for (const label of ['Customer support', 'Document processing', 'People Analytics', 'Coding assistants']) assert.ok(main.includes('<h3>' + label + '</h3>'), 'missing use-case story: ' + label);
 const hero = main.match(/<section\b[^>]*home-intro[^>]*>[\s\S]*?<\/section>/)?.[0];
 assert.ok(hero && words(hero) < 80, 'hero must remain a short business introduction');
 assert.equal((hero.match(/<a\b/g) || []).length, 2, 'hero must offer only two links');
 assert.match(hero, /<h1>Stay in control as AI scales<\/h1>/);
+assert.ok(hero.includes('<p class="case-kicker">Reduce AI costs and protect sensitive data</p>') && hero.includes('Keep your AI workflows and providers. Simply configure Talon in between.'), 'approved business value and integration caption');
+assert.ok(main.includes('supported interception paths'), 'routed-path governance boundary must remain visible');
+for (const asset of ['talon-control-layer.svg', 'talon-control-layer-mobile.svg']) {
+  const diagram = read('public/assets/' + asset);
+  for (const label of ['Your existing AI use cases', 'Your existing providers and tools', 'AI providers']) assert.ok(diagram.includes(label), 'missing existing-system diagram label: ' + label);
+}
 assert.ok(hero.includes('Manage AI policies, costs and reliability in one place.') && !hero.includes('home-intro-trust'), 'approved concise hero copy and no redundant trust line');
 assert.match(hero, /class="button primary" href="\/pilot\/" data-growth-intent="pilot-offer" data-growth-placement="hero" data-growth-primary="true"/);
 assert.match(hero, /class="button secondary" href="#how-it-works" data-growth-intent="product-overview" data-growth-placement="hero"/);
@@ -26,7 +34,7 @@ assert.ok(hero.includes('/public/assets/talon-control-layer.svg') && fs.existsSy
 assert.ok(main.indexOf('id="governed-actions"') > main.indexOf('id="how-it-works"'), 'refund proof must remain reachable below the hero');
 assert.ok(main.includes('Downstream calls before approval and authorized claim') && main.includes('Downstream call after approval and authorized claim') && main.includes('Approval does not execute a refund'), 'approval and dispatch must stay distinct');
 for (const href of ['/pilot/', '/use-cases/', '/enterprise/', '/talon/docs/quickstart-demo/', '/talon/docs/action-gateway-proof/', '/talon/docs/add-talon-to-existing-app/']) {
-  assert.ok(home.includes('href="' + href + '"'), 'homepage missing evaluator route ' + href);
+  assert.ok(main.includes('href="' + href + '"'), 'homepage main content missing evaluator route ' + href);
 }
 for (const id of ['governed-actions', 'use-cases', 'how-it-works', 'operations-console', 'pilot']) {
   assert.ok(home.includes('id="' + id + '"'), 'deep-link anchor lost: ' + id);
