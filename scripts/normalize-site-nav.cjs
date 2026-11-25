@@ -84,6 +84,11 @@ for (const file of listHtmlFiles(root)) {
   updated = ensureHeadAsset(updated, 'href="/public/assets/talon-icon.svg"', faviconTag);
   updated = ensureHeadAsset(updated, 'href="/site-nav.css"', navStylesheet);
   updated = ensureHeadAsset(updated, 'src="/site-nav.js"', navScript);
+  // Only owned marketing pages with a site-nav; docs keep their own theme.
+  updated = ensureHeadAsset(updated, 'href="/quiet-confidence.css"', '<link rel="stylesheet" href="/quiet-confidence.css" />');
+  updated = updated.replace(/<body\b([^>]*)>/i, (match, attrs) =>
+    /\bdata-ux-theme=/.test(attrs) ? match : '<body' + attrs + ' data-ux-theme="quiet-confidence" data-ux-legacy-marketing>');
+  if (!updated.includes('data-ux-theme="quiet-confidence"')) throw new Error('Missing approved theme: ' + file);
   fs.writeFileSync(file, updated, 'utf8');
   normalized += 1;
 }
