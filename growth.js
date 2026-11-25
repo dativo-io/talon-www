@@ -9,7 +9,7 @@
     if (!optedOut() && window.umami && typeof window.umami.track === 'function')
       window.umami.track(name,{...props,event_version:eventVersion});
   };
-  const allowed = new Set(['pilot-booking','pilot-offer','github','quickstart','product-demo','evidence','checklist','docs','integration','integration-n8n','n8n-guide','n8n-examples','case-support','case-procurement','case-people','case-coding','case-hub','cost','governance','enterprise','product-overview','console-docs','console-screenshot','connect-app','action-control','seo-mcp','seo-audit','seo-comparison','coding-agents','founder-profile','pilot-contact']);
+  const allowed = new Set(['pilot-booking','pilot-offer','github','quickstart','product-demo','evidence','checklist','docs','integration','integration-n8n','n8n-guide','n8n-examples','case-support','case-procurement','case-people','case-coding','case-hub','cost','governance','enterprise','product-overview','console-docs','console-screenshot','connect-app','action-control','seo-mcp','seo-audit','seo-comparison','coding-agents','founder-profile','pilot-contact','docs-markdown']);
   const intentFor = (link,url) => {
     const explicit=link.dataset?.growthIntent;
     if (allowed.has(explicit)) return explicit;
@@ -46,8 +46,9 @@
     if(link.closest('article')) return 'docs-body';
     return 'body';
   };
-  const names = {'pilot-booking':'Pilot Booking Click','pilot-offer':'Pilot Offer Click','github':'GitHub Click','quickstart':'Quickstart Demo Click','product-demo':'Product Demo Click','evidence':'Evidence Click','checklist':'Checklist Click','docs':'Docs Click','n8n-guide':'Integration Example Click','n8n-examples':'Integration Example Click','console-screenshot':'Console Screenshot Click'};
+  const names = {'pilot-booking':'Pilot Booking Click','pilot-offer':'Pilot Offer Click','github':'GitHub Click','quickstart':'Quickstart Demo Click','product-demo':'Product Demo Click','evidence':'Evidence Click','checklist':'Checklist Click','docs':'Docs Click','n8n-guide':'Integration Example Click','n8n-examples':'Integration Example Click','console-screenshot':'Console Screenshot Click','docs-markdown':'Docs Markdown View'};
   document.addEventListener('click', event => {
+    if(event.target?.closest?.('button[data-doc-copy="true"]')&&/^\/talon\/docs\/(?:[a-z0-9.-]+\/)?$/.test(page())){track('Docs Markdown Copy',{page:page(),signal:'click-only'});return;}
     const link=event.target?.closest?.('a[href]');
     if(link){
       let url; try{url=new URL(link.getAttribute('href')||'',window.location.origin);}catch{return;}
@@ -73,6 +74,10 @@
       if(/(?:quickstart\.sh|scripts\/install\.sh|make install|docker compose|docker pull|go install github\.com\/dativo-io\/talon)/.test(code))
         track('Copy Install Command',{page:page(),placement:'docs-code',signal:'click-only'});
     }
+  });
+
+  window.addEventListener('talon:docs-search',event=>{
+    if(/^\/talon\/docs\/(?:[a-z0-9.-]+\/)?$/.test(page())&&['open','result','no-results'].includes(event.detail))track('Docs Search',{page:page(),action:event.detail});
   });
 
   // Only predefined campaign values are sent; automatic query/hash collection is off.
@@ -112,7 +117,7 @@
         <a class="growth-path-card" href="/ai-action-control/" data-growth-intent="action-control" data-growth-placement="homepage-paths">
           <span class="growth-path-kicker">Consequential actions</span>
           <strong>An agent can publish, refund or update data</strong>
-          <span>Inspect the action boundary. Deny disallowed MCP calls today; test exact HTTP action authorization on Talon main, with clear limits for other execution paths.</span>
+          <span>Inspect the action boundary. Verify governed MCP and exact HTTP action authorization on the supported release, with clear limits for other execution paths.</span>
           <em>Action-control proof →</em>
         </a>
         <a class="growth-path-card" href="/talon/docs/add-talon-to-existing-app/" data-growth-intent="integration" data-growth-placement="homepage-paths">

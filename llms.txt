@@ -20,4 +20,9 @@ Talon applies configured policy, budget limits, data protections, provider routi
 - [Integration paths](https://dativo.io/talon/docs/choosing-integration-path/): select a supported boundary.
 - [Pilot](https://dativo.io/pilot/): technical fit call.
 
+## AI-assisted engineering
+- [Version-matched Markdown index](https://dativo.io/talon/docs/llms.txt)
+- [Complete documentation bundle](https://dativo.io/talon/docs/llms-full.txt)
+- [Publication provenance](https://dativo.io/talon/docs/publication.json)
+
 This experimental discovery file summarizes public links. Verify capabilities against the current source, documentation and released version; it is not a compatibility guarantee.
