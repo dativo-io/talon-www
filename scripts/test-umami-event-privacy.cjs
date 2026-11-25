@@ -13,7 +13,7 @@ try{
  for(const flag of ['data-exclude-search="true"','data-exclude-hash="true"','data-do-not-track="true"']) assert.ok(html.includes(flag));
  const events=[],listeners={};
  const location={pathname:'/solutions/n8n/',origin:'https://dativo.io',href:'https://dativo.io/solutions/n8n/?utm_source=linkedin&utm_medium=outreach&utm_campaign=n8n_acquisition&utm_content=person@example.com&secret=private'};
- const window={location,umami:{track:(name,props)=>events.push({name,props})},navigator:{},addEventListener:()=>{}};
+ const window={location,umami:{track:(name,props)=>events.push({name,props})},navigator:{},addEventListener:(name,fn)=>{(listeners[name]||=[]).push(fn)}};
  const document={addEventListener:(name,fn)=>{(listeners[name]||=[]).push(fn)},querySelector:()=>null};
  const script=fs.readFileSync(path.join(__dirname,'../growth.js'),'utf8');
  vm.runInNewContext(script,{window,document,URL});vm.runInNewContext(script,{window,document,URL});
@@ -32,6 +32,15 @@ try{
  assert.equal(events[1].props.destination,'/talon/docs/quickstart-demo/');
  assert.equal(events[2].props.destination,'external:github.com');
  window.navigator.doNotTrack='1';click('/pilot/','pilot-offer');assert.equal(events.length,7);
+ window.navigator.doNotTrack='0';location.pathname='/talon/docs/configuration/';
+ click('/talon/docs/configuration/index.md','docs-markdown');
+ const copyButton={closest:()=>null};
+ listeners.click[0]({target:{closest:s=>s==='button[data-doc-copy="true"]'?copyButton:null}});
+ assert.equal(listeners['talon:docs-search'].length,1);
+ for(const detail of ['open','result','no-results','private search term', {query:'person@example.com'}])listeners['talon:docs-search'][0]({detail});
+ assert.deepEqual(events.slice(7).map(e=>e.name),['Docs Markdown View','Docs Markdown Copy','Docs Search','Docs Search','Docs Search']);
+ assert.deepEqual(events.slice(9).map(e=>e.props.action),['open','result','no-results']);
+ window.navigator.doNotTrack='1';listeners['talon:docs-search'][0]({detail:'open'});assert.equal(events.length,12);
  for(const forbidden of ['person@example.com','secret_token','access_token','Jane Doe','private','#client']) assert.ok(!JSON.stringify(events).includes(forbidden),'private event property leaked');
  console.log('PASS single listener, privacy flags, campaign allowlist, event taxonomy, dynamic route and Do Not Track');
 }finally{fs.rmSync(root,{recursive:true,force:true});}
