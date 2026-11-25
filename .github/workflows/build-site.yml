@@ -137,8 +137,9 @@ jobs:
         if: always() && env.CHROME_PATH != ''
         run: |
           "$RUNNER_TEMP/talon-site-qa/node_modules/.bin/lhci" collect --config=scripts/lighthouserc.cjs
-          "$RUNNER_TEMP/talon-site-qa/node_modules/.bin/lhci" assert --config=scripts/lighthouserc.cjs
+          node scripts/report-docs-lighthouse.cjs .lighthouseci
           "$RUNNER_TEMP/talon-site-qa/node_modules/.bin/lhci" upload --config=scripts/lighthouserc.cjs
+          "$RUNNER_TEMP/talon-site-qa/node_modules/.bin/lhci" assert --config=scripts/lighthouserc.cjs
 
       - name: Upload browser and Lighthouse evidence
         if: always()

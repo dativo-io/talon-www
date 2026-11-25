@@ -31,6 +31,7 @@ const config = {
       {
         docs: {
           routeBasePath: '/',
+          remarkPlugins: [require('./src/remark/accessible-task-lists.cjs')],
           sidebarPath: './sidebars.js',
           editUrl: ({docPath}) => {
             const sourceMap = require('./src/source-map.cjs');

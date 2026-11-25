@@ -19,3 +19,5 @@ Run Production site health with full=true after the merged site is deployed. Che
 - Verify live Umami dashboard/export: named events, no raw terms or clipboard content, no duplicate click event and DNT. Confirm GSC indexing separately. No live tracker credentials in repo.
 - Record release, website commit, build/run URLs, deployment and acceptance observations. Use release evidence for product proof; no claim that CI tested every manual instruction or live provider.
 - Step 8 closes only when evidence is recorded and mandatory failures resolved. No automatic compliance, adoption or performance guarantees.
+
+Static GFM task lists render their checked/unchecked state as text for accessible reading; source exports preserve task-list syntax. Lighthouse diagnostics and report upload run before strict assertions so failure evidence remains available.
