@@ -69,20 +69,23 @@ for (const route of ['/use-cases/customer-support/', '/use-cases/vendor-contract
 assert.ok(n8n.includes('not real payments') && n8n.includes('Confirm support for your n8n version, nodes and deployment') && n8n.includes('Direct calls bypassing Talon'), 'n8n capability boundaries missing');
 const doc = read('docs-site/docs/index.md');
 assert.ok(doc.length < 4000, 'docs front door has become a long encyclopedia again');
-for (const route of ['quickstart-demo.md', 'add-talon-to-existing-app.md', 'action-gateway-proof.md']) {
+for (const route of ['quickstart-demo.md', 'add-talon-to-existing-app.md', 'technical-evaluation.md', 'action-gateway-proof.md']) {
   assert.ok(doc.includes('](./' + route + ')'), 'one of the three docs entry paths is missing: ' + route);
 }
 assert.ok(!/start in shadow mode/i.test(doc), 'docs first run may not recommend retired shadow mode');
-assert.ok(!doc.includes('![', 0), 'docs front door should not preload full console screenshots');
+assert.ok(!/console-.*\.webp|!\[/.test(doc), 'docs front door should use only the shared lightweight architecture diagram');
+assert.ok(doc.includes('/public/assets/talon-control-layer.svg') && doc.includes('/public/assets/talon-control-layer-mobile.svg'), 'reuse approved architecture diagram');
+assert.equal((doc.match(/className="qc-docs-start-card"/g)||[]).length,3,'three primary starting choices');
 
 const sidebar = read('docs-site/sidebars.js');
-const match = sidebar.match(/label: 'Start here',[\s\S]*?items: \[([\s\S]*?)\]\s*,/);
+const match = sidebar.match(/label: 'Get started',[\s\S]*?items: \[([\s\S]*?)\]\s*,/);
 assert.ok(match, 'sidebar first-run section missing');
 const visible = [...match[1].matchAll(/doc\('([^']+)'/g)].map(hit => hit[1]);
-assert.deepEqual(visible, ['quickstart-demo', 'add-talon-to-existing-app', 'action-gateway-proof'], 'expanded start list must remain three task entries');
-assert.ok(sidebar.includes("label: 'Start here',\n      collapsed: false,"), 'start category should be open');
-assert.ok(sidebar.includes("label: 'Use cases',\n      collapsed: true,"), 'deep categories should be initially collapsed');
-for (const id of ['production-pilot', 'product-demo', 'evaluation-checklist', 'open-source-and-enterprise', 'choosing-integration-path']) {
+assert.deepEqual(visible, ['quickstart-demo', 'add-talon-to-existing-app', 'first-governed-agent'], 'expanded start list must remain three task entries');
+assert.ok(sidebar.includes("label: 'Get started',\n      collapsed: false,"), 'start category should be open');
+assert.ok(sidebar.includes("label: 'Evaluate Talon',\n      collapsed: true,"), 'deep categories should be initially collapsed');
+assert.deepEqual([...sidebar.matchAll(/label: '([^']+)',\n      collapsed:/g)].map(m=>m[1]),['Get started','Integrations','Apply controls','Operate Talon','Evaluate Talon','Reference'],'six approved intentions');
+for (const id of ['technical-evaluation','production-pilot', 'product-demo', 'evaluation-checklist', 'open-source-and-enterprise', 'choosing-integration-path']) {
   assert.equal(sidebar.split("'"+id+"'").length-1, 1, 'relocated reference guide lost or duplicated: '+id);
 }
 
