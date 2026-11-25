@@ -87,7 +87,13 @@ const fileName=(route,viewport)=>(route==='/'?'home':route.replace(/^\/|\/$/g,''
    await check(page.locator('main a[href="https://github.com/dativo-io/talon"]').first(),'GitHub Click');
    await page.goto(base+'/pilot/',{waitUntil:'load'});
    await page.evaluate(()=>document.addEventListener('click',e=>{if(e.target.closest('a[href]'))e.preventDefault();},true));
-   await check(page.locator('main a[data-growth-intent="pilot-booking"]').first(),'Pilot Booking Click');
+   assert.equal(await page.locator('.pilot-hero-actions a').count(),1,'single hero booking CTA');
+   assert.equal(await page.locator('.pilot-next a[href="/talon/docs/action-gateway-proof/"]').count(),1,'technical proof remains available');
+   assert.equal(await page.getByRole('heading',{level:1,name:'Scale your AI with confidence'}).count(),1);
+   const booking = page.locator('main a[data-growth-intent="pilot-booking"]');
+   assert.deepEqual(await booking.allTextContents(),['Book a call','Book a call']);
+   assert.equal(await page.getByRole('heading',{name:'How to prepare for your first use case'}).count(),1);
+   await check(booking.first(),'Pilot Booking Click');
    report.journeys.push({viewport:device.name,status:'passed'});
   }catch(e){issue('acquisition journeys',device.name,'journey',e.message)}
   await ctx.close();
