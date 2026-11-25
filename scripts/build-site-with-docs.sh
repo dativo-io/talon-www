@@ -70,6 +70,7 @@ node "$ROOT_DIR/scripts/test-first-run-journeys.cjs"
 node "$ROOT_DIR/scripts/edition-comparison.cjs" --check
 node --test "$ROOT_DIR/scripts/test-docs-publication.cjs"
 node --test "$ROOT_DIR/scripts/test-docs-search.cjs"
+node --test "$ROOT_DIR/scripts/test-docs-markdown.cjs"
 node "$ROOT_DIR/scripts/test-pilot-conversion.cjs"
 node "$ROOT_DIR/scripts/test-enterprise-pilot-funnel.cjs"
 node "$ROOT_DIR/scripts/test-umami-event-privacy.cjs"
@@ -166,6 +167,7 @@ node "$ROOT_DIR/scripts/verify-current-capabilities.cjs" "$OUT_DIR"
 # Generate the root SEO files after all pages exist.
 node "$ROOT_DIR/scripts/generate-seo-files.cjs" "$OUT_DIR" "$SITE_URL"
 node "$ROOT_DIR/scripts/build-docs-search.cjs" --verify "$OUT_DIR"
+node "$ROOT_DIR/scripts/build-docs-markdown.cjs" "$OUT_DIR" "$DOCS_DIR/docs"
 
 # Apply analytics-driven search snippets and site-wide funnel UX after both the
 # marketing pages and Docusaurus docs exist in their final production paths.

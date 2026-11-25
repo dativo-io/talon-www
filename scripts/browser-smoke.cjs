@@ -146,6 +146,21 @@ const fileName=(route,viewport)=>(route==='/'?'home':route.replace(/^\/|\/$/g,''
     assert.ok(requests.some(u=>new URL(u).pathname==='/talon/docs/search-index.json'),'same-origin search index loaded');
     assert.ok(!requests.some(u=>/zzzxnoresultsxyzz|governed(?:%20|\+)MCP/i.test(u)),'search query must not leave browser');
    }finally{page.off('request',observe);}
+   docsStage='markdown-export';
+   const markdownLink=page.getByRole('link',{name:'View Markdown',exact:true});
+   assert.equal(await markdownLink.getAttribute('href'),'/talon/docs/mcp-governed-tools/index.md');
+   const md=await page.request.get(base+'/talon/docs/mcp-governed-tools/index.md');
+   assert.equal(md.status(),200);
+   const text=await md.text();
+   assert.ok(text.includes('Talon release: v')&&text.includes('Canonical page: https://dativo.io/talon/docs/mcp-governed-tools/')&&text.includes('2026-07-28'),'release-matched Markdown content');
+   // Stub only the browser clipboard API, not fetch or the copy handler.
+   await page.evaluate(()=>{
+     Object.defineProperty(window,'ClipboardItem',{configurable:true,value:undefined});
+     Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async value=>{window.__testCopiedMarkdown=value;}}});
+   });
+   await page.getByRole('button',{name:'Copy page as Markdown',exact:true}).click();
+   await page.getByRole('status').filter({hasText:'Markdown copied.'}).waitFor();
+   assert.equal(await page.evaluate(()=>window.__testCopiedMarkdown),text,'copy exact exported bytes');
    docsStage='dark-mode';
    await page.emulateMedia({colorScheme:'dark'});
    await page.reload({waitUntil:'load'});

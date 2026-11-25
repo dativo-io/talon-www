@@ -12,6 +12,9 @@ Use Umami as the browser acquisition tracker. One shared growth.js listener; no 
 | Evidence Click | Inspect evidence routes |
 | Integration Example Click | n8n example, support or vendor-review example clicked from the n8n page |
 | Console Screenshot Click | Open native-size real product image |
+| Docs Markdown Copy | Click copy page; not clipboard success or execution |
+| Docs Markdown View | Open version-matched Markdown |
+| Docs Search | Search opened, result chosen, or explicit no-results Enter; fixed action only, never terms |
 | Copy Install Command | Click copy on a recognized installation code block; not clipboard or execution success |
 | Funnel CTA | Other governed navigation intents |
 | Acquisition Campaign | Safe allowlisted UTM values on landing |

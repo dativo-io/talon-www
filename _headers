@@ -11,3 +11,11 @@
 
 /404.html
   X-Robots-Tag: noindex
+
+/talon/docs/*.md
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: noindex
+
+/talon/docs/llms*.txt
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: noindex
