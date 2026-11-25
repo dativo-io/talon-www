@@ -9,7 +9,21 @@ const read = relative => fs.readFileSync(path.join(root, relative), 'utf8');
 const home = read('index.html');
 const sections = [...home.matchAll(/<section\b/g)];
 assert.equal(sections.length, 5, 'homepage should have five focused sections');
-assert.ok(home.length < 11500, 'homepage has accumulated an exhaustive feature catalog again');
+// Grouped navigation adds markup; bound the actual marketing content separately.
+const main = home.match(/<main>[\s\S]*?<\/main>/)?.[0];
+assert.ok(main && main.length < 8500, 'homepage main markup has accumulated an exhaustive feature catalog');
+const words = html => html.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(token => /[\p{L}\p{N}]/u.test(token)).length;
+assert.ok(words(main) <= 435, 'main copy must not exceed the pre-redesign baseline');
+const hero = main.match(/<section\b[^>]*home-intro[^>]*>[\s\S]*?<\/section>/)?.[0];
+assert.ok(hero && words(hero) < 80, 'hero must remain a short business introduction');
+assert.equal((hero.match(/<a\b/g) || []).length, 2, 'hero must offer only two links');
+assert.match(hero, /<h1>Stay in control as AI scales<\/h1>/);
+assert.match(hero, /class="button primary" href="\/pilot\/" data-growth-intent="pilot-offer" data-growth-placement="hero" data-growth-primary="true"/);
+assert.match(hero, /class="button secondary" href="#how-it-works" data-growth-intent="product-overview" data-growth-placement="hero"/);
+assert.ok(!hero.includes('Synthetic example') && !hero.includes('REQUIRE_APPROVAL'), 'technical proof belongs after the introduction');
+assert.ok(hero.includes('/public/assets/talon-control-layer.svg') && fs.existsSync(path.join(root, 'public/assets/talon-control-layer.svg')), 'conceptual control-layer illustration missing');
+assert.ok(main.indexOf('id="governed-actions"') > main.indexOf('id="how-it-works"'), 'refund proof must remain reachable below the hero');
+assert.ok(main.includes('Downstream calls before approval and authorized claim') && main.includes('Downstream call after approval and authorized claim') && main.includes('Approval does not execute a refund'), 'approval and dispatch must stay distinct');
 for (const href of ['/pilot/', '/use-cases/', '/enterprise/', '/talon/docs/quickstart-demo/', '/talon/docs/action-gateway-proof/', '/talon/docs/add-talon-to-existing-app/']) {
   assert.ok(home.includes('href="' + href + '"'), 'homepage missing evaluator route ' + href);
 }
