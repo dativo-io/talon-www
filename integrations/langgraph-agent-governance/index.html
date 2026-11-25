@@ -68,8 +68,8 @@ llm = ChatOpenAI(
     <article class="card"><h3>3. ToolNode runs local Python or direct HTTP</h3><p>If LangGraph executes a local function or calls an external API outside Talon, the action is invisible to Talon. Use application authorization, service credentials and isolation at that separate boundary.</p></article>
   </div>
   <div class="table-wrap comparison-table"><table><thead><tr><th>Test input</th><th>Expected observable proof</th></tr></thead><tbody>
-    <tr><td>Allow a harmless read via the configured MCP proxy</td><td>Upstream call occurs; intercepted decision and outcome can be inspected.</td></tr>
-    <tr><td>Deny a forbidden write via the same MCP proxy</td><td>Upstream handler is not invoked; denied call has a signed Talon record.</td></tr>
+    <tr><td>Allow a harmless read via the configured governed MCP endpoint</td><td>Upstream call occurs; intercepted decision and outcome can be inspected.</td></tr>
+    <tr><td>Deny a forbidden write via the same governed MCP endpoint</td><td>Upstream handler is not invoked; denied call has a signed Talon record.</td></tr>
     <tr><td>Run a local ToolNode bypassing the proxy</td><td>No Talon execution claim; enforce this path in your application instead.</td></tr>
   </tbody></table></div>
   <p class="boundary-note">A model suggestion, a tool denial and a completed business effect are different facts. Verify only the path Talon observed. For an implementation checklist see <a href="/mcp-tool-governance/">MCP tool permissions and call governance</a>; for concrete receipts see <a href="/talon/docs/mcp-governance-extension/">the MCP governance documentation</a>.</p>
@@ -88,7 +88,7 @@ talon audit show &lt;evidence-id&gt;
 talon audit verify &lt;evidence-id&gt;
 
 talon costs --agent langgraph-support</code></pre></div></div></section>
-<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Start with one graph</p><h2>Give one LangGraph use case an identity on the common path.</h2><p>Choose a workflow with real spend, sensitive data or repeated model calls. Create its agent file, mint the key, route provider traffic through Talon and inspect the resulting runtime decisions.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/add-talon-to-existing-app/">Add Talon to an app</a><a class="button secondary" href="/ai-cost-control/">Start with cost</a><a class="button ghost" href="https://www.linkedin.com/in/sergeyenin/" rel="noopener noreferrer" data-growth-intent="pilot-contact" data-growth-placement="cta-section">Discuss one pilot use case</a></div></div></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Start with one graph</p><h2>Give one LangGraph use case an identity on the common path.</h2><p>Choose a workflow with real spend, sensitive data or repeated model calls. Create its agent file, mint the key, route provider traffic through Talon and inspect the resulting runtime decisions.</p><div class="hero-actions"><a class="button primary" href="/talon/docs/add-talon-to-existing-app/">Add Talon to an app</a><a class="button secondary" href="/ai-cost-control/">Start with cost</a><a class="button ghost" href="/pilot/" data-growth-intent="pilot-offer" data-growth-placement="cta-section">Discuss one pilot use case</a></div></div></div></section>
 </main>
 <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>LangGraph remains the orchestrator. Talon authenticates the use case and governs only supported traffic and actions routed through its interception paths.</span></div></footer><script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body></html>

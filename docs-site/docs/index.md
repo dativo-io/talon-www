@@ -20,7 +20,7 @@ You don't need to migrate your application or adopt every Talon capability to be
 
 ## From first request to verified decision
 
-1. **Choose a supported path.** Talon supports different boundaries for model APIs, exact HTTP actions, governed MCP tools and selected runtimes. [Choose your integration path](./choosing-integration-path.md).
+1. **Choose a supported path.** Talon supports model APIs, exact HTTP actions, governed MCP tools and selected delegated runtimes. In v1.17, HTTP and governed MCP use one Action Gateway. [Choose your integration path](./choosing-integration-path.md).
 2. **Register one use case.** Use `talon agents add` and the assigned Talon key. Configure the organization baseline and the use case's effective rules.
 3. **Test one meaningful decision.** Allow an expected request and prevent a disallowed one on the same routed path.
 4. **Inspect the evidence.** Use `talon agents`, the read-only [Operations Console](./operations-console.md), and independent [signed evidence verification](./evidence-store.md).
@@ -34,4 +34,4 @@ For a repeatable business workflow, use the [synthetic n8n refund approval examp
 - **Explore all technical references:** Use the sidebar sections for integrations, security, controls, architecture and advanced topics.
 - **Need help on a real workflow?** [Discuss a founder-led pilot](https://dativo.io/pilot/).
 
-**Scope matters:** Talon cannot enforce rules on actions or traffic that bypass supported interception paths. Signed evidence establishes the integrity of recorded decisions, not external business outcomes or automatic regulatory compliance. OSS enforcement and local approvals are available now; corporate integrations described under [Enterprise](./open-source-and-enterprise.md) are planned.
+**Scope matters:** Talon cannot enforce rules on actions or traffic that bypass supported interception paths. Signed evidence establishes the integrity of recorded decisions, not external business outcomes or automatic regulatory compliance. [Talon Community and Enterprise](./open-source-and-enterprise.md) share the enforcement core; Enterprise integrations and deployment profiles are scoped during evaluation.

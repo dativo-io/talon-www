@@ -13,6 +13,9 @@ const required = [
   'ai-agent-governance/index.html',
   'talon/docs/mcp-governance-extension/index.html',
   'talon/docs/mcp-2026-migration/index.html',
+  'talon/docs/mcp-governed-tools/index.html',
+  'talon/docs/upgrading-to-1.17/index.html',
+  'talon/docs/open-source-and-enterprise/index.html',
   'talon/docs/openshell/index.html',
   'talon/docs/observability/index.html',
   'enterprise/index.html',
@@ -135,5 +138,18 @@ if (fs.existsSync(mcpPage)) {
 }
 const comparisonPage = path.join(root, 'comparisons/index.html');
 if (fs.existsSync(comparisonPage) && !fs.readFileSync(comparisonPage, 'utf8').includes('observability/evaluation tools')) failures.push('Observability complementarity missing');
+// Current commercial positioning and released MCP behavior, not historical release notes.
+for (const rel of ['index.html','talon/docs/index.html','talon/docs/open-source-and-enterprise/index.html','llms.txt','ai-action-control/index.html','mcp-tool-governance/index.html','ai-agent-governance/index.html','ai-agent-audit-trail/index.html','comparisons/index.html','comparisons/talon-vs-litellm/index.html','solutions/n8n/index.html','use-cases/refund-approvals/index.html']) {
+  const target=path.join(root,rel);
+  if (!fs.existsSync(target)) { failures.push('Missing current claim surface: '+rel); continue; }
+  const body=fs.readFileSync(target,'utf8');
+  if (/planned Enterprise|Enterprise direction \(planned\)|Enterprise is in development|MCP\/native convergence remains|canonical MCP convergence is in progress|do not inherit its exact-operation approval|MCP tool calls inherit the HTTP Action Gateway approval/i.test(body)) failures.push('Retired edition or MCP claim: '+rel);
+}
+const docsEdition=path.join(root,'talon/docs/open-source-and-enterprise/index.html');
+if(fs.existsSync(docsEdition)){
+ const body=fs.readFileSync(docsEdition,'utf8');
+ for(const feature of ["Organization and AI use-case policy","Model and data controls, spend limits, policy-valid fallback","Exact-action authorization and local human review","Signed decision evidence and independent verification","Sessions and local read-only Operations Console","Corporate SSO, team roles and access revocation","Teams register and manage their own AI apps","Who changed policies, keys and access","Review and promote policy changes","Approvals in existing corporate workflows","Security monitoring and customer-managed keys","Supported deployment, recovery and upgrades","High-load and high-availability deployments","Enterprise-level support"]) if(!body.includes(feature)) failures.push('Docs edition comparison missing: '+feature);
+ if(!body.includes('Pilot scope')||!body.includes('https://dativo.io/pilot/')||body.includes('linkedin.com/in/sergeyenin')) failures.push('Docs edition scope or canonical pilot route missing');
+}
 if (failures.length) { for (const failure of failures) console.error(`FAIL: ${failure}`); process.exit(1); }
 console.log('PASS: current action/MCP/OpenShell publication routes and claims');

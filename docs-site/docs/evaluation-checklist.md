@@ -14,11 +14,11 @@ Use this checklist for an initial engineering review. A successful evaluation pr
 |---|---|
 | Which business workflow? | Support reply, coding release, aggregate analytics, contract review, or another single case |
 | What could go wrong? | Forbidden action, sensitive egress, unexpected spend or policy-unsafe fallback |
-| Which Talon interception point? | Model gateway, MCP proxy, HTTP Action Gateway or delegated runtime |
+| Which Talon interception point? | Model gateway, governed MCP endpoint, HTTP Action Gateway or delegated runtime |
 | Which requests bypass Talon? | Local tool execution, direct API requests, unproxied provider traffic |
 | What is the expected business effect? | One allowed mock call, zero forbidden calls, a denied provider request, etc. |
 
-See [choose your integration path](./choosing-integration-path.md) and [control-plane boundaries](./control-plane-boundaries.md). **Do not mix exact HTTP approval semantics with MCP denial.** They are different capabilities.
+See [choose your integration path](./choosing-integration-path.md) and [control-plane boundaries](./control-plane-boundaries.md). In v1.17, governed HTTP and MCP actions share the Action Gateway. Test each transport's invocation, approval and dispatch procedure separately; discovery filtering alone does not authorize execution. See [governed MCP tools](./mcp-governed-tools.md).
 
 ## 2. Choose the smallest reproducible proof
 
@@ -65,4 +65,4 @@ For exported evidence see [evidence store](./evidence-store.md), [integrity demo
 
 Proceed to a scoped pilot only if the negative test actually prevents the relevant upstream effect, allowed work still succeeds, an operator can explain and verify the decision, and all bypass paths have independent controls or are documented risks.
 
-Talon's HMAC evidence is **tamper-evident, not immutable**. An approved HTTP action is **not automatically dispatched**. Runtime cost estimates can differ from final provider charges. Product evidence is not legal or regulatory certification.
+Talon's HMAC evidence is **tamper-evident, not immutable**. An approved action is **not automatically dispatched**. Runtime cost estimates can differ from final provider charges. Product evidence is not legal or regulatory certification.
