@@ -408,13 +408,6 @@ body[data-ux-theme="quiet-confidence"] .home-intro .case-lead {
 body[data-ux-theme="quiet-confidence"] .home-intro .case-actions {
   justify-content: center;
 }
-body[data-ux-theme="quiet-confidence"] .home-intro-trust {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px 20px;
-  margin: 22px 0 0;
-}
 body[data-ux-theme="quiet-confidence"] .home-architecture {
   width: min(100%, 760px);
   margin: clamp(38px, 6vw, 72px) auto 0;
@@ -482,6 +475,5 @@ body[data-ux-theme="quiet-confidence"] .nav-dropdown-menu a:focus-visible {
 }
 @media (max-width: 670px) {
   body[data-ux-theme="quiet-confidence"] .home-intro .case-actions { width: 100%; }
-  body[data-ux-theme="quiet-confidence"] .home-intro-trust { gap: 5px 12px; }
-  body[data-ux-theme="quiet-confidence"] .home-architecture { margin-top: 32px; }
+    body[data-ux-theme="quiet-confidence"] .home-architecture { margin-top: 32px; }
 }
