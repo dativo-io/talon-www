@@ -3,6 +3,8 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import sourceMap from '../src/source-map.cjs';
 import publication from '../../scripts/docs-publication.cjs';
+import escaping from './escape-mdx-prose.cjs';
+const {escapeMdxJsxOutsideCode}=escaping;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -203,26 +205,6 @@ async function normalizeLinks(markdown, sourcePath) {
 
   normalized = await rewriteRelativeMarkdownLinks(normalized, sourcePath);
   return normalized;
-}
-
-function escapeMdxJsxOutsideCode(markdown) {
-  const lines = markdown.split('\n');
-  let inFence = false;
-
-  return lines
-    .map((line) => {
-      if (/^\s*```/.test(line)) {
-        inFence = !inFence;
-        return line;
-      }
-      if (inFence) return line;
-
-      // MDX treats any raw '<' as possible JSX, including prose like '<15ms'
-      // and placeholders like '<agent-key>'. Imported GitHub markdown should
-      // render these literally, so escape bare '<' outside fenced code blocks.
-      return line.replace(/</g, '&lt;');
-    })
-    .join('\n');
 }
 
 function addFrontMatter(markdown, docPath) {

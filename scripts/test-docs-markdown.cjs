@@ -30,3 +30,9 @@ test('exports cover all canonical pages with hashes and release provenance',()=>
   assert.throws(()=>generate(out,docs,{...p,websiteOwnedPages:[]}),/exactly canonical/);
  }finally{fs.rmSync(root,{recursive:true,force:true});}
 });
+
+test('synced inline commands survive Markdown export',()=>{
+ const {escapeMdxJsxOutsideCode:escape}=require('../docs-site/scripts/escape-mdx-prose.cjs');
+ const input='| Register | `talon agents add <name> --owner <team>` |';
+ assert.equal(body(escape(input),'/talon/docs/add-talon-to-existing-app/',new Set()),input+'\n');
+});
