@@ -4,16 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://dativo.io/" />
-  <title>Dativo Talon — Open-Source AI Control Plane</title>
-  <meta name="description" content="Connect your AI use cases to one self-hosted control plane. Enforce budgets and company policy, authorize sensitive actions, and investigate sessions and signed decisions." />
-  <meta property="og:title" content="Dativo Talon — Open-Source AI Control Plane" />
-  <meta property="og:description" content="Connect your AI use cases to one self-hosted control plane. Enforce budgets and company policy, authorize sensitive actions, and investigate sessions and signed decisions." />
+  <title>Dativo Talon | Open-source AI control plane</title>
+  <meta name="description" content="Manage AI policies, costs and reliability in one place with Talon, an open-source, self-hosted control plane for connected AI workflows." />
+  <meta property="og:title" content="Dativo Talon | Open-source AI control plane" />
+  <meta property="og:description" content="Manage AI policies, costs and reliability in one place with Talon, an open-source, self-hosted control plane for connected AI workflows." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://dativo.io/" />
   <meta property="og:image" content="https://dativo.io/public/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Dativo Talon — Open-Source AI Control Plane" />
-  <meta name="twitter:description" content="Connect your AI use cases to one self-hosted control plane. Enforce budgets and company policy, authorize sensitive actions, and investigate sessions and signed decisions." />
+  <meta name="twitter:title" content="Dativo Talon | Open-source AI control plane" />
+  <meta name="twitter:description" content="Manage AI policies, costs and reliability in one place with Talon, an open-source, self-hosted control plane for connected AI workflows." />
   <meta name="twitter:image" content="https://dativo.io/public/assets/og-image.png" />
   <link rel="icon" type="image/svg+xml" href="/public/assets/talon-icon.svg" />
   <link rel="stylesheet" href="/styles.css" />
@@ -28,48 +28,61 @@
       <a class="brand" href="/" aria-label="Dativo Talon home"><img class="brand-logo" src="/public/assets/talon-icon.svg?v=2" alt="Dativo Talon mark" /><span>Dativo Talon</span></a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation"><span></span><span></span><span></span></button>
       <nav class="nav-links" id="primary-navigation" aria-label="Primary navigation">
-        <a href="/use-cases/">Use cases</a>
-        <a href="/#how-it-works">How it works</a>
-        <a href="/enterprise/">Enterprise</a>
-        <a href="/talon/docs/">Docs</a>
-        <a href="https://github.com/dativo-io/talon">GitHub</a>
+        <details class="nav-dropdown"><summary>Product</summary>
+          <div class="nav-dropdown-menu">
+            <a href="/#how-it-works" data-growth-intent="product-overview">How it works</a>
+            <a href="/#operations-console" data-growth-intent="console-docs">Operations Console</a>
+            <a href="/ai-agent-governance/" data-growth-intent="governance">Governance and control</a>
+            <a href="/enterprise/" data-growth-intent="enterprise">Enterprise</a>
+          </div>
+        </details>
+        <details class="nav-dropdown"><summary>Solutions</summary>
+          <div class="nav-dropdown-menu">
+            <a href="/use-cases/" data-growth-intent="case-hub">All use cases</a>
+            <a href="/use-cases/customer-support/" data-growth-intent="case-support">Customer support</a>
+            <a href="/use-cases/vendor-contract-review/" data-growth-intent="case-procurement">Document processing</a>
+            <a href="/use-cases/people-analytics/" data-growth-intent="case-people">People Analytics</a>
+            <a href="/talon/docs/n8n-refund-approvals/" data-growth-intent="n8n-guide">n8n workflow example</a>
+            <a href="/use-cases/coding-agents/" data-growth-intent="case-coding">Coding assistants</a>
+          </div>
+        </details>
+        <details class="nav-dropdown"><summary>Developers</summary>
+          <div class="nav-dropdown-menu">
+            <a href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart">Quickstart</a>
+            <a href="/talon/docs/" data-growth-intent="docs">Documentation</a>
+            <a href="/talon/docs/choosing-integration-path/" data-growth-intent="integration">Integration guides</a>
+            <a href="https://github.com/dativo-io/talon" data-growth-intent="github">GitHub</a>
+          </div>
+        </details>
         <a class="nav-button" href="/pilot/" data-growth-intent="pilot-offer">Discuss a pilot</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="case-hero talon-home-hero">
-      <div class="wrap case-hero-grid">
-        <div>
-          <p class="case-kicker">Dativo Talon · Open-source AI control plane</p>
-          <h1>One company policy for your AI use cases.</h1>
-          <p class="case-lead">Your support bots, coding agents and AI workflows should not each reinvent company rules. Talon enforces shared policy on the model calls and business actions you route through it—and records why each decision was made.</p>
-          <div class="case-actions">
-            <a class="button primary" href="/talon/docs/action-gateway-proof/" data-growth-intent="action-control" data-growth-placement="hero" data-growth-primary="true">See a governed action</a>
-            <a class="button secondary" href="/pilot/" data-growth-intent="pilot-offer" data-growth-placement="hero">Pilot one use case</a>
-          </div>
-          <p class="case-small">Apache 2.0 · Self-hosted · Keep your existing applications. <a href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart" data-growth-placement="hero">Try the no-key demo →</a></p>
+    <section class="case-hero talon-home-hero home-intro">
+      <div class="wrap home-intro-inner">
+        <p class="case-kicker">Open-source AI control plane</p>
+        <h1>Stay in control as AI scales</h1>
+        <p class="case-lead">Manage AI policies, costs and reliability in one place.</p>
+        <div class="case-actions">
+          <a class="button primary" href="/pilot/" data-growth-intent="pilot-offer" data-growth-placement="hero" data-growth-primary="true">Discuss a pilot</a>
+          <a class="button secondary" href="#how-it-works" data-growth-intent="product-overview" data-growth-placement="hero">See how it works</a>
         </div>
-        <div class="home-proof" id="governed-actions" aria-labelledby="home-proof-title">
-          <div class="home-proof-top"><span>One decision, visible before the action</span><span class="home-proof-pill">Synthetic example</span></div>
-          <h2 id="home-proof-title">An AI workflow requests a €75 refund.</h2>
-          <p>The company rule requires a separate, authorized reviewer.</p>
-          <div class="home-proof-verdict"><span>Talon policy verdict</span><strong>REQUIRE_APPROVAL</strong></div>
-          <div class="home-proof-counts" aria-label="Synthetic dispatch counts">
-            <div><strong>0</strong><span>Downstream calls before approval and authorized claim</span></div>
-            <div><strong>1</strong><span>Downstream call after approval and authorized claim</span></div>
-          </div>
-          <p class="home-proof-note">Approval does not execute a refund. The reproducible example uses a counting test adapter, not real payments.</p>
-          <a class="home-proof-link" href="/talon/docs/n8n-refund-approvals/" data-growth-intent="n8n-guide" data-growth-placement="hero-proof">Reproduce the n8n workflow →</a>
-        </div>
+        <figure class="home-architecture">
+          <picture>
+            <source media="(max-width: 670px)" srcset="/public/assets/talon-control-layer-mobile.svg" width="360" height="306" />
+            <img src="/public/assets/talon-control-layer.svg" width="720" height="310" alt="Support, document and coding workflows connect through Talon for policy, cost, reliability and evidence on supported model and action paths." />
+          </picture>
+          <figcaption>One shared control layer for connected AI workflows. Only supported routed paths are governed.</figcaption>
+        </figure>
       </div>
     </section>
 
     <section class="case-section home-controls" id="how-it-works">
       <div class="wrap">
         <p class="case-kicker">One operating layer, four jobs</p>
-        <h2>Same controls. Every connected use case.</h2>
+        <h2>Shared controls for connected AI use cases</h2>
         <div class="home-jobs" aria-label="Four control-plane jobs">
           <article><strong>Cost control</strong><p>Decide whether a request can spend before calling the provider.</p></article>
           <article><strong>Reliability</strong><p>Use fallback paths that still satisfy company policy.</p></article>
@@ -77,17 +90,30 @@
           <article><strong>Session understanding</strong><p>Investigate decisions, costs, failures and signed evidence.</p></article>
         </div>
         <div class="case-steps home-steps">
-          <div><span>01 / Connect</span><h3>Keep your app.</h3><p>Route one supported model, MCP or HTTP action path through Talon.</p></div>
-          <div><span>02 / Enforce</span><h3>Apply the company rule.</h3><p>Combine the organization baseline with the use case's effective policy.</p></div>
-          <div><span>03 / Verify</span><h3>See what happened.</h3><p>Inspect the decision and signed records in the Operations Console.</p></div>
+          <div><span>01 / Connect</span><h3>Keep your app</h3><p>Route one supported model, MCP or HTTP action path through Talon.</p></div>
+          <div><span>02 / Enforce</span><h3>Apply the company rule</h3><p>Combine the organization baseline with the use case's effective policy.</p></div>
+          <div><span>03 / Verify</span><h3>See what happened</h3><p>Inspect the decision and signed records in the Operations Console.</p></div>
         </div>
         <p class="case-disclaimer">Talon governs only traffic and actions routed through supported interception paths. Unobserved actions stay outside its control.</p>
+        <div class="home-proof" id="governed-actions" aria-labelledby="home-proof-title">
+          <div class="home-proof-top"><span>One decision, visible before the action</span><span class="home-proof-pill">Synthetic example</span></div>
+          <h2 id="home-proof-title">An AI workflow requests a €75 refund</h2>
+          <p>The company rule requires a separate, authorized reviewer.</p>
+          <div class="home-proof-verdict"><span>Talon policy verdict</span><strong>REQUIRE_APPROVAL</strong></div>
+          <div class="home-proof-counts" aria-label="Synthetic dispatch counts">
+            <div><strong>0</strong><span>Downstream calls before approval and authorized claim</span></div>
+            <div><strong>1</strong><span>Downstream call after approval and authorized claim</span></div>
+          </div>
+          <p class="home-proof-note">Approval does not execute a refund. The reproducible example uses a counting test adapter, not real payments.</p>
+          <a class="home-proof-link" href="/talon/docs/action-gateway-proof/" data-growth-intent="action-control" data-growth-placement="action-proof">Verify exact-action authorization</a>
+          <a class="home-proof-link" href="/talon/docs/n8n-refund-approvals/" data-growth-intent="n8n-guide" data-growth-placement="action-proof">Reproduce the n8n workflow</a>
+        </div>
       </div>
     </section>
 
     <section class="case-section case-use-cases home-next" id="use-cases">
       <div class="wrap">
-        <div class="case-heading"><div><p class="case-kicker">Choose your starting point</p><h2>One problem. One useful next step.</h2></div></div>
+        <div class="case-heading"><div><p class="case-kicker">Choose your starting point</p><h2>Find your next step</h2></div></div>
         <div class="home-next-grid">
           <article class="case-card">
             <span class="case-number">Explore / No credentials</span>
@@ -117,7 +143,7 @@
       <div class="wrap home-operator-grid">
         <div>
           <p class="case-kicker">For the operator</p>
-          <h2>Decisions you can investigate.</h2>
+          <h2>Decisions you can investigate</h2>
           <p>Find which use case needs attention, inspect the policy that applied, and verify a signed record. The open-source Operations Console is read-only and shows only what Talon observed.</p>
           <a class="case-text-link" href="/talon/docs/operations-console/" data-growth-intent="console-docs">Explore the Operations Console →</a>
         </div>
@@ -132,14 +158,14 @@
 
     <section class="case-section case-cta" id="pilot">
       <div class="wrap case-cta-inner">
-        <div><p class="case-kicker">Bring one real workflow</p><h2>Let's test one boundary that matters.</h2><p>In a short technical fit call, identify a supported integration path and a rule worth proving.</p></div>
+        <div><p class="case-kicker">Bring one real workflow</p><h2>Test one boundary that matters</h2><p>In a short technical fit call, identify a supported integration path and a rule worth proving.</p></div>
         <div class="case-cta-buttons"><a class="button primary" href="/pilot/" data-growth-intent="pilot-offer" data-growth-placement="cta-section" data-growth-primary="true">Discuss a pilot</a><span>Founder-led · 20-minute Google Calendar call</span></div>
       </div>
     </section>
   </main>
   <footer class="case-footer">
     <div class="wrap case-footer-row">
-      <div><strong>Dativo Talon</strong><p>Applies policy only to traffic and actions routed through supported interception paths. Signed evidence is tamper-evident, not a compliance certificate.</p></div>
+      <div><strong>Dativo Talon</strong><p>Open-source Community edition (Apache 2.0). Self-hosted.</p><p>Applies policy only to traffic and actions routed through supported interception paths. Signed evidence is tamper-evident, not a compliance certificate.</p></div>
       <nav aria-label="Further technical resources">
         <a href="/mcp-tool-governance/">MCP tools</a>
         <a href="/ai-agent-audit-trail/">Audit evidence</a>

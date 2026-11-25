@@ -8,11 +8,32 @@ const canonicalHeader = `<header class="site-nav">
       <a class="brand" href="/" aria-label="Dativo Talon home"><img class="brand-logo" src="/public/assets/talon-icon.svg?v=2" alt="Dativo Talon mark" /><span>Dativo Talon</span></a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation"><span></span><span></span><span></span></button>
       <nav class="nav-links" id="primary-navigation" aria-label="Primary navigation">
-        <a href="/use-cases/">Use cases</a>
-        <a href="/#how-it-works">How it works</a>
-        <a href="/enterprise/">Enterprise</a>
-        <a href="/talon/docs/">Docs</a>
-        <a href="https://github.com/dativo-io/talon">GitHub</a>
+        <details class="nav-dropdown"><summary>Product</summary>
+          <div class="nav-dropdown-menu">
+            <a href="/#how-it-works" data-growth-intent="product-overview">How it works</a>
+            <a href="/#operations-console" data-growth-intent="console-docs">Operations Console</a>
+            <a href="/ai-agent-governance/" data-growth-intent="governance">Governance and control</a>
+            <a href="/enterprise/" data-growth-intent="enterprise">Enterprise</a>
+          </div>
+        </details>
+        <details class="nav-dropdown"><summary>Solutions</summary>
+          <div class="nav-dropdown-menu">
+            <a href="/use-cases/" data-growth-intent="case-hub">All use cases</a>
+            <a href="/use-cases/customer-support/" data-growth-intent="case-support">Customer support</a>
+            <a href="/use-cases/vendor-contract-review/" data-growth-intent="case-procurement">Document processing</a>
+            <a href="/use-cases/people-analytics/" data-growth-intent="case-people">People Analytics</a>
+            <a href="/talon/docs/n8n-refund-approvals/" data-growth-intent="n8n-guide">n8n workflow example</a>
+            <a href="/use-cases/coding-agents/" data-growth-intent="case-coding">Coding assistants</a>
+          </div>
+        </details>
+        <details class="nav-dropdown"><summary>Developers</summary>
+          <div class="nav-dropdown-menu">
+            <a href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart">Quickstart</a>
+            <a href="/talon/docs/" data-growth-intent="docs">Documentation</a>
+            <a href="/talon/docs/choosing-integration-path/" data-growth-intent="integration">Integration guides</a>
+            <a href="https://github.com/dativo-io/talon" data-growth-intent="github">GitHub</a>
+          </div>
+        </details>
         <a class="nav-button" href="/pilot/" data-growth-intent="pilot-offer">Discuss a pilot</a>
       </nav>
     </div>
@@ -23,7 +44,7 @@ const iconPattern = /\s*<link\s+rel="icon"[^>]*>\s*/gi;
 const faviconTag = '<link rel="icon" type="image/svg+xml" href="/public/assets/talon-icon.svg" />';
 const navStylesheet = '<link rel="stylesheet" href="/site-nav.css" />';
 const navScript = '<script defer src="/site-nav.js"></script>';
-const expectedLabels = ['Use cases', 'How it works', 'Enterprise', 'Docs', 'GitHub', 'Discuss a pilot'];
+const expectedLabels = ["Product","Solutions","Developers","Discuss a pilot"];
 
 function listHtmlFiles(dir) {
   const files = [];
@@ -79,7 +100,7 @@ for (const file of pagesWithSiteNav) {
   const header = match[0];
   let previousIndex = -1;
   for (const label of expectedLabels) {
-    const currentIndex = header.indexOf(`>${label}<`);
+    const currentIndex = header.indexOf(label === 'Discuss a pilot' ? `>${label}<` : `<summary>${label}</summary>`);
     if (currentIndex === -1) {
       throw new Error(`Canonical nav label '${label}' missing from ${file}`);
     }
@@ -92,16 +113,8 @@ for (const file of pagesWithSiteNav) {
   if (!header.includes('class="nav-toggle"') || !header.includes('id="primary-navigation"')) {
     throw new Error(`Responsive navigation controls missing from ${file}`);
   }
-  // The top-level marketing nav intentionally links to the use-case hub.
-  // Individual cases live on the homepage and /use-cases/, not in a dropdown.
-  const requiredDestinations = [
-    'href="/use-cases/"',
-    'href="/#how-it-works"',
-    'href="/enterprise/"',
-    'href="/talon/docs/"',
-    'href="https://github.com/dativo-io/talon"',
-    'href="/pilot/"',
-  ];
+  if ((header.match(/<details class="nav-dropdown">/g) || []).length !== 3) throw new Error(`Expected three navigation groups in ${file}`);
+  const requiredDestinations = ["href=\"/#how-it-works\"","href=\"/#operations-console\"","href=\"/ai-agent-governance/\"","href=\"/enterprise/\"","href=\"/use-cases/\"","href=\"/use-cases/customer-support/\"","href=\"/use-cases/vendor-contract-review/\"","href=\"/use-cases/people-analytics/\"","href=\"/talon/docs/n8n-refund-approvals/\"","href=\"/use-cases/coding-agents/\"","href=\"/talon/docs/quickstart-demo/\"","href=\"/talon/docs/\"","href=\"/talon/docs/choosing-integration-path/\"","href=\"https://github.com/dativo-io/talon\"","href=\"/pilot/\""];
   for (const destination of requiredDestinations) {
     if (!header.includes(destination)) {
       throw new Error(`Canonical navigation is missing ${destination} in ${file}`);

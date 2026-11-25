@@ -390,3 +390,90 @@ body[data-ux-theme="quiet-confidence"] .case-card a:hover {
   body[data-ux-theme="quiet-confidence"] .button,
   body[data-ux-theme="quiet-confidence"] .nav-links a { transition: none; }
 }
+
+/* Step 3: outcome-first introduction and native disclosure navigation. */
+body[data-ux-theme="quiet-confidence"] .home-intro-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+body[data-ux-theme="quiet-confidence"] .home-intro h1 {
+  max-width: 850px;
+  text-wrap: balance;
+}
+body[data-ux-theme="quiet-confidence"] .home-intro .case-lead {
+  max-width: 660px;
+}
+body[data-ux-theme="quiet-confidence"] .home-intro .case-actions {
+  justify-content: center;
+}
+body[data-ux-theme="quiet-confidence"] .home-architecture {
+  width: min(100%, 760px);
+  margin: clamp(38px, 6vw, 72px) auto 0;
+}
+body[data-ux-theme="quiet-confidence"] .home-architecture img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+body[data-ux-theme="quiet-confidence"] .home-architecture figcaption {
+  margin: 16px auto 0;
+  max-width: 560px;
+  color: var(--qc-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+body[data-ux-theme="quiet-confidence"] .home-controls .home-proof {
+  max-width: 760px;
+  margin: clamp(36px, 5vw, 64px) auto 0;
+}
+body[data-ux-theme="quiet-confidence"] .home-controls .home-proof-link {
+  display: block;
+  width: fit-content;
+}
+body[data-ux-theme="quiet-confidence"] .nav-dropdown {
+  color: var(--qc-muted);
+}
+body[data-ux-theme="quiet-confidence"] .nav-dropdown summary {
+  min-height: 44px;
+  padding: 10px 4px;
+}
+body[data-ux-theme="quiet-confidence"] .nav-dropdown summary:hover,
+body[data-ux-theme="quiet-confidence"] .nav-dropdown[open] summary {
+  color: var(--qc-primary);
+}
+body[data-ux-theme="quiet-confidence"] .nav-dropdown-menu {
+  background: var(--qc-surface);
+  border-color: var(--qc-line);
+  box-shadow: 0 10px 30px #14213A18;
+  border-radius: var(--qc-radius);
+}
+body[data-ux-theme="quiet-confidence"] .nav-dropdown-menu a {
+  color: var(--qc-ink);
+  font-size: 15px;
+}
+body[data-ux-theme="quiet-confidence"] .nav-dropdown-menu a:hover,
+body[data-ux-theme="quiet-confidence"] .nav-dropdown-menu a:focus-visible {
+  background: var(--qc-accent);
+  color: var(--qc-primary);
+}
+@media (max-width: 860px) {
+  body[data-ux-theme="quiet-confidence"] .nav-dropdown summary {
+    color: var(--qc-ink);
+    padding: 11px 12px;
+  }
+  body[data-ux-theme="quiet-confidence"] .nav-dropdown summary:hover,
+  body[data-ux-theme="quiet-confidence"] .nav-dropdown summary:focus-visible {
+    background: var(--qc-accent);
+  }
+  body[data-ux-theme="quiet-confidence"] .nav-dropdown-menu {
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+  }
+}
+@media (max-width: 670px) {
+  body[data-ux-theme="quiet-confidence"] .home-intro .case-actions { width: 100%; }
+    body[data-ux-theme="quiet-confidence"] .home-architecture { margin-top: 32px; }
+}

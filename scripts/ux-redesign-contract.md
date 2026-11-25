@@ -17,13 +17,13 @@ The primary problem is cognitive load, not simply page length. Repeated slogans,
 - Present cost, policy (including data and actions), reliability and operational visibility/evidence as connected outcomes. Action control is a concrete differentiator, not the entire product.
 - Do not introduce claims of guaranteed security, compliance, uptime, cost savings, or coverage of every AI action.
 
-Candidate hero (to validate in step 3, not approved copy):
+Approved step 3 hero:
 
 > Stay in control as AI scales
 >
-> Apply company policy, manage spending and keep connected AI workflows reliable with one self-hosted control plane.
+> Manage AI policies, costs and reliability in one place.
 
-Primary CTA candidate: Discuss a pilot (existing /pilot/ route). Secondary: See how it works (existing reproducible proof or on-page product demonstration). Quickstart and GitHub remain obvious evaluator paths, but must not compete as additional hero buttons. Do not promise a hosted free trial or generic demo booking if the actual offer is a scoped technical fit call.
+Primary CTA: Discuss a pilot (existing /pilot/ route). Secondary: See how it works (existing #how-it-works anchor, including relocated synthetic proof). Quickstart and GitHub remain obvious evaluator paths, but must not compete as additional hero buttons. Do not promise a hosted free trial or generic demo booking if the actual offer is a scoped technical fit call.
 
 ## Baseline: inspected source on main
 
@@ -69,7 +69,7 @@ Seven storytelling modules, grouped initially into the existing five HTML sectio
 
 Keep the seven modules as a narrative, not a requirement to add more section wrappers. Any later change to the five-section guard must be deliberately reviewed alongside equivalent focus checks. Preserve deep links: governed-actions, how-it-works, use-cases, operations-console, pilot. Keep canonical docs, use-case, enterprise, comparison and campaign routes available. No route is deleted merely to reduce homepage density.
 
-Suggested main nav: Product/How it works, Solutions/Use cases, Developers/Docs, and one commercial CTA; keep enterprise and GitHub easy to find. Exact structure is a step 3 decision, not a commitment to dropdowns or new pages.
+Approved step 3 navigation: Product, Solutions and Developers native disclosure groups, plus Discuss a pilot. Keep Enterprise, GitHub, the use-case hub and docs reachable. The document-processing link points to the existing vendor-contract-review route; n8n links to the existing refund workflow example, not a broad compatibility promise. The architecture illustration is conceptual, not a product screenshot.
 
 ## Truth and publication invariants
 
@@ -87,7 +87,7 @@ The repository is static HTML/CSS/JS plus Docusaurus, not an Astro/React migrati
 - `index.html`, `styles.css`, `homepage-clean.css`, `site-nav.css`, `growth.css`: review cascade and scope; growth styles load at build time after source styles.
 - `scripts/normalize-site-nav.cjs` is the canonical built marketing navigation. Edit it and its tests when changing navigation; avoid source-only changes overwritten in dist.
 - `scripts/apply-growth-optimizations.cjs` owns production metadata overrides and growth asset injection. Align updated homepage metadata there and in source; inspect actual dist.
-- Keep `scripts/test-first-run-journeys.cjs` (five sections, <11,500 chars, route/anchor and synthetic proof assertions), nav checks, current-capabilities checks, brand checks, docs source contracts, screenshot lock and SEO guards. Update structural assertions only with a reviewed equivalent; never weaken truth assertions.
+- Keep `scripts/test-first-run-journeys.cjs` (five sections, main markup <8,500 chars, main copy <=435 words until step 4, hero <80 words and two CTAs, route/anchor and synthetic proof assertions), nav checks, current-capabilities checks, brand checks, docs source contracts, screenshot lock and SEO guards. Update structural assertions only with a reviewed equivalent; never weaken truth assertions.
 - Preserve Docusaurus first-run paths and upstream Talon docs provenance. Keep root/docs sitemaps, canonicals, redirects, internal links and indexing controls intact.
 - Preserve existing growth intent/placement/primary attributes and Umami events, especially Funnel CTA and Pilot Booking Click. Do not duplicate tracking or log payloads, personal data, raw URLs or booking tokens. A click is not a booking.
 - Use `./scripts/build-site-with-docs.sh` for deployable preview and CI; raw HTML preview lacks generated screenshots and build-time transformations. Do not deploy from feature branches or merge on behalf of the reviewer.

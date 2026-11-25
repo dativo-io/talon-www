@@ -44,7 +44,18 @@
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeNav({restoreFocus: mobileNav.matches});
+    if (event.key !== 'Escape') return;
+    const open = dropdowns.find(dropdown => dropdown.open);
+    if (open) {
+      open.removeAttribute('open');
+      open.querySelector('summary')?.focus();
+      event.preventDefault();
+      return;
+    }
+    if (mobileNav.matches && nav.dataset.open === 'true') {
+      closeNav({restoreFocus: true});
+      event.preventDefault();
+    }
   });
 
   document.addEventListener('click', (event) => {

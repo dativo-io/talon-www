@@ -7,6 +7,10 @@ const root = process.argv[2];
 if (!root || !fs.existsSync(root)) { console.error('Usage: verify-current-capabilities.cjs <dist-dir>'); process.exit(1); }
 const required = [
   'talon/docs/action-gateway-proof/index.html',
+  'talon/docs/quickstart-demo/index.html',
+  'talon/docs/choosing-integration-path/index.html',
+  'talon/docs/operations-console/index.html',
+  'ai-agent-governance/index.html',
   'talon/docs/mcp-governance-extension/index.html',
   'talon/docs/mcp-2026-migration/index.html',
   'talon/docs/openshell/index.html',
@@ -75,8 +79,8 @@ if (fs.existsSync(docsHome)) {
 const homepage = path.join(root, 'index.html');
 if (fs.existsSync(homepage)) {
   const html = fs.readFileSync(homepage, 'utf8');
-  if (!html.includes('<h1>One company policy for your AI use cases.</h1>')) failures.push('Homepage lost its canonical company-policy promise');
-  if (!html.includes('Operations Console') || !html.includes('company rules')) failures.push('Homepage lost its buyer-first operating problem or console proof');
+  if (!html.includes('<h1>Stay in control as AI scales</h1>') || !html.includes('Manage AI policies, costs and reliability in one place.') || !html.includes('Open-source AI control plane')) failures.push('Homepage lost its approved business outcome and shared control-plane promise');
+  if (!html.includes('Operations Console') || !html.includes('company policy')) failures.push('Homepage lost its buyer-first operating problem or console proof');
   for (const job of ['Cost control', 'Reliability', 'Shared policy', 'Session understanding']) {
     if (!html.includes('<strong>' + job + '</strong>')) failures.push('Homepage missing control-plane job: ' + job);
   }
@@ -84,7 +88,7 @@ if (fs.existsSync(homepage)) {
   if (!html.includes('href="/use-cases/"')) failures.push('Homepage must link to the full use-case hub');
   if (!html.includes('href="/talon/docs/action-gateway-proof/"')) failures.push('Homepage must link to reproducible exact-action proof');
   if (!html.includes('href="/talon/docs/quickstart-demo/"')) failures.push('Homepage must preserve the no-key start path');
-  if (!html.includes('Synthetic example') || !html.includes('counting test adapter')) failures.push('Homepage action proof must clearly label synthetic, non-payment behavior');
+  if (!html.includes('Synthetic example') || !html.includes('counting test adapter') || !html.includes('not real payments') || !html.includes('Approval does not execute a refund')) failures.push('Homepage action proof must clearly label synthetic, non-payment behavior');
   if ((html.match(/<section\b/g) || []).length !== 5) failures.push('Homepage must retain five focused sections, not an exhaustive feature catalog');
   if (html.includes('case-console-trail') || html.includes('case-editions')) failures.push('Homepage reintroduced redundant console carousel or full edition comparison');
   if (!html.includes('href="/enterprise/"')) failures.push('Homepage missing edition overview');

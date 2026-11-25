@@ -34,10 +34,10 @@ try {
     const header = html.match(/<header class="site-nav">[\s\S]*?<\/header>/)?.[0];
     assert.ok(header, `missing marketing nav on ${route}`);
 
-    const labels = ['Use cases', 'How it works', 'Enterprise', 'Docs', 'GitHub', 'Discuss a pilot'];
+    const labels = ['Product', 'Solutions', 'Developers', 'Discuss a pilot'];
     let previous = -1;
     for (const label of labels) {
-      const position = header.indexOf(`>${label}<`);
+      const position = header.indexOf(label === 'Discuss a pilot' ? `>${label}<` : `<summary>${label}</summary>`);
       assert.ok(position > previous, `missing or misordered ${label} on ${route}`);
       previous = position;
     }
@@ -45,7 +45,17 @@ try {
     assert.ok(header.includes('href="/enterprise/"'), `missing Enterprise edition route on ${route}`);
     assert.ok(header.includes('href="/pilot/"'), `missing private pilot route on ${route}`);
     assert.ok(header.includes('href="/talon/docs/"'), `missing docs on ${route}`);
-    assert.ok(!header.includes('class="nav-dropdown"'), `legacy dropdown reappeared on ${route}`);
+    const groups = [...header.matchAll(/<details class="nav-dropdown"><summary>([^<]+)<\/summary>([\s\S]*?)<\/details>/g)];
+    assert.deepEqual(groups.map(g => g[1]), ['Product', 'Solutions', 'Developers']);
+    const expectedRoutes = [
+      ['/#how-it-works', '/#operations-console', '/ai-agent-governance/', '/enterprise/'],
+      ['/use-cases/', '/use-cases/customer-support/', '/use-cases/vendor-contract-review/', '/use-cases/people-analytics/', '/talon/docs/n8n-refund-approvals/', '/use-cases/coding-agents/'],
+      ['/talon/docs/quickstart-demo/', '/talon/docs/', '/talon/docs/choosing-integration-path/', 'https://github.com/dativo-io/talon'],
+    ];
+    groups.forEach((group, index) => {
+      assert.deepEqual([...group[2].matchAll(/href="([^"]+)"/g)].map(m => m[1]), expectedRoutes[index]);
+    });
+    assert.equal((header.match(/class="nav-button"/g) || []).length, 1, 'one commercial CTA in navigation');
     assert.match(header, /class="nav-toggle"/);
     assert.match(header, /id="primary-navigation"/);
     assert.match(html, /href="\/public\/assets\/talon-icon\.svg"/);
