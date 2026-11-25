@@ -26,7 +26,7 @@ const canonicalHeader = `<header class="site-nav">
             <a href="/use-cases/coding-agents/" data-growth-intent="case-coding">Coding assistants</a>
           </div>
         </details>
-        <details class="nav-dropdown"><summary>Open Source</summary>
+        <details class="nav-dropdown"><summary>Developers</summary>
           <div class="nav-dropdown-menu">
             <a href="https://github.com/dativo-io/talon" data-growth-intent="github">GitHub</a>
             <a href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart">Quickstart</a>
@@ -44,7 +44,7 @@ const iconPattern = /\s*<link\s+rel="icon"[^>]*>\s*/gi;
 const faviconTag = '<link rel="icon" type="image/svg+xml" href="/public/assets/talon-icon.svg" />';
 const navStylesheet = '<link rel="stylesheet" href="/site-nav.css" />';
 const navScript = '<script defer src="/site-nav.js"></script>';
-const expectedLabels = ["Product","Solutions","Open Source","Discuss a pilot"];
+const expectedLabels = ["Product","Solutions","Developers","Discuss a pilot"];
 
 function listHtmlFiles(dir) {
   const files = [];
