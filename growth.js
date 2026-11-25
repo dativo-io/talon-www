@@ -1,106 +1,98 @@
 (() => {
-  const page = window.location.pathname;
-
-  const normalizeHref = (href) => {
-    try {
-      const url = new URL(href, window.location.origin);
-      return `${url.pathname}${url.search}${url.hash}`;
-    } catch {
-      return href || '';
-    }
+  // One shared listener on marketing and Docusaurus pages; no inline duplicate.
+  if (window.__talonGrowthLoaded) return;
+  window.__talonGrowthLoaded = true;
+  const eventVersion = '2';
+  const page = () => window.location.pathname;
+  const optedOut = () => window.navigator?.doNotTrack === '1' || window.doNotTrack === '1';
+  const track = (name,props) => {
+    if (!optedOut() && window.umami && typeof window.umami.track === 'function')
+      window.umami.track(name,{...props,event_version:eventVersion});
   };
-
-  const classifyIntent = (link) => {
-    const href = link.getAttribute('href') || '';
-    const normalized = normalizeHref(href).toLowerCase();
-    const external = href.toLowerCase();
-
-    if (link.dataset.growthIntent) return link.dataset.growthIntent;
-    if (external.includes('calendar.app.google/')) return 'pilot-booking';
-    if (normalized === '/pilot/' || normalized.startsWith('/pilot/?')) return 'pilot-offer';
-    if (external.includes('linkedin.com/in/sergeyenin/')) return 'founder-profile';
-    if (normalized.includes('/quickstart-demo/')) return 'quickstart';
-    if (normalized.includes('/product-demo/')) return 'product-demo';
-    if (normalized.includes('/add-talon-to-existing-app/') || normalized.includes('/proxy-quickstart/')) return 'integration';
-    if (normalized.includes('/ai-cost-control/') || normalized.includes('/cost-governance-by-agent/')) return 'cost';
-    if (normalized.includes('/use-cases/coding-agents/')) return 'case-coding';
-    if (normalized.includes('/use-cases/customer-support/')) return 'case-support';
-    if (normalized.includes('/use-cases/people-analytics/')) return 'case-people';
-    if (normalized.includes('/use-cases/vendor-contract-review/')) return 'case-procurement';
-    if (normalized.includes('/use-cases/')) return 'case-hub';
-    if (normalized.includes('/mcp-tool-governance/')) return 'seo-mcp';
-    if (normalized.includes('/ai-agent-audit-trail/')) return 'seo-audit';
-    if (normalized.includes('/comparisons/talon-vs-litellm/')) return 'seo-comparison';
-    if (normalized.includes('/ai-action-control/') || normalized.includes('/action-gateway-proof/') || normalized.includes('/action-gateway/')) return 'action-control';
-    if (
-      normalized.includes('/coding-agent-governance/')
-      || normalized.includes('/governing-coding-agents/')
-      || normalized.includes('/codex-cli-integration/')
-      || normalized.includes('/claude-code-integration/')
-      || normalized.includes('/github-copilot-cli-governance/')
-    ) return 'coding-agents';
-    if (
-      normalized.includes('/compliance-export-runbook/')
-      || normalized.includes('/evidence-integrity-demo/')
-      || normalized.includes('/sample-auditor-pack/')
-      || normalized.includes('/evidence-store/')
-      || normalized.includes('/ai-governance-evidence-store/')
-    ) return 'evidence';
-    if (external.includes('github.com/dativo-io/talon')) return 'github';
-    if (normalized.includes('/talon/docs/') || normalized.includes('/docs/talon/')) return 'docs';
+  const allowed = new Set(['pilot-booking','pilot-offer','github','quickstart','product-demo','evidence','checklist','docs','integration','integration-n8n','n8n-guide','n8n-examples','case-support','case-procurement','case-people','case-coding','case-hub','cost','governance','enterprise','product-overview','console-docs','console-screenshot','connect-app','action-control','seo-mcp','seo-audit','seo-comparison','coding-agents','founder-profile','pilot-contact']);
+  const intentFor = (link,url) => {
+    const explicit=link.dataset?.growthIntent;
+    if (allowed.has(explicit)) return explicit;
+    const p=url.pathname.toLowerCase();
+    if(url.hostname==='calendar.app.google') return 'pilot-booking';
+    if(url.hostname==='github.com' && /^\/dativo-io\/talon(?:\/|$)/.test(p)) return 'github';
+    if(url.origin!==window.location.origin) return null;
+    if(p==='/pilot/'||p==='/pilot') return 'pilot-offer';
+    if(p==='/solutions/n8n/') return 'integration-n8n';
+    if(p.includes('/n8n-refund-approvals/')) return 'n8n-guide';
+    if(p.includes('/quickstart-demo/')) return 'quickstart';
+    if(p.includes('/product-demo/')) return 'product-demo';
+    if(p.includes('/sample-auditor-pack/')||p.includes('/evidence-store/')||p.includes('/ai-governance-evidence-store/')||p.includes('/evidence-integrity-demo/')||p.includes('/compliance-export-runbook/')) return 'evidence';
+    if(p.includes('/eu-ai-governance-runtime-checklist/')) return 'checklist';
+    if(p==='/public/assets/console-showcase.webp') return 'console-screenshot';
+    if(p.includes('/add-talon-to-existing-app/')||p.includes('/choosing-integration-path/')||p.includes('/proxy-quickstart/')) return 'integration';
+    if(p.includes('/use-cases/customer-support/')) return 'case-support';
+    if(p.includes('/use-cases/vendor-contract-review/')) return 'case-procurement';
+    if(p.includes('/use-cases/people-analytics/')) return 'case-people';
+    if(p.includes('/use-cases/coding-agents/')) return 'case-coding';
+    if(p.includes('/use-cases/')) return 'case-hub';
+    if(p.includes('/ai-action-control/')||p.includes('/action-gateway-proof/')||p.includes('/action-gateway/')) return 'action-control';
+    if(p.includes('/ai-cost-control/')||p.includes('/cost-governance-by-agent/')) return 'cost';
+    if(p.includes('/talon/docs/')||p.includes('/docs/talon/')) return 'docs';
     return null;
   };
-
-  const placementFor = (link) => {
-    if (link.dataset.growthPlacement) return link.dataset.growthPlacement;
-    if (link.closest('.growth-paths')) return 'homepage-paths';
-    if (link.closest('.site-nav, .navbar')) return 'navigation';
-    if (link.closest('.hero-actions, .hero')) return 'hero';
-    if (link.closest('.cta-card, .cta-section')) return 'cta-section';
-    if (link.closest('.footer, footer')) return 'footer';
-    if (link.closest('article')) return 'docs-body';
+  const placementFor = link => {
+    const value=link.dataset?.growthPlacement;
+    if(value && /^[a-z0-9-]{1,40}$/.test(value)) return value;
+    if(link.closest('.site-nav, .navbar')) return 'navigation';
+    if(link.closest('.case-hero, .hero-actions, .hero')) return 'hero';
+    if(link.closest('.case-cta, .cta-card, .cta-section')) return 'cta-section';
+    if(link.closest('footer')) return 'footer';
+    if(link.closest('article')) return 'docs-body';
     return 'body';
   };
-
-  const safeDestination = (href) => {
-    try {
-      const url = new URL(href, window.location.origin);
-      return url.origin === window.location.origin ? url.pathname : `external:${url.hostname}`;
-    } catch {
-      return 'unknown';
-    }
-  };
-
-  document.addEventListener('click', (event) => {
-    const link = event.target?.closest?.('a[href]');
-    if (!link) return;
-    const intent = classifyIntent(link);
-    if (!intent || !window.umami || typeof window.umami.track !== 'function') return;
-
-    // A calendar click is NOT a confirmed booking or qualified conversation.
-    // Emit one dedicated conversion event, not a second generic CTA event.
-    if (intent === 'pilot-booking') {
-      window.umami.track('Pilot Booking Click', {
-        page,
-        placement: placementFor(link),
-        channel: 'google_calendar',
-      });
+  const names = {'pilot-booking':'Pilot Booking Click','pilot-offer':'Pilot Offer Click','github':'GitHub Click','quickstart':'Quickstart Demo Click','product-demo':'Product Demo Click','evidence':'Evidence Click','checklist':'Checklist Click','docs':'Docs Click','n8n-guide':'Integration Example Click','n8n-examples':'Integration Example Click','console-screenshot':'Console Screenshot Click'};
+  document.addEventListener('click', event => {
+    const link=event.target?.closest?.('a[href]');
+    if(link){
+      let url; try{url=new URL(link.getAttribute('href')||'',window.location.origin);}catch{return;}
+      if(!['http:','https:'].includes(url.protocol)) return;
+      let intent=intentFor(link,url);
+      if(!intent) return;
+      const destination=url.origin===window.location.origin?url.pathname:'external:'+url.hostname;
+      const props={page:page(),intent,placement:placementFor(link),destination,primary:String(link.matches('.button.primary, .nav-button, [data-growth-primary="true"]'))};
+      if(intent==='pilot-booking'){
+        if(url.hostname!=='calendar.app.google') return;
+        track('Pilot Booking Click',{page:page(),placement:props.placement,channel:'google_calendar'});
+      }else if(page()==='/solutions/n8n/'&&['case-support','case-procurement'].includes(intent)){
+        track('Integration Example Click',props);
+      }else track(names[intent]||'Funnel CTA',props);
       return;
     }
-
-    window.umami.track('Funnel CTA', {
-      page,
-      intent,
-      placement: placementFor(link),
-      destination: safeDestination(link.getAttribute('href') || ''),
-      // Placement + intent are sufficient for aggregate CTA analysis; arbitrary
-      // visible link text can contain contact details or personalized content.
-      primary: String(link.matches('.button.primary, .nav-button, [data-growth-primary="true"]')),
-    });
+    if(event.target?.closest?.('.hero-demo-play')) {track('Demo Play',{page:page()});return;}
+    // Observe the click on an actual installation/quickstart code block only.
+    // No clipboard content, code text, success or installation claim is transmitted.
+    const copy=event.target?.closest?.('button[class*="copyButton"],button[title="Copy code to clipboard"]');
+    if(copy && /^\/talon\/docs\/(?:quickstart|quickstart-demo|proxy-quickstart)\/$/.test(page())){
+      const code=copy.closest('[class*="codeBlockContainer"]')?.querySelector('code')?.textContent || '';
+      if(/(?:quickstart\.sh|scripts\/install\.sh|make install|docker compose|docker pull|go install github\.com\/dativo-io\/talon)/.test(code))
+        track('Copy Install Command',{page:page(),placement:'docs-code',signal:'click-only'});
+    }
   });
 
+  // Only predefined campaign values are sent; automatic query/hash collection is off.
+  const campaignValues={
+    utm_source:new Set(['linkedin','github','newsletter','google','bing','community','dativo']),
+    utm_medium:new Set(['organic_social','referral','email','organic','community','outreach']),
+    utm_campaign:new Set(['n8n_acquisition','ai_governance','oss','product_launch','talon','website_redesign']),
+    utm_content:new Set(['founder_post','company_post','dm','profile','article','template','readme','release'])
+  };
+  let campaignSent=false;
+  function trackCampaign(){
+    if(campaignSent||!window.umami||typeof window.umami.track!=='function'||optedOut())return;
+    let url;try{url=new URL(window.location.href);}catch{return;}
+    const safe={};for(const [key,values] of Object.entries(campaignValues)){const v=url.searchParams.get(key);if(values.has(v))safe[key]=v;}
+    if(safe.utm_source&&safe.utm_medium&&safe.utm_campaign){campaignSent=true;track('Acquisition Campaign',{page:page(),...safe});}
+  }
+  trackCampaign();
+  if(typeof window.addEventListener==='function')window.addEventListener('load',trackCampaign,{once:true});
   // This homepage already contains focused use-case journeys.
-  if (page !== '/' || document.querySelector('[data-case-first-home]')) return;
+  if (page() !== '/' || document.querySelector('[data-case-first-home]')) return;
   if (document.querySelector('.growth-paths')) return;
 
   const anchor = document.querySelector('.strip') || document.querySelector('.hero');
