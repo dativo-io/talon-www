@@ -1,7 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 310" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 358" role="img" aria-labelledby="title desc">
   <title id="title">Talon as a shared AI control layer</title>
-  <desc id="desc">Support, document and coding workflows route supported model and action paths through Talon. The shared layer applies policy, cost controls, reliability and evidence before connected models, APIs and tools.</desc>
+  <desc id="desc">Existing support, document and coding workflows connect through Talon to existing AI providers, APIs and tools. Talon governs supported model and action paths.</desc>
   <g font-family="Inter, system-ui, sans-serif" text-anchor="middle">
+    <text x="360" y="19" font-size="17" fill="#4F5D73" font-weight="500">Your existing AI use cases</text>
+    <g transform="translate(0 24)">
     <g fill="#FFFFFF" stroke="#D2D9E5" stroke-width="1.5">
       <rect x="24" y="8" width="208" height="52" rx="10"/>
       <rect x="256" y="8" width="208" height="52" rx="10"/>
@@ -35,7 +37,9 @@
       <rect x="488" y="258" width="208" height="44" rx="8"/>
     </g>
     <g fill="#081E58" font-size="21" font-weight="550">
-      <text x="128" y="287">AI models</text><text x="360" y="287">APIs</text><text x="592" y="287">Tools</text>
+      <text x="128" y="287">AI providers</text><text x="360" y="287">APIs</text><text x="592" y="287">Tools</text>
     </g>
+    </g>
+    <text x="360" y="351" font-size="17" fill="#4F5D73" font-weight="500">Your existing providers and tools</text>
   </g>
 </svg>
