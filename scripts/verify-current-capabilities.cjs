@@ -79,7 +79,7 @@ if (fs.existsSync(docsHome)) {
 const homepage = path.join(root, 'index.html');
 if (fs.existsSync(homepage)) {
   const html = fs.readFileSync(homepage, 'utf8');
-  if (!html.includes('<h1>Stay in control as AI scales</h1>') || !html.includes('Apply company policy, manage spending') || !html.includes('self-hosted control plane')) failures.push('Homepage lost its approved business outcome and shared control-plane promise');
+  if (!html.includes('<h1>Stay in control as AI scales</h1>') || !html.includes('Manage AI policies, costs and reliability in one place.') || !html.includes('Open-source AI control plane')) failures.push('Homepage lost its approved business outcome and shared control-plane promise');
   if (!html.includes('Operations Console') || !html.includes('company policy')) failures.push('Homepage lost its buyer-first operating problem or console proof');
   for (const job of ['Cost control', 'Reliability', 'Shared policy', 'Session understanding']) {
     if (!html.includes('<strong>' + job + '</strong>')) failures.push('Homepage missing control-plane job: ' + job);
