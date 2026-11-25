@@ -89,6 +89,26 @@ function injectAssets(html) {
   return `${html.slice(0, headEnd)}  ${missing.join('\n  ')}\n${html.slice(headEnd)}`;
 }
 
+// Decode existing source metadata before re-encoding, not arbitrary HTML.
+function decodeAttr(value) {
+  return value.replace(/&(amp|quot|lt|gt|apos|#39);/g, (_,key) => ({amp:'&',quot:'"',lt:'<',gt:'>',apos:"'",'#39':"'"})[key]);
+}
+function alignMarketingSocial(html,route) {
+  if (!html.includes('class="site-nav"') || /name="robots"[^>]*noindex/i.test(html)) return html;
+  const title = html.match(/<title>([^<]+)<\/title>/)?.[1];
+  const description = html.match(/<meta name="description" content="([^"]+)"/)?.[1];
+  if (!title || !description) throw new Error('Missing owned marketing title or description: '+route);
+  for (const selector of ['property="og:title"','name="twitter:title"']) html=setMeta(html,selector,decodeAttr(title));
+  for (const selector of ['property="og:description"','name="twitter:description"']) html=setMeta(html,selector,decodeAttr(description));
+  html=setMeta(html,'property="og:image"','https://dativo.io/public/assets/og-image.png');
+  html=setMeta(html,'name="twitter:image"','https://dativo.io/public/assets/og-image.png');
+  html=setMeta(html,'property="og:image:alt"','Dativo Talon: Stay in control as AI scales');
+  html=setMeta(html,'name="twitter:image:alt"','Dativo Talon: Stay in control as AI scales');
+  html=setMeta(html,'property="og:image:width"','1200');
+  html=setMeta(html,'property="og:image:height"','630');
+  html=setMeta(html,'name="twitter:card"','summary_large_image');
+  return html;
+}
 function main() {
   const seen = new Set();
   let changed = 0;
@@ -106,6 +126,7 @@ function main() {
       html = setMeta(html, 'name="twitter:title"', title);
       html = setMeta(html, 'name="twitter:description"', description);
     }
+    if (!route.startsWith('/talon/docs/')) html = alignMarketingSocial(html,route);
     html = injectAssets(html);
     fs.writeFileSync(file, html);
     changed += 1;
@@ -126,4 +147,4 @@ function main() {
 }
 
 if (require.main === module) main();
-module.exports = {setTitle, setMeta, metadata};
+module.exports = {setTitle, setMeta, metadata, alignMarketingSocial};

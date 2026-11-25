@@ -7,6 +7,7 @@ const origin = (process.env.SITE_URL || 'https://dativo.io').replace(/\/$/, '');
 const pages = ['/', '/enterprise/', '/ai-action-control/', '/comparisons/', '/mcp-tool-governance/', '/ai-agent-audit-trail/', '/comparisons/talon-vs-litellm/', '/use-cases/', '/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/', '/solutions/n8n/'];
 const guides = ['/mcp-tool-governance/', '/ai-agent-audit-trail/', '/comparisons/talon-vs-litellm/', '/use-cases/', '/use-cases/coding-agents/', '/use-cases/customer-support/', '/use-cases/people-analytics/', '/use-cases/vendor-contract-review/', '/solutions/n8n/'];
 const errors = [];
+const pageTypes = {'/use-cases/':'CollectionPage','/solutions/n8n/':'WebPage'};
 function requirePage(route) {
   const file = path.join(root, route === '/' ? 'index.html' : route.slice(1) + 'index.html');
   if (!fs.existsSync(file)) { errors.push('Missing page ' + route); return ''; }
@@ -41,7 +42,7 @@ for (const route of pages) {
     else {
       try {
         const graph = JSON.parse(chunks[0][1])['@graph'] || [];
-        if (!graph.some(x => x['@type'] === 'TechArticle' && x.mainEntityOfPage === origin + route)) errors.push(route + ': missing TechArticle');
+        if (!graph.some(x => x['@type'] === (pageTypes[route] || 'TechArticle') && x.mainEntityOfPage === origin + route)) errors.push(route + ': missing appropriate page schema');
         if (!graph.some(x => x['@type'] === 'BreadcrumbList')) errors.push(route + ': missing breadcrumbs');
       } catch (e) { errors.push(route + ': invalid structured data: ' + e.message); }
     }
