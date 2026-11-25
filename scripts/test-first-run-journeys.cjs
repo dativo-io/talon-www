@@ -20,6 +20,12 @@ const hero = main.match(/<section\b[^>]*home-intro[^>]*>[\s\S]*?<\/section>/)?.[
 assert.ok(hero && words(hero) < 80, 'hero must remain a short business introduction');
 assert.equal((hero.match(/<a\b/g) || []).length, 2, 'hero must offer only two links');
 assert.match(hero, /<h1>Stay in control as AI scales<\/h1>/);
+assert.ok(hero.includes('<p class="case-kicker">Reduce AI costs and protect sensitive data</p>') && hero.includes('Keep your AI workflows and providers. Simply configure Talon in between.'), 'approved business value and integration caption');
+assert.ok(main.includes('supported interception paths'), 'routed-path governance boundary must remain visible');
+for (const asset of ['talon-control-layer.svg', 'talon-control-layer-mobile.svg']) {
+  const diagram = read('public/assets/' + asset);
+  for (const label of ['Your existing AI use cases', 'Your existing providers and tools', 'AI providers']) assert.ok(diagram.includes(label), 'missing existing-system diagram label: ' + label);
+}
 assert.ok(hero.includes('Manage AI policies, costs and reliability in one place.') && !hero.includes('home-intro-trust'), 'approved concise hero copy and no redundant trust line');
 assert.match(hero, /class="button primary" href="\/pilot\/" data-growth-intent="pilot-offer" data-growth-placement="hero" data-growth-primary="true"/);
 assert.match(hero, /class="button secondary" href="#how-it-works" data-growth-intent="product-overview" data-growth-placement="hero"/);
