@@ -32,7 +32,18 @@ assert.match(hero, /class="button secondary" href="#how-it-works" data-growth-in
 assert.ok(!hero.includes('Synthetic example') && !hero.includes('REQUIRE_APPROVAL'), 'technical proof belongs after the introduction');
 assert.ok(hero.includes('/public/assets/talon-control-layer.svg') && fs.existsSync(path.join(root, 'public/assets/talon-control-layer.svg')), 'conceptual control-layer illustration missing');
 assert.ok(main.indexOf('id="governed-actions"') > main.indexOf('id="how-it-works"'), 'refund proof must remain reachable below the hero');
-assert.ok(main.includes('Downstream calls before approval and authorized claim') && main.includes('Downstream call after approval and authorized claim') && main.includes('Approval does not execute a refund'), 'approval and dispatch must stay distinct');
+const flow = main.match(/<ol class="home-proof-flow"[^>]*>([\s\S]*?)<\/ol>/)?.[1];
+assert.ok(flow, 'synthetic proof lifecycle must remain visible');
+const stages = [...flow.matchAll(/<li class="([^"]+)"><h3>([^<]+)<\/h3><strong>(\d+)<\/strong><span>([^<]+)<\/span><\/li>/g)];
+assert.deepEqual(stages.map(m => [m[1], m[2], m[3], m[4]]), [
+  ['proof-pending', 'Request held', '0', 'Downstream calls'],
+  ['proof-reviewed', 'Reviewer approves', '0', 'Downstream calls'],
+  ['proof-dispatched', 'Runtime claims', '1', 'Downstream call'],
+], 'approval alone must cause no dispatch; authorized claim causes one call');
+assert.ok(main.includes('Approval does not execute a refund') && main.includes('authorized claim') && main.includes('counting test adapter'), 'approval and dispatch must stay distinct');
+assert.ok(main.includes('separate, authorized reviewer') && main.includes('REQUIRE_APPROVAL'), 'exact-action proof semantics lost');
+assert.ok(main.includes('href="/public/assets/console-showcase.webp"') && main.includes('src="/public/assets/console-showcase.webp"'), 'real console screenshot must be inspectable at native size');
+assert.ok(main.includes('synthetic test fixture, not production customer data'), 'console provenance missing');
 for (const href of ['/pilot/', '/use-cases/', '/enterprise/', '/talon/docs/quickstart-demo/', '/talon/docs/action-gateway-proof/', '/talon/docs/add-talon-to-existing-app/']) {
   assert.ok(main.includes('href="' + href + '"'), 'homepage main content missing evaluator route ' + href);
 }
