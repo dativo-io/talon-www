@@ -1,7 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 306" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 354" role="img" aria-labelledby="title desc">
   <title id="title">Talon as a shared AI control layer</title>
-  <desc id="desc">Support, document and coding workflows route supported model and action paths through Talon for policy, cost, reliability and evidence.</desc>
+  <desc id="desc">Existing support, document and coding workflows connect through Talon to existing AI providers, APIs and tools. Talon governs supported model and action paths.</desc>
   <g font-family="Inter, system-ui, sans-serif" text-anchor="middle">
+    <text x="180" y="16" font-size="12" fill="#4F5D73" font-weight="500">Your existing AI use cases</text>
+    <g transform="translate(0 24)">
     <g fill="#FFFFFF" stroke="#D2D9E5">
       <rect x="4" y="4" width="112" height="38" rx="7"/><rect x="124" y="4" width="112" height="38" rx="7"/><rect x="244" y="4" width="112" height="38" rx="7"/>
     </g>
@@ -13,6 +15,8 @@
     <g fill="#FFFFFF" font-size="14" font-weight="500"><text x="96.5" y="144">Policy</text><text x="263.5" y="144">Cost</text><text x="96.5" y="186">Reliability</text><text x="263.5" y="186">Evidence</text></g>
     <g fill="none" stroke="#7184A6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M180 215 V237 H60 V260 M180 237 H300 V260 M180 237 V260"/><path d="M56 256 L60 260 L64 256 M176 256 L180 260 L184 256 M296 256 L300 260 L304 256"/></g>
     <g fill="#E4EBF8"><rect x="4" y="262" width="112" height="40" rx="7"/><rect x="124" y="262" width="112" height="40" rx="7"/><rect x="244" y="262" width="112" height="40" rx="7"/></g>
-    <g fill="#081E58" font-size="14" font-weight="550"><text x="60" y="287">AI models</text><text x="180" y="287">APIs</text><text x="300" y="287">Tools</text></g>
+    <g fill="#081E58" font-size="14" font-weight="550"><text x="60" y="287">AI providers</text><text x="180" y="287">APIs</text><text x="300" y="287">Tools</text></g>
+    </g>
+    <text x="180" y="347" font-size="12" fill="#4F5D73" font-weight="500">Your existing providers and tools</text>
   </g>
 </svg>
