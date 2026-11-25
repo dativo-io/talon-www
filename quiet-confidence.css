@@ -611,3 +611,64 @@ body[data-ux-acquisition] .pilot-next a:not(.button) { color: var(--qc-primary);
   body[data-ux-acquisition] .acq-targets span { font-size: 12px; }
   body[data-ux-acquisition] .acquisition-intro .case-actions { justify-content: stretch; }
 }
+
+/* 7A: extend approved palette to owned marketing pages at publication.
+   Scope legacy components separately; keep home and acquisition layout intact.
+   Code and evidence retain dark surfaces and semantic colors. */
+body[data-ux-legacy-marketing] {
+  --bg: var(--qc-canvas); --bg-soft: var(--qc-accent); --bg-elevated: var(--qc-surface);
+  --card: var(--qc-surface); --card-strong: var(--qc-accent);
+  --card-border: var(--qc-line); --card-border-strong: #7184A6;
+  --muted-2: var(--qc-muted); --shadow: none; --shadow-soft: none;
+  --warning: #855000; --danger: #A12636; --radius: 12px; --radius-sm: 8px;
+}
+body[data-ux-legacy-marketing] :is(h1,h2,h3,h1 span) { color: var(--qc-ink); }
+body[data-ux-legacy-marketing] h1 { font-size: clamp(36px, 5.2vw, 68px); line-height: 1.1; text-wrap: balance; }
+body[data-ux-legacy-marketing] h2 { font-size: clamp(28px, 3.8vw, 46px); }
+body[data-ux-legacy-marketing] :is(.hero,.case-hero) { background: none; padding-block: clamp(52px,7vw,96px); }
+body[data-ux-legacy-marketing] :is(.eyebrow,.pill-eyebrow,.card-label,.case-number) {
+  color: var(--qc-primary); background: none; border: 0; padding: 0; letter-spacing: 0; text-transform: none; font-size: 14px; font-weight: 650;
+}
+body[data-ux-legacy-marketing] .live-dot { display: none; }
+body[data-ux-legacy-marketing] :is(.section,.case-section) { padding-block: clamp(48px,6vw,88px); }
+body[data-ux-legacy-marketing] :is(.split-section,.case-use-cases,.case-proof) { background: var(--qc-surface); border-color: var(--qc-line); }
+body[data-ux-legacy-marketing] :is(.card,.feature-column,.flow-box,.flow-step,.proof-flow,.table-wrap,.case-card,.case-proof-links a,.case-decision,.metric-grid div) {
+  color: var(--qc-ink); background: var(--qc-surface); border-color: var(--qc-line); box-shadow: none; backdrop-filter: none; border-radius: 8px;
+}
+body[data-ux-legacy-marketing] :is(.card:hover,.flow-box.highlight,.flow-step.highlight) { background: var(--qc-accent); transform: none; }
+body[data-ux-legacy-marketing] :is(.case-card p,.case-decision span,.case-proof-links span,.case-proof p,.case-cta p,.boundary-note,.case-disclaimer,.trust-row,.strip-inner,.muted,.no) { color: var(--qc-muted); }
+body[data-ux-legacy-marketing] :is(.case-decision strong,.case-proof-links strong) { color: var(--qc-ink); }
+body[data-ux-legacy-marketing] :is(.trust-row span,.strip-inner span,.link-row a,.mini-links a,.icon) { background: var(--qc-accent); color: var(--qc-primary); border-color: var(--qc-line); border-radius: 6px; }
+body[data-ux-legacy-marketing] :is(.feature-column a,.link-row a,.mini-links a,td a,.footer a,.case-heading a,.case-text-link,.button.ghost) { color: var(--qc-primary); text-decoration: underline; text-underline-offset: 3px; }
+body[data-ux-legacy-marketing] :is(.cta-card,.case-cta) { background: var(--qc-accent); border-color: var(--qc-line); box-shadow: none; backdrop-filter: none; }
+body[data-ux-legacy-marketing] :is(.terminal-card,.code-panel,.proof-panel,.case-overview) {
+  background: var(--qc-dark); color: var(--qc-dark-text); border-color: var(--qc-dark-line); box-shadow: none; backdrop-filter: none;
+  --text: var(--qc-dark-text); --muted: var(--qc-dark-muted); --accent: var(--qc-dark-accent);
+}
+body[data-ux-legacy-marketing] :is(.terminal-card,.code-panel,.proof-panel,.case-overview) :is(h2,h3,.card-label,.muted) { color: var(--qc-dark-text); }
+body[data-ux-legacy-marketing] :is(.terminal-card,.code-panel,.proof-panel,.case-overview) a { color: var(--qc-dark-accent); }
+body[data-ux-legacy-marketing] :is(.terminal-card,.code-panel,.proof-panel,.case-overview) a:focus-visible { outline-color: var(--qc-dark-accent); }
+body[data-ux-legacy-marketing] :is(.proof-panel,.terminal-card,.code-panel) pre { color: var(--qc-dark-text); overflow-x: auto; }
+body[data-ux-legacy-marketing] th { color: var(--qc-ink); background: var(--qc-accent); border-color: var(--qc-line); }
+body[data-ux-legacy-marketing] td { border-color: var(--qc-line); }
+body[data-ux-legacy-marketing] .footer { color: var(--qc-muted); border-color: var(--qc-line); }
+body[data-ux-legacy-marketing] :is(.hero-grid,.split,.grid,.flow,.case-grid) > * { min-width: 0; }
+body[data-ux-legacy-marketing] img { max-width: 100%; height: auto; }
+body[data-ux-legacy-marketing] :is(.table-wrap,.ep-table-wrap) { max-width: 100%; }
+body[data-ux-legacy-marketing] .enterprise-page { background: var(--qc-canvas); color: var(--qc-ink); }
+body[data-ux-legacy-marketing] .enterprise-page :is(h1,h2,h3,.ep-table,.ep-table tbody th[scope="row"],.ep-value p strong) { color: var(--qc-ink); }
+body[data-ux-legacy-marketing] .enterprise-page :is(.ep-eyebrow,.ep-text-link) { color: var(--qc-primary); letter-spacing: 0; text-transform: none; }
+body[data-ux-legacy-marketing] .enterprise-page :is(.ep-lead,.ep-subtle,.ep-description,.ep-value p,.ep-table-note,.ep-pilot-note,.ep-table small,.ep-community,.ep-minus,.ep-table thead th:first-child) { color: var(--qc-muted); }
+body[data-ux-legacy-marketing] .enterprise-page .ep-hero { background: none; }
+body[data-ux-legacy-marketing] .enterprise-page :is(.ep-section-alt,.ep-value,.ep-table-wrap) { background: var(--qc-surface); border-color: var(--qc-line); border-radius: 8px; }
+body[data-ux-legacy-marketing] .enterprise-page :is(.ep-value-number,.ep-table thead th,.ep-table thead th:nth-child(3),.ep-table tbody td:last-child,.ep-table tbody tr.ep-group th,.ep-pilot) { background: var(--qc-accent); color: var(--qc-ink); border-color: var(--qc-line); }
+body[data-ux-legacy-marketing] .enterprise-page :is(.ep-table th,.ep-table td) { border-color: var(--qc-line); }
+body[data-ux-legacy-marketing] .enterprise-page .ep-check { color: #17633D; background: #E4F3EA; border-color: #548A6D; }
+body[data-ux-legacy-marketing] .enterprise-page .ep-button-primary { background: var(--qc-primary); color: white; box-shadow: none; }
+body[data-ux-legacy-marketing] .enterprise-page .ep-button-outline { border-color: var(--qc-primary); background: transparent; color: var(--qc-primary); }
+body[data-ux-legacy-marketing] .enterprise-page .ep-button:hover { transform: none; }
+body[data-ux-legacy-marketing] .enterprise-page :is(a,.ep-table-wrap):focus-visible { outline-color: var(--qc-primary); }
+@media(max-width:560px) {
+  body[data-ux-legacy-marketing] .enterprise-page .ep-hero h1 { font-size: clamp(32px,9vw,43px); }
+  body[data-ux-legacy-marketing] .enterprise-page .wrap { padding-inline: 0; }
+}

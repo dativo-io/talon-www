@@ -61,6 +61,9 @@ try {
     assert.match(html, /href="\/public\/assets\/talon-icon\.svg"/);
     assert.match(html, /href="\/site-nav\.css"/);
     assert.match(html, /src="\/site-nav\.js"/);
+    assert.match(html, /data-ux-theme="quiet-confidence"/);
+    assert.equal((html.match(/href="\/quiet-confidence\.css"/g) || []).length, 1);
+    if (['ai-action-control/index.html', 'enterprise/index.html'].includes(route)) assert.ok(html.includes('data-ux-legacy-marketing'));
     assert.equal((html.match(/src="\/site-nav\.js"/g) || []).length, 1);
     normalized.set(route, header);
   }
@@ -72,6 +75,7 @@ try {
   for (const route of routes) {
     const html = fs.readFileSync(path.join(out, route), 'utf8');
     const header = html.match(/<header class="site-nav">[\s\S]*?<\/header>/)?.[0];
+    assert.equal((html.match(/href="\/quiet-confidence\.css"/g) || []).length, 1);
     assert.equal(header, normalized.get(route), `canonical header changed on ${route}`);
     assert.equal((html.match(/src="\/site-nav\.js"/g) || []).length, 1, `duplicate nav JS on ${route}`);
     assert.equal((html.match(/href="\/site-nav\.css"/g) || []).length, 1, `duplicate nav CSS on ${route}`);
