@@ -20,6 +20,10 @@
 
 The immutable release commit is 410f1015a621326e722ebfb0fb9e84adf2a6a6dc. Reviewed upstream PR #609 (merged commit 840a70acc862b41a98ba67f86eba6bd2bff9ce3d) supplies three mapped guide errata: cost governance, MCP migration, and n8n refund approvals. Exact original and corrected Git blob IDs and line hunks are recorded. README changes remain in the product repository; README is not mapped. The errata mechanism verifies bytes and review references, not the semantic truth of arbitrary claims. No new Enterprise capability is certified by this manifest. A complete claim-by-claim and executable example audit remains a separate acceptance task.
 
+## v1.17.0 onboarding correction
+
+Reviewed upstream PR [#610](https://github.com/dativo-io/talon/pull/610) (merged commit `8e37ede5994a0f06756cabcfd4047286d8f1b6f7`) adds two mapped guide errata: the published-image no-key quickstart and existing-application onboarding. The release, runtime and screenshots are unchanged. The quickstart distinguishes policy-only proof from the optional local Compose fixture; first and second applications have explicit acceptance criteria. The product PR passed CI, Docs and CodeQL; that source CI does not establish that every example was independently executed against a published artifact. n8n and MCP walkthrough acceptance remains separate.
+
 ## Local usage
 
 Run `bash scripts/build-site-with-docs.sh` from the website checkout; it fetches the selected tag once and verifies its commit. An explicit TALON_REPO_PATH may be used only for a clean checkout of that same release. To start Docusaurus directly, first synchronize with that explicit checkout (npm run sync:talon-docs). Do not set TALON_DOCS_REF to main in Cloudflare or CI; remove any legacy override, or set it to the approved tag/commit. There is no preview channel in this step; it must be deliberately introduced later and never replace stable docs.

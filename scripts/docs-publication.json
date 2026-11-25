@@ -112,6 +112,291 @@
           ]
         }
       ]
+    },
+    {
+      "path": "docs/guides/add-talon-to-existing-app.md",
+      "originalBlob": "9b12ef83343fe9b31bd44f38a17c09a2e0ed01ab",
+      "correctedBlob": "b12d9dc4844cd64ffdd907ff77e53513928c340e",
+      "sourceCommit": "8e37ede5994a0f06756cabcfd4047286d8f1b6f7",
+      "review": "https://github.com/dativo-io/talon/pull/610",
+      "hunks": [
+        {
+          "startLine": 13,
+          "remove": [
+            "The quickstart proves that Talon decides and signs. It does not connect your application: it uses a synthetic identity and no company policy."
+          ],
+          "insert": [
+            "The published-image quickstart proves that Talon enforces a demonstration company policy and signs its decisions. It uses a synthetic identity and does not connect your application or exercise a live provider."
+          ]
+        },
+        {
+          "startLine": 268,
+          "remove": [],
+          "insert": [
+            "Before adding another application, send a permitted synthetic request and one containing a synthetic email address. The latter must return HTTP 400 with `pii_policy_violation` under the configured block policy; an unknown use-case key must return 401. Verify actual evidence IDs with `talon audit verify YOUR_EVIDENCE_ID` and check `talon agents show customer-support --effective`. Working alone does not prove a provider was reached.",
+            ""
+          ]
+        },
+        {
+          "startLine": 274,
+          "remove": [
+            "That is the whole step. Give the application its two settings and send a request. The second application gets its own identity, key, budget accounting and evidence, and runs under the same company policy: nothing is copied into its file, the company configuration is not touched, the running Talon loads it without a restart, and the first application keeps serving meanwhile."
+          ],
+          "insert": [
+            "Give the application the same base URL and its own Talon key from its secret manager. Wait for its runtime state to be loaded, then send a permitted request and a synthetic PII request. The second application gets its own identity, key, budget accounting and evidence, and runs under the same company policy: nothing is copied into its file, the company configuration is not touched, the running Talon loads it without a restart, and the first application keeps serving meanwhile."
+          ]
+        },
+        {
+          "startLine": 288,
+          "remove": [],
+          "insert": [
+            "Verify each application separately:",
+            "",
+            "```bash",
+            "talon agents show customer-support --effective",
+            "talon agents show hr-copilot --effective",
+            "```",
+            "",
+            "Acceptance: both applications are loaded and have authenticated traffic under the current company policy, distinct evidence and cost attribution. The second application is denied by the same PII rule, and the first continues serving. No company policy change or restart is required. For a provider-free engineering test, run `make test-onboarding` in the matching release checkout (Go, Node, npm, curl and OpenSSL required). The [acceptance script](../../scripts/onboarding-acceptance.sh) checks actual upstream counts and credential lifecycle; a source-build pass does not establish your deployed binary or client compatibility.",
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/tutorials/quickstart-demo.md",
+      "originalBlob": "6d9c9c11872f2db40610a7be23b92c42589a96c9",
+      "correctedBlob": "17969458462793e2c12d4ad951511e8a5a88a563",
+      "sourceCommit": "8e37ede5994a0f06756cabcfd4047286d8f1b6f7",
+      "review": "https://github.com/dativo-io/talon/pull/610",
+      "hunks": [
+        {
+          "startLine": 1,
+          "remove": [
+            "# Quick Start: 60-Second Demo (No API Key)"
+          ],
+          "insert": [
+            "# Try Talon without an API key"
+          ]
+        },
+        {
+          "startLine": 3,
+          "remove": [
+            "See Talon's request path and signed evidence without any API keys or configuration. The mock provider handles the LLM call, so PII scanning, policy evaluation, cost tracking, and evidence generation run without spending money."
+          ],
+          "insert": [
+            "Choose the published-image quickstart for policy decisions and signed evidence without a provider API key. For a synthetic model response, redaction and the Operations Console, continue with the optional Compose walkthrough."
+          ]
+        },
+        {
+          "startLine": 7,
+          "remove": [],
+          "insert": [
+            "## First: run the published image",
+            "",
+            "Requires Docker, curl and Bash. This example runs v1.17.0; keep the script and image on the same release.",
+            "",
+            "```bash",
+            "curl -fsSL https://raw.githubusercontent.com/dativo-io/talon/v1.17.0/scripts/quickstart.sh -o talon-quickstart.sh",
+            "# Inspect the script before running it.",
+            "TALON_VERSION=1.17.0 bash talon-quickstart.sh",
+            "```",
+            "",
+            "Expected: PII blocked (400), model denied (403), unknown key refused (401), two verified evidence records and final PASS. No provider exists in this fixture. For redaction, a mock response and the Operations Console, use the optional walkthrough below. Use synthetic inputs only.",
+            ""
+          ]
+        },
+        {
+          "startLine": 9,
+          "remove": [
+            "- Docker and Docker Compose",
+            "- That's it."
+          ],
+          "insert": [
+            "- Docker Compose v2.24+, Git and curl; jq for the optional API inspection.",
+            "- Local evaluation only: the fixture uses a public demo key and development-open administrative endpoints."
+          ]
+        },
+        {
+          "startLine": 14,
+          "remove": [
+            "### 1. Clone and start (30 seconds)"
+          ],
+          "insert": [
+            "### 1. Clone and start"
+          ]
+        },
+        {
+          "startLine": 17,
+          "remove": [
+            "git clone https://github.com/dativo-io/talon"
+          ],
+          "insert": [
+            "git clone --depth 1 --branch v1.17.0 https://github.com/dativo-io/talon"
+          ]
+        },
+        {
+          "startLine": 19,
+          "remove": [
+            "docker compose up"
+          ],
+          "insert": [
+            "export TALON_IMAGE=ghcr.io/dativo-io/talon:1.17.0",
+            "docker compose -f docker-compose.yml -f docker-compose.published.yml up"
+          ]
+        },
+        {
+          "startLine": 22,
+          "remove": [
+            "Wait for both services to show as healthy (about 15-30 seconds)."
+          ],
+          "insert": [
+            "Wait for all three services to become ready. Startup depends on the machine and image cache."
+          ]
+        },
+        {
+          "startLine": 24,
+          "remove": [
+            "### 2. Send a request with PII (10 seconds)"
+          ],
+          "insert": [
+            "### 2. Send a request with PII"
+          ]
+        },
+        {
+          "startLine": 31,
+          "remove": [],
+          "insert": [
+            "  -H \"Authorization: Bearer talon-demo-key\" \\"
+          ]
+        },
+        {
+          "startLine": 44,
+          "remove": [
+            "The demo configuration sets `organization_policy.defaults.pii_action: \"redact\"`. Active policy is always enforced (#442) — there is no observe-only posture — so the rule you declare is what happens: the mock provider receives `[EMAIL]` and `[IBAN]` in place of the detected values, and the request still succeeds. Change that one line to `\"block\"` and the same request is denied before the provider is reached."
+          ],
+          "insert": [
+            "The demo configuration sets `organization_policy.defaults.pii_action: \"redact\"`. Active policy is always enforced (#442) — there is no observe-only posture — so the rule you declare is what happens: the mock provider receives `[EMAIL]` and `[IBAN]` in place of the detected values, and the request still succeeds. If you change that one line to `\"block\"` and restart the demo service so it loads the policy, the same request is denied before the provider is reached."
+          ]
+        },
+        {
+          "startLine": 46,
+          "remove": [
+            "### 3. List the evidence (10 seconds)"
+          ],
+          "insert": [
+            "### 3. List the evidence"
+          ]
+        },
+        {
+          "startLine": 49,
+          "remove": [
+            "docker compose exec talon /usr/local/bin/talon audit list"
+          ],
+          "insert": [
+            "TALON_IMAGE=ghcr.io/dativo-io/talon:1.17.0 docker compose -f docker-compose.yml -f docker-compose.published.yml exec talon /usr/local/bin/talon audit list"
+          ]
+        },
+        {
+          "startLine": 55,
+          "remove": [
+            "✓ [req_a1b2c3d4] | ... | demo/demo-user | gpt-4o-mini | ..."
+          ],
+          "insert": [
+            "✓ [YOUR_EVIDENCE_ID] | ... | demo/demo-agent | gpt-4o-mini | ..."
+          ]
+        },
+        {
+          "startLine": 61,
+          "remove": [
+            "docker compose exec talon /usr/local/bin/talon audit show req_a1b2c3d4"
+          ],
+          "insert": [
+            "TALON_IMAGE=ghcr.io/dativo-io/talon:1.17.0 docker compose -f docker-compose.yml -f docker-compose.published.yml exec talon /usr/local/bin/talon audit show YOUR_EVIDENCE_ID"
+          ]
+        },
+        {
+          "startLine": 64,
+          "remove": [
+            "The record shows:"
+          ],
+          "insert": [
+            "Replace YOUR_EVIDENCE_ID with the actual ID from audit list. The record shows:"
+          ]
+        },
+        {
+          "startLine": 74,
+          "remove": [
+            "docker compose exec talon /usr/local/bin/talon audit verify req_a1b2c3d4"
+          ],
+          "insert": [
+            "TALON_IMAGE=ghcr.io/dativo-io/talon:1.17.0 docker compose -f docker-compose.yml -f docker-compose.published.yml exec talon /usr/local/bin/talon audit verify YOUR_EVIDENCE_ID"
+          ]
+        },
+        {
+          "startLine": 80,
+          "remove": [
+            "✓ Evidence req_a1b2c3d4: signature VALID"
+          ],
+          "insert": [
+            "✓ Evidence YOUR_EVIDENCE_ID: signature VALID"
+          ]
+        },
+        {
+          "startLine": 94,
+          "remove": [
+            "Talon ships no browser dashboard; the CLI and these endpoints are the operator surface (the read-only console is tracked in [#533](https://github.com/dativo-io/talon/issues/533))."
+          ],
+          "insert": [
+            "For this local fixture the admin key is intentionally unset. The read-only [Operations Console](../guides/operations-console.md) is available at http://127.0.0.1:8787/. Obtain the one-time pairing code with `TALON_IMAGE=ghcr.io/dativo-io/talon:1.17.0 docker compose -f docker-compose.yml -f docker-compose.published.yml logs talon-ui`. Never expose this fixture to another host."
+          ]
+        },
+        {
+          "startLine": 98,
+          "remove": [
+            "You executed and inspected this exact path:"
+          ],
+          "insert": [
+            "In the optional Compose walkthrough, you executed and inspected this exact path:"
+          ]
+        },
+        {
+          "startLine": 105,
+          "remove": [
+            "This page did **not** yet execute tool filtering, PII blocking, model denial, sovereignty routing, a session budget, or tamper failure. To see a native policy decision without any model call, `talon run --dry-run \"<prompt>\"` prints the decision and exits. Reproduce the rest manually next:"
+          ],
+          "insert": [
+            "The Compose walkthrough does not exercise tool filtering, sovereignty routing, session budgets or tamper failure. The published-image quickstart above separately proves PII blocking and model denial; it does not test redaction or a live model response. To see a native policy decision without any model call, `talon run --dry-run \"<prompt>\"` prints the decision and exits. Reproduce the rest manually next:"
+          ]
+        },
+        {
+          "startLine": 111,
+          "remove": [
+            "Point your existing app at Talon by changing only the base URL and using a Talon agent key."
+          ],
+          "insert": [
+            "After configuring a separate authenticated Talon installation and registering the use case, point your existing app at its Talon base URL and use its dedicated key. Do not reuse the local demo's key or open admin endpoints."
+          ]
+        },
+        {
+          "startLine": 167,
+          "remove": [
+            "You ran the fastest Talon proof loop: one request, one governance decision, one signed record, one verification."
+          ],
+          "insert": [
+            "You verified Talon policy decisions locally. Connect a real application using a separate installation and its own key; do not reuse the demo credentials."
+          ]
+        },
+        {
+          "startLine": 180,
+          "remove": [
+            "docker compose down -v"
+          ],
+          "insert": [
+            "TALON_IMAGE=ghcr.io/dativo-io/talon:1.17.0 docker compose -f docker-compose.yml -f docker-compose.published.yml down -v"
+          ]
+        }
+      ]
     }
   ]
 }
