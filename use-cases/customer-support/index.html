@@ -17,13 +17,47 @@
 <link rel="stylesheet" href="/styles.css" />
 <link rel="icon" type="image/svg+xml" href="/public/assets/talon-icon.svg" />
 <link rel="stylesheet" href="/site-nav.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Let AI draft customer replies without granting refund authority.","description":"A real n8n customer support demo governed by Talon: PII redaction, policy-safe fallback, refund-tool denial, signed evidence and a separate human approval step.","inLanguage":"en","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/use-cases/customer-support/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dativo.io/"},{"@type":"ListItem","position":2,"name":"Use cases","item":"https://dativo.io/use-cases/"},{"@type":"ListItem","position":3,"name":"Customer support","item":"https://dativo.io/use-cases/customer-support/"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Protect customer data and control refunds","description":"A real n8n customer support demo governed by Talon: PII redaction, policy-safe fallback, refund-tool denial, signed evidence and a separate human approval step.","inLanguage":"en","author":{"@type":"Organization","name":"Dativo"},"publisher":{"@type":"Organization","name":"Dativo"},"mainEntityOfPage":"https://dativo.io/use-cases/customer-support/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dativo.io/"},{"@type":"ListItem","position":2,"name":"Use cases","item":"https://dativo.io/use-cases/"},{"@type":"ListItem","position":3,"name":"Customer support","item":"https://dativo.io/use-cases/customer-support/"}]}]}</script>
 <script defer src="/site-nav.js"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b924ed6d708d4b6dafa7d0e34c07d7d6"}'></script>
 </head><body>
-<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/" aria-label="Dativo Talon home"><img class="brand-logo" src="/public/assets/talon-icon.svg?v=2" alt="Dativo Talon mark" /><span>Dativo Talon</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation"><span></span><span></span><span></span></button><nav class="nav-links" id="primary-navigation" aria-label="Primary navigation"><a href="/">Operate</a><a href="/ai-cost-control/">Cost</a><a href="/ai-action-control/">Actions</a><a href="/llm-governance-gateway/">Policy</a><a href="/coding-agent-governance/">Sessions</a><details class="nav-dropdown"><summary>Use cases</summary><div class="nav-dropdown-menu"><a href="/use-cases/coding-agents/">Coding agents</a><a href="/use-cases/customer-support/">Customer support</a><a href="/use-cases/people-analytics/">People Analytics</a><a href="/use-cases/vendor-contract-review/">Vendor contract review</a><a href="/use-cases/">All use cases</a></div></details><a href="/talon/docs/">Docs</a><a href="/comparisons/">Compare</a><a class="nav-button" href="https://github.com/dativo-io/talon">GitHub</a></nav></div></header>
+<header class="site-nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/" aria-label="Dativo Talon home"><img class="brand-logo" src="/public/assets/talon-icon.svg?v=2" alt="Dativo Talon mark" /><span>Dativo Talon</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation"><span></span><span></span><span></span></button>
+      <nav class="nav-links" id="primary-navigation" aria-label="Primary navigation">
+        <details class="nav-dropdown"><summary>Product</summary>
+          <div class="nav-dropdown-menu">
+            <a href="/#how-it-works" data-growth-intent="product-overview">How it works</a>
+            <a href="/#operations-console" data-growth-intent="console-docs">Operations Console</a>
+            <a href="/ai-agent-governance/" data-growth-intent="governance">Governance and control</a>
+            <a href="/enterprise/" data-growth-intent="enterprise">Enterprise</a>
+          </div>
+        </details>
+        <details class="nav-dropdown"><summary>Solutions</summary>
+          <div class="nav-dropdown-menu">
+            <a href="/use-cases/" data-growth-intent="case-hub">All use cases</a>
+            <a href="/use-cases/customer-support/" data-growth-intent="case-support">Customer support</a>
+            <a href="/use-cases/vendor-contract-review/" data-growth-intent="case-procurement">Document processing</a>
+            <a href="/use-cases/people-analytics/" data-growth-intent="case-people">People Analytics</a>
+            <a href="/solutions/n8n/" data-growth-intent="integration-n8n">Talon for n8n</a>
+            <a href="/use-cases/coding-agents/" data-growth-intent="case-coding">Coding assistants</a>
+          </div>
+        </details>
+        <details class="nav-dropdown"><summary>Open Source</summary>
+          <div class="nav-dropdown-menu">
+            <a href="https://github.com/dativo-io/talon" data-growth-intent="github">GitHub</a>
+            <a href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart">Quickstart</a>
+            <a href="/talon/docs/" data-growth-intent="docs">Documentation</a>
+            <a href="/talon/docs/choosing-integration-path/" data-growth-intent="integration">Integration guides</a>
+          </div>
+        </details>
+        <a class="nav-button" href="/pilot/" data-growth-intent="pilot-offer">Discuss a pilot</a>
+      </nav>
+    </div>
+  </header>
 <main>
-<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Use case · Support operations</div><h1>Let AI draft customer replies without granting refund authority.</h1><p class="hero-subtitle">Support workflows need useful answers, safe handling of customer data and clear boundaries around financial actions. In Talon's synthetic n8n demonstration, a support reply is completed through an approved model path while a disallowed refund-related tool is blocked before provider dispatch.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon-full-demo#n8n-customer-support-resolution">Inspect reproducible workflow</a><a class="button secondary" href="/ai-action-control/">Action boundaries</a><a class="button ghost" href="/use-cases/refund-approvals/">Governed refund approvals</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>duplicate-charge support ticket
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow pill-eyebrow"><span class="live-dot"></span>Use case · Support operations</div><h1>Protect customer data and control refunds</h1><p class="hero-subtitle">In the synthetic n8n example, Talon protects customer data on an approved model path and blocks a disallowed refund tool before provider dispatch.</p><div class="hero-actions"><a class="button primary" href="/pilot/" data-growth-intent="pilot-offer" data-growth-placement="support-evaluation" data-growth-primary="true">Discuss a pilot</a><a class="button secondary" href="https://github.com/dativo-io/talon-full-demo#n8n-customer-support-resolution">Inspect reproducible workflow</a><a class="button secondary" href="/ai-action-control/">Action boundaries</a><a class="button ghost" href="/use-cases/refund-approvals/">Governed refund approvals</a></div></div><div class="terminal-card"><div class="terminal-header"><span></span><span></span><span></span></div><pre><code>duplicate-charge support ticket
   → email + IBAN handling
   → permitted provider fallback
   → customer reply draft
@@ -56,7 +90,7 @@ No payment or refund is executed.</code></pre></div></div></section>
 <article class="card"><h3>Platform engineer</h3><p>The configured <code>customer-support</code> identity, approved provider fallback, denial, estimated cost and relevant session records can be inspected.</p></article>
 <article class="card"><h3>Security reviewer</h3><p>Verify signed Talon decisions for routed traffic and separately signed demo-operator receipts. No claim extends to direct calls bypassing the controlled path.</p></article>
 </div><p class="boundary-note">The support inputs and financial handoff are synthetic. A separate Zendesk-adapter scenario exists, but installation and UI observations in a real Zendesk account require additional operator confirmation.</p></div></section>
-<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Run the controlled scene</p><h2>Can your support assistant generate a draft and still stop a forbidden action?</h2><p>Reproduce the n8n workflow and review the signed Talon records. Do not confuse a tool schema denial with an executed payment or complete endpoint containment.</p><div class="hero-actions"><a class="button primary" href="https://github.com/dativo-io/talon-full-demo#n8n-customer-support-resolution">Run n8n support case</a><a class="button secondary" href="/github-copilot-governance/">See coding tool control</a><a class="button ghost" href="/use-cases/">Other use cases</a></div></div></div></section>
+<section class="section cta-section"><div class="wrap"><div class="cta-card"><p class="eyebrow">Run the controlled scene</p><h2>Can your support assistant generate a draft and still stop a forbidden action?</h2><p>Reproduce the n8n workflow and review the signed Talon records. Do not confuse a tool schema denial with an executed payment or complete endpoint containment.</p><div class="hero-actions"><a class="button primary" href="/pilot/" data-growth-intent="pilot-offer" data-growth-placement="support-evaluation" data-growth-primary="true">Discuss a pilot</a><a class="button secondary" href="https://github.com/dativo-io/talon-full-demo#n8n-customer-support-resolution">Run n8n support case</a><a class="button secondary" href="/github-copilot-governance/">See coding tool control</a><a class="button ghost" href="/use-cases/">Other use cases</a></div></div></div></section>
 </main>
 <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Dativo</span><span>Demonstrations use synthetic data and govern only supported paths routed through Talon. Never infer control of bypassed local actions.</span></div></footer><script>document.getElementById("year").textContent=new Date().getFullYear();</script>
 </body></html>
