@@ -58,7 +58,7 @@ function checkCheckout(root,m=manifest) {
 function publicManifest(m=manifest) {
   validate(m);
   return {schema:m.schema,channel:m.channel,release:m.release,
-    websiteOwnedPages:['/talon/docs/','/talon/docs/coding-agents-demo/','/talon/docs/use-case-playbooks/','/talon/docs/evaluation-checklist/','/talon/docs/open-source-and-enterprise/'],
+    websiteOwnedPages:['/talon/docs/','/talon/docs/technical-evaluation/','/talon/docs/coding-agents-demo/','/talon/docs/use-case-playbooks/','/talon/docs/evaluation-checklist/','/talon/docs/open-source-and-enterprise/'],
     errata:m.errata.map(({hunks,...e})=>e),
     pages:Object.fromEntries(Object.entries(sourceMap).map(([page,source])=>['/talon/docs/'+page.replace(/\.md$/,'')+'/',{source,sourceCommit:m.release.commit,erratum:m.errata.find(e=>e.path===source)?.sourceCommit??null}]))};
 }
