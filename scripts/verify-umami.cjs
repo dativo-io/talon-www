@@ -73,6 +73,7 @@ for (const file of htmlFiles) {
   if (html.includes("window.umami.track('GitHub Click'") || html.includes('function safeDestination(href)')) failures.push(relative + ': legacy inline click listener reintroduced');
   for (const flag of ['data-exclude-search="true"','data-exclude-hash="true"','data-do-not-track="true"']) if (!trackerMatch?.[0].includes(flag)) failures.push(relative + ': missing privacy flag ' + flag);
 
+  if (html.includes('static.cloudflareinsights.com/beacon.min.js')) failures.push(relative + ': unexpected second browser analytics provider');
   const plausibleSignals = [
     'data-talon-analytics="plausible"',
     'plausible.io/js/',

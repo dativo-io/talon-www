@@ -672,3 +672,36 @@ body[data-ux-legacy-marketing] .enterprise-page :is(a,.ep-table-wrap):focus-visi
   body[data-ux-legacy-marketing] .enterprise-page .ep-hero h1 { font-size: clamp(32px,9vw,43px); }
   body[data-ux-legacy-marketing] .enterprise-page .wrap { padding-inline: 0; }
 }
+
+/* 7D: keyboard navigation, readable utility footer and reduced motion. */
+html:has(body[data-ux-theme="quiet-confidence"]) { scroll-padding-top: 100px; }
+body[data-ux-theme="quiet-confidence"] article[id] { scroll-margin-top: 100px; }
+body[data-ux-theme="quiet-confidence"] .site-skip-link {
+  position: fixed; top: 8px; left: 8px; z-index: 100;
+  padding: 12px 20px; border-radius: 8px; background: var(--qc-primary); color: #fff;
+  transform: translateY(-150%);
+}
+body[data-ux-theme="quiet-confidence"] .site-skip-link:focus { transform: translateY(0); outline-color: var(--qc-primary); }
+body[data-ux-theme="quiet-confidence"] .site-utility-links {
+  display:flex; flex-wrap:wrap; gap:10px 24px; width:min(var(--max),calc(100% - 2 * var(--qc-gutter))); margin:24px auto 0; font-size:14px;
+}
+body[data-ux-theme="quiet-confidence"] .site-utility-links a { color: var(--qc-primary); text-decoration: underline; text-underline-offset: 3px; padding-block:6px; }
+body[data-ux-theme="quiet-confidence"] .privacy-copy { max-width: 780px; }
+body[data-ux-theme="quiet-confidence"] .privacy-copy h2 { font-size:clamp(24px,3vw,34px); margin-top:32px; }
+body[data-ux-theme="quiet-confidence"] .privacy-copy p { color:var(--qc-muted); }
+body[data-ux-theme="quiet-confidence"] .privacy-copy a { color:var(--qc-primary); text-decoration:underline; }
+@media(prefers-reduced-motion:reduce) {
+  html:has(body[data-ux-theme="quiet-confidence"]) { scroll-behavior: auto; }
+  body[data-ux-theme="quiet-confidence"] *, body[data-ux-theme="quiet-confidence"] *::before, body[data-ux-theme="quiet-confidence"] *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior:auto !important; }
+}
+
+/* Browser QA follow-up: retain readable light cards and wrap long inline config
+   identifiers. Preformatted evidence stays horizontally scrollable internally. */
+body[data-ux-acquisition] .case-use-cases { background: var(--qc-surface); color: var(--qc-ink); }
+body[data-ux-acquisition] .case-card { background: var(--qc-surface); color: var(--qc-ink); }
+body[data-ux-legacy-marketing] main :is(p,li,td,h1,h2,h3,a):not(pre *) { overflow-wrap: anywhere; }
+body[data-ux-legacy-marketing] main :is(p,li,td) code:not(pre code) { white-space: normal; overflow-wrap: anywhere; }
+body[data-ux-legacy-marketing] main :is(.code-panel,.terminal-card,.table-wrap) { min-width: 0; max-width: 100%; }
+@media (max-width: 920px) {
+  body[data-ux-legacy-marketing] :is(.hero-grid,.split,.proof-split,.grid.two) { grid-template-columns: minmax(0,1fr); }
+}

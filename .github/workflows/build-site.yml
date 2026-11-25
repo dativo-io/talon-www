@@ -57,7 +57,7 @@ jobs:
         run: node scripts/verify-sitemap-completeness.cjs dist
 
       - name: Audit all canonical marketing metadata and site links
-        run: node scripts/audit-built-site.cjs dist
+        run: node scripts/audit-built-site.cjs dist --strict
 
       - name: Upload crawl audit
         if: always()
@@ -106,3 +106,38 @@ jobs:
           test -f dist/talon/docs/claude-code-integration/index.html
           test -f dist/talon/docs/codex-cli-integration/index.html
           test -f dist/talon/docs/github-copilot-cli-governance/index.html
+
+      - name: Install pinned browser QA tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/talon-site-qa" --no-audit --no-fund --save-exact playwright@1.65.1 axe-core@4.14.1 @lhci/cli@0.14.0
+          echo "NODE_PATH=$RUNNER_TEMP/talon-site-qa/node_modules" >> "$GITHUB_ENV"
+          echo "CHROME_PATH=$(command -v google-chrome)" >> "$GITHUB_ENV"
+
+      - name: Start built-site preview
+        run: |
+          python3 -m http.server 8080 --bind 127.0.0.1 --directory dist > /tmp/talon-preview.log 2>&1 &
+          for i in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:8080/ > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          exit 1
+
+      - name: Browser smoke, keyboard, accessibility and acquisition events
+        run: node scripts/browser-smoke.cjs
+
+      - name: Lighthouse CI mobile lab measurements
+        if: always() && env.CHROME_PATH != ''
+        run: |
+          "$RUNNER_TEMP/talon-site-qa/node_modules/.bin/lhci" collect --config=scripts/lighthouserc.cjs
+          "$RUNNER_TEMP/talon-site-qa/node_modules/.bin/lhci" assert --config=scripts/lighthouserc.cjs
+          "$RUNNER_TEMP/talon-site-qa/node_modules/.bin/lhci" upload --config=scripts/lighthouserc.cjs
+
+      - name: Upload browser and Lighthouse evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-browser-quality
+          path: |
+            site-qa/
+            .lighthouseci/
+          if-no-files-found: warn

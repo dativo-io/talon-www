@@ -1,0 +1,37 @@
+name: Production site health
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      full:
+        description: Check every canonical sitemap URL (bounded concurrency)
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+      - name: Check published website
+        env:
+          FULL: ${{ inputs.full }}
+        run: |
+          if [ "$FULL" = "true" ]; then
+            node scripts/check-live-site.cjs --full
+          else
+            node scripts/check-live-site.cjs
+          fi
+      - name: Store health report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-site-health
+          path: live-site-health.json
+          if-no-files-found: warn
