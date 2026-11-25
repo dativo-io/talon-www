@@ -1,0 +1,243 @@
+{
+  "schema": 1,
+  "rows": [
+    {
+      "id": "company-policy",
+      "label": "Organization and AI use-case policy",
+      "detail": "",
+      "group": "core",
+      "community": {
+        "status": "included"
+      },
+      "enterprise": {
+        "status": "included"
+      },
+      "evidence": {
+        "type": "released-documentation",
+        "path": "docs/reference/operational-control-plane.md",
+        "release": "410f1015a621326e722ebfb0fb9e84adf2a6a6dc"
+      }
+    },
+    {
+      "id": "model-data-cost-reliability",
+      "label": "Model and data controls, spend limits, policy-valid fallback",
+      "detail": "",
+      "group": "core",
+      "community": {
+        "status": "included"
+      },
+      "enterprise": {
+        "status": "included"
+      },
+      "evidence": {
+        "type": "released-documentation",
+        "path": "LIMITATIONS.md",
+        "release": "410f1015a621326e722ebfb0fb9e84adf2a6a6dc"
+      }
+    },
+    {
+      "id": "action-authorization",
+      "label": "Exact-action authorization and local human review",
+      "detail": "On supported HTTP/MCP interception paths",
+      "group": "core",
+      "community": {
+        "status": "included"
+      },
+      "enterprise": {
+        "status": "included"
+      },
+      "evidence": {
+        "type": "released-documentation",
+        "path": "docs/guides/mcp-governed-tools.md",
+        "release": "410f1015a621326e722ebfb0fb9e84adf2a6a6dc"
+      }
+    },
+    {
+      "id": "signed-evidence",
+      "label": "Signed decision evidence and independent verification",
+      "detail": "",
+      "group": "core",
+      "community": {
+        "status": "included"
+      },
+      "enterprise": {
+        "status": "included"
+      },
+      "evidence": {
+        "type": "released-documentation",
+        "path": "docs/reference/evidence-integrity-spec.md",
+        "release": "410f1015a621326e722ebfb0fb9e84adf2a6a6dc"
+      }
+    },
+    {
+      "id": "operations-console",
+      "label": "Sessions and local read-only Operations Console",
+      "detail": "",
+      "group": "core",
+      "community": {
+        "status": "included"
+      },
+      "enterprise": {
+        "status": "included"
+      },
+      "evidence": {
+        "type": "released-documentation",
+        "path": "docs/guides/operations-console.md",
+        "release": "410f1015a621326e722ebfb0fb9e84adf2a6a6dc"
+      }
+    },
+    {
+      "id": "corporate-identity",
+      "label": "Corporate SSO, team roles and access revocation",
+      "detail": "Identity through a verified company provider",
+      "group": "enterprise",
+      "community": {
+        "status": "local-alternative",
+        "label": "Local credentials"
+      },
+      "enterprise": {
+        "status": "pilot-scope"
+      },
+      "evidence": {
+        "type": "commercial-scope",
+        "reference": "https://dativo.io/enterprise/"
+      }
+    },
+    {
+      "id": "team-registration",
+      "label": "Teams register and manage their own AI apps",
+      "detail": "Within mandatory organization policy",
+      "group": "enterprise",
+      "community": {
+        "status": "local-alternative",
+        "label": "Operator-led CLI"
+      },
+      "enterprise": {
+        "status": "pilot-scope"
+      },
+      "evidence": {
+        "type": "commercial-scope",
+        "reference": "https://dativo.io/enterprise/"
+      }
+    },
+    {
+      "id": "administrative-history",
+      "label": "Who changed policies, keys and access",
+      "detail": "Attributed administrative change history",
+      "group": "enterprise",
+      "community": {
+        "status": "local-alternative",
+        "label": "Runtime evidence"
+      },
+      "enterprise": {
+        "status": "pilot-scope"
+      },
+      "evidence": {
+        "type": "commercial-scope",
+        "reference": "https://dativo.io/enterprise/"
+      }
+    },
+    {
+      "id": "policy-changes",
+      "label": "Review and promote policy changes",
+      "detail": "Auditable team configuration changes",
+      "group": "enterprise",
+      "community": {
+        "status": "local-alternative",
+        "label": "Local config / CLI"
+      },
+      "enterprise": {
+        "status": "pilot-scope"
+      },
+      "evidence": {
+        "type": "commercial-scope",
+        "reference": "https://dativo.io/enterprise/"
+      }
+    },
+    {
+      "id": "corporate-approval",
+      "label": "Approvals in existing corporate workflows",
+      "detail": "Selected Teams, Slack or ITSM integration",
+      "group": "enterprise",
+      "community": {
+        "status": "local-alternative",
+        "label": "Local reviewer API/CLI"
+      },
+      "enterprise": {
+        "status": "pilot-scope"
+      },
+      "evidence": {
+        "type": "commercial-scope",
+        "reference": "https://dativo.io/enterprise/"
+      }
+    },
+    {
+      "id": "security-key-custody",
+      "label": "Security monitoring and customer-managed keys",
+      "detail": "Selected SIEM and vault/KMS integrations",
+      "group": "enterprise",
+      "community": {
+        "status": "local-alternative",
+        "label": "Generic telemetry / local vault"
+      },
+      "enterprise": {
+        "status": "pilot-scope"
+      },
+      "evidence": {
+        "type": "commercial-scope",
+        "reference": "https://dativo.io/enterprise/"
+      }
+    },
+    {
+      "id": "deployment-recovery",
+      "label": "Supported deployment, recovery and upgrades",
+      "detail": "Production profiles and controlled upgrades",
+      "group": "enterprise",
+      "community": {
+        "status": "local-alternative",
+        "label": "Self-managed single-node"
+      },
+      "enterprise": {
+        "status": "pilot-scope"
+      },
+      "evidence": {
+        "type": "commercial-scope",
+        "reference": "https://dativo.io/enterprise/"
+      }
+    },
+    {
+      "id": "high-availability",
+      "label": "High-load and high-availability deployments",
+      "detail": "Coordinated replicas, safe failover and shared budgets",
+      "group": "enterprise",
+      "community": {
+        "status": "local-alternative",
+        "label": "Single-node profile"
+      },
+      "enterprise": {
+        "status": "pilot-scope"
+      },
+      "evidence": {
+        "type": "commercial-scope",
+        "reference": "https://dativo.io/enterprise/"
+      }
+    },
+    {
+      "id": "support",
+      "label": "Enterprise-level support",
+      "detail": "Support escalation, production guidance and incident assistance",
+      "group": "enterprise",
+      "community": {
+        "status": "local-alternative",
+        "label": "Community support"
+      },
+      "enterprise": {
+        "status": "pilot-scope"
+      },
+      "evidence": {
+        "type": "commercial-scope",
+        "reference": "https://dativo.io/enterprise/"
+      }
+    }
+  ]
+}

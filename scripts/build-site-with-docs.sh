@@ -10,7 +10,12 @@ UMAMI_WEBSITE_ID="${UMAMI_WEBSITE_ID:-e9e60801-c09d-4f9f-8890-7b76cb6fdbcb}"
 UMAMI_DOMAINS="${UMAMI_DOMAINS:-dativo.io,www.dativo.io}"
 SITE_URL="${SITE_URL:-https://dativo.io}"
 TALON_DOCS_REPO_URL="${TALON_DOCS_REPO_URL:-https://github.com/dativo-io/talon.git}"
-TALON_DOCS_REF="${TALON_DOCS_REF:-main}"
+TALON_DOCS_TAG="$(node "$ROOT_DIR/scripts/docs-publication.cjs" tag)"
+TALON_DOCS_COMMIT="$(node "$ROOT_DIR/scripts/docs-publication.cjs" commit)"
+if [ -n "${TALON_DOCS_REF:-}" ] && [ "$TALON_DOCS_REF" != "$TALON_DOCS_TAG" ] && [ "$TALON_DOCS_REF" != "$TALON_DOCS_COMMIT" ]; then
+  echo "TALON_DOCS_REF must match the approved stable release manifest" >&2
+  exit 1
+fi
 TEMP_TALON_DIR=""
 
 cleanup() {
@@ -30,20 +35,13 @@ prepare_talon_checkout() {
     return
   fi
 
-  local sibling_checkout="$ROOT_DIR/../talon"
-  if [ -d "$sibling_checkout" ]; then
-    export TALON_REPO_PATH="$sibling_checkout"
-    echo "Using sibling Talon checkout at $TALON_REPO_PATH"
-    return
-  fi
-
   TEMP_TALON_DIR="$(mktemp -d)"
   local checkout="$TEMP_TALON_DIR/talon"
 
-  echo "Fetching Talon docs source once from $TALON_DOCS_REPO_URL ($TALON_DOCS_REF)..."
+  echo "Fetching Talon docs source once from $TALON_DOCS_REPO_URL ($TALON_DOCS_TAG)..."
   for attempt in 1 2 3 4; do
     rm -rf "$checkout"
-    if git clone --depth 1 --single-branch --branch "$TALON_DOCS_REF" "$TALON_DOCS_REPO_URL" "$checkout"; then
+    if git clone --depth 1 --single-branch --branch "$TALON_DOCS_TAG" "$TALON_DOCS_REPO_URL" "$checkout"; then
       export TALON_REPO_PATH="$checkout"
       echo "Using Talon docs source from $TALON_REPO_PATH"
       return
@@ -69,6 +67,8 @@ node "$ROOT_DIR/scripts/verify-talon-brand-assets.cjs" "$ROOT_DIR"
 node "$ROOT_DIR/scripts/test-normalize-site-nav.cjs"
 # Prevent the buyer/docs entrances from growing back into an exhaustive catalog.
 node "$ROOT_DIR/scripts/test-first-run-journeys.cjs"
+node "$ROOT_DIR/scripts/edition-comparison.cjs" --check
+node --test "$ROOT_DIR/scripts/test-docs-publication.cjs"
 node "$ROOT_DIR/scripts/test-pilot-conversion.cjs"
 node "$ROOT_DIR/scripts/test-enterprise-pilot-funnel.cjs"
 node "$ROOT_DIR/scripts/test-umami-event-privacy.cjs"
@@ -95,8 +95,9 @@ node "$ROOT_DIR/scripts/verify-agent-identity-contract.cjs" "$ROOT_DIR"
 # Fetch the Talon source once; pin provenance links to the actual checkout.
 # All published technical docs and console images use that same source.
 prepare_talon_checkout
-export TALON_DOCS_REF="$(git -C "$TALON_REPO_PATH" rev-parse HEAD)"
-echo "Publishing Talon source $TALON_DOCS_REF"
+node "$ROOT_DIR/scripts/docs-publication.cjs" check "$TALON_REPO_PATH"
+export TALON_DOCS_REF="$TALON_DOCS_COMMIT"
+echo "Publishing Talon $TALON_DOCS_TAG ($TALON_DOCS_REF) with reviewed documentation errata"
 
 # Never silently adopt new upstream images during a build. The website PR
 # must contain the reviewed lock for the exact screenshot set being published.
@@ -110,7 +111,7 @@ for image in showcase overview-attention session-investigation evidence-verifica
   cp "$CONSOLE_ASSETS/$image.webp" "$OUT_DIR/public/assets/console-$image.webp"
 done
 
-# Fail fast, before npm install and Docusaurus compilation, if talon/main changed
+# Fail fast, before npm install and Docusaurus compilation, if the selected release changed
 # a mapped docs path without the corresponding talon-www publication update.
 node "$DOCS_DIR/scripts/validate-docs-contract.mjs" --sources-only
 
@@ -121,6 +122,7 @@ npm run build
 
 mkdir -p "$OUT_DIR/talon/docs"
 cp -R "$DOCS_DIR/build/." "$OUT_DIR/talon/docs/"
+node "$ROOT_DIR/scripts/docs-publication.cjs" public "$OUT_DIR/talon/docs/publication.json"
 
 # Keep the canonical evaluator demo, use-case guides, and the four control-plane
 # journeys present in every production artifact.

@@ -2,18 +2,16 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import sourceMap from '../src/source-map.cjs';
+import publication from '../../scripts/docs-publication.cjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const siteRoot = path.resolve(__dirname, '..');
 const docsDir = path.join(siteRoot, 'docs');
-const explicitTalonRepoPath = process.env.TALON_REPO_PATH
-  ? path.resolve(process.env.TALON_REPO_PATH)
-  : null;
-const talonRoot = explicitTalonRepoPath
-  ?? path.resolve(siteRoot, '..', '..', 'talon');
-const talonRef = process.env.TALON_DOCS_REF || 'main';
-const rawBase = `https://raw.githubusercontent.com/dativo-io/talon/${talonRef}`;
+if (!process.env.TALON_REPO_PATH) throw Error('Use scripts/build-site-with-docs.sh or set TALON_REPO_PATH to a clean approved release checkout');
+const talonRoot = path.resolve(process.env.TALON_REPO_PATH);
+publication.checkCheckout(talonRoot);
+const talonRef = publication.manifest.release.commit;
 const githubBlobBase = `https://github.com/dativo-io/talon/blob/${talonRef}`;
 const githubTreeBase = `https://github.com/dativo-io/talon/tree/${talonRef}`;
 
@@ -47,21 +45,9 @@ async function exists(filePath) {
 }
 
 async function readSource(sourcePath) {
-  const localPath = path.join(talonRoot, sourcePath);
-  if (await exists(localPath)) {
-    return fs.readFile(localPath, 'utf8');
-  }
-
-  if (explicitTalonRepoPath) {
-    throw new Error(`Mapped Talon source not found in local checkout: ${sourcePath} (${localPath})`);
-  }
-
-  const url = `${rawBase}/${sourcePath}`;
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
-  }
-  return response.text();
+  const source=await fs.readFile(path.join(talonRoot,sourcePath),'utf8');
+  const erratum=publication.manifest.errata.find(e=>e.path===sourcePath);
+  return erratum?publication.applyErratum(source,erratum):source;
 }
 
 function titleFromMarkdown(markdown, fallback) {
@@ -153,19 +139,7 @@ async function rewriteRelativeMarkdownLinks(markdown, sourcePath) {
 async function readConsoleImage(filename) {
   const assetPath = 'docs/assets/console/' + filename;
   const localPath = path.join(talonRoot, assetPath);
-  let bytes;
-  if (await exists(localPath)) {
-    bytes = await fs.readFile(localPath);
-  } else {
-    if (explicitTalonRepoPath) {
-      throw new Error('Missing console screenshot in selected Talon checkout: ' + localPath);
-    }
-    const response = await fetch(rawBase + '/' + assetPath);
-    if (!response.ok) {
-      throw new Error('Cannot fetch console screenshot: ' + assetPath + ' (' + response.status + ')');
-    }
-    bytes = Buffer.from(await response.arrayBuffer());
-  }
+  const bytes = await fs.readFile(localPath);
   if (bytes.length < 12 || bytes.toString('ascii', 0, 4) !== 'RIFF' ||
       bytes.toString('ascii', 8, 12) !== 'WEBP' || bytes.readUInt32LE(4) + 8 !== bytes.length) {
     throw new Error('Invalid WebP console screenshot: ' + assetPath);
