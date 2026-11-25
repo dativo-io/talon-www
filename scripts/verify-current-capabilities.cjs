@@ -157,5 +157,14 @@ if(fs.existsSync(docsEdition)){
  if(JSON.stringify(cells)!==JSON.stringify(expected)) failures.push('Built docs edition table differs from canonical source');
  if(!body.includes('Pilot scope')||!body.includes('https://dativo.io/pilot/')||body.includes('linkedin.com/in/sergeyenin')) failures.push('Docs edition scope or canonical pilot route missing');
 }
+const evaluation=path.join(root,'talon/docs/technical-evaluation/index.html');
+if(fs.existsSync(evaluation)){
+ const body=fs.readFileSync(evaluation,'utf8');
+ const {release}=require('./docs-publication.json');
+ for(const phrase of ['Evaluation scope: Talon '+release.tag,release.commit,'Inspect evidence from the released artifacts','Check compatibility before integration','Review security and data handling','Measure performance and failure behavior','Establish operational readiness','Run your own evaluation and decide','not a production SLA','not provider invoice ceilings','not immutable','No HA, replication or automatic failover','not run']){
+  if(!body.toLowerCase().includes(phrase.toLowerCase()))failures.push('Technical evaluation missing release scope or boundary: '+phrase);
+ }
+ if(!/github\.com\/dativo-io\/talon\/actions\/runs\/\d+\/job\/\d+/.test(body))failures.push('Technical evaluation missing release job evidence');
+}
 if (failures.length) { for (const failure of failures) console.error(`FAIL: ${failure}`); process.exit(1); }
 console.log('PASS: current action/MCP/OpenShell publication routes and claims');

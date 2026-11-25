@@ -6,7 +6,7 @@ slug: /evaluation-checklist/
 
 # Evaluate Talon on one workflow
 
-Use this checklist for an initial engineering review. A successful evaluation proves a **specific, supported interception point**, not universal control over an agent.
+Use this checklist for an initial engineering review. Start with [technical evaluation](./technical-evaluation.md) for release evidence, compatibility, security and deployment boundaries. A successful evaluation proves a **specific, supported interception point**, not universal control over an agent.
 
 ## 1. Record your scope
 
@@ -22,9 +22,10 @@ See [choose your integration path](./choosing-integration-path.md) and [control-
 
 ## 2. Choose the smallest reproducible proof
 
-- **No provider key:** [60-second model demo](./quickstart-demo.md) or [HTTP action authorization proof](./action-gateway-proof.md).
+- **No provider key:** [published-image quickstart](./quickstart-demo.md) or [HTTP action authorization proof](./action-gateway-proof.md).
 - **Multiple AI use cases:** [full product demo](./product-demo.md).
-- **Coding tool permissions:** [Copilot CLI integration](./github-copilot-cli-governance.md), which defines its own prerequisites and synthetic release service.
+- **Coding assistant:** [Claude Code](./claude-code-integration.md) or [Codex CLI](./codex-cli-integration.md). Local execution is outside the model API gateway; historical client examples are not current compatibility claims.
+- **Consequential action:** [governed MCP](./mcp-governed-tools.md) or [n8n refund workflow](./n8n-refund-approvals.md), with exact client versions and independent counters.
 - **Existing app:** [add Talon to the app](./add-talon-to-existing-app.md), beginning with the smallest valid policy.
 
 Match the guide to the version you are actually running. `main` and the [latest release](https://github.com/dativo-io/talon/releases/latest) can differ.
@@ -57,12 +58,15 @@ When you have an asserted session, the [session guide](./manual-governed-session
 | Actual dispatch result | Zero downstream calls, one mock call, or **unknown** if not observed |
 | Evidence | Record ID, signature verification result and relevant policy snapshot |
 | Missing coverage | Unproxied calls, local execution, downstream state not observed |
+| Compatibility and performance | Client version, Talon release, topology, latency/throughput targets and measured results |
+| Failure and recovery | Provider failure, unavailable budget state, unknown action outcome, backup/restore and reconciliation where relevant |
+| Owner and residual risk | Named workflow and operations owners, security reviewer, documented exception or no-go |
 | Next step | Pilot, integration repair, or explicit no-go decision |
 
 For exported evidence see [evidence store](./evidence-store.md), [integrity demo](./evidence-integrity-demo.md) and [compliance export](./compliance-export-runbook.md).
 
 ## 5. Decision
 
-Proceed to a scoped pilot only if the negative test actually prevents the relevant upstream effect, allowed work still succeeds, an operator can explain and verify the decision, and all bypass paths have independent controls or are documented risks.
+Proceed to a scoped pilot only if the negative test actually prevents the relevant upstream effect, allowed work still succeeds, an operator can explain and verify the decision, and all bypass paths have independent controls or are documented, accepted risks. Record a hold for missing required tests, and a no-go for failed mandatory controls or unsupported requirements. For a production pilot, also validate the [single-node profile](./single-node-production.md) and [runbook](./production-pilot.md).
 
 Talon's HMAC evidence is **tamper-evident, not immutable**. An approved action is **not automatically dispatched**. Runtime cost estimates can differ from final provider charges. Product evidence is not legal or regulatory certification.
