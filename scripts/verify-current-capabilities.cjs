@@ -8,6 +8,7 @@ if (!root || !fs.existsSync(root)) { console.error('Usage: verify-current-capabi
 const required = [
   'talon/docs/action-gateway-proof/index.html',
   'talon/docs/quickstart-demo/index.html',
+  'talon/docs/technical-evaluation/index.html',
   'talon/docs/choosing-integration-path/index.html',
   'talon/docs/operations-console/index.html',
   'ai-agent-governance/index.html',
@@ -76,7 +77,7 @@ if (fs.existsSync(editionPage)) {
 const docsHome = path.join(root, 'talon/docs/index.html');
 if (fs.existsSync(docsHome)) {
   const html = fs.readFileSync(docsHome, 'utf8');
-  for (const label of ['Start with one AI use case', 'Choose your first step', 'Try Talon', 'Connect an existing app', 'Control a consequential action']) {
+  for (const label of ['Scale and operate your AI use cases', 'Choose your starting point', 'Try Talon', 'Connect an existing app', 'Evaluate Talon']) {
     if (!html.includes(label)) failures.push('Docs landing page lost the evaluator path: ' + label);
   }
   if (/start in shadow mode/i.test(html)) failures.push('Docs homepage contains retired shadow-mode guidance');

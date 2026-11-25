@@ -17,6 +17,7 @@ const talonRoot = explicitTalonRepoPath ?? siblingTalonRepoPath;
 
 const localOwnedDocs = new Map([
   ['index', 'index.md'],
+  ['technical-evaluation', 'technical-evaluation.md'],
   ['coding-agents-demo', 'coding-agents-demo.md'],
   ['use-case-playbooks', 'use-case-playbooks.md'],
   ['evaluation-checklist', 'evaluation-checklist.md'],
@@ -87,13 +88,18 @@ if (!sourcesOnly) {
   const sidebarsSource = await fs.readFile(path.join(siteRoot, 'sidebars.js'), 'utf8');
   const sidebarDocIds = new Set();
   const reservedTokens = new Set(['doc', 'category']);
-  const quotedDocToken = /['"]([a-z0-9][a-z0-9-]*)['"]/g;
+  const quotedDocToken = /['"]([a-z0-9][a-z0-9.-]*)['"]/g;
 
   for (const match of sidebarsSource.matchAll(quotedDocToken)) {
     const token = match[1];
     if (!reservedTokens.has(token)) sidebarDocIds.add(token);
   }
 
+  const missingSidebarIds = [...knownDocIds].filter(id=>!sidebarDocIds.has(id));
+  if (missingSidebarIds.length) errors.push('Published docs missing from sidebar: '+missingSidebarIds.join(', '));
+  const occurrences = [...sidebarsSource.matchAll(quotedDocToken)].map(m=>m[1]).filter(id=>knownDocIds.has(id));
+  const duplicates = occurrences.filter((id,i)=>occurrences.indexOf(id)!==i);
+  if (duplicates.length) errors.push('Duplicate sidebar doc IDs: '+duplicates.join(', '));
   const unresolvedSidebarIds = [...sidebarDocIds]
     .filter((docId) => !knownDocIds.has(docId))
     .sort();
@@ -110,6 +116,7 @@ if (!sourcesOnly) {
   }
 
   const requiredFirstClassDocs = [
+    'technical-evaluation',
     'product-demo',
     'use-case-playbooks',
     'evaluation-checklist',

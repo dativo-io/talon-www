@@ -141,4 +141,18 @@ div[class*='announcementBar_'] { border-bottom-color: var(--qc-line); }
  .qc-search-dialog,.qc-search-trigger { transition: none; }
 }
 
+/* Overview: three adoption paths, shared marketing diagram. */
+.qc-docs-diagram { margin: 1.5rem 0 2rem; padding: 1rem; background: #f6f5f0; border: 1px solid #d2d9e5; border-radius: 12px; text-align: center; }
+.qc-docs-diagram picture { display: block; }
+.qc-docs-diagram img { display: block; width: 100%; height: auto; margin: auto; }
+.qc-docs-diagram figcaption { color: #4f5d73; font-size: .875rem; line-height: 1.5; margin-top: .75rem; }
+.qc-docs-start-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .85rem; }
+.qc-docs-start-card { min-width: 0; border: 1px solid var(--qc-line); border-radius: 10px; padding: 1rem; background: var(--qc-surface); }
+.qc-docs-start-card h3 { margin: 0 0 .6rem; font-size: 1.1rem; }
+.qc-docs-start-card p { margin: 0; color: var(--qc-muted); font-size: .9rem; }
+.qc-docs-link-grid ul { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .65rem 1rem; list-style: none; padding: 0; }
+.qc-docs-link-grid li { margin: 0; min-width: 0; }
+@media(max-width: 1120px) { .qc-docs-start-grid { grid-template-columns: 1fr; } }
+@media(max-width: 600px) { .qc-docs-link-grid ul { grid-template-columns: 1fr; } }
+
 .qc-search-results [aria-selected='true'] { background: var(--qc-accent); outline: 2px solid var(--qc-focus); outline-offset: -2px; }

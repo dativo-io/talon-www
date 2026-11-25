@@ -76,7 +76,7 @@ const config = {
         src: 'img/talon-mark.svg',
       },
       items: [
-        {type: 'docSidebar', sidebarId: 'docsSidebar', position: 'left', label: 'Start here'},
+        {type: 'docSidebar', sidebarId: 'docsSidebar', position: 'left', label: 'Get started'},
         {to: '/quickstart-demo/', label: 'Try Talon', position: 'left'},
         {to: '/add-talon-to-existing-app/', label: 'Connect an app', position: 'left'},
         {href: '/', label: 'Website', position: 'right'},
