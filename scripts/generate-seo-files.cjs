@@ -10,65 +10,7 @@ if (!outDir) {
   process.exit(2);
 }
 
-function routeFromHtml(filePath, rootDir, prefix = '') {
-  const relative = path.relative(rootDir, filePath).replace(/\\/g, '/');
-  if (!relative.endsWith('.html')) return null;
-  if (relative === '404.html') return null;
-
-  let route = relative;
-  if (route.endsWith('/index.html')) {
-    route = route.slice(0, -'index.html'.length);
-  } else if (route === 'index.html') {
-    route = '';
-  } else {
-    route = route.slice(0, -'.html'.length) + '/';
-  }
-
-  const normalizedPrefix = prefix.replace(/^\/+|\/+$/g, '');
-  const normalizedRoute = route.replace(/^\/+/, '');
-  const fullRoute = normalizedRoute
-    ? [normalizedPrefix, normalizedRoute].filter(Boolean).join('/')
-    : normalizedPrefix
-      ? `${normalizedPrefix}/`
-      : '';
-
-  if (fullRoute === 'docs/talon/') return null;
-  return `/${fullRoute}`.replace(/\/\//g, '/');
-}
-
-function walkHtmlRoutes(rootDir, prefix = '') {
-  const routes = new Set();
-
-  if (!fs.existsSync(rootDir)) return routes;
-
-  function walk(dir) {
-    for (const entry of fs.readdirSync(dir, {withFileTypes: true})) {
-      const fullPath = path.join(dir, entry.name);
-      if (entry.isDirectory()) {
-        walk(fullPath);
-        continue;
-      }
-      if (entry.isFile() && entry.name.endsWith('.html')) {
-        const route = routeFromHtml(fullPath, rootDir, prefix);
-        if (route) {
-          // A canonical alias must not be advertised as another indexable URL.
-          // Marketing pages may keep the compatibility page for old links.
-          if (!route.startsWith('/talon/docs/')) {
-            const html = fs.readFileSync(fullPath, 'utf8');
-            const canonical = html.match(/<link\s+[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i)?.[1];
-            if (canonical && canonical !== urlForRoute(route)) continue;
-            if (/name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html)) continue;
-          }
-          routes.add(route);
-        }
-      }
-    }
-  }
-
-  walk(rootDir);
-  return routes;
-}
-
+const {indexable} = require('./site-inventory.cjs');
 function urlForRoute(route) {
   return `${siteUrl}${route}`;
 }
@@ -89,8 +31,10 @@ ${Array.from(routes)
   fs.writeFileSync(filePath, sitemap);
 }
 
-const allRoutes = walkHtmlRoutes(outDir);
-const docsRoutes = walkHtmlRoutes(path.join(outDir, 'talon', 'docs'), '/talon/docs');
+const {indexed,excluded} = indexable(outDir,siteUrl);
+const allRoutes = new Set(indexed.keys());
+const docsRoutes = new Set([...allRoutes].filter(route => route.startsWith('/talon/docs/')));
+console.log('Excluded non-indexable/redirect aliases: ' + excluded.size);
 
 writeSitemap(path.join(outDir, 'sitemap.xml'), allRoutes);
 writeSitemap(path.join(outDir, 'talon', 'docs', 'sitemap.xml'), docsRoutes);
