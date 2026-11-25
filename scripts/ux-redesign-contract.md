@@ -17,7 +17,11 @@ The primary problem is cognitive load, not simply page length. Repeated slogans,
 - Present cost, policy (including data and actions), reliability and operational visibility/evidence as connected outcomes. Action control is a concrete differentiator, not the entire product.
 - Do not introduce claims of guaranteed security, compliance, uptime, cost savings, or coverage of every AI action.
 
-Approved step 3 hero:
+Approved step 3 hero, refined in step 4:
+
+- Value-first kicker: Reduce AI costs and protect sensitive data.
+- Diagram labels existing use cases and existing providers/tools. Caption: Keep your AI workflows and providers. Simply configure Talon in between.
+- Preserve open-source control-plane category in metadata and visible footer; supported interception boundary remains in How it works and footer.
 
 > Stay in control as AI scales
 >
