@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "channel": "stable",
+  "release": {
+    "tag": "v1.17.0",
+    "commit": "410f1015a621326e722ebfb0fb9e84adf2a6a6dc",
+    "repository": "https://github.com/dativo-io/talon",
+    "releasedOn": "2026-11-24"
+  },
+  "errata": [
+    {
+      "path": "docs/guides/cost-governance-by-agent.md",
+      "originalBlob": "168167ab436e3ac5caf9ef056eab37356ebbf716",
+      "correctedBlob": "e84b7d31f395b96164df50c958c1ab6d1ef92fd4",
+      "sourceCommit": "840a70acc862b41a98ba67f86eba6bd2bff9ce3d",
+      "review": "https://github.com/dativo-io/talon/pull/609",
+      "hunks": [
+        {
+          "startLine": 5,
+          "remove": [
+            "> You can cap AI spend before it runs away, and prove every allow/deny decision with signed evidence."
+          ],
+          "insert": [
+            "> You can deny requests before provider access using estimated-cost admission caps, and verify allow/deny decisions with signed evidence. Actual charges can exceed estimates; these are not invoice ceilings."
+          ]
+        },
+        {
+          "startLine": 7,
+          "remove": [
+            "This guide shows the fastest path to that outcome for a support-bot agent."
+          ],
+          "insert": [
+            "This guide shows that outcome for a support-bot use case. See [budget limitations](../../LIMITATIONS.md#7-coding-agent-and-orchestration-boundary) for estimation, reservation and recovery boundaries."
+          ]
+        },
+        {
+          "startLine": 11,
+          "remove": [],
+          "insert": [
+            "For first-time installation, use [connect an existing application](add-talon-to-existing-app.md) to configure `agents_dir`, credentials and the serving process. Active rules are always enforced; the legacy `gateway.mode` setting was removed in #442 and is rejected in v1.17. The abbreviated example below illustrates policy and verification, not a standalone installation procedure.",
+            ""
+          ]
+        },
+        {
+          "startLine": 13,
+          "remove": [
+            "- Hard daily/monthly spend caps for one agent (`support-slack-bot`)"
+          ],
+          "insert": [
+            "- Enforced daily/monthly estimate-based admission caps for one agent (`support-slack-bot`)"
+          ]
+        },
+        {
+          "startLine": 20,
+          "remove": [
+            "## 1. Define the agent with hard EUR caps"
+          ],
+          "insert": [
+            "## 1. Define the use case with EUR admission caps"
+          ]
+        },
+        {
+          "startLine": 54,
+          "remove": [
+            "  mode: \"enforce\""
+          ],
+          "insert": []
+        },
+        {
+          "startLine": 163,
+          "remove": [
+            "- **Hard budget caps**: deny requests that would exceed the effective daily/monthly cap before the provider call"
+          ],
+          "insert": [
+            "- **Budget admission caps**: deny requests whose estimated cost would exceed the effective daily/monthly cap before the provider call"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/mcp-2026-migration.md",
+      "originalBlob": "d870d87e2486f8fc8c64844bc6559d92ae80e681",
+      "correctedBlob": "5bbfd680f60b65244b4b3f684bb8e976854c4534",
+      "sourceCommit": "840a70acc862b41a98ba67f86eba6bd2bff9ce3d",
+      "review": "https://github.com/dativo-io/talon/pull/609",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [
+            "**Audience:** teams upgrading an existing MCP integration. The MCP proxy (`/mcp/proxy`, `--proxy-config`) is removed (#431): its integrations move to the governed `POST /mcp` with [Governed MCP tools](mcp-governed-tools.md), which has the migration table. These are breaking changes on Talon main; check the [latest release](https://github.com/dativo-io/talon/releases/latest) before assuming a tagged binary includes them."
+          ],
+          "insert": [
+            "**Audience:** teams upgrading an existing MCP integration. The MCP proxy (`/mcp/proxy`, `--proxy-config`) is removed (#431): its integrations move to the governed `POST /mcp` with [Governed MCP tools](mcp-governed-tools.md), which has the migration table. These breaking changes shipped in [v1.17.0](https://github.com/dativo-io/talon/releases/tag/v1.17.0). Check your installed release and the [upgrade guide](upgrading-to-1.17.md) before migration."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/n8n-refund-approvals.md",
+      "originalBlob": "127ccf30fe677e28a61f5617fea5e01456d71266",
+      "correctedBlob": "c8e9391d3b0004d8fb4ecfabc58c3013afefd769",
+      "sourceCommit": "840a70acc862b41a98ba67f86eba6bd2bff9ce3d",
+      "review": "https://github.com/dativo-io/talon/pull/609",
+      "hunks": [
+        {
+          "startLine": 98,
+          "remove": [
+            "**Boundary:** The HTTP Action Gateway governs exactly the actions sent through it. MCP-proxied tools have their own permission enforcement but do not inherit the HTTP Action Gateway's bound approval and claim lifecycle. Neither path controls direct tool or business API calls that bypass Talon."
+          ],
+          "insert": [
+            "**Boundary:** The HTTP Action Gateway governs exactly the actions sent through it. Since v1.17.0, declared governed MCP tools on `POST /mcp` share the Action Gateway's bound approval, dispatch and recovery lifecycle; this HTTP fixture does not verify MCP client compatibility. See [governed MCP tools](mcp-governed-tools.md). Neither path controls direct tool or business API calls that bypass Talon."
+          ]
+        }
+      ]
+    }
+  ]
+}
