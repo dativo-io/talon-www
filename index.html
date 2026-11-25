@@ -98,12 +98,13 @@
           <div class="home-proof-top"><span>Policy in action</span><span class="home-proof-pill">Synthetic example</span></div>
           <h2 id="home-proof-title">An AI workflow requests a €75 refund</h2>
           <p>Company policy requires a separate, authorized reviewer.</p>
-          <div class="home-proof-verdict"><span>Talon policy verdict</span><strong>REQUIRE_APPROVAL</strong></div>
-          <div class="home-proof-counts" aria-label="Synthetic dispatch counts">
-            <div><strong>0</strong><span>Downstream calls before approval and authorized claim</span></div>
-            <div><strong>1</strong><span>Downstream call after approval and authorized claim</span></div>
-          </div>
-          <p class="home-proof-note">Approval does not execute a refund. The reproducible example uses a counting test adapter, not real payments.</p>
+          <div class="home-proof-verdict"><span>Talon policy verdict</span><strong>Approval required</strong><code>REQUIRE_APPROVAL</code></div>
+          <ol class="home-proof-flow" aria-label="Synthetic downstream call sequence">
+            <li class="proof-pending"><h3>Request held</h3><strong>0</strong><span>Downstream calls</span></li>
+            <li class="proof-reviewed"><h3>Reviewer approves</h3><strong>0</strong><span>Downstream calls</span></li>
+            <li class="proof-dispatched"><h3>Runtime claims</h3><strong>1</strong><span>Downstream call</span></li>
+          </ol>
+          <p class="home-proof-note">Approval does not execute a refund. An authorized claim calls a counting test adapter once, not real payments.</p>
           <a class="home-proof-link" href="/talon/docs/action-gateway-proof/" data-growth-intent="action-control" data-growth-placement="action-proof">Verify exact-action authorization</a>
           <a class="home-proof-link" href="/talon/docs/n8n-refund-approvals/" data-growth-intent="n8n-guide" data-growth-placement="action-proof">Reproduce the n8n workflow</a>
         </div>
@@ -146,17 +147,17 @@
     </section>
 
     <section class="case-section home-operator" id="operations-console">
-      <div class="wrap home-operator-grid">
+      <div class="wrap home-operator-grid home-operator-showcase">
         <div>
           <h2>Know what needs attention</h2>
           <p>Inspect decisions, costs and signed evidence in the read-only Operations Console. Shows only observed activity.</p>
           <a class="case-text-link" href="/talon/docs/operations-console/" data-growth-intent="console-docs">Explore the Operations Console</a>
         </div>
         <figure class="home-operator-image">
-          <a href="/talon/docs/operations-console/" aria-label="Open the Talon Operations Console guide">
+          <a href="/public/assets/console-showcase.webp" aria-label="View full-size Talon Operations Console screenshot">
             <img src="/public/assets/console-showcase.webp" width="1920" height="1550" loading="lazy" decoding="async" alt="Synthetic Talon Operations Console showing readiness, governed AI use cases, session investigation and verified evidence." />
           </a>
-          <figcaption>Illustrative console screenshots from a synthetic test fixture, not production customer data.</figcaption>
+          <figcaption>Console screenshots from a synthetic test fixture, not production customer data. Failures are deliberately induced.</figcaption>
         </figure>
       </div>
     </section>
