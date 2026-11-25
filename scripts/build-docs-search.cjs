@@ -6,7 +6,7 @@ const prefix='/talon/docs/';
 const origin='https://dativo.io';
 function plain(html){
  return html.replace(/<(script|style|button|nav)\b[^>]*>[\s\S]*?<\/\1>/gi,' ')
-   .replace(/<[^>]*>/g,' ').replace(/&(#x[0-9a-f]+|#\d+|amp|quot|lt|gt|apos|nbsp);/gi,(_,v)=>{
+   .replace(/<\/?(?:p|div|pre|li|ul|ol|h[1-6]|td|th|tr|table|section|blockquote|br|hr)\b[^>]*>/gi,' ').replace(/<[^>]*>/g,'').replace(/&(#x[0-9a-f]+|#\d+|amp|quot|lt|gt|apos|nbsp);/gi,(_,v)=>{
      if(v.startsWith('#')){const n=v[1].toLowerCase()==='x'?parseInt(v.slice(2),16):Number(v.slice(1));return n>0&&n<=0x10ffff?String.fromCodePoint(n):' ';}
      return {amp:'&',quot:'"',lt:'<',gt:'>',apos:"'",nbsp:' '}[v.toLowerCase()]||' ';
    }).replace(/\s+/g,' ').trim();

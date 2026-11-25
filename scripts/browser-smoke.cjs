@@ -10,7 +10,7 @@ const origin=new URL(base).origin;
 const priority=['/','/use-cases/','/solutions/n8n/','/pilot/','/enterprise/','/use-cases/customer-support/','/use-cases/vendor-contract-review/','/use-cases/people-analytics/','/use-cases/coding-agents/'];
 const sitemap=fs.readFileSync(path.join(dist,'sitemap.xml'),'utf8');
 const marketing=[...new Set([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>new URL(m[1]).pathname).filter(p=>!p.startsWith('/talon/docs/')))];
-const routes=[...new Set([...priority,...marketing,'/privacy/','/404.html','/talon/docs/','/talon/docs/quickstart-demo/'])];
+const routes=[...new Set([...priority,...marketing,'/privacy/','/404.html','/talon/docs/','/talon/docs/quickstart-demo/','/talon/docs/open-source-and-enterprise/','/talon/docs/mcp-governed-tools/','/talon/docs/operations-console/','/talon/docs/configuration/'])];
 const report={mode:'built artifact; external requests blocked, Umami stubbed; no real booking',pages:[],blocking:[],review:[],journeys:[]};
 const strict=process.env.TALON_RELEASE_GATE==='1';
 function issue(route,viewport,kind,detail,blocking=true){(blocking?report.blocking:report.review).push({route,viewport,kind,detail});}
@@ -48,7 +48,7 @@ const fileName=(route,viewport)=>(route==='/'?'home':route.replace(/^\/|\/$/g,''
     }
     for(const error of errors)issue(route,device.name,'page error',error);
     for(const error of missing)issue(route,device.name,'asset response',error);
-    if(priority.includes(route)||route==='/privacy/'||route==='/talon/docs/'||route==='/404.html'){
+    if(priority.includes(route)||route==='/privacy/'||route.startsWith('/talon/docs/')||route==='/404.html'){
      await page.screenshot({path:path.join(out,fileName(route,device.name)+'.png'),fullPage:true,animations:'disabled'});
      await page.addScriptTag({path:require.resolve('axe-core/axe.min.js')});
      const axe=await page.evaluate(async()=>await window.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}}));
@@ -96,6 +96,50 @@ const fileName=(route,viewport)=>(route==='/'?'home':route.replace(/^\/|\/$/g,''
    await check(booking.first(),'Pilot Booking Click');
    report.journeys.push({viewport:device.name,status:'passed'});
   }catch(e){issue('acquisition journeys',device.name,'journey',e.message)}
+  try{
+   const docsRoute='/talon/docs/';
+   await page.goto(base+docsRoute,{waitUntil:'load'});
+   const search=page.getByRole('button',{name:'Search documentation',exact:true});
+   await search.waitFor({state:'visible'});
+   const requests=[];
+   const observe=r=>requests.push(r.url());
+   page.on('request',observe);
+   try{
+    // Wait for the client to hydrate: a real keyboard shortcut opens the modal.
+    await search.focus();await page.keyboard.press('Control+k');
+    const dialog=page.getByRole('dialog',{name:'Search documentation'});
+    await dialog.waitFor({state:'visible',timeout:10000});
+    const field=dialog.getByRole('searchbox',{name:'Search documentation'});
+    assert.equal(await field.evaluate(el=>el===document.activeElement),true,'search input focus');
+    await field.fill('governed MCP tools');
+    const result=dialog.locator('a[href="/talon/docs/mcp-governed-tools/"]');
+    await result.waitFor({state:'visible',timeout:15000});
+    assert.equal(await dialog.locator('.qc-search-results a').first().getAttribute('href'),'/talon/docs/mcp-governed-tools/','exact title should rank first');
+    await page.keyboard.press('ArrowDown');
+    assert.equal(await result.evaluate(el=>el===document.activeElement),true,'keyboard search result focus');
+    await page.keyboard.press('Escape');
+    await dialog.waitFor({state:'hidden'});
+    assert.equal(await search.evaluate(el=>el===document.activeElement),true,'Escape restores focus');
+    await search.click();await field.fill('zzzxnoresultsxyzz');
+    await dialog.getByRole('status').filter({hasText:'No matching pages'}).waitFor();
+    await field.fill('governed MCP tools');await result.waitFor({state:'visible'});
+    await Promise.all([page.waitForURL('**/talon/docs/mcp-governed-tools/'),result.click()]);
+    assert.ok(requests.some(u=>new URL(u).pathname==='/talon/docs/search-index.json'),'same-origin search index loaded');
+    assert.ok(!requests.some(u=>/zzzxnoresultsxyzz|governed(?:%20|\+)MCP/i.test(u)),'search query must not leave browser');
+   }finally{page.off('request',observe);}
+   await page.evaluate(()=>localStorage.setItem('theme','dark'));
+   await page.reload({waitUntil:'load'});
+   await page.waitForFunction(()=>document.documentElement.getAttribute('data-theme')==='dark');
+   const dark=await page.evaluate(()=>({width:document.documentElement.scrollWidth,viewport:innerWidth,background:getComputedStyle(document.body).backgroundColor}));
+   assert.ok(dark.width<=dark.viewport+2,'dark mode overflow');
+   assert.notEqual(dark.background,'rgb(255, 255, 255)','dark reading surface');
+   await page.screenshot({path:path.join(out,'docs-mcp-dark-'+device.name+'.png'),fullPage:true,animations:'disabled'});
+   await page.addScriptTag({path:require.resolve('axe-core/axe.min.js')});
+   const axe=await page.evaluate(async()=>await window.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}}));
+   for(const v of axe.violations)issue('/talon/docs/mcp-governed-tools/',device.name+' dark','axe '+v.impact,{id:v.id,description:v.description,nodes:v.nodes.map(n=>n.target)},v.impact==='critical'||strict);
+   await page.evaluate(()=>localStorage.removeItem('theme'));
+   report.journeys.push({viewport:device.name,journey:'docs search and dark mode',status:'passed'});
+  }catch(e){issue('docs experience',device.name,'journey',e.message)}
   await ctx.close();
  }
  }finally{await browser.close();fs.writeFileSync(path.join(out,'browser-report.json'),JSON.stringify(report,null,2)+'\n');}
