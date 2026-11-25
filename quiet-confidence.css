@@ -575,3 +575,39 @@ body[data-ux-theme="quiet-confidence"] .home-operator-showcase .home-operator-im
   body[data-ux-theme="quiet-confidence"] .home-proof-flow li:not(:last-child)::after { width: 1px; height: 20px; top: auto; bottom: -21px; right: 50%; }
   body[data-ux-theme="quiet-confidence"] .home-proof-verdict code { margin-left: 0; }
 }
+
+/* Step 6: scoped acquisition pages, preserving the homepage and legacy pages. */
+body[data-ux-acquisition] .acquisition-intro { text-align: center; }
+body[data-ux-acquisition] .acquisition-intro :is(h1,.case-lead) { margin-inline: auto; }
+body[data-ux-acquisition] .acquisition-intro .case-actions { justify-content: center; }
+body[data-ux-acquisition] .acquisition-surface { background: var(--qc-surface); }
+body[data-ux-acquisition] .acquisition-page h2 { font-size: clamp(30px, 3.6vw, 46px); margin: 0 0 24px; }
+body[data-ux-acquisition] .acquisition-grid { gap: clamp(24px, 4vw, 48px); margin-block: 32px; }
+body[data-ux-acquisition] .case-card { min-height: 0; background: none; border: 0; border-top: 1px solid var(--qc-line); border-radius: 0; padding: 22px 0 0; }
+body[data-ux-acquisition] .case-card h3 { margin: 0 0 12px; }
+body[data-ux-acquisition] .case-card > a { margin-top: auto; }
+body[data-ux-acquisition] .acquisition-paths { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(28px,5vw,64px); }
+body[data-ux-acquisition] .acquisition-paths article { min-width: 0; }
+body[data-ux-acquisition] .acquisition-paths p:not(.case-kicker) { color: var(--qc-muted); }
+body[data-ux-acquisition] .acquisition-paths h2 { margin-bottom: 12px; }
+body[data-ux-acquisition] .acquisition-flow { width: min(100%, 660px); margin: 48px auto 0; display: flex; flex-direction: column; align-items: center; }
+body[data-ux-acquisition] .acq-node { background: var(--qc-surface); border: 1px solid var(--qc-line); border-radius: 8px; padding: 16px; width: min(100%,420px); font-weight: 650; }
+body[data-ux-acquisition] .acq-connector { height: 28px; width: 2px; background: #7184A6; position: relative; }
+body[data-ux-acquisition] .acq-connector::after { content: ""; position: absolute; width: 8px; height: 8px; bottom: 1px; left: -3px; border-right: 2px solid #7184A6; border-bottom: 2px solid #7184A6; transform: rotate(45deg); }
+body[data-ux-acquisition] .acq-control { width: 100%; background: var(--qc-primary); color: #FFFFFF; border-radius: 12px; padding: 20px; }
+body[data-ux-acquisition] .acq-control > strong { display: block; font-size: 24px; margin-bottom: 14px; }
+body[data-ux-acquisition] .acq-control > div, body[data-ux-acquisition] .acq-targets { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 8px; }
+body[data-ux-acquisition] .acq-control span { background: #24396D; border-radius: 6px; padding: 10px 4px; font-size: 14px; }
+body[data-ux-acquisition] .acq-targets { width: 100%; grid-template-columns: repeat(3,minmax(0,1fr)); }
+body[data-ux-acquisition] .acq-targets span { background: var(--qc-accent); color: var(--qc-primary); border-radius: 8px; padding: 12px 4px; font-size: 15px; }
+body[data-ux-acquisition] .acquisition-flow figcaption { color: var(--qc-muted); font-size: 14px; margin-top: 16px; }
+body[data-ux-acquisition] :is(.pilot-note,.pilot-work) { color: var(--qc-muted); }
+body[data-ux-acquisition] .pilot-checklist li { background: var(--qc-surface); border-color: var(--qc-line); color: var(--qc-muted); }
+body[data-ux-acquisition] .pilot-checklist strong { color: var(--qc-ink); }
+body[data-ux-acquisition] .pilot-next a:not(.button) { color: var(--qc-primary); }
+@media(max-width:670px) {
+  body[data-ux-acquisition] .acquisition-paths, body[data-ux-acquisition] .acquisition-grid { grid-template-columns: minmax(0,1fr); }
+  body[data-ux-acquisition] .acq-control > div { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  body[data-ux-acquisition] .acq-targets span { font-size: 12px; }
+  body[data-ux-acquisition] .acquisition-intro .case-actions { justify-content: stretch; }
+}
