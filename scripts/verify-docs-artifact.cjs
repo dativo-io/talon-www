@@ -32,6 +32,13 @@ function verify(root,expected=publicManifest()){
   assert.ok(text.includes('Talon release: '+expected.release.tag+' ('+expected.release.commit+')')&&text.includes('Canonical page: '+origin+p.route),'Markdown provenance missing: '+p.route);
   assert.ok(llms.includes(']('+origin+p.markdown+')')&&full.includes(text),'missing discovery or full bundle entry: '+p.route);
   const html=read(p.route+'index.html');
+  if(p.route===prefix+'add-talon-to-existing-app/'){
+   for(const command of ['talon agents add <name> --owner <team>','talon agents show <name>']){
+    assert.ok(text.includes('`'+command+'`'),'Markdown inline command corrupted: '+command);
+    const encoded=command.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    assert.ok(html.includes('>'+encoded+'</code>')||html.includes('>'+encoded.replace(/&gt;/g,'>')+'</code>'),'HTML inline command corrupted: '+command);
+   }
+  }
   assert.ok(html.includes('href="'+p.markdown+'"')&&html.includes('data-doc-copy="true"'),'missing Markdown controls: '+p.route);
  }
  console.log('PASS documentation artifact: '+routes.length+' canonical routes, HTML/search/sitemap/Markdown parity, provenance and SHA-256');

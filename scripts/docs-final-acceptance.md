@@ -6,7 +6,7 @@
 - Every canonical route represented once in publication manifest, sitemap, local search and Markdown inventory; per-page Markdown provenance, SHA-256, complete bundle, copy/view controls.
 - Strict existing link, anchor and orphan audit; existing edition comparison and product-claim guards.
 - Desktop and mobile browser smoke, keyboard search, Markdown copy (clipboard stub), dark mode, no critical accessibility findings, and Lighthouse lab measurements.
-- Dispatch Build site manually with full_docs=true and strict_quality=true for all canonical docs desktop/mobile checks and strict axe/Lighthouse thresholds. Ordinary PRs retain targeted browser coverage and measured Lighthouse warnings; no existing gates are weakened.
+- Dispatch Build site manually with full_docs=true and strict_quality=true for all canonical docs desktop/mobile checks and strict axe/Lighthouse thresholds. The dedicated docs/final-acceptance PR branch also runs both full and strict modes so the acceptance evidence is reviewable before merge. Ordinary PRs retain targeted browser coverage and measured Lighthouse warnings; no existing gates are weakened.
 
 ## Production acceptance after deploy
 
@@ -19,3 +19,7 @@ Run Production site health with full=true after the merged site is deployed. Che
 - Verify live Umami dashboard/export: named events, no raw terms or clipboard content, no duplicate click event and DNT. Confirm GSC indexing separately. No live tracker credentials in repo.
 - Record release, website commit, build/run URLs, deployment and acceptance observations. Use release evidence for product proof; no claim that CI tested every manual instruction or live provider.
 - Step 8 closes only when evidence is recorded and mandatory failures resolved. No automatic compliance, adoption or performance guarantees.
+
+Static GFM task lists render their checked/unchecked state as text for accessible reading; source exports preserve task-list syntax. Lighthouse diagnostics and report upload run before strict assertions so failure evidence remains available.
+
+The QA preview negotiates gzip for eligible static text assets, matching the normal compressed delivery model rather than benchmarking an uncompressed Python server. Tests verify decoded response bytes, identity fallback, HEAD, redirects and missing routes. The deployable files, mobile throttling, three-run aggregation and strict thresholds are unchanged. Local gzip is not proof of actual Cloudflare compression; verify live Content-Encoding separately.

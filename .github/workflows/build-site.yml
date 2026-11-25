@@ -24,8 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
-      TALON_FULL_DOCS_QA: ${{ inputs.full_docs && '1' || '0' }}
-      TALON_RELEASE_GATE: ${{ inputs.strict_quality && '1' || '0' }}
+      TALON_FULL_DOCS_QA: ${{ (inputs.full_docs || github.head_ref == 'docs/final-acceptance') && '1' || '0' }}
+      TALON_RELEASE_GATE: ${{ (inputs.strict_quality || github.head_ref == 'docs/final-acceptance') && '1' || '0' }}
     steps:
       - name: Check out website
         uses: actions/checkout@v4
@@ -121,9 +121,12 @@ jobs:
           echo "NODE_PATH=$RUNNER_TEMP/talon-site-qa/node_modules" >> "$GITHUB_ENV"
           echo "CHROME_PATH=$(command -v google-chrome)" >> "$GITHUB_ENV"
 
+      - name: Test preview compression and byte parity
+        run: python3 -m unittest discover -s scripts -p test_preview_site.py
+
       - name: Start built-site preview
         run: |
-          python3 -m http.server 8080 --bind 127.0.0.1 --directory dist > /tmp/talon-preview.log 2>&1 &
+          python3 scripts/preview_site.py --port 8080 --directory dist > /tmp/talon-preview.log 2>&1 &
           for i in $(seq 1 20); do
             if curl -fsS http://127.0.0.1:8080/ > /dev/null; then exit 0; fi
             sleep 1
@@ -137,8 +140,9 @@ jobs:
         if: always() && env.CHROME_PATH != ''
         run: |
           "$RUNNER_TEMP/talon-site-qa/node_modules/.bin/lhci" collect --config=scripts/lighthouserc.cjs
-          "$RUNNER_TEMP/talon-site-qa/node_modules/.bin/lhci" assert --config=scripts/lighthouserc.cjs
+          node scripts/report-docs-lighthouse.cjs .lighthouseci
           "$RUNNER_TEMP/talon-site-qa/node_modules/.bin/lhci" upload --config=scripts/lighthouserc.cjs
+          "$RUNNER_TEMP/talon-site-qa/node_modules/.bin/lhci" assert --config=scripts/lighthouserc.cjs
 
       - name: Upload browser and Lighthouse evidence
         if: always()
