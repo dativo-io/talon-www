@@ -115,6 +115,7 @@ if (fs.existsSync(pilotPage)) {
   const pilotHero = html.match(/<div class="pilot-hero-actions">([\s\S]*?)<\/div>/)?.[1] || '';
   if ((pilotHero.match(/<a\b/g) || []).length !== 1 || !pilotHero.includes('data-growth-intent="pilot-booking"')) failures.push('Pilot hero must have a single booking CTA');
   if (!html.includes('href="/talon/docs/action-gateway-proof/" data-growth-intent="action-control" data-growth-placement="pilot-bottom">See an example of action approval</a>')) failures.push('Pilot technical proof link missing below hero');
+  if (!html.includes('<h1>Scale your AI with confidence</h1>') || !html.includes('operate AI reliably as your business grows')) failures.push('Pilot lost growth and operations value proposition');
   const bookingLinks = [...html.matchAll(/<a\b[^>]*data-growth-intent="pilot-booking"[^>]*>([^<]+)<\/a>/g)];
   if (bookingLinks.length !== 2 || bookingLinks.some(m => m[1] !== 'Book a call')) failures.push('Pilot booking buttons must use approved concise label');
   if (!html.includes('How to prepare for your first use case') || !html.includes('Your workflow:') || !html.includes('Your setup:') || !html.includes('Your goal:') || !html.includes('Please do not share credentials or production customer data.')) failures.push('Pilot preparation guidance missing');
