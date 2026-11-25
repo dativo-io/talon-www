@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 310" role="img" aria-labelledby="title desc">
+  <title id="title">Talon as a shared AI control layer</title>
+  <desc id="desc">Support, document and coding workflows route supported model and action paths through Talon. The shared layer applies policy, cost controls, reliability and evidence before connected models, APIs and tools.</desc>
+  <g font-family="Inter, system-ui, sans-serif" text-anchor="middle">
+    <g fill="#FFFFFF" stroke="#D2D9E5" stroke-width="1.5">
+      <rect x="24" y="8" width="208" height="52" rx="10"/>
+      <rect x="256" y="8" width="208" height="52" rx="10"/>
+      <rect x="488" y="8" width="208" height="52" rx="10"/>
+    </g>
+    <g fill="#14213A" font-size="21" font-weight="600">
+      <text x="128" y="40">Support</text><text x="360" y="40">Documents</text><text x="592" y="40">Coding</text>
+    </g>
+    <g stroke="#7184A6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M128 60 V79 H592 V60 M360 60 V101"/>
+      <path d="M354 95 L360 101 L366 95"/>
+    </g>
+    <rect x="24" y="102" width="672" height="112" rx="12" fill="#081E58"/>
+    <text x="360" y="138" fill="#FFFFFF" font-size="26" font-weight="650">Dativo Talon</text>
+    <g fill="#24396D">
+      <rect x="42" y="157" width="150" height="39" rx="6"/>
+      <rect x="204" y="157" width="150" height="39" rx="6"/>
+      <rect x="366" y="157" width="150" height="39" rx="6"/>
+      <rect x="528" y="157" width="150" height="39" rx="6"/>
+    </g>
+    <g fill="#FFFFFF" font-size="19" font-weight="500">
+      <text x="117" y="182">Policy</text><text x="279" y="182">Cost</text><text x="441" y="182">Reliability</text><text x="603" y="182">Evidence</text>
+    </g>
+    <g stroke="#7184A6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M360 214 V234 H128 V256 M360 234 H592 V256 M360 234 V256"/>
+      <path d="M122 250 L128 256 L134 250 M354 250 L360 256 L366 250 M586 250 L592 256 L598 250"/>
+    </g>
+    <g fill="#E4EBF8">
+      <rect x="24" y="258" width="208" height="44" rx="8"/>
+      <rect x="256" y="258" width="208" height="44" rx="8"/>
+      <rect x="488" y="258" width="208" height="44" rx="8"/>
+    </g>
+    <g fill="#081E58" font-size="21" font-weight="550">
+      <text x="128" y="287">AI models</text><text x="360" y="287">APIs</text><text x="592" y="287">Tools</text>
+    </g>
+  </g>
+</svg>
