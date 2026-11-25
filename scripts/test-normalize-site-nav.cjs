@@ -9,7 +9,7 @@ const {execFileSync} = require('node:child_process');
 
 const siteRoot = path.resolve(__dirname, '..');
 const out = fs.mkdtempSync(path.join(os.tmpdir(), 'talon-nav-'));
-const routes = ['index.html', 'ai-action-control/index.html', 'use-cases/index.html', 'enterprise/index.html', 'pilot/index.html'];
+const routes = ['index.html', 'ai-action-control/index.html', 'use-cases/index.html', 'enterprise/index.html', 'pilot/index.html', 'solutions/n8n/index.html'];
 const script = path.join(__dirname, 'normalize-site-nav.cjs');
 
 try {
@@ -34,7 +34,7 @@ try {
     const header = html.match(/<header class="site-nav">[\s\S]*?<\/header>/)?.[0];
     assert.ok(header, `missing marketing nav on ${route}`);
 
-    const labels = ['Product', 'Solutions', 'Developers', 'Discuss a pilot'];
+    const labels = ['Product', 'Solutions', 'Open Source', 'Discuss a pilot'];
     let previous = -1;
     for (const label of labels) {
       const position = header.indexOf(label === 'Discuss a pilot' ? `>${label}<` : `<summary>${label}</summary>`);
@@ -46,11 +46,11 @@ try {
     assert.ok(header.includes('href="/pilot/"'), `missing private pilot route on ${route}`);
     assert.ok(header.includes('href="/talon/docs/"'), `missing docs on ${route}`);
     const groups = [...header.matchAll(/<details class="nav-dropdown"><summary>([^<]+)<\/summary>([\s\S]*?)<\/details>/g)];
-    assert.deepEqual(groups.map(g => g[1]), ['Product', 'Solutions', 'Developers']);
+    assert.deepEqual(groups.map(g => g[1]), ['Product', 'Solutions', 'Open Source']);
     const expectedRoutes = [
       ['/#how-it-works', '/#operations-console', '/ai-agent-governance/', '/enterprise/'],
-      ['/use-cases/', '/use-cases/customer-support/', '/use-cases/vendor-contract-review/', '/use-cases/people-analytics/', '/talon/docs/n8n-refund-approvals/', '/use-cases/coding-agents/'],
-      ['/talon/docs/quickstart-demo/', '/talon/docs/', '/talon/docs/choosing-integration-path/', 'https://github.com/dativo-io/talon'],
+      ['/use-cases/', '/use-cases/customer-support/', '/use-cases/vendor-contract-review/', '/use-cases/people-analytics/', '/solutions/n8n/', '/use-cases/coding-agents/'],
+      ['https://github.com/dativo-io/talon', '/talon/docs/quickstart-demo/', '/talon/docs/', '/talon/docs/choosing-integration-path/'],
     ];
     groups.forEach((group, index) => {
       assert.deepEqual([...group[2].matchAll(/href="([^"]+)"/g)].map(m => m[1]), expectedRoutes[index]);
