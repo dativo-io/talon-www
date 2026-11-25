@@ -1,0 +1,23 @@
+# Dativo Talon
+
+> Open-source, self-hosted AI control plane for company AI use cases.
+
+Talon applies configured policy, budget limits, data protections, provider routing and signed evidence to supported model and action paths. It does not govern traffic that bypasses its interception boundaries. The Operations Console is read-only. Exact HTTP action approval is distinct from execution and from MCP tool permissions. Enterprise capabilities are planned or separately scoped.
+
+## Product
+- [Overview](https://dativo.io/): architecture and business outcomes.
+- [AI governance](https://dativo.io/ai-agent-governance/): shared controls.
+- [AI cost control](https://dativo.io/ai-cost-control/): budget enforcement.
+- [Solutions](https://dativo.io/use-cases/): bounded synthetic examples.
+- [Talon for n8n](https://dativo.io/solutions/n8n/): supported workflow examples and limitations.
+
+## Open source and technical proof
+- [Source and releases](https://github.com/dativo-io/talon): authoritative implementation.
+- [Documentation](https://dativo.io/talon/docs/): technical entry point.
+- [No-key quickstart](https://dativo.io/talon/docs/quickstart-demo/): try a synthetic request.
+- [Exact-action proof](https://dativo.io/talon/docs/action-gateway-proof/): authorization and dispatch.
+- [Operations Console](https://dativo.io/talon/docs/operations-console/): operational visibility.
+- [Integration paths](https://dativo.io/talon/docs/choosing-integration-path/): select a supported boundary.
+- [Pilot](https://dativo.io/pilot/): technical fit call.
+
+This experimental discovery file summarizes public links. Verify capabilities against the current source, documentation and released version; it is not a compatibility guarantee.
