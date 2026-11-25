@@ -14,54 +14,9 @@ if (!outDir || !scriptSrc || !websiteId) {
 }
 
 const domainsAttribute = domains ? ` data-domains="${domains}"` : '';
-const snippet = `  <!-- Privacy-friendly analytics by Umami -->
-  <script defer src="${scriptSrc}" data-website-id="${websiteId}"${domainsAttribute} ${marker}></script>
-  <script>
-    // Never transmit link query parameters or fragments as event properties.
-    // A campaign link may contain accidental personal data even when UTM
-    // values are supposed to be anonymous.
-    function safeDestination(href) {
-      try {
-        var url = new URL(href, window.location.origin);
-        return url.origin === window.location.origin ? url.pathname : 'external:' + url.hostname;
-      } catch (e) {
-        return 'unknown';
-      }
-    }
-
-    document.addEventListener('click', function(event) {
-      var link = event.target && event.target.closest ? event.target.closest('a') : null;
-      if (!link || !window.umami || typeof window.umami.track !== 'function') return;
-
-      var href = link.getAttribute('href') || '';
-      var eventName = null;
-
-      if (href.indexOf('/product-demo/') !== -1) eventName = 'Product Demo Click';
-      else if (href.indexOf('/quickstart-demo/') !== -1) eventName = 'Quickstart Demo Click';
-      else if (href.indexOf('/sample-auditor-pack/') !== -1 || href.indexOf('/ai-governance-evidence-store/') !== -1) eventName = 'Evidence Click';
-      else if (href.indexOf('/resources/eu-ai-governance-runtime-checklist/') !== -1) eventName = 'Checklist Click';
-      else if (href.indexOf('https://github.com/dativo-io/talon') === 0 && (
-        href.length === 'https://github.com/dativo-io/talon'.length
-        || '/?#'.indexOf(href.charAt('https://github.com/dativo-io/talon'.length)) !== -1
-      )) eventName = 'GitHub Click';
-      else if (href.indexOf('/talon/docs/') !== -1 || href.indexOf('/docs/talon/') !== -1) eventName = 'Docs Click';
-
-      if (eventName) {
-        window.umami.track(eventName, {
-          page: window.location.pathname,
-          destination: safeDestination(href)
-        });
-      }
-    });
-
-    document.addEventListener('click', function(event) {
-      var button = event.target && event.target.closest ? event.target.closest('.hero-demo-play') : null;
-      if (!button || !window.umami || typeof window.umami.track !== 'function') return;
-      window.umami.track('Demo Play', { page: window.location.pathname });
-    });
-  </script>
+const snippet = `  <!-- Site analytics; one shared growth.js event listener -->
+  <script defer src="${scriptSrc}" data-website-id="${websiteId}"${domainsAttribute} data-exclude-search="true" data-exclude-hash="true" data-do-not-track="true" ${marker}></script>
 `;
-
 function walk(dir) {
   for (const entry of fs.readdirSync(dir, {withFileTypes: true})) {
     const fullPath = path.join(dir, entry.name);

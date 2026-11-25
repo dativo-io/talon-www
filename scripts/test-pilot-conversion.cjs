@@ -42,7 +42,7 @@ assert.ok(!JSON.stringify(sent[0]).includes('bfNg6wuq'), 'booking link token lea
 
 click('/pilot/?utm_source=linkedin&email=visitor@example.com', 'pilot-offer', 'hero');
 assert.equal(sent.length, 2);
-assert.equal(sent[1].name, 'Funnel CTA');
+assert.equal(sent[1].name, 'Pilot Offer Click');
 assert.equal(sent[1].properties.intent, 'pilot-offer');
 assert.equal(sent[1].properties.destination, '/pilot/', 'query string must be stripped');
 assert.ok(!Object.prototype.hasOwnProperty.call(sent[1].properties, 'text'), 'CTA link text must not be transmitted');
@@ -50,6 +50,7 @@ assert.ok(!JSON.stringify(sent[1]).includes('visitor@example.com'), 'query strin
 
 click('https://github.com/dativo-io/talon?code=private', 'github', 'footer');
 assert.equal(sent.length, 3);
+assert.equal(sent[2].name, 'GitHub Click');
 assert.equal(sent[2].properties.destination, 'external:github.com');
 assert.ok(!JSON.stringify(sent[2]).includes('code=private'), 'external URL leaked into analytics');
 assert.ok(!sent.some((event) => event.name === 'Pilot Contact Click'), 'retired contact event reappeared');

@@ -35,7 +35,7 @@ for (const [i, anchor] of primary.entries()) {
 }
 assert.equal(events.length, 2);
 for (const [i, e] of events.entries()) {
-  assert.equal(e.name, 'Funnel CTA');
+  assert.equal(e.name, 'Pilot Offer Click');
   assert.equal(e.props.page, '/enterprise/');
   assert.equal(e.props.intent, 'pilot-offer');
   assert.equal(e.props.placement, i === 0 ? 'enterprise-hero' : 'enterprise-bottom');
@@ -45,4 +45,4 @@ for (const [i, e] of events.entries()) {
   assert.ok(!JSON.stringify(e).includes('private@example.com'), 'private URL query leaked');
 }
 assert.equal(events.filter(e => e.name === 'Pilot Booking Click').length, 0, 'opening the pilot offer is not a booking');
-console.log('PASS: Enterprise hero and bottom CTAs emit safe Funnel CTA / pilot-offer events.');
+console.log('PASS: Enterprise hero and bottom CTAs emit safe Pilot Offer Click events.');
