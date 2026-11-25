@@ -100,14 +100,14 @@ RESULT         VERIFIED</code></pre>
 
     <section class="section split-section">
       <div class="wrap split">
-        <div><p class="eyebrow">What the verified run showed</p><h2>A useful action path with a clear release boundary.</h2><p>The real Copilot CLI checked release status and prepared a synthetic release. Those two operations reached the synthetic upstream through Talon's MCP proxy. No <code>release_publish</code> receipt existed for the fresh run nonce.</p><p>The precise claim is that publish did not reach upstream. A separate adversarial live check proves Talon denies an attempted forbidden publish call at runtime.</p></div>
+        <div><p class="eyebrow">What the verified run showed</p><h2>A useful action path with a clear release boundary.</h2><p>In the historical synthetic demo, the real Copilot CLI checked release status and prepared a synthetic release. Those two operations reached the synthetic upstream through Talon's MCP proxy. No <code>release_publish</code> receipt existed for the fresh run nonce.</p><p>The precise claim is that publish did not reach upstream. A separate adversarial live check proves Talon denies an attempted forbidden publish call at runtime.</p></div>
         <div class="code-panel"><ul class="case-receipt"><li><strong>Allowed</strong><span><code>release_status</code></span></li><li><strong>Allowed</strong><span><code>release_prepare</code></span></li><li><strong>Upstream boundary</strong><span><code>release_publish</code> absent</span></li><li><strong>Decision evidence</strong><span>2 signed MCP records</span></li><li><strong>Model evidence</strong><span>3 signed gateway records</span></li></ul></div>
       </div>
     </section>
 
     <section class="section">
       <div class="wrap">
-        <div class="section-heading wide-heading"><p class="eyebrow">Honest boundary</p><h2>Talon governs what crosses Talon.</h2><p>The case proves model traffic and MCP calls routed through Talon. It does not claim control over local shell commands, file edits, browser actions or direct APIs that bypass the gateway and MCP proxy. Client/session metadata is attribution, not independent process attestation. Signed evidence is verifiable and tamper-evident, not immutable.</p></div>
+        <div class="section-heading wide-heading"><p class="eyebrow">Honest boundary</p><h2>Talon governs what crosses Talon.</h2><p>The case proves model traffic and MCP calls routed through Talon. The recorded demo predates the v1.17 governed MCP migration; verify client compatibility and rerun acceptance using the current guide before deploying. It does not claim control over local shell commands, file edits, browser actions or direct APIs that bypass the gateway and MCP proxy. Client/session metadata is attribution, not independent process attestation. Signed evidence is verifiable and tamper-evident, not immutable.</p></div>
         <div class="grid three"><article class="card"><h3>Controlled</h3><p>OpenAI-compatible model traffic authenticated as <code>coding-assistant</code>.</p></article><article class="card"><h3>Controlled</h3><p>MCP discovery and tool calls routed through Talon's MCP proxy.</p></article><article class="card"><h3>Outside this proof</h3><p>Local execution and any direct path that never enters a Talon interception point.</p></article></div>
       </div>
     </section>
