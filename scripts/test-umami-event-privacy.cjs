@@ -19,7 +19,7 @@ try{
  vm.runInNewContext(script,{window,document,URL});vm.runInNewContext(script,{window,document,URL});
  assert.equal(listeners.click.length,1);
  assert.equal(events[0].name,'Acquisition Campaign');assert.equal(events[0].props.utm_campaign,'n8n_acquisition');
- function click(href,intent){const a={dataset:{growthIntent:intent},getAttribute:()=>href,closest:()=>null,matches:()=>false,textContent:'Private Jane Doe'};listeners.click[0]({target:{closest:()=>a}});}
+ function click(href,intent){const a={dataset:{growthIntent:intent},getAttribute:()=>href,closest:()=>null,matches:()=>false,textContent:'Private Jane Doe'};listeners.click[0]({target:{closest:selector=>selector==='a[href]'?a:null}});}
  click('/talon/docs/quickstart-demo/?email=person@example.com&access_token=private#client');
  click('https://github.com/dativo-io/talon?secret_token=private');
  click('/use-cases/customer-support/','case-support');
