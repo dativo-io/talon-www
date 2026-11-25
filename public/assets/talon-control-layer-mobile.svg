@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 306" role="img" aria-labelledby="title desc">
+  <title id="title">Talon as a shared AI control layer</title>
+  <desc id="desc">Support, document and coding workflows route supported model and action paths through Talon for policy, cost, reliability and evidence.</desc>
+  <g font-family="Inter, system-ui, sans-serif" text-anchor="middle">
+    <g fill="#FFFFFF" stroke="#D2D9E5">
+      <rect x="4" y="4" width="112" height="38" rx="7"/><rect x="124" y="4" width="112" height="38" rx="7"/><rect x="244" y="4" width="112" height="38" rx="7"/>
+    </g>
+    <g font-size="14" fill="#14213A" font-weight="600"><text x="60" y="28">Support</text><text x="180" y="28">Documents</text><text x="300" y="28">Coding</text></g>
+    <g fill="none" stroke="#7184A6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M60 42 V58 H300 V42 M180 42 V78"/><path d="M176 74 L180 78 L184 74"/></g>
+    <rect x="4" y="80" width="352" height="135" rx="10" fill="#081E58"/>
+    <text x="180" y="109" font-size="20" font-weight="650" fill="#FFFFFF">Dativo Talon</text>
+    <g fill="#24396D"><rect x="17" y="122" width="159" height="34" rx="5"/><rect x="184" y="122" width="159" height="34" rx="5"/><rect x="17" y="164" width="159" height="34" rx="5"/><rect x="184" y="164" width="159" height="34" rx="5"/></g>
+    <g fill="#FFFFFF" font-size="14" font-weight="500"><text x="96.5" y="144">Policy</text><text x="263.5" y="144">Cost</text><text x="96.5" y="186">Reliability</text><text x="263.5" y="186">Evidence</text></g>
+    <g fill="none" stroke="#7184A6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M180 215 V237 H60 V260 M180 237 H300 V260 M180 237 V260"/><path d="M56 256 L60 260 L64 256 M176 256 L180 260 L184 256 M296 256 L300 260 L304 256"/></g>
+    <g fill="#E4EBF8"><rect x="4" y="262" width="112" height="40" rx="7"/><rect x="124" y="262" width="112" height="40" rx="7"/><rect x="244" y="262" width="112" height="40" rx="7"/></g>
+    <g fill="#081E58" font-size="14" font-weight="550"><text x="60" y="287">AI models</text><text x="180" y="287">APIs</text><text x="300" y="287">Tools</text></g>
+  </g>
+</svg>
