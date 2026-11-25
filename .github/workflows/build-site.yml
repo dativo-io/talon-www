@@ -121,9 +121,12 @@ jobs:
           echo "NODE_PATH=$RUNNER_TEMP/talon-site-qa/node_modules" >> "$GITHUB_ENV"
           echo "CHROME_PATH=$(command -v google-chrome)" >> "$GITHUB_ENV"
 
+      - name: Test preview compression and byte parity
+        run: python3 -m unittest discover -s scripts -p test_preview_site.py
+
       - name: Start built-site preview
         run: |
-          python3 -m http.server 8080 --bind 127.0.0.1 --directory dist > /tmp/talon-preview.log 2>&1 &
+          python3 scripts/preview_site.py --port 8080 --directory dist > /tmp/talon-preview.log 2>&1 &
           for i in $(seq 1 20); do
             if curl -fsS http://127.0.0.1:8080/ > /dev/null; then exit 0; fi
             sleep 1

@@ -21,3 +21,5 @@ Run Production site health with full=true after the merged site is deployed. Che
 - Step 8 closes only when evidence is recorded and mandatory failures resolved. No automatic compliance, adoption or performance guarantees.
 
 Static GFM task lists render their checked/unchecked state as text for accessible reading; source exports preserve task-list syntax. Lighthouse diagnostics and report upload run before strict assertions so failure evidence remains available.
+
+The QA preview negotiates gzip for eligible static text assets, matching the normal compressed delivery model rather than benchmarking an uncompressed Python server. Tests verify decoded response bytes, identity fallback, HEAD, redirects and missing routes. The deployable files, mobile throttling, three-run aggregation and strict thresholds are unchanged. Local gzip is not proof of actual Cloudflare compression; verify live Content-Encoding separately.
