@@ -89,6 +89,8 @@ if (fs.existsSync(homepage)) {
   if (!html.includes('href="/talon/docs/action-gateway-proof/"')) failures.push('Homepage must link to reproducible exact-action proof');
   if (!html.includes('href="/talon/docs/quickstart-demo/"')) failures.push('Homepage must preserve the no-key start path');
   if (!html.includes('Synthetic example') || !html.includes('counting test adapter') || !html.includes('not real payments') || !html.includes('Approval does not execute a refund')) failures.push('Homepage action proof must clearly label synthetic, non-payment behavior');
+  if (!html.includes('<li class="proof-pending"><h3>Request held</h3><strong>0</strong>') || !html.includes('<li class="proof-reviewed"><h3>Reviewer approves</h3><strong>0</strong>') || !html.includes('<li class="proof-dispatched"><h3>Runtime claims</h3><strong>1</strong>')) failures.push('Homepage lost approval versus dispatch separation');
+  if (!html.includes('read-only Operations Console') || !html.includes('synthetic test fixture, not production customer data')) failures.push('Homepage console boundary or provenance missing');
   if ((html.match(/<section\b/g) || []).length !== 5) failures.push('Homepage must retain five focused sections, not an exhaustive feature catalog');
   if (html.includes('case-console-trail') || html.includes('case-editions')) failures.push('Homepage reintroduced redundant console carousel or full edition comparison');
   if (!html.includes('href="/enterprise/"')) failures.push('Homepage missing edition overview');
