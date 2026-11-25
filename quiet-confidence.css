@@ -502,3 +502,76 @@ body[data-ux-theme="quiet-confidence"] .home-journey-links a {
   body[data-ux-theme="quiet-confidence"] .home-use-case-grid { grid-template-columns: minmax(0, 1fr); }
   body[data-ux-theme="quiet-confidence"] .home-journey-links { flex-direction: column; gap: 4px; }
 }
+
+/* Step 5: show the approval lifecycle, not just an unexplained counter.
+   All states are static synthetic proof, never simulated live controls. */
+body[data-ux-theme="quiet-confidence"] .home-controls .home-proof {
+  max-width: 100%;
+  padding: clamp(20px, 4vw, 44px);
+}
+body[data-ux-theme="quiet-confidence"] .home-proof h2 { max-width: 100%; }
+body[data-ux-theme="quiet-confidence"] .home-proof-verdict { justify-content: flex-start; }
+body[data-ux-theme="quiet-confidence"] .home-proof-verdict strong { font-size: 17px; }
+body[data-ux-theme="quiet-confidence"] .home-proof-verdict code {
+  color: var(--qc-dark-muted);
+  font-size: 12px;
+  margin-left: auto;
+  overflow-wrap: anywhere;
+}
+body[data-ux-theme="quiet-confidence"] .home-proof-flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  padding: 0;
+  margin: 24px 0;
+  list-style: none;
+}
+body[data-ux-theme="quiet-confidence"] .home-proof-flow li {
+  position: relative;
+  min-width: 0;
+  border: 1px solid var(--qc-dark-line);
+  border-radius: 8px;
+  padding: 18px;
+}
+body[data-ux-theme="quiet-confidence"] .home-proof-flow li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 1px;
+  top: 50%;
+  right: -29px;
+  background: var(--qc-dark-line);
+}
+body[data-ux-theme="quiet-confidence"] .home-proof-flow h3 {
+  font-size: 16px;
+  letter-spacing: 0;
+  color: var(--qc-dark-text);
+  line-height: 1.35;
+}
+body[data-ux-theme="quiet-confidence"] .home-proof-flow strong {
+  display: block;
+  font-size: 44px;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  color: var(--qc-dark-text);
+  margin-top: 12px;
+}
+body[data-ux-theme="quiet-confidence"] .home-proof-flow span {
+  color: var(--qc-dark-muted);
+  font-size: 14px;
+}
+body[data-ux-theme="quiet-confidence"] .home-proof-flow .proof-pending { border-top: 3px solid var(--qc-warning); }
+body[data-ux-theme="quiet-confidence"] .home-proof-flow .proof-reviewed { border-top: 3px solid var(--qc-dark-muted); }
+body[data-ux-theme="quiet-confidence"] .home-proof-flow .proof-dispatched { border-top: 3px solid #9AE6B4; }
+body[data-ux-theme="quiet-confidence"] .home-operator-showcase {
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 48px);
+}
+body[data-ux-theme="quiet-confidence"] .home-operator-showcase > div { max-width: 720px; }
+body[data-ux-theme="quiet-confidence"] .home-operator-showcase p:not(.case-kicker) { max-width: 620px; }
+body[data-ux-theme="quiet-confidence"] .home-operator-showcase .home-operator-image { width: min(100%, 1000px); margin-inline: auto; }
+@media (max-width: 670px) {
+  body[data-ux-theme="quiet-confidence"] .home-proof-flow { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  body[data-ux-theme="quiet-confidence"] .home-proof-flow li:not(:last-child)::after { width: 1px; height: 20px; top: auto; bottom: -21px; right: 50%; }
+  body[data-ux-theme="quiet-confidence"] .home-proof-verdict code { margin-left: 0; }
+}
