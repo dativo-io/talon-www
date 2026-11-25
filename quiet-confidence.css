@@ -1,19 +1,19 @@
-/* Quiet Confidence v1. Opt in per page; do not change legacy dark pages.
+/* Quiet Confidence v1: Talon logo-derived navy palette (#081E58 / white). Opt in per page; do not change legacy dark pages.
    The homepage is the reference implementation for UX step 2/8. */
 body[data-ux-theme="quiet-confidence"] {
   --qc-canvas: #F6F5F0;
-  --qc-ink: #172522;
-  --qc-primary: #15594B;
-  --qc-primary-hover: #10473C;
-  --qc-accent: #D4E8DD;
+  --qc-ink: #14213A;
+  --qc-primary: #081E58;
+  --qc-primary-hover: #061641;
+  --qc-accent: #E4EBF8;
   --qc-surface: #FFFFFF;
-  --qc-muted: #53615D;
-  --qc-line: #CDD5CF;
-  --qc-dark: #172E2B;
-  --qc-dark-text: #F2F7F3;
-  --qc-dark-muted: #BED2C8;
-  --qc-dark-accent: #A9DFCA;
-  --qc-dark-line: #49665D;
+  --qc-muted: #4F5D73;
+  --qc-line: #D2D9E5;
+  --qc-dark: #101F40;
+  --qc-dark-text: #F4F7FD;
+  --qc-dark-muted: #C4D0E6;
+  --qc-dark-accent: #AFC9FF;
+  --qc-dark-line: #50658B;
   --qc-warning: #F8D991;
   --qc-radius: 12px;
   --qc-section: clamp(64px, 8vw, 120px);
@@ -269,7 +269,7 @@ body[data-ux-theme="quiet-confidence"] .home-proof-verdict span {
   line-height: 1.55;
 }
 body[data-ux-theme="quiet-confidence"] .home-proof-verdict {
-  background: #203D37;
+  background: #1C325C;
   border: 1px solid var(--qc-dark-line);
   border-radius: 8px;
   flex-wrap: wrap;
@@ -355,7 +355,7 @@ body[data-ux-theme="quiet-confidence"] .case-card a:hover {
     background: var(--qc-surface);
     border: 1px solid var(--qc-line);
     border-radius: var(--qc-radius);
-    box-shadow: 0 10px 30px #17252218;
+    box-shadow: 0 10px 30px #14213A18;
     backdrop-filter: none;
     gap: 4px;
   }
