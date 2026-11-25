@@ -112,6 +112,9 @@ if (fs.existsSync(pilotPage)) {
   const html = fs.readFileSync(pilotPage, 'utf8');
   if (!html.includes('https://calendar.app.google/bfNg6wuqyCaKa8nV9')) failures.push('Pilot page missing configured booking destination');
   if ((html.match(/data-growth-intent="pilot-booking"/g) || []).length !== 2) failures.push('Pilot page must have two measurable booking CTAs');
+  const bookingLinks = [...html.matchAll(/<a\b[^>]*data-growth-intent="pilot-booking"[^>]*>([^<]+)<\/a>/g)];
+  if (bookingLinks.length !== 2 || bookingLinks.some(m => m[1] !== 'Book a call')) failures.push('Pilot booking buttons must use approved concise label');
+  if (!html.includes('How to prepare for your first use case') || !html.includes('Your workflow:') || !html.includes('Your setup:') || !html.includes('Your goal:') || !html.includes('Please do not share credentials or production customer data.')) failures.push('Pilot preparation guidance missing');
   if (!html.includes('No workflow data or contact details are collected by this page.')) failures.push('Pilot page missing truthful intake/privacy boundary');
   if (/\<form\b/i.test(html)) failures.push('Pilot page must not expose an unconfigured contact form');
 }
