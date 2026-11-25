@@ -2,7 +2,7 @@
 
 > Open-source, self-hosted AI control plane for company AI use cases.
 
-Talon applies configured policy, budget limits, data protections, provider routing and signed evidence to supported model and action paths. It does not govern traffic that bypasses its interception boundaries. The Operations Console is read-only. Exact HTTP action approval is distinct from execution and from MCP tool permissions. Enterprise capabilities are planned or separately scoped.
+Talon applies configured policy, budget limits, data protections, provider routing and signed evidence to supported model and action paths. It does not govern traffic that bypasses its interception boundaries. The Operations Console is read-only. In v1.17.0, declared HTTP actions and governed MCP tools share the Action Gateway; approval is distinct from dispatch. Enterprise is the company-wide operations offering; integrations and deployment profiles are scoped during evaluation.
 
 ## Product
 - [Overview](https://dativo.io/): architecture and business outcomes.

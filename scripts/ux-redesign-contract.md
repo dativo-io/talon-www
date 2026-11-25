@@ -79,9 +79,9 @@ Approved step 3 navigation: Product, Solutions and Developers native disclosure 
 
 - Policy only applies to model traffic and business actions routed through supported interception paths. Unobserved/bypassed actions stay outside control.
 - Exact-action authorization and separate human approval do not themselves execute a refund or other business effect. Keep zero dispatch before approval and authorized claim, and distinguish policy verdict from downstream dispatch. The example is synthetic, uses a counting test adapter and is not real payments.
-- MCP discovery/call controls and exact HTTP action authorization are distinct capabilities; do not conflate them.
+- MCP discovery does not authorize execution. Since v1.17, governed MCP and HTTP actions share the Action Gateway; preserve the distinct transport procedures and exclude native runner and Plan Review actions.
 - OSS Operations Console is read-only and displays observed activity. Signed evidence is tamper-evident, not a compliance certificate.
-- Planned Enterprise is explicitly planned, not shipped. Integration logos are compatibility statements only when supported paths are verified; never imply customer or partner endorsements.
+- Enterprise is the company-wide operations offering; distinguish scoped pilot capabilities from released Community and independently verified Enterprise profiles. Integration logos are compatibility statements only when supported paths are verified; never imply customer or partner endorsements.
 - No invented product screenshots, fake customer logos, unverified metrics or unreleased flagship demo assets. Illustrations/mockups must be labeled; real screenshots use the existing lock and upstream source. Never refresh the lock simply to make CI pass.
 
 ## Implementation boundaries

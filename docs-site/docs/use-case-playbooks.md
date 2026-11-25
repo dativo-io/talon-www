@@ -37,9 +37,9 @@ The scenarios below use documented Talon capabilities, but **they are not all eq
 | **Approval case** | €75 operation waits for a support-lead reviewer; approval itself dispatches nothing |
 | **Deny case** | €900 action blocked by the company policy; no adapter call |
 | **Evidence** | Effective action policy and rule provenance, approval status, attempt outcome and signed operation lifecycle |
-| **Do not infer** | The counting fixture processes real payments, or MCP tool calls inherit the HTTP Action Gateway approval/claim lifecycle |
+| **Do not infer** | The counting fixture processes real payments, or this HTTP fixture proves a particular MCP integration. Governed MCP shares the Action Gateway in v1.17; validate that path separately |
 
-**How to evaluate:** Start with the [n8n refund approval walkthrough](./n8n-refund-approvals.md) or [business use-case page](https://dativo.io/use-cases/refund-approvals/). Import the [reference workflow](https://github.com/dativo-io/talon/tree/main/examples/n8n-refund), run all three inputs and compare the signed action lifecycle with the destination call counter. This is distinct from the customer-support demo above, whose n8n approval step is a separate synthetic operator gate.
+**How to evaluate:** Start with the [n8n refund approval walkthrough](./n8n-refund-approvals.md) or [business use-case page](https://dativo.io/use-cases/refund-approvals/). Import the [reference workflow](https://github.com/dativo-io/talon/tree/main/examples/n8n-refund), run all three inputs and compare the signed action lifecycle with the destination call counter. This is distinct from the customer-support demo above, whose n8n approval step is a separate synthetic operator gate. Historical demo receipts do not establish compatibility with v1.17's governed MCP endpoint; use the [migration guide](./mcp-governed-tools.md) and re-run acceptance before claiming it.
 
 ## Coding agents
 
@@ -48,7 +48,7 @@ The scenarios below use documented Talon capabilities, but **they are not all eq
 | | |
 |---|---|
 | **Workflow** | GitHub Copilot CLI or a coding-assistant use case |
-| **Boundary** | Model requests routed through Talon and MCP release calls traversing its proxy |
+| **Boundary** | Model requests routed through Talon and release calls on the configured MCP path |
 | **Allow case** | Read `release_status` and prepare a release using allowed tools |
 | **Deny case** | `release_publish` or a prohibited `admin_*` tool is blocked on the intercepted path |
 | **Evidence** | Authenticated agent key, asserted session, model/tool timeline, denied call, signature verification |

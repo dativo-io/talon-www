@@ -20,7 +20,7 @@ product manual:
 4. A single read-only Operations Console example with a link to its guide.
 5. A founder-led pilot call for one bounded production use case.
 
-Detailed cases, the OSS-versus-**planned**-Enterprise matrix, implementation
+Detailed cases, the Community-versus-Enterprise matrix, implementation
 instructions, and architectural limits belong on dedicated marketing routes
 or in Docusaurus. Do not imply Talon sees bypassed actions or that approval
 itself executes a business effect. Avoid shipping assets for a flagship demo

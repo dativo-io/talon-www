@@ -2,6 +2,8 @@ module.exports = {
   'product-demo.md': 'examples/product-demo/README.md',
   'quickstart-demo.md': 'docs/tutorials/quickstart-demo.md',
   'action-gateway-proof.md': 'docs/tutorials/action-gateway-proof.md',
+  'mcp-governed-tools.md': 'docs/guides/mcp-governed-tools.md',
+  'upgrading-to-1.17.md': 'docs/guides/upgrading-to-1.17.md',
   'mcp-2026-migration.md': 'docs/guides/mcp-2026-migration.md',
   'manual-governed-session.md': 'docs/tutorials/manual-governed-session.md',
   'evidence-integrity-demo.md': 'docs/tutorials/evidence-integrity-demo.md',

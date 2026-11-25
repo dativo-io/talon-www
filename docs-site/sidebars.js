@@ -39,7 +39,8 @@ const sidebars = {
         doc('mcp-governance-extension', 'MCP tool permissions'),
         doc('cost-governance-by-agent', 'Cost and session budgets'),
         doc('configuration', 'Fallback and gateway configuration'),
-        doc('mcp-2026-migration', 'MCP protocol compatibility'),
+        doc('mcp-governed-tools', 'Governed MCP tools'),
+        doc('mcp-2026-migration', 'MCP protocol migration'),
         doc('policy-packs', 'Policy packs'),
         doc('external-scanners', 'External data scanners'),
         doc('local-scanner-engines', 'Local scanner engines'),
@@ -90,7 +91,7 @@ const sidebars = {
       label: 'Architecture and reference',
       collapsed: true,
       items: [
-        doc('open-source-and-enterprise', 'OSS versus planned Enterprise'),
+        doc('open-source-and-enterprise', 'Community and Enterprise'),
         'control-plane',
         'control-plane-boundaries',
         'object-model',
@@ -105,6 +106,7 @@ const sidebars = {
         'benchmarks',
         'quickstart',
         'release-notes',
+        doc('upgrading-to-1.17', 'Upgrade to v1.17'),
       ],
     },
     {
