@@ -18,6 +18,7 @@ const hero = main.match(/<section\b[^>]*home-intro[^>]*>[\s\S]*?<\/section>/)?.[
 assert.ok(hero && words(hero) < 80, 'hero must remain a short business introduction');
 assert.equal((hero.match(/<a\b/g) || []).length, 2, 'hero must offer only two links');
 assert.match(hero, /<h1>Stay in control as AI scales<\/h1>/);
+assert.ok(hero.includes('Manage AI policies, costs and reliability in one place.') && !hero.includes('home-intro-trust'), 'approved concise hero copy and no redundant trust line');
 assert.match(hero, /class="button primary" href="\/pilot\/" data-growth-intent="pilot-offer" data-growth-placement="hero" data-growth-primary="true"/);
 assert.match(hero, /class="button secondary" href="#how-it-works" data-growth-intent="product-overview" data-growth-placement="hero"/);
 assert.ok(!hero.includes('Synthetic example') && !hero.includes('REQUIRE_APPROVAL'), 'technical proof belongs after the introduction');
