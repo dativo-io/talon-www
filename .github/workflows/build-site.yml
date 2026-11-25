@@ -24,8 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
-      TALON_FULL_DOCS_QA: ${{ inputs.full_docs && '1' || '0' }}
-      TALON_RELEASE_GATE: ${{ inputs.strict_quality && '1' || '0' }}
+      TALON_FULL_DOCS_QA: ${{ (inputs.full_docs || github.head_ref == 'docs/final-acceptance') && '1' || '0' }}
+      TALON_RELEASE_GATE: ${{ (inputs.strict_quality || github.head_ref == 'docs/final-acceptance') && '1' || '0' }}
     steps:
       - name: Check out website
         uses: actions/checkout@v4

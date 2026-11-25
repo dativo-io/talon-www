@@ -8,14 +8,6 @@ slug: /
 
 Talon is an open-source, self-hosted AI control plane. Apply company policy, control costs, protect sensitive data and operate AI reliably on supported paths through Talon.
 
-<figure className="qc-docs-diagram">
-  <picture>
-    <source media="(max-width: 600px)" srcSet="/public/assets/talon-control-layer-mobile.svg" />
-    <img src="/public/assets/talon-control-layer.svg" alt="Existing AI use cases connect through Talon to existing providers, APIs and tools. Talon applies policy, cost controls, reliability and evidence on supported paths." width="720" height="358" />
-  </picture>
-  <figcaption>Keep your existing applications and providers. Configure supported routes through Talon.</figcaption>
-</figure>
-
 ## Choose your starting point
 
 <div className="qc-docs-start-grid">
@@ -43,6 +35,14 @@ Review architecture, security, evidence, deployment and editions before a pilot.
 </div>
 
 </div>
+
+<figure className="qc-docs-diagram">
+  <picture>
+    <source width="360" height="354" media="(max-width: 600px)" srcSet="/public/assets/talon-control-layer-mobile.svg" />
+    <img src="/public/assets/talon-control-layer.svg" alt="Existing AI use cases connect through Talon to existing providers, APIs and tools. Talon applies policy, cost controls, reliability and evidence on supported paths." width="720" height="358" loading="lazy" decoding="async" />
+  </picture>
+  <figcaption>Keep your existing applications and providers. Configure supported routes through Talon.</figcaption>
+</figure>
 
 ## Find your integration
 

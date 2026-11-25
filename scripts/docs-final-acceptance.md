@@ -6,7 +6,7 @@
 - Every canonical route represented once in publication manifest, sitemap, local search and Markdown inventory; per-page Markdown provenance, SHA-256, complete bundle, copy/view controls.
 - Strict existing link, anchor and orphan audit; existing edition comparison and product-claim guards.
 - Desktop and mobile browser smoke, keyboard search, Markdown copy (clipboard stub), dark mode, no critical accessibility findings, and Lighthouse lab measurements.
-- Dispatch Build site manually with full_docs=true and strict_quality=true for all canonical docs desktop/mobile checks and strict axe/Lighthouse thresholds. Ordinary PRs retain targeted browser coverage and measured Lighthouse warnings; no existing gates are weakened.
+- Dispatch Build site manually with full_docs=true and strict_quality=true for all canonical docs desktop/mobile checks and strict axe/Lighthouse thresholds. The dedicated docs/final-acceptance PR branch also runs both full and strict modes so the acceptance evidence is reviewable before merge. Ordinary PRs retain targeted browser coverage and measured Lighthouse warnings; no existing gates are weakened.
 
 ## Production acceptance after deploy
 
