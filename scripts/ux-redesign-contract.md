@@ -21,7 +21,7 @@ Approved step 3 hero:
 
 > Stay in control as AI scales
 >
-> Apply company policy, manage spending and keep your connected AI workflows reliable with one self-hosted control plane.
+> Manage AI policies, costs and reliability in one place.
 
 Primary CTA: Discuss a pilot (existing /pilot/ route). Secondary: See how it works (existing #how-it-works anchor, including relocated synthetic proof). Quickstart and GitHub remain obvious evaluator paths, but must not compete as additional hero buttons. Do not promise a hosted free trial or generic demo booking if the actual offer is a scoped technical fit call.
 
