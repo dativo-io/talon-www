@@ -124,7 +124,7 @@ Compare raw and consistently filtered Umami traffic; exclude the known aocr.org 
 | 4 | Homepage storytelling: implement focused modules and trim duplicated copy | Before/after word counts, narrative flow, all boundaries and existing entry paths |
 | 5 | Product visualization and proof: clear synthetic scenario and approved product imagery | Proof accurately represents actual behavior; provenance and accessibility pass |
 | 6 | Solutions and acquisition journeys: validated n8n and customer support/document processing paths; retain People Analytics sales proof and coding evaluator path | Validated claims, routes, CTA continuity and integration support |
-| 7 | Secondary marketing pages: apply approved design language to pilot, use cases, product/comparison pages, footer; docs retain their developer-first IA | Consistency, no broken legacy pages or SEO/analytics changes without review |
+| 7A–D | Apply approved design to secondary marketing pages; canonical sitemap, social metadata and crawl audit; single Umami event taxonomy and session cohorts; security, privacy, accessibility and performance CI | No critical regression; explicit review of live account and deployment findings |
 | 8 | Quality and conversion validation: full built-site QA, accessibility, performance, SEO, telemetry and comprehension protocol | Document measured results, remaining issues and go/no-go for rollout |
 
 Each PR contains scope, rationale, concrete diff, before/after evidence where applicable, tests actually run, known limitations and explicit reviewer checklist. Base subsequent branches on the latest merged main, not an unapproved predecessor. If the owner requests a revision, amend the current PR and stop before the next step.
