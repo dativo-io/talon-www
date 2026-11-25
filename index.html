@@ -81,24 +81,23 @@
 
     <section class="case-section home-controls" id="how-it-works">
       <div class="wrap">
-        <p class="case-kicker">One operating layer, four jobs</p>
-        <h2>Shared controls for connected AI use cases</h2>
+        <h2>Shared control across your AI workflows</h2>
         <div class="home-jobs" aria-label="Four control-plane jobs">
-          <article><strong>Cost control</strong><p>Decide whether a request can spend before calling the provider.</p></article>
-          <article><strong>Reliability</strong><p>Use fallback paths that still satisfy company policy.</p></article>
-          <article><strong>Shared policy</strong><p>Apply organization rules to models, data and governed actions.</p></article>
-          <article><strong>Session understanding</strong><p>Investigate decisions, costs, failures and signed evidence.</p></article>
+          <article><strong>Protect sensitive data</strong><p>Apply company rules to models, data and governed actions.</p></article>
+          <article><strong>Control spending</strong><p>Enforce budgets before provider calls.</p></article>
+          <article><strong>Keep workflows reliable</strong><p>Use policy-approved provider fallbacks.</p></article>
+          <article><strong>Understand decisions</strong><p>Inspect costs, failures and signed evidence.</p></article>
         </div>
-        <div class="case-steps home-steps">
-          <div><span>01 / Connect</span><h3>Keep your app</h3><p>Route one supported model, MCP or HTTP action path through Talon.</p></div>
-          <div><span>02 / Enforce</span><h3>Apply the company rule</h3><p>Combine the organization baseline with the use case's effective policy.</p></div>
-          <div><span>03 / Verify</span><h3>See what happened</h3><p>Inspect the decision and signed records in the Operations Console.</p></div>
+        <div class="case-steps home-steps" aria-label="How Talon works">
+          <div><span>01</span><h3>Connect</h3><p>Keep your existing app. Route supported requests through Talon.</p></div>
+          <div><span>02</span><h3>Enforce</h3><p>Apply company policy with use-case overrides.</p></div>
+          <div><span>03</span><h3>Verify</h3><p>Inspect the decision and signed evidence.</p></div>
         </div>
-        <p class="case-disclaimer">Talon governs only traffic and actions routed through supported interception paths. Unobserved actions stay outside its control.</p>
+        <p class="case-disclaimer">Only traffic and actions routed through supported interception paths are governed.</p>
         <div class="home-proof" id="governed-actions" aria-labelledby="home-proof-title">
-          <div class="home-proof-top"><span>One decision, visible before the action</span><span class="home-proof-pill">Synthetic example</span></div>
+          <div class="home-proof-top"><span>Policy in action</span><span class="home-proof-pill">Synthetic example</span></div>
           <h2 id="home-proof-title">An AI workflow requests a €75 refund</h2>
-          <p>The company rule requires a separate, authorized reviewer.</p>
+          <p>Company policy requires a separate, authorized reviewer.</p>
           <div class="home-proof-verdict"><span>Talon policy verdict</span><strong>REQUIRE_APPROVAL</strong></div>
           <div class="home-proof-counts" aria-label="Synthetic dispatch counts">
             <div><strong>0</strong><span>Downstream calls before approval and authorized claim</span></div>
@@ -113,39 +112,45 @@
 
     <section class="case-section case-use-cases home-next" id="use-cases">
       <div class="wrap">
-        <div class="case-heading"><div><p class="case-kicker">Choose your starting point</p><h2>Find your next step</h2></div></div>
-        <div class="home-next-grid">
+        <div class="case-heading"><h2>Built for real AI workflows</h2></div>
+        <div class="home-next-grid home-use-case-grid">
           <article class="case-card">
-            <span class="case-number">Explore / No credentials</span>
-            <h3>Try Talon</h3>
-            <p>Run a small demonstration with a mock provider and verify a signed decision.</p>
-            <a href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart">Run the no-key demo →</a>
+            <h3>Customer support</h3>
+            <p>Protect customer data and govern sensitive actions.</p>
+            <a href="/use-cases/customer-support/" data-growth-intent="case-support">Explore customer support</a>
           </article>
           <article class="case-card">
-            <span class="case-number">Build / Existing AI app</span>
-            <h3>Connect your app</h3>
-            <p>Keep the SDK or workflow. Register one use case and test one rule.</p>
-            <a href="/talon/docs/add-talon-to-existing-app/" data-growth-intent="connect-app">Connect an existing app →</a>
+            <h3>Document processing</h3>
+            <p>Apply data policies to vendor contract review.</p>
+            <a href="/use-cases/vendor-contract-review/" data-growth-intent="case-procurement">Explore contract review</a>
           </article>
           <article class="case-card">
-            <span class="case-number">Evaluate / Real team</span>
-            <h3>Find your use case</h3>
-            <p>See how support, coding and other workflows use shared controls.</p>
-            <a href="/use-cases/" data-growth-intent="case-hub">Explore use cases →</a>
+            <h3>People Analytics</h3>
+            <p>Govern access to sensitive employee information.</p>
+            <a href="/use-cases/people-analytics/" data-growth-intent="case-people">Explore People Analytics</a>
+          </article>
+          <article class="case-card">
+            <h3>Coding assistants</h3>
+            <p>Control agent spending and tool permissions.</p>
+            <a href="/use-cases/coding-agents/" data-growth-intent="case-coding">Explore coding assistants</a>
           </article>
         </div>
-        <p class="home-next-foot">Explore real use-case questions: <a href="/use-cases/customer-support/" data-growth-intent="case-support">Customer support</a> · <a href="/use-cases/coding-agents/" data-growth-intent="case-coding">Coding agents</a> · <a href="/use-cases/people-analytics/" data-growth-intent="case-people">People Analytics</a> · <a href="/use-cases/vendor-contract-review/" data-growth-intent="case-procurement">Vendor contracts</a>.</p>
-        <p class="home-next-foot">Need a broader view? <a href="/talon/docs/product-demo/" data-growth-intent="product-demo">See the three-use-case demo</a> or <a href="/enterprise/" data-growth-intent="enterprise">compare OSS with planned Enterprise</a>.</p>
+        <div class="home-journey-links">
+          <a href="/use-cases/" data-growth-intent="case-hub">All use cases</a>
+          <a href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart">Try the no-key demo</a>
+          <a href="/talon/docs/add-talon-to-existing-app/" data-growth-intent="connect-app">Connect your app</a>
+          <a href="/talon/docs/product-demo/" data-growth-intent="product-demo">See the product demo</a>
+          <a href="/enterprise/" data-growth-intent="enterprise">Community and planned Enterprise</a>
+        </div>
       </div>
     </section>
 
     <section class="case-section home-operator" id="operations-console">
       <div class="wrap home-operator-grid">
         <div>
-          <p class="case-kicker">For the operator</p>
-          <h2>Decisions you can investigate</h2>
-          <p>Find which use case needs attention, inspect the policy that applied, and verify a signed record. The open-source Operations Console is read-only and shows only what Talon observed.</p>
-          <a class="case-text-link" href="/talon/docs/operations-console/" data-growth-intent="console-docs">Explore the Operations Console →</a>
+          <h2>Know what needs attention</h2>
+          <p>Inspect decisions, costs and signed evidence in the read-only Operations Console. See only activity Talon observed.</p>
+          <a class="case-text-link" href="/talon/docs/operations-console/" data-growth-intent="console-docs">Explore the Operations Console</a>
         </div>
         <figure class="home-operator-image">
           <a href="/talon/docs/operations-console/" aria-label="Open the Talon Operations Console guide">
@@ -158,8 +163,8 @@
 
     <section class="case-section case-cta" id="pilot">
       <div class="wrap case-cta-inner">
-        <div><p class="case-kicker">Bring one real workflow</p><h2>Test one boundary that matters</h2><p>In a short technical fit call, identify a supported integration path and a rule worth proving.</p></div>
-        <div class="case-cta-buttons"><a class="button primary" href="/pilot/" data-growth-intent="pilot-offer" data-growth-placement="cta-section" data-growth-primary="true">Discuss a pilot</a><span>Founder-led · 20-minute Google Calendar call</span></div>
+        <div><h2>Start with one workflow</h2><p>Bring a real use case and a rule worth testing.</p></div>
+        <div class="case-cta-buttons"><a class="button primary" href="/pilot/" data-growth-intent="pilot-offer" data-growth-placement="cta-section" data-growth-primary="true">Discuss a pilot</a><span>20-minute technical fit call</span></div>
       </div>
     </section>
   </main>
