@@ -1,0 +1,392 @@
+/* Quiet Confidence v1. Opt in per page; do not change legacy dark pages.
+   The homepage is the reference implementation for UX step 2/8. */
+body[data-ux-theme="quiet-confidence"] {
+  --qc-canvas: #F6F5F0;
+  --qc-ink: #172522;
+  --qc-primary: #15594B;
+  --qc-primary-hover: #10473C;
+  --qc-accent: #D4E8DD;
+  --qc-surface: #FFFFFF;
+  --qc-muted: #53615D;
+  --qc-line: #CDD5CF;
+  --qc-dark: #172E2B;
+  --qc-dark-text: #F2F7F3;
+  --qc-dark-muted: #BED2C8;
+  --qc-dark-accent: #A9DFCA;
+  --qc-dark-line: #49665D;
+  --qc-warning: #F8D991;
+  --qc-radius: 12px;
+  --qc-section: clamp(64px, 8vw, 120px);
+  --qc-gutter: clamp(16px, 3.5vw, 48px);
+  --max: 1200px;
+  --text: var(--qc-ink);
+  --muted: var(--qc-muted);
+  --accent: var(--qc-primary);
+  --accent-2: var(--qc-primary);
+  color: var(--qc-ink);
+  background: var(--qc-canvas);
+  font-size: 17px;
+  line-height: 1.6;
+  color-scheme: light;
+}
+body[data-ux-theme="quiet-confidence"] .wrap {
+  width: min(var(--max), calc(100% - 2 * var(--qc-gutter)));
+}
+body[data-ux-theme="quiet-confidence"] h1,
+body[data-ux-theme="quiet-confidence"] h2,
+body[data-ux-theme="quiet-confidence"] h3 {
+  font-weight: 650;
+  letter-spacing: -.035em;
+  line-height: 1.12;
+  overflow-wrap: break-word;
+}
+body[data-ux-theme="quiet-confidence"] :is(a, button, summary):focus-visible {
+  outline: 3px solid var(--qc-primary);
+  outline-offset: 4px;
+}
+body[data-ux-theme="quiet-confidence"] :is(section[id], div[id]) {
+  scroll-margin-top: 100px;
+}
+
+/* Keep the canonical navigation and mobile behavior intact. */
+body[data-ux-theme="quiet-confidence"] .site-nav {
+  background: var(--qc-canvas);
+  border-bottom: 1px solid var(--qc-line);
+  backdrop-filter: none;
+}
+body[data-ux-theme="quiet-confidence"] .nav-inner {
+  min-height: 76px;
+  gap: 20px;
+}
+body[data-ux-theme="quiet-confidence"] .brand {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -.025em;
+  white-space: nowrap;
+}
+body[data-ux-theme="quiet-confidence"] .nav-links {
+  color: var(--qc-muted);
+  gap: clamp(10px, 1.6vw, 25px);
+  font-weight: 550;
+}
+body[data-ux-theme="quiet-confidence"] .nav-links a:hover {
+  color: var(--qc-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+body[data-ux-theme="quiet-confidence"] .nav-links .nav-button,
+body[data-ux-theme="quiet-confidence"] .button.primary {
+  color: var(--qc-surface);
+  background: var(--qc-primary);
+  border: 1px solid var(--qc-primary);
+  border-radius: 8px;
+  box-shadow: none;
+}
+body[data-ux-theme="quiet-confidence"] .nav-links .nav-button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 15px;
+  white-space: nowrap;
+}
+body[data-ux-theme="quiet-confidence"] .nav-links .nav-button:hover,
+body[data-ux-theme="quiet-confidence"] .button.primary:hover {
+  color: var(--qc-surface);
+  background: var(--qc-primary-hover);
+  border-color: var(--qc-primary-hover);
+  text-decoration: none;
+}
+body[data-ux-theme="quiet-confidence"] .nav-toggle {
+  color: var(--qc-ink);
+  border-color: var(--qc-muted);
+  background: var(--qc-surface);
+  border-radius: 8px;
+}
+body[data-ux-theme="quiet-confidence"] .button {
+  font-size: 15px;
+  font-weight: 650;
+  min-height: 48px;
+  padding: 12px 19px;
+  border-radius: 8px;
+  line-height: 1.35;
+  text-align: center;
+  transform: none;
+  transition: background-color .16s ease, color .16s ease;
+}
+body[data-ux-theme="quiet-confidence"] .button.secondary {
+  color: var(--qc-primary);
+  background: transparent;
+  border: 1px solid var(--qc-primary);
+}
+body[data-ux-theme="quiet-confidence"] .button.secondary:hover {
+  background: var(--qc-accent);
+  border-color: var(--qc-primary);
+}
+
+/* Editorial rhythm: flat surfaces, generous spacing, less visual noise. */
+body[data-ux-theme="quiet-confidence"] .case-hero {
+  background: none;
+  padding: clamp(64px, 8vw, 112px) 0 var(--qc-section);
+}
+body[data-ux-theme="quiet-confidence"] .talon-home-hero .case-hero-grid {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+body[data-ux-theme="quiet-confidence"] .case-hero h1 {
+  font-size: clamp(48px, 5.1vw, 76px);
+  letter-spacing: -.045em;
+  line-height: 1.07;
+  text-wrap: balance;
+}
+body[data-ux-theme="quiet-confidence"] .case-kicker,
+body[data-ux-theme="quiet-confidence"] .case-number {
+  color: var(--qc-primary);
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: 0;
+  text-transform: none;
+}
+body[data-ux-theme="quiet-confidence"] .case-kicker { margin: 0 0 16px; }
+body[data-ux-theme="quiet-confidence"] .case-lead {
+  color: var(--qc-muted);
+  font-size: clamp(17px, 1.5vw, 20px);
+  line-height: 1.65;
+  margin-top: 24px;
+}
+body[data-ux-theme="quiet-confidence"] .case-small,
+body[data-ux-theme="quiet-confidence"] .case-disclaimer,
+body[data-ux-theme="quiet-confidence"] .home-next-foot,
+body[data-ux-theme="quiet-confidence"] .case-cta-buttons span {
+  color: var(--qc-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+body[data-ux-theme="quiet-confidence"] :is(.case-small, .home-next-foot) a,
+body[data-ux-theme="quiet-confidence"] .case-card > a,
+body[data-ux-theme="quiet-confidence"] .case-text-link {
+  color: var(--qc-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+body[data-ux-theme="quiet-confidence"] .case-section { padding: var(--qc-section) 0; }
+body[data-ux-theme="quiet-confidence"] :is(.home-controls, .case-heading, .home-operator, .case-cta) h2 {
+  font-size: clamp(32px, 3.6vw, 48px);
+  text-wrap: balance;
+}
+body[data-ux-theme="quiet-confidence"] .home-controls { background: var(--qc-surface); }
+body[data-ux-theme="quiet-confidence"] .home-jobs {
+  gap: clamp(20px, 3vw, 40px);
+  margin: 40px 0 56px;
+}
+body[data-ux-theme="quiet-confidence"] .home-jobs article {
+  border: 0;
+  border-top: 2px solid var(--qc-primary);
+  border-radius: 0;
+  background: none;
+  padding: 20px 0 0;
+}
+body[data-ux-theme="quiet-confidence"] .home-jobs strong {
+  color: var(--qc-ink);
+  font-size: 20px;
+  font-weight: 650;
+  line-height: 1.25;
+}
+body[data-ux-theme="quiet-confidence"] :is(.home-jobs, .home-steps, .case-card) p {
+  color: var(--qc-muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
+body[data-ux-theme="quiet-confidence"] .home-steps { gap: 32px; }
+body[data-ux-theme="quiet-confidence"] .home-steps > div {
+  border-top: 1px solid var(--qc-line);
+  padding-top: 20px;
+}
+body[data-ux-theme="quiet-confidence"] .home-steps span {
+  color: var(--qc-primary);
+  font-size: 14px;
+  font-weight: 650;
+}
+body[data-ux-theme="quiet-confidence"] .home-steps h3 { font-size: 22px; }
+body[data-ux-theme="quiet-confidence"] .home-next {
+  background: var(--qc-canvas);
+  border-block: 1px solid var(--qc-line);
+}
+body[data-ux-theme="quiet-confidence"] .home-next-grid {
+  gap: clamp(20px, 3vw, 40px);
+  margin: 36px 0;
+}
+body[data-ux-theme="quiet-confidence"] .home-next-grid .case-card {
+  min-height: 0;
+  padding: 24px 0 0;
+  border: 0;
+  border-top: 1px solid var(--qc-line);
+  border-radius: 0;
+  background: none;
+}
+body[data-ux-theme="quiet-confidence"] .home-next-grid .case-card h3 { font-size: 26px; }
+body[data-ux-theme="quiet-confidence"] .home-next-grid .case-card > a { margin-top: auto; font-size: 15px; }
+
+/* Dark is reserved for proof, not the marketing canvas.
+   All existing synthetic labels, counts and caveats remain visible. */
+body[data-ux-theme="quiet-confidence"] :is(.home-proof, .home-operator) {
+  color: var(--qc-dark-text);
+  background: var(--qc-dark);
+  color-scheme: dark;
+}
+body[data-ux-theme="quiet-confidence"] :is(.home-proof, .home-operator) a:focus-visible {
+  outline-color: var(--qc-dark-accent);
+}
+body[data-ux-theme="quiet-confidence"] .home-proof {
+  padding: clamp(20px, 2.8vw, 36px);
+  border: 1px solid var(--qc-dark-line);
+  border-radius: var(--qc-radius);
+  box-shadow: none;
+  min-width: 0;
+}
+body[data-ux-theme="quiet-confidence"] .home-proof-top {
+  color: var(--qc-dark-muted);
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  font-size: 13px;
+}
+body[data-ux-theme="quiet-confidence"] .home-proof-pill {
+  color: var(--qc-dark-text);
+  background: transparent;
+  border: 1px solid var(--qc-dark-line);
+  border-radius: 5px;
+  font-size: 12px;
+}
+body[data-ux-theme="quiet-confidence"] .home-proof h2 { font-size: clamp(26px, 2.5vw, 34px); }
+body[data-ux-theme="quiet-confidence"] .home-proof p,
+body[data-ux-theme="quiet-confidence"] .home-proof .home-proof-note,
+body[data-ux-theme="quiet-confidence"] .home-proof-counts span,
+body[data-ux-theme="quiet-confidence"] .home-proof-verdict span {
+  color: var(--qc-dark-muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+body[data-ux-theme="quiet-confidence"] .home-proof-verdict {
+  background: #203D37;
+  border: 1px solid var(--qc-dark-line);
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+body[data-ux-theme="quiet-confidence"] .home-proof-verdict strong {
+  color: var(--qc-warning);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+body[data-ux-theme="quiet-confidence"] .home-proof-counts {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+body[data-ux-theme="quiet-confidence"] .home-proof-counts div {
+  border: 0;
+  border-top: 1px solid var(--qc-dark-line);
+  border-radius: 0;
+  padding: 12px 0;
+}
+body[data-ux-theme="quiet-confidence"] .home-proof-counts strong {
+  color: var(--qc-dark-text);
+  font-size: 32px;
+  font-variant-numeric: tabular-nums;
+}
+body[data-ux-theme="quiet-confidence"] .home-proof-link,
+body[data-ux-theme="quiet-confidence"] .home-operator :is(.case-kicker, .case-text-link) {
+  color: var(--qc-dark-accent);
+}
+body[data-ux-theme="quiet-confidence"] .home-proof-link {
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+body[data-ux-theme="quiet-confidence"] .home-operator-grid {
+  gap: clamp(32px, 5vw, 72px);
+}
+body[data-ux-theme="quiet-confidence"] .home-operator-grid p:not(.case-kicker) {
+  color: var(--qc-dark-muted);
+  font-size: 17px;
+}
+body[data-ux-theme="quiet-confidence"] .home-operator-image a {
+  border: 1px solid var(--qc-dark-line);
+  border-radius: var(--qc-radius);
+  box-shadow: none;
+}
+body[data-ux-theme="quiet-confidence"] .home-operator-image figcaption {
+  color: var(--qc-dark-muted);
+  font-size: 13px;
+}
+body[data-ux-theme="quiet-confidence"] .case-cta {
+  background: var(--qc-accent);
+  border: 0;
+}
+body[data-ux-theme="quiet-confidence"] .case-cta p:not(.case-kicker) {
+  color: var(--qc-muted);
+  font-size: 17px;
+}
+body[data-ux-theme="quiet-confidence"] .case-footer {
+  background: var(--qc-canvas);
+  border-color: var(--qc-line);
+}
+body[data-ux-theme="quiet-confidence"] .case-footer p,
+body[data-ux-theme="quiet-confidence"] .case-footer nav a {
+  color: var(--qc-muted);
+  font-size: 14px;
+}
+body[data-ux-theme="quiet-confidence"] .case-footer a:hover,
+body[data-ux-theme="quiet-confidence"] .case-card a:hover {
+  color: var(--qc-primary);
+}
+
+@media (max-width: 960px) {
+  body[data-ux-theme="quiet-confidence"] .talon-home-hero .case-hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  body[data-ux-theme="quiet-confidence"] .home-proof { max-width: 680px; }
+  body[data-ux-theme="quiet-confidence"] .home-operator-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 860px) {
+  body[data-ux-theme="quiet-confidence"] .nav-inner { min-height: 64px; }
+  body[data-ux-theme="quiet-confidence"] .nav-links {
+    inset: 65px 14px auto;
+    max-height: calc(100dvh - 80px);
+    background: var(--qc-surface);
+    border: 1px solid var(--qc-line);
+    border-radius: var(--qc-radius);
+    box-shadow: 0 10px 30px #17252218;
+    backdrop-filter: none;
+    gap: 4px;
+  }
+  body[data-ux-theme="quiet-confidence"] .nav-links a {
+    color: var(--qc-ink);
+    min-height: 44px;
+    border-radius: 8px;
+  }
+  body[data-ux-theme="quiet-confidence"] .nav-links a:not(.nav-button):hover,
+  body[data-ux-theme="quiet-confidence"] .nav-links a:not(.nav-button):focus-visible {
+    background: var(--qc-accent);
+    color: var(--qc-primary);
+  }
+}
+@media (max-width: 670px) {
+  body[data-ux-theme="quiet-confidence"] .case-hero {
+    padding: 52px 0 64px;
+  }
+  body[data-ux-theme="quiet-confidence"] .case-hero h1 {
+    font-size: clamp(38px, 9vw, 54px);
+  }
+  body[data-ux-theme="quiet-confidence"] .home-jobs { margin: 28px 0 36px; }
+  body[data-ux-theme="quiet-confidence"] .home-next-grid { margin: 28px 0; }
+  body[data-ux-theme="quiet-confidence"] .case-actions .button { width: 100%; }
+  body[data-ux-theme="quiet-confidence"] .home-proof-counts { gap: 16px; }
+  body[data-ux-theme="quiet-confidence"] .case-cta-buttons { width: 100%; }
+}
+@media (max-width: 360px) {
+  body[data-ux-theme="quiet-confidence"] .home-proof-counts { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-ux-theme="quiet-confidence"] .button,
+  body[data-ux-theme="quiet-confidence"] .nav-links a { transition: none; }
+}
