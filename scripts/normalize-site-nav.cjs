@@ -89,6 +89,21 @@ for (const file of listHtmlFiles(root)) {
   updated = updated.replace(/<body\b([^>]*)>/i, (match, attrs) =>
     /\bdata-ux-theme=/.test(attrs) ? match : '<body' + attrs + ' data-ux-theme="quiet-confidence" data-ux-legacy-marketing>');
   if (!updated.includes('data-ux-theme="quiet-confidence"')) throw new Error('Missing approved theme: ' + file);
+  // Keep one browser analytics provider. Cloudflare delivery/security logs are separate.
+  updated = updated.replace(/<script\b[^>]*src="https:\/\/static\.cloudflareinsights\.com\/beacon\.min\.js"[^>]*>\s*<\/script>/gi, '');
+  // A single keyboard skip link targets the actual main landmark (preserve existing IDs).
+  const main = updated.match(/<main\b[^>]*>/i)?.[0];
+  if (main && !updated.includes('class="site-skip-link"')) {
+    const id = main.match(/\bid="([^"]+)"/)?.[1] || 'main-content';
+    if (!/\bid=/.test(main)) updated = updated.replace(main,main.slice(0,-1)+' id="'+id+'">');
+    const mainTag=updated.match(/<main\b[^>]*>/i)?.[0];
+    if(mainTag&&!/\btabindex=/.test(mainTag)) updated=updated.replace(mainTag,mainTag.slice(0,-1)+' tabindex="-1">');
+    updated = updated.replace(headerPattern, match => '<a class="site-skip-link" href="#'+id+'">Skip to content</a>\n'+match);
+  }
+  if (!updated.includes('class="site-utility-links"')) {
+    const footerLinks = '<nav class="site-utility-links" aria-label="Website information"><a href="/privacy/">Website privacy</a><a href="https://github.com/dativo-io/talon/blob/main/SECURITY.md">Security reporting</a><a href="/comparisons/">Comparisons</a><a href="/ai-cost-control/">AI cost control</a></nav>';
+    updated=updated.replace('</footer>',footerLinks+'\n</footer>');
+  }
   fs.writeFileSync(file, updated, 'utf8');
   normalized += 1;
 }
