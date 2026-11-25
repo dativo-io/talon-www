@@ -9,7 +9,7 @@
     "sync:talon-docs": "node ./scripts/sync-talon-docs.mjs",
     "validate:docs-contract": "node ./scripts/validate-docs-contract.mjs",
     "start": "docusaurus start --host 0.0.0.0",
-    "build": "npm run sync:talon-docs && node ./scripts/fix-synced-doc-links.cjs && npm run validate:docs-contract && docusaurus build",
+    "build": "npm run sync:talon-docs && node ./scripts/fix-synced-doc-links.cjs && npm run validate:docs-contract && docusaurus build && node ../scripts/build-docs-search.cjs build",
     "serve": "docusaurus serve build"
   },
   "dependencies": {
