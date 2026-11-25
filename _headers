@@ -1,5 +1,13 @@
-/talon/docs/*
-  X-Robots-Tag: index, follow
-
 /*
   X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=15552000
+  Content-Security-Policy: object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'
+
+/.well-known/security.txt
+  Content-Type: text/plain; charset=utf-8
+
+/404.html
+  X-Robots-Tag: noindex
