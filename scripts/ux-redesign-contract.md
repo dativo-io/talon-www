@@ -10,7 +10,7 @@ The primary problem is cognitive load, not simply page length. Repeated slogans,
 
 ## Audience and positioning
 
-- Primary commercial journey: teams already operating AI workflows and implementation partners managing production AI for customers. Start with a specific operational problem and a bounded pilot.
+- Primary acquisition journeys (approved Step 6): companies running AI, companies using orchestration engines (n8n first), and individual OSS evaluators via direct GitHub. Partner outreach remains outbound only; no partner page or program. Start with a specific operational problem and a bounded pilot.
 - Technical journey: developers and architects evaluating self-hosted OSS, supported integration paths and reproducible enforcement.
 - Keep Talon runtime-agnostic. n8n is a focused acquisition/solution path, not the product category.
 - Preserve the category: open-source, self-hosted AI control plane, with shared company policy for connected AI use cases.
@@ -73,7 +73,7 @@ Seven storytelling modules, grouped initially into the existing five HTML sectio
 
 Keep the seven modules as a narrative, not a requirement to add more section wrappers. Any later change to the five-section guard must be deliberately reviewed alongside equivalent focus checks. Preserve deep links: governed-actions, how-it-works, use-cases, operations-console, pilot. Keep canonical docs, use-case, enterprise, comparison and campaign routes available. No route is deleted merely to reduce homepage density.
 
-Approved step 3 navigation: Product, Solutions and Developers native disclosure groups, plus Discuss a pilot. Keep Enterprise, GitHub, the use-case hub and docs reachable. The document-processing link points to the existing vendor-contract-review route; n8n links to the existing refund workflow example, not a broad compatibility promise. The architecture illustration is conceptual, not a product screenshot.
+Approved step 3 navigation: Product, Solutions and Open Source native disclosure groups, plus Discuss a pilot. Keep Enterprise, GitHub, the use-case hub and docs reachable. The document-processing link points to the existing vendor-contract-review route; n8n links to a dedicated acquisition page with bounded reproducible examples, not a broad compatibility promise. The architecture illustration is conceptual, not a product screenshot.
 
 ## Truth and publication invariants
 
@@ -123,7 +123,7 @@ Compare raw and consistently filtered Umami traffic; exclude the known aocr.org 
 | 3 | Navigation and hero: outcome-first copy, canonical nav and CTA hierarchy, production metadata | 10-second first-impression review; links, tracking, menu and anchor checks |
 | 4 | Homepage storytelling: implement focused modules and trim duplicated copy | Before/after word counts, narrative flow, all boundaries and existing entry paths |
 | 5 | Product visualization and proof: clear synthetic scenario and approved product imagery | Proof accurately represents actual behavior; provenance and accessibility pass |
-| 6 | Solutions and partner journeys: validated n8n and customer support/document processing paths; retain People Analytics sales proof and coding evaluator path | Validated claims, routes, CTA continuity and integration support |
+| 6 | Solutions and acquisition journeys: validated n8n and customer support/document processing paths; retain People Analytics sales proof and coding evaluator path | Validated claims, routes, CTA continuity and integration support |
 | 7 | Secondary marketing pages: apply approved design language to pilot, use cases, product/comparison pages, footer; docs retain their developer-first IA | Consistency, no broken legacy pages or SEO/analytics changes without review |
 | 8 | Quality and conversion validation: full built-site QA, accessibility, performance, SEO, telemetry and comprehension protocol | Document measured results, remaining issues and go/no-go for rollout |
 
