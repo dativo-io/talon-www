@@ -54,6 +54,19 @@ assert.ok(!home.includes('case-console-trail'), 'legacy multi-image console gall
 assert.ok(!home.includes('case-editions'), 'full edition comparison belongs on /enterprise/');
 assert.ok(home.includes('Synthetic example') && home.includes('not real payments'), 'governed action example needs synthetic-boundary labeling');
 
+// Three first-class acquisition paths. No sales gate for OSS.
+assert.ok(main.includes('href="/solutions/n8n/"') && main.includes('Get started on GitHub'), 'homepage acquisition routes missing');
+const solutions = read('use-cases/index.html');
+const n8n = read('solutions/n8n/index.html');
+for (const [name, page] of [['solutions', solutions], ['n8n', n8n]]) {
+  const content = page.match(/<main\b[^>]*>[\s\S]*?<\/main>/)?.[0];
+  assert.ok(content && words(content) <= 260, name + ' page must stay focused');
+  assert.ok(content.includes('href="/pilot/"') && content.includes('href="https://github.com/dativo-io/talon"'), name + ' missing pilot or direct OSS path');
+  assert.ok(page.includes('data-ux-theme="quiet-confidence"'), name + ' missing approved theme');
+  assert.ok(!content.includes('/partners/') && !content.includes('linkedin.com/in/'), name + ' introduced unapproved partner or personal intake');
+}
+for (const route of ['/use-cases/customer-support/', '/use-cases/vendor-contract-review/', '/talon/docs/n8n-refund-approvals/']) assert.ok(n8n.includes('href="' + route + '"'), 'n8n reference missing ' + route);
+assert.ok(n8n.includes('not real payments') && n8n.includes('Confirm support for your n8n version, nodes and deployment') && n8n.includes('Direct calls bypassing Talon'), 'n8n capability boundaries missing');
 const doc = read('docs-site/docs/index.md');
 assert.ok(doc.length < 4000, 'docs front door has become a long encyclopedia again');
 for (const route of ['quickstart-demo.md', 'add-talon-to-existing-app.md', 'action-gateway-proof.md']) {

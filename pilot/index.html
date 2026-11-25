@@ -30,18 +30,40 @@
     .pilot-next a:not(.button) {color:#bfdbfe;text-decoration:underline;text-underline-offset:3px}
     @media (max-width:640px) {.case-hero {padding:64px 0 54px}.pilot-hero-actions .button {width:100%;text-align:center}}
   </style>
+  <link rel="stylesheet" href="/quiet-confidence.css" />
 </head>
-<body data-case-first-home>
+<body data-case-first-home data-ux-theme="quiet-confidence" data-ux-acquisition>
   <header class="site-nav">
     <div class="wrap nav-inner">
       <a class="brand" href="/" aria-label="Dativo Talon home"><img class="brand-logo" src="/public/assets/talon-icon.svg?v=2" alt="Dativo Talon mark" /><span>Dativo Talon</span></a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation"><span></span><span></span><span></span></button>
       <nav class="nav-links" id="primary-navigation" aria-label="Primary navigation">
-        <a href="/use-cases/">Use cases</a>
-        <a href="/#how-it-works">How it works</a>
-        <a href="/enterprise/">Enterprise</a>
-        <a href="/talon/docs/">Docs</a>
-        <a href="https://github.com/dativo-io/talon">GitHub</a>
+        <details class="nav-dropdown"><summary>Product</summary>
+          <div class="nav-dropdown-menu">
+            <a href="/#how-it-works" data-growth-intent="product-overview">How it works</a>
+            <a href="/#operations-console" data-growth-intent="console-docs">Operations Console</a>
+            <a href="/ai-agent-governance/" data-growth-intent="governance">Governance and control</a>
+            <a href="/enterprise/" data-growth-intent="enterprise">Enterprise</a>
+          </div>
+        </details>
+        <details class="nav-dropdown"><summary>Solutions</summary>
+          <div class="nav-dropdown-menu">
+            <a href="/use-cases/" data-growth-intent="case-hub">All use cases</a>
+            <a href="/use-cases/customer-support/" data-growth-intent="case-support">Customer support</a>
+            <a href="/use-cases/vendor-contract-review/" data-growth-intent="case-procurement">Document processing</a>
+            <a href="/use-cases/people-analytics/" data-growth-intent="case-people">People Analytics</a>
+            <a href="/solutions/n8n/" data-growth-intent="integration-n8n">Talon for n8n</a>
+            <a href="/use-cases/coding-agents/" data-growth-intent="case-coding">Coding assistants</a>
+          </div>
+        </details>
+        <details class="nav-dropdown"><summary>Open Source</summary>
+          <div class="nav-dropdown-menu">
+            <a href="https://github.com/dativo-io/talon" data-growth-intent="github">GitHub</a>
+            <a href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart">Quickstart</a>
+            <a href="/talon/docs/" data-growth-intent="docs">Documentation</a>
+            <a href="/talon/docs/choosing-integration-path/" data-growth-intent="integration">Integration guides</a>
+          </div>
+        </details>
         <a class="nav-button" href="/pilot/" data-growth-intent="pilot-offer">Discuss a pilot</a>
       </nav>
     </div>
@@ -49,11 +71,11 @@
   <main>
     <section class="case-hero">
       <div class="wrap">
-        <p class="case-kicker">Founder-led technical evaluation · Existing AI workflows</p>
-        <h1>Pilot one AI boundary that matters.</h1>
-        <p class="case-lead pilot-lead">Already running an AI assistant, agent or workflow? Bring one company rule or consequential action you need to control. We'll assess whether Talon can enforce it on a supported path, without replacing your application.</p>
+        <p class="case-kicker">For companies running AI</p>
+        <h1>Start with one AI workflow</h1>
+        <p class="case-lead pilot-lead">Bring your existing AI application or n8n workflow and a rule worth testing. We'll assess the supported integration path.</p>
         <div class="pilot-hero-actions">
-          <a class="button primary" href="https://calendar.app.google/bfNg6wuqyCaKa8nV9" target="_blank" rel="noopener noreferrer" data-growth-intent="pilot-booking" data-growth-placement="pilot-hero" data-growth-primary="true">Book a 20-minute fit call ↗</a>
+          <a class="button primary" href="https://calendar.app.google/bfNg6wuqyCaKa8nV9" target="_blank" rel="noopener noreferrer" data-growth-intent="pilot-booking" data-growth-placement="pilot-hero" data-growth-primary="true">Book a 20-minute fit call</a>
           <a class="button secondary" href="/talon/docs/action-gateway-proof/" data-growth-intent="action-control" data-growth-placement="pilot-hero">Inspect a verifiable proof</a>
         </div>
         <p class="pilot-note">Scheduling opens Google Calendar. A click is not a confirmed booking. No workflow data or contact details are collected by this page.</p>
@@ -61,7 +83,7 @@
     </section>
     <section class="case-section case-use-cases">
       <div class="wrap">
-        <div class="case-heading"><div><p class="case-kicker">The scope</p><h2>One use case. One rule. One verifiable result.</h2></div></div>
+        <div class="case-heading"><div><p class="case-kicker">The scope</p><h2>One workflow, one verifiable result</h2></div></div>
         <div class="case-grid">
           <article class="case-card"><span class="case-number">01 / Your workflow</span><h3>Keep what already works.</h3><p>Bring a current support bot, coding assistant, n8n automation or application. Identify the model call or exact action you can route through Talon.</p></article>
           <article class="case-card"><span class="case-number">02 / Your boundary</span><h3>Define one concrete decision.</h3><p>Examples: deny a disallowed provider, enforce a spending limit, require approval for an exact refund action, or record a defensible policy decision.</p></article>
@@ -72,7 +94,7 @@
     <section class="case-section">
       <div class="wrap">
         <p class="case-kicker">A good fit</p>
-        <h2>Come with one real operational problem.</h2>
+        <h2>Come with one real operational problem</h2>
         <p class="pilot-work">We work best with teams that already operate AI use cases and can point to a rule that must hold across applications. The call is a technical fit check, not a request to share production customer data.</p>
         <ul class="pilot-checklist">
           <li><strong>What to bring:</strong> the application or workflow, its runtime/provider stack, and the first control you need.</li>
@@ -81,8 +103,9 @@
         </ul>
         <p class="pilot-note">Talon governs only model traffic and actions routed through supported boundaries. Human approval authorizes an exact operation; it does not itself execute a business action. Evidence is verifiable, not proof of unobserved activity or automatic compliance.</p>
         <div class="pilot-next">
-          <a class="button primary" href="https://calendar.app.google/bfNg6wuqyCaKa8nV9" target="_blank" rel="noopener noreferrer" data-growth-intent="pilot-booking" data-growth-placement="pilot-bottom" data-growth-primary="true">Book a 20-minute fit call ↗</a>
-          <a href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart">Prefer to try OSS first? Start without an API key →</a>
+          <a class="button primary" href="https://calendar.app.google/bfNg6wuqyCaKa8nV9" target="_blank" rel="noopener noreferrer" data-growth-intent="pilot-booking" data-growth-placement="pilot-bottom" data-growth-primary="true">Book a 20-minute fit call</a>
+          <a href="/talon/docs/quickstart-demo/" data-growth-intent="quickstart">Start without an API key</a>
+          <a href="https://github.com/dativo-io/talon" data-growth-intent="github" data-growth-placement="pilot-oss">Get started on GitHub</a>
         </div>
       </div>
     </section>

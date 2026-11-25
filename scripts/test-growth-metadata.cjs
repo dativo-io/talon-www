@@ -47,3 +47,11 @@ test('product identity stays broad and task pages are capabilities', () => {
   assert.ok(metadata['/ai-action-control/'][1].includes('one supported capability'));
   assert.ok(!metadata['/ai-action-control/'][0].startsWith('AI Agent Action Approval'));
 });
+
+
+test('acquisition metadata preserves the product category and bounded n8n integration', () => {
+  assert.ok(metadata['/use-cases/'][0].includes('AI solutions'));
+  assert.ok(metadata['/solutions/n8n/'][0].includes('n8n'));
+  assert.ok(metadata['/solutions/n8n/'][1].includes('supported n8n AI workflows'));
+  verifyTitles(render(metadata['/solutions/n8n/'][0]), metadata['/solutions/n8n/'][0]);
+});

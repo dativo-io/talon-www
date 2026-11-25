@@ -18,6 +18,7 @@ const required = [
   'enterprise/index.html',
   'pilot/index.html',
   'use-cases/index.html',
+  'solutions/n8n/index.html',
   'use-cases/coding-agents/index.html',
   'use-cases/customer-support/index.html',
   'use-cases/people-analytics/index.html',
@@ -51,6 +52,7 @@ const caseNav = path.join(root, 'use-cases/index.html');
 if (fs.existsSync(caseNav)) {
   const html = fs.readFileSync(caseNav, 'utf8');
   if (!html.includes('/use-cases/people-analytics/')) failures.push('People Analytics must be a first-class use case');
+  if (!html.includes('href="/solutions/n8n/"') || !html.includes('Get started on GitHub') || !html.includes('href="/pilot/"')) failures.push('Solutions hub lost a commercial or OSS path');
   if (html.includes('We will add it to the navigation')) failures.push('Outdated People Analytics demo gate');
 }
 const editionPage = path.join(root, 'enterprise/index.html');

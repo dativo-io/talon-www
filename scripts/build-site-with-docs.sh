@@ -144,6 +144,7 @@ test -f "$OUT_DIR/talon/docs/operate-ai-use-cases/index.html"
 test -f "$OUT_DIR/talon/docs/production-pilot/index.html"
 test -f "$OUT_DIR/talon/docs/single-node-production/index.html"
 test -f "$OUT_DIR/use-cases/refund-approvals/index.html"
+test -f "$OUT_DIR/solutions/n8n/index.html"
 # Do not publish the retired dashboard; preserve its public docs URL via redirect.
 test ! -e "$OUT_DIR/talon/docs/gateway-dashboard/index.html"
 grep -Fxq '/talon/docs/gateway-dashboard/ /talon/docs/operations-console/ 301' "$OUT_DIR/_redirects"
