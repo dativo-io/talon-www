@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 'use strict';
 const fs=require('node:fs');
+const {publicManifest}=require('./docs-publication.cjs');
+const {digest,routeList}=require('./verify-docs-artifact.cjs');
 const origin='https://dativo.io';
 const full=process.argv.includes('--full');
 const errors=[],checks=[];
@@ -51,6 +53,27 @@ async function checkPage(url){
   for(const p of required)if(!map.includes(origin+p))errors.push('Missing canonical '+p);
   const urls=full?map.filter(u=>u.startsWith(origin+'/')):required.map(p=>origin+p);
   for(let i=0;i<urls.length;i+=5)await Promise.all(urls.slice(i,i+5).map(checkPage));
+  // Production docs must use the same approved release and export inventory.
+  const prefix='/talon/docs/',expected=publicManifest(),routes=routeList(expected);
+  const readJson=async p=>(await request(origin+prefix+p)).json();
+  const publication=await readJson('publication.json');
+  if(JSON.stringify(publication)!==JSON.stringify(expected))errors.push('Live publication differs from approved release and reviewed corrections');
+  const markdown=await readJson('markdown-manifest.json'),search=await readJson('search-index.json');
+  if(markdown.schema!==1||JSON.stringify(markdown.release)!==JSON.stringify(expected.release))errors.push('Live Markdown release mismatch');
+  for(const [name,actual] of [['Markdown',markdown.pages.map(p=>p.route)],['search',search.pages.map(p=>p.route)],['sitemap',docs.map(u=>u.slice(origin.length))]])if(JSON.stringify(actual.sort())!==JSON.stringify(routes))errors.push('Live '+name+' inventory mismatch');
+  const index=await(await request(origin+prefix+'llms.txt')).text();
+  const bundleResponse=await request(origin+prefix+'llms-full.txt');
+  const bundle=Buffer.from(await bundleResponse.arrayBuffer());
+  if(digest(bundle)!==markdown.fullSha256||!index.includes(expected.release.commit))errors.push('Live full Markdown bundle hash or release mismatch');
+  const selected=full?markdown.pages:markdown.pages.filter(p=>[prefix,prefix+'technical-evaluation/',prefix+'mcp-governed-tools/',prefix+'quickstart-demo/'].includes(p.route));
+  for(let i=0;i<selected.length;i+=5)await Promise.all(selected.slice(i,i+5).map(async p=>{
+   if(!routes.includes(p.route)||p.markdown!==p.route+'index.md'){errors.push('Invalid Markdown path '+p.markdown);return;}
+   const res=await request(origin+p.markdown),bytes=Buffer.from(await res.arrayBuffer());
+   if(digest(bytes)!==p.sha256)errors.push('Live Markdown hash mismatch: '+p.route);
+   if(!/^text\/(plain|markdown)\b/i.test(res.headers.get('content-type')||''))errors.push('Markdown not served as text: '+p.route);
+   if(!/noindex/i.test(res.headers.get('x-robots-tag')||''))errors.push('Markdown missing noindex header: '+p.route);
+   if(!index.includes(']('+origin+p.markdown+')'))errors.push('Markdown missing from llms.txt: '+p.route);
+  }));
   const png=await request(origin+'/public/assets/og-image.png');const bytes=new Uint8Array(await png.arrayBuffer());
   if(!png.headers.get('content-type')?.includes('image/png')||bytes[0]!==137||bytes[1]!==80)errors.push('Invalid social PNG');
   await request(origin+'/privacy/');

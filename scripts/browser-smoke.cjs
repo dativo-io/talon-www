@@ -10,7 +10,9 @@ const origin=new URL(base).origin;
 const priority=['/','/use-cases/','/solutions/n8n/','/pilot/','/enterprise/','/use-cases/customer-support/','/use-cases/vendor-contract-review/','/use-cases/people-analytics/','/use-cases/coding-agents/'];
 const sitemap=fs.readFileSync(path.join(dist,'sitemap.xml'),'utf8');
 const marketing=[...new Set([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>new URL(m[1]).pathname).filter(p=>!p.startsWith('/talon/docs/')))];
-const routes=[...new Set([...priority,...marketing,'/privacy/','/404.html','/talon/docs/','/talon/docs/quickstart-demo/','/talon/docs/open-source-and-enterprise/','/talon/docs/mcp-governed-tools/','/talon/docs/operations-console/','/talon/docs/configuration/'])];
+const docsRoutes=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>new URL(m[1]).pathname).filter(p=>p.startsWith('/talon/docs/'));
+const fullDocs=process.env.TALON_FULL_DOCS_QA==='1';
+const routes=[...new Set([...priority,...marketing,...(fullDocs?docsRoutes:[]),'/privacy/','/404.html','/talon/docs/','/talon/docs/quickstart-demo/','/talon/docs/open-source-and-enterprise/','/talon/docs/mcp-governed-tools/','/talon/docs/operations-console/','/talon/docs/configuration/','/talon/docs/technical-evaluation/','/talon/docs/add-talon-to-existing-app/'])];
 const report={mode:'built artifact; external requests blocked, Umami stubbed; no real booking',pages:[],blocking:[],review:[],journeys:[]};
 const strict=process.env.TALON_RELEASE_GATE==='1';
 function issue(route,viewport,kind,detail,blocking=true){(blocking?report.blocking:report.review).push({route,viewport,kind,detail});}
@@ -49,7 +51,7 @@ const fileName=(route,viewport)=>(route==='/'?'home':route.replace(/^\/|\/$/g,''
     for(const error of errors)issue(route,device.name,'page error',error);
     for(const error of missing)issue(route,device.name,'asset response',error);
     if(priority.includes(route)||route==='/privacy/'||route.startsWith('/talon/docs/')||route==='/404.html'){
-     await page.screenshot({path:path.join(out,fileName(route,device.name)+'.png'),fullPage:true,animations:'disabled'});
+     if(!fullDocs||!route.startsWith('/talon/docs/')||['/talon/docs/','/talon/docs/technical-evaluation/','/talon/docs/mcp-governed-tools/','/talon/docs/operations-console/'].includes(route))await page.screenshot({path:path.join(out,fileName(route,device.name)+'.png'),fullPage:true,animations:'disabled'});
      await page.addScriptTag({path:require.resolve('axe-core/axe.min.js')});
      const axe=await page.evaluate(async()=>await window.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}}));
      for(const v of axe.violations)issue(route,device.name,'axe '+v.impact,{id:v.id,description:v.description,nodes:v.nodes.map(n=>n.target)},v.impact==='critical'||strict);

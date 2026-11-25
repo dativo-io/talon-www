@@ -71,6 +71,7 @@ node "$ROOT_DIR/scripts/edition-comparison.cjs" --check
 node --test "$ROOT_DIR/scripts/test-docs-publication.cjs"
 node --test "$ROOT_DIR/scripts/test-docs-search.cjs"
 node --test "$ROOT_DIR/scripts/test-docs-markdown.cjs"
+node --test "$ROOT_DIR/scripts/test-docs-artifact.cjs"
 node "$ROOT_DIR/scripts/test-pilot-conversion.cjs"
 node "$ROOT_DIR/scripts/test-enterprise-pilot-funnel.cjs"
 node "$ROOT_DIR/scripts/test-umami-event-privacy.cjs"
@@ -180,5 +181,7 @@ if [ "$UMAMI_ENABLED" = "true" ]; then
   node "$ROOT_DIR/scripts/inject-umami.cjs" "$OUT_DIR" "$UMAMI_SCRIPT_SRC" "$UMAMI_WEBSITE_ID" "$UMAMI_DOMAINS"
   node "$ROOT_DIR/scripts/verify-umami.cjs" "$OUT_DIR" "$UMAMI_SCRIPT_SRC" "$UMAMI_WEBSITE_ID" "$UMAMI_DOMAINS"
 fi
+
+node "$ROOT_DIR/scripts/verify-docs-artifact.cjs" "$OUT_DIR"
 
 echo "Built site into $OUT_DIR"

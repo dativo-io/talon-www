@@ -6,6 +6,15 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      full_docs:
+        description: Audit every documentation page on desktop and mobile
+        type: boolean
+        default: true
+      strict_quality:
+        description: Fail on all axe findings and existing Lighthouse thresholds
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -13,6 +22,10 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      TALON_FULL_DOCS_QA: ${{ inputs.full_docs && '1' || '0' }}
+      TALON_RELEASE_GATE: ${{ inputs.strict_quality && '1' || '0' }}
     steps:
       - name: Check out website
         uses: actions/checkout@v4
@@ -47,6 +60,9 @@ jobs:
 
       - name: Verify generated marketing and documentation sitemap completeness
         run: node scripts/verify-sitemap-completeness.cjs dist
+
+      - name: Verify complete documentation release artifact
+        run: node scripts/verify-docs-artifact.cjs dist
 
       - name: Audit all canonical marketing metadata and site links
         run: node scripts/audit-built-site.cjs dist --strict
