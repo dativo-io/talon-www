@@ -83,25 +83,22 @@ The homepage is a buyer-problem-first overview, with reproducible technical demo
 
 Talon owns the approved screenshot set in `docs/assets/console/`. This repository commits `console-screenshots.lock.json` (file names and content-derived Git blob IDs), not duplicate binaries.
 
-Every website PR checks the lock against the **actual screenshot files on Talon main**. Added, removed, renamed or changed images fail CI. Changes to Talon's baseline metadata or unrelated code do not fail this check. If the upstream checkout or its screenshots are unavailable, CI fails rather than using stale images.
+Every website PR builds from the stable release selected by `scripts/docs-publication.json` (tag and immutable commit). Screenshot assets must match `console-screenshots.lock.json` byte for byte. The same checkout supplies technical docs and images. A changed release requires an explicitly reviewed website PR, not an implicit update from main.
 
-To adopt an updated set, review the upstream images and their placement and captions, then run from the website checkout:
+For a release update, inspect the release and screenshots, update the manifest and edition evidence references, remove or rebase applicable errata, then refresh the lock using a clean checkout of that release:
 
 ```bash
-# Use a fresh checkout of Talon main.
-git clone --depth 1 --single-branch --branch main https://github.com/dativo-io/talon.git ../talon-console-source
+git clone --depth 1 --single-branch --branch v1.17.0 https://github.com/dativo-io/talon.git ../talon-console-source
 node scripts/console-screenshot-lock.cjs check ../talon-console-source
-# After reviewing the reported differences:
 node scripts/console-screenshot-lock.cjs refresh ../talon-console-source
-git add console-screenshots.lock.json
 TALON_REPO_PATH="$(cd ../talon-console-source && pwd)" ./scripts/build-site-with-docs.sh
 ```
 
-Commit the updated lock and any necessary homepage, guide-link or caption changes in a website PR. The initial website PR depends on Talon PR #559: its screenshot lock is seeded from the approved candidate in that PR and can only pass normal CI against `main` once the matching assets have merged upstream.
+Reviewed documentation corrections are exact line patches with original and corrected Git blob IDs and upstream review/commit references. They apply only to mapped docs, never to runtime code or release assets. A base or result mismatch fails the build. The published `/talon/docs/publication.json` identifies the release and corrections; historical source links remain pinned to the release. The edit links intentionally lead to the current contributor branch.
 
-The website build uses the same checked-out Talon revision for the freshness check, docs, and images. It verifies published image bytes and logs the source revision. It does not run Talon or generate screenshots. A local preview can use an explicit `TALON_REPO_PATH` containing the matching locked set; website CI always checks upstream `main`. No build updates the lock automatically.
+Edit `scripts/edition-capabilities.json`, then run `node scripts/edition-comparison.cjs --write` to refresh both comparison tables. The build rejects drift. Enterprise pilot scope is distinct from the released Community baseline.
 
-Cloudflare Workers Builds remains the production publisher through the website's existing Git integration. Talon does not trigger website deployments. If Talon changes after a website PR's last passing run, rerun its CI before merging; the production build also rejects mismatched images rather than silently publishing them.
+Cloudflare Workers Builds remains the production publisher through the website's existing Git integration. A stable release or documentation erratum is adopted only through a reviewed website PR. See `scripts/docs-publication-contract.md`.
 
 The compatibility route `/docs/talon/` redirects users to `/talon/docs/` and is included in the same analytics verification.
 

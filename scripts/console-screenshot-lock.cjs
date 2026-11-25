@@ -97,7 +97,7 @@ function main() {
       for (const [kind, names] of Object.entries(changes)) {
         for (const name of names) console.error('  ' + kind + ': ' + name);
       }
-      console.error('Review the images from Talon main, then run:');
+      console.error('Review the images from the selected release, then run:');
       console.error('  node scripts/console-screenshot-lock.cjs refresh <talon-checkout>');
       console.error('Commit console-screenshots.lock.json and adjust website references if needed.');
       return 1;

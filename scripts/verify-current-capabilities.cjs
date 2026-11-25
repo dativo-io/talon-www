@@ -65,7 +65,7 @@ if (fs.existsSync(editionPage)) {
   if (!html.includes('Enterprise capabilities are evaluated and scoped with design partners') || !html.includes('validate the selected integration and supported deployment profile')) failures.push('Enterprise pilot-only scope and released-profile guard missing');
   if (!html.includes('corporate') && !html.includes('Corporate')) failures.push('Corporate integration narrative missing');
   if (!/SIEM/i.test(html) || !/approvals?/i.test(html)) failures.push('Enterprise security/workflow integration narrative missing');
-  if ((html.match(/class="ep-check"/g) || []).length !== 19) failures.push('Edition table should show five shared rows and nine Enterprise-only rows with a two-column checkmark matrix');
+  if (!html.includes(require('./edition-comparison.cjs').html())) failures.push('Marketing edition table differs from canonical source');
   for (const feature of ['Teams register and manage their own AI apps', 'Who changed policies, keys and access', 'High-load and high-availability deployments', 'Enterprise-level support']) {
     if (!html.includes(feature)) failures.push('Enterprise buyer-oriented feature missing: ' + feature);
   }
@@ -145,10 +145,11 @@ for (const rel of ['index.html','talon/docs/index.html','talon/docs/open-source-
   const body=fs.readFileSync(target,'utf8');
   if (/planned Enterprise|Enterprise direction \(planned\)|Enterprise is in development|MCP\/native convergence remains|canonical MCP convergence is in progress|do not inherit its exact-operation approval|MCP tool calls inherit the HTTP Action Gateway approval/i.test(body)) failures.push('Retired edition or MCP claim: '+rel);
 }
+const {validate: editionRows,html: editionHtml}=require('./edition-comparison.cjs');
 const docsEdition=path.join(root,'talon/docs/open-source-and-enterprise/index.html');
 if(fs.existsSync(docsEdition)){
  const body=fs.readFileSync(docsEdition,'utf8');
- for(const feature of ["Organization and AI use-case policy","Model and data controls, spend limits, policy-valid fallback","Exact-action authorization and local human review","Signed decision evidence and independent verification","Sessions and local read-only Operations Console","Corporate SSO, team roles and access revocation","Teams register and manage their own AI apps","Who changed policies, keys and access","Review and promote policy changes","Approvals in existing corporate workflows","Security monitoring and customer-managed keys","Supported deployment, recovery and upgrades","High-load and high-availability deployments","Enterprise-level support"]) if(!body.includes(feature)) failures.push('Docs edition comparison missing: '+feature);
+ for(const row of editionRows()) if(!body.includes(row.label)) failures.push('Docs edition comparison missing: '+row.label);
  if(!body.includes('Pilot scope')||!body.includes('https://dativo.io/pilot/')||body.includes('linkedin.com/in/sergeyenin')) failures.push('Docs edition scope or canonical pilot route missing');
 }
 if (failures.length) { for (const failure of failures) console.error(`FAIL: ${failure}`); process.exit(1); }

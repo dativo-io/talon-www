@@ -1,3 +1,4 @@
+const publication = require('../scripts/docs-publication.json');
 const config = {
   title: 'Dativo Talon Docs',
   tagline: 'One company policy for your AI use cases.',
@@ -46,6 +47,11 @@ const config = {
 
   themeConfig: {
     image: 'img/talon-social-card.png',
+    announcementBar: {
+      id: 'stable-release-' + publication.release.tag,
+      content: 'Documentation for Talon ' + publication.release.tag + ' · <a href="/talon/docs/publication.json">Publication details</a>',
+      isCloseable: false,
+    },
     metadata: [
       {
         name: 'description',
