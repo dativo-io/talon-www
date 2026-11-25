@@ -115,8 +115,11 @@ const fileName=(route,viewport)=>(route==='/'?'home':route.replace(/^\/|\/$/g,''
     const result=dialog.locator('a[href="/talon/docs/mcp-governed-tools/"]');
     await result.waitFor({state:'visible',timeout:15000});
     assert.equal(await dialog.locator('.qc-search-results a').first().getAttribute('href'),'/talon/docs/mcp-governed-tools/','exact title should rank first');
-    await page.keyboard.press('ArrowDown');
+    await field.press('ArrowDown');
+    await page.waitForFunction(()=>document.activeElement?.getAttribute('href')==='/talon/docs/mcp-governed-tools/');
     assert.equal(await result.evaluate(el=>el===document.activeElement),true,'keyboard search result focus');
+    await page.keyboard.press('ArrowUp');
+    assert.equal(await field.evaluate(el=>el===document.activeElement),true,'ArrowUp returns to query');
     await page.keyboard.press('Escape');
     await dialog.waitFor({state:'hidden'});
     assert.equal(await search.evaluate(el=>el===document.activeElement),true,'Escape restores focus');
