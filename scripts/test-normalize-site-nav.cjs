@@ -62,6 +62,10 @@ try {
     assert.match(html, /href="\/site-nav\.css"/);
     assert.match(html, /src="\/site-nav\.js"/);
     assert.match(html, /data-ux-theme="quiet-confidence"/);
+    assert.equal((html.match(/class="site-skip-link"/g)||[]).length,1);
+    assert.equal((html.match(/class="site-utility-links"/g)||[]).length,1);
+    assert.ok(html.includes('href="/privacy/"'));
+    assert.ok(!html.includes('static.cloudflareinsights.com/beacon.min.js'));
     assert.equal((html.match(/href="\/quiet-confidence\.css"/g) || []).length, 1);
     if (['ai-action-control/index.html', 'enterprise/index.html'].includes(route)) assert.ok(html.includes('data-ux-legacy-marketing'));
     assert.equal((html.match(/src="\/site-nav\.js"/g) || []).length, 1);
@@ -76,6 +80,8 @@ try {
     const html = fs.readFileSync(path.join(out, route), 'utf8');
     const header = html.match(/<header class="site-nav">[\s\S]*?<\/header>/)?.[0];
     assert.equal((html.match(/href="\/quiet-confidence\.css"/g) || []).length, 1);
+    assert.equal((html.match(/class="site-skip-link"/g)||[]).length,1);
+    assert.equal((html.match(/class="site-utility-links"/g)||[]).length,1);
     assert.equal(header, normalized.get(route), `canonical header changed on ${route}`);
     assert.equal((html.match(/src="\/site-nav\.js"/g) || []).length, 1, `duplicate nav JS on ${route}`);
     assert.equal((html.match(/href="\/site-nav\.css"/g) || []).length, 1, `duplicate nav CSS on ${route}`);
