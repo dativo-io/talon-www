@@ -88,7 +88,7 @@ if (!sourcesOnly) {
   const sidebarsSource = await fs.readFile(path.join(siteRoot, 'sidebars.js'), 'utf8');
   const sidebarDocIds = new Set();
   const reservedTokens = new Set(['doc', 'category']);
-  const quotedDocToken = /['"]([a-z0-9][a-z0-9-]*)['"]/g;
+  const quotedDocToken = /['"]([a-z0-9][a-z0-9.-]*)['"]/g;
 
   for (const match of sidebarsSource.matchAll(quotedDocToken)) {
     const token = match[1];
