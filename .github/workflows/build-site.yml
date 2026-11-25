@@ -30,6 +30,9 @@ jobs:
       - name: Test screenshot freshness gate
         run: node --test scripts/test-console-screenshot-lock.cjs
 
+      - name: Test canonical sitemap inventory
+        run: node scripts/test-site-inventory.cjs
+
       - name: Test SEO metadata encoding
         run: node --test scripts/test-growth-metadata.cjs
 
@@ -52,6 +55,17 @@ jobs:
 
       - name: Verify generated marketing and documentation sitemap completeness
         run: node scripts/verify-sitemap-completeness.cjs dist
+
+      - name: Audit all canonical marketing metadata and site links
+        run: node scripts/audit-built-site.cjs dist
+
+      - name: Upload crawl audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-crawl-audit
+          path: site-audit.json
+          if-no-files-found: ignore
 
       - name: Unit test clean-traffic reporting
         run: node scripts/test-report-traffic.cjs
