@@ -69,11 +69,11 @@ Seven storytelling modules, grouped initially into the existing five HTML sectio
 2. Business outcomes + simple how-it-works illustration: protect the business, manage cost, keep workflows running, understand decisions; connect, enforce, verify.
 3. Relevant use cases and next steps: support, document processing (use the existing vendor-contract-review route until a validated broader route exists), People Analytics and coding; a clear developer quickstart.
 4. Product proof: one meaningful synthetic scenario with three explicit lifecycle stages (0 calls pending, 0 on reviewer approval, 1 on authorized runtime claim), plus a single full-width console showcase linking to its native image. Keep the docs route, mock adapter and screenshot provenance; no gallery, no simulated live UI.
-5. Pilot CTA: one existing workflow, one rule, one scoped technical fit call.
+5. Pilot CTA: one existing workflow, one rule, one scoped technical fit call. On /pilot/, both booking buttons say Book a call; preparation guidance asks for a workflow, setup and goal without credentials or production customer data.
 
 Keep the seven modules as a narrative, not a requirement to add more section wrappers. Any later change to the five-section guard must be deliberately reviewed alongside equivalent focus checks. Preserve deep links: governed-actions, how-it-works, use-cases, operations-console, pilot. Keep canonical docs, use-case, enterprise, comparison and campaign routes available. No route is deleted merely to reduce homepage density.
 
-Approved step 3 navigation: Product, Solutions and Open Source native disclosure groups, plus Discuss a pilot. Keep Enterprise, GitHub, the use-case hub and docs reachable. The document-processing link points to the existing vendor-contract-review route; n8n links to a dedicated acquisition page with bounded reproducible examples, not a broad compatibility promise. The architecture illustration is conceptual, not a product screenshot.
+Approved step 3 navigation: Product, Solutions and Developers native disclosure groups, plus Discuss a pilot. Keep Enterprise, GitHub, the use-case hub and docs reachable. The document-processing link points to the existing vendor-contract-review route; n8n links to a dedicated acquisition page with bounded reproducible examples, not a broad compatibility promise. The architecture illustration is conceptual, not a product screenshot.
 
 ## Truth and publication invariants
 
