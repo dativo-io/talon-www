@@ -1,7 +1,7 @@
 module.exports = {
   ci: {
     collect: {
-      url: ['http://127.0.0.1:8080/','http://127.0.0.1:8080/use-cases/','http://127.0.0.1:8080/solutions/n8n/','http://127.0.0.1:8080/pilot/'],
+      url: ['http://127.0.0.1:8080/','http://127.0.0.1:8080/use-cases/','http://127.0.0.1:8080/solutions/n8n/','http://127.0.0.1:8080/pilot/','http://127.0.0.1:8080/talon/docs/'],
       numberOfRuns: 3,
       settings: {chromeFlags:'--no-sandbox',throttlingMethod:'simulate',formFactor:'mobile',blockedUrlPatterns:['*cloud.umami.is*','*static.cloudflareinsights.com*'],onlyCategories:['performance','accessibility','best-practices','seo']},
     },

@@ -1,65 +1,144 @@
+/* Quiet Confidence — documentation edition. Keep Infima semantics and
+   Docusaurus native navigation; reading surfaces are deliberately white. */
 :root {
-  --ifm-color-primary: #2563eb;
-  --ifm-color-primary-dark: #1d4ed8;
-  --ifm-color-primary-darker: #1e40af;
-  --ifm-color-primary-darkest: #1e3a8a;
-  --ifm-color-primary-light: #3b82f6;
-  --ifm-color-primary-lighter: #60a5fa;
-  --ifm-color-primary-lightest: #93c5fd;
-  --ifm-heading-color: #0f172a;
+  --qc-primary: #081e58;
+  --qc-canvas: #f6f5f0;
+  --qc-surface: #ffffff;
+  --qc-ink: #14213a;
+  --qc-muted: #4f5d73;
+  --qc-line: #d2d9e5;
+  --qc-accent: #e4ebf8;
+  --qc-focus: #081e58;
+  --qc-code-bg: #101f40;
+  --qc-code-ink: #f4f7fd;
+  --ifm-color-primary: var(--qc-primary);
+  --ifm-color-primary-dark: #071b50;
+  --ifm-color-primary-darker: #061641;
+  --ifm-color-primary-darkest: #051135;
+  --ifm-color-primary-light: #24396d;
+  --ifm-color-primary-lighter: #344d84;
+  --ifm-color-primary-lightest: #4c6399;
+  --ifm-background-color: var(--qc-surface);
+  --ifm-background-surface-color: var(--qc-surface);
+  --ifm-font-color-base: var(--qc-ink);
+  --ifm-heading-color: var(--qc-ink);
+  --ifm-color-content-secondary: var(--qc-muted);
+  --ifm-link-color: var(--qc-primary);
+  --ifm-link-hover-color: var(--ifm-color-primary-darker);
+  --ifm-menu-color: var(--qc-muted);
+  --ifm-menu-color-active: var(--qc-primary);
+  --ifm-menu-color-background-active: var(--qc-accent);
+  --ifm-menu-color-background-hover: var(--qc-accent);
+  --ifm-navbar-background-color: var(--qc-canvas);
+  --ifm-navbar-link-color: var(--qc-ink);
+  --ifm-navbar-shadow: none;
+  --ifm-navbar-height: 64px;
+  --ifm-toc-border-color: var(--qc-line);
+  --ifm-table-border-color: var(--qc-line);
+  --ifm-table-stripe-background: var(--qc-canvas);
+  --ifm-code-background: var(--qc-accent);
   --ifm-font-family-base: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ifm-font-family-monospace: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+  --ifm-font-size-base: 16px;
+  --ifm-heading-font-weight: 650;
+  --ifm-global-radius: 8px;
+  --ifm-leading: 1.65;
+  --doc-sidebar-width: 280px !important;
+}
+[data-theme='dark'] {
+  color-scheme: dark;
+  --qc-primary: #b8ccff;
+  --qc-canvas: #101f40;
+  --qc-surface: #111a2c;
+  --qc-ink: #f4f7fd;
+  --qc-muted: #c4d0e6;
+  --qc-line: #50658b;
+  --qc-accent: #24396d;
+  --qc-focus: #b8ccff;
+  --qc-code-bg: #0b152c;
+  --ifm-color-primary: var(--qc-primary);
+  --ifm-color-primary-dark: #a8c1ff;
+  --ifm-color-primary-darker: #9dbaff;
+  --ifm-color-primary-darkest: #89acff;
+  --ifm-color-primary-light: #c9d9ff;
+  --ifm-color-primary-lighter: #d8e4ff;
+  --ifm-color-primary-lightest: #e4ebf8;
+  --ifm-link-hover-color: #e4ebf8;
+}
+.navbar { border-bottom: 1px solid var(--qc-line); }
+.navbar__title { font-weight: 700; letter-spacing: -.025em; }
+.navbar__logo { height: 27px; }
+.navbar__link { font-size: .9rem; font-weight: 550; }
+.navbar__items { min-width: 0; }
+.navbar__link.qc-pilot-link {
+  background: #081e58; color: #fff; border: 1px solid #081e58;
+  border-radius: 8px; padding: .55rem .8rem; white-space: nowrap;
+}
+[data-theme='dark'] .navbar__link.qc-pilot-link { background: #e4ebf8; color: #081e58; border-color: #e4ebf8; }
+.navbar__link.qc-pilot-link:hover { text-decoration: underline; }
+div[class*='announcementBar_'] { border-bottom-color: var(--qc-line); }
+.menu { font-size: .875rem; padding: 1rem .75rem; }
+.theme-doc-sidebar-container { background: var(--qc-canvas); border-right-color: var(--qc-line) !important; }
+.menu__link { line-height: 1.45; border-radius: 6px; overflow-wrap: anywhere; }
+.menu__link--active { font-weight: 650; }
+.table-of-contents { font-size: .8125rem; line-height: 1.5; }
+.table-of-contents__link { color: var(--qc-muted); }
+.table-of-contents__link--active { color: var(--qc-primary); font-weight: 650; }
+.breadcrumbs { font-size: .8rem; }
+.breadcrumbs__link { color: var(--qc-muted); }
+.theme-doc-markdown.markdown { max-width: 860px; min-width: 0; overflow-wrap: anywhere; }
+.theme-doc-markdown h1 { font-size: clamp(2rem,3vw,2.75rem); letter-spacing: -.04em; line-height: 1.12; margin-bottom: 1.25rem; }
+.theme-doc-markdown h2 { font-size: clamp(1.4rem,2vw,1.75rem); letter-spacing: -.025em; margin-top: 2.4rem; line-height: 1.28; }
+.theme-doc-markdown h3 { font-size: 1.2rem; line-height: 1.4; }
+.theme-doc-markdown p,.theme-doc-markdown li { line-height: 1.75; }
+.theme-doc-markdown a { text-decoration: underline; text-underline-offset: 3px; }
+.theme-doc-markdown .hash-link { text-decoration: none; }
+.theme-doc-markdown table {
+  display: block; max-width: 100%; width: 100%; overflow-x: auto;
+  font-size: .925rem; line-height: 1.6; margin: 1.25rem 0;
+}
+.theme-doc-markdown th,.theme-doc-markdown td { padding: .75rem .9rem; vertical-align: top; min-width: 7rem; }
+.theme-doc-markdown th { background: var(--qc-canvas); text-align: left; }
+.theme-doc-markdown td:first-child { font-weight: 600; }
+.theme-doc-markdown img { max-width: 100%; height: auto; border-radius: 8px; }
+.theme-doc-markdown pre { max-width: 100%; overflow-x: auto; border-radius: 8px; }
+.theme-doc-markdown pre code { white-space: pre; overflow-wrap: normal; word-break: normal; }
+.theme-doc-markdown :not(pre)>code { overflow-wrap: anywhere; border: 1px solid var(--qc-line); border-radius: 4px; }
+.theme-doc-markdown div[class*='codeBlockContainer'] { border-radius: 8px; box-shadow: none; }
+.theme-doc-markdown blockquote { color: var(--qc-muted); border-left-color: var(--qc-primary); }
+.theme-admonition { box-shadow: none; border-radius: 8px; }
+.pagination-nav__link { border-color: var(--qc-line); border-radius: 8px; }
+.pagination-nav__label { color: var(--qc-primary); }
+.footer--dark { --ifm-footer-background-color: #101f40; --ifm-footer-color: #f4f7fd; --ifm-footer-link-color: #c4d0e6; }
+:where(a,button,input,summary,[tabindex]):focus-visible { outline: 3px solid var(--qc-focus); outline-offset: 3px; }
+.footer :focus-visible { outline-color: #b8ccff; }
+
+/* Native dialog provides modality, focus confinement and Escape dismissal. */
+.qc-search-trigger { display: inline-flex; align-items: center; gap: .5rem; min-height: 40px; padding: .4rem .65rem; border: 1px solid var(--qc-line); border-radius: 8px; background: var(--qc-surface); color: var(--qc-muted); font: inherit; font-size: .85rem; cursor: pointer; white-space: nowrap; }
+.qc-search-trigger svg { flex: none; }
+.qc-search-trigger kbd { font-size: .7rem; background: var(--qc-canvas); border: 1px solid var(--qc-line); color: var(--qc-muted); box-shadow: none; }
+.qc-search-dialog { width: min(680px,calc(100% - 24px)); max-height: min(75dvh,720px); padding: 1.2rem; border: 1px solid var(--qc-line); border-radius: 12px; color: var(--qc-ink); background: var(--qc-surface); overflow: auto; box-shadow: 0 18px 60px #081e5833; }
+.qc-search-dialog::backdrop { background: #081e5880; }
+.qc-search-head { display: flex; gap: .7rem; align-items: center; justify-content: space-between; margin-bottom: .8rem; }
+.qc-search-head label { font-size: 1rem; font-weight: 650; }
+.qc-search-close { color: var(--qc-primary); background: var(--qc-canvas); border: 1px solid var(--qc-line); border-radius: 6px; min-height: 36px; padding: .35rem .7rem; font: inherit; cursor: pointer; }
+.qc-search-input { width: 100%; min-height: 44px; border: 1px solid var(--qc-muted); border-radius: 8px; background: var(--qc-surface); color: var(--qc-ink); font: inherit; padding: .6rem .8rem; }
+.qc-search-status { color: var(--qc-muted); margin: .8rem 0; font-size: .875rem; }
+.qc-search-results { list-style: none; padding: 0; margin: 0; }
+.qc-search-results li+li { margin-top: .45rem; }
+.qc-search-results a { display: block; padding: .8rem; border: 1px solid var(--qc-line); border-radius: 8px; text-decoration: none; overflow-wrap: anywhere; }
+.qc-search-results a:hover,.qc-search-results a:focus-visible { background: var(--qc-accent); }
+.qc-search-results strong { display: block; color: var(--qc-primary); line-height: 1.35; }
+.qc-search-results span { display: block; margin-top: .3rem; font-size: .85rem; line-height: 1.45; color: var(--qc-muted); }
+@media(max-width: 996px) {
+ .qc-search-trigger { padding: .45rem .55rem; }
+ .qc-search-trigger span,.qc-search-trigger kbd { display: none; }
+ .navbar__title { font-size: .95rem; }
+ .theme-doc-markdown th,.theme-doc-markdown td { padding: .6rem .7rem; }
+ .theme-doc-markdown table { font-size: .875rem; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .qc-search-dialog,.qc-search-trigger { transition: none; }
 }
 
-.hero--primary {
-  background: linear-gradient(135deg, #07111f 0%, #10233f 55%, #1d4ed8 100%);
-}
-
-.navbar__title {
-  font-weight: 750;
-}
-
-.markdown h1:first-child {
-  letter-spacing: -0.03em;
-}
-
-.markdown h2 {
-  letter-spacing: -0.02em;
-}
-
-.footer--dark {
-  --ifm-footer-background-color: #07111f;
-}
-
-code {
-  border-radius: 0.35rem;
-}
-
-/* The docs front door is a guide, not a giant product index. */
-.theme-doc-markdown.markdown {max-width:860px;}
-.theme-doc-markdown.markdown h1:first-child {
-  font-size:clamp(2.1rem,3vw,2.75rem);
-  letter-spacing:-.045em;
-  line-height:1.12;
-  margin-bottom:1.2rem;
-}
-.theme-doc-markdown.markdown h2 {
-  margin-top:2.25rem;
-  padding-top:.2rem;
-  font-size:clamp(1.4rem,2vw,1.7rem);
-}
-.theme-doc-markdown.markdown p,.theme-doc-markdown.markdown li {line-height:1.75;}
-.theme-doc-markdown.markdown table {
-  display:table;
-  width:100%;
-  line-height:1.6;
-  font-size:.93rem;
-}
-.theme-doc-markdown.markdown table th,
-.theme-doc-markdown.markdown table td {padding:.9rem 1rem;vertical-align:top;}
-.theme-doc-markdown.markdown table td:first-child {font-weight:600;}
-.theme-doc-markdown.markdown a {text-underline-offset:3px;}
-@media(max-width:760px) {
-  .theme-doc-markdown.markdown table {display:block;overflow-x:auto;font-size:.88rem;}
-  .theme-doc-markdown.markdown table th,
-  .theme-doc-markdown.markdown table td {padding:.65rem .75rem;}
-}
+.qc-search-results [aria-selected='true'] { background: var(--qc-accent); outline: 2px solid var(--qc-focus); outline-offset: -2px; }

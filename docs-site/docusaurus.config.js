@@ -1,4 +1,6 @@
 const publication = require('../scripts/docs-publication.json');
+const {themes} = require('prism-react-renderer');
+const codeTheme = {...themes.vsDark, plain:{...themes.vsDark.plain,backgroundColor:'#101f40',color:'#f4f7fd'}};
 const config = {
   title: 'Dativo Talon Docs',
   tagline: 'One company policy for your AI use cases.',
@@ -51,6 +53,8 @@ const config = {
       id: 'stable-release-' + publication.release.tag,
       content: 'Documentation for Talon ' + publication.release.tag + ' · <a href="/talon/docs/publication.json">Publication details</a>',
       isCloseable: false,
+      backgroundColor: '#e4ebf8',
+      textColor: '#081e58',
     },
     metadata: [
       {
@@ -64,6 +68,7 @@ const config = {
           'AI policy enforcement, AI control plane, company AI policy, AI use case governance, AI action authorization, MCP governance, GitHub Copilot governance, coding assistant governance, LLM cost control, self-hosted AI gateway, EU AI routing, signed audit evidence, Dativo Talon',
       },
     ],
+    colorMode: {defaultMode:'light', respectPrefersColorScheme:true, disableSwitch:false},
     navbar: {
       title: 'Dativo Talon Docs',
       logo: {
@@ -75,7 +80,7 @@ const config = {
         {to: '/quickstart-demo/', label: 'Try Talon', position: 'left'},
         {to: '/add-talon-to-existing-app/', label: 'Connect an app', position: 'left'},
         {href: '/', label: 'Website', position: 'right'},
-        {href: 'https://dativo.io/pilot/', label: 'Discuss a pilot', position: 'right'},
+        {href: 'https://dativo.io/pilot/', label: 'Discuss a pilot', position: 'right', className:'qc-pilot-link'},
       ],
     },
     footer: {
@@ -101,6 +106,8 @@ const config = {
       copyright: `Copyright © ${new Date().getFullYear()} Dativo. Built with Docusaurus.`,
     },
     prism: {
+      theme: codeTheme,
+      darkTheme: codeTheme,
       additionalLanguages: ['bash', 'go', 'json', 'yaml'],
     },
   },
