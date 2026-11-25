@@ -68,9 +68,10 @@ for (const file of htmlFiles) {
     if (domains && !tracker.includes(`data-domains="${domains}"`)) failures.push(`${relative}: Umami tracker has the wrong production domain allowlist`);
   }
 
-  if (!html.includes('window.umami.track')) {
-    failures.push(`${relative}: Talon buyer-intent event helper is missing`);
-  }
+  if (!html.includes('src="/growth.js"') && relative !== '404.html' && !relative.endsWith('/404.html')) failures.push(relative + ': shared buyer-intent listener missing');
+  if (count(html,'src="/growth.js"') > 1) failures.push(relative + ': duplicate shared event script');
+  if (html.includes("window.umami.track('GitHub Click'") || html.includes('function safeDestination(href)')) failures.push(relative + ': legacy inline click listener reintroduced');
+  for (const flag of ['data-exclude-search="true"','data-exclude-hash="true"','data-do-not-track="true"']) if (!trackerMatch?.[0].includes(flag)) failures.push(relative + ': missing privacy flag ' + flag);
 
   const plausibleSignals = [
     'data-talon-analytics="plausible"',
