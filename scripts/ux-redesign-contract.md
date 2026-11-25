@@ -50,7 +50,7 @@ Source CSS: `styles.css` uses a dark blue/black background, radial gradients, ve
 Reference approach: Wonderful (business outcomes first), WorkOS (infrastructure clarity), Linear (product craft) and Tailscale (technical accessibility). These are inspiration, not instructions to copy layouts, assets or branding.
 
 - Predominantly light, warm neutral canvas; strong typography and whitespace; dark sections selectively for product proof.
-- Candidate tokens: canvas #F6F5F0, ink #172522, primary #15594B, soft accent #D4E8DD, surface #FFFFFF. Validate contrast, states and existing Talon mark before approval; keep canonical logo and favicon.
+- Step 2 candidate tokens, derived from the canonical Talon mark (#081E58 and white): canvas #F6F5F0, ink #14213A, primary #081E58, soft accent #E4EBF8, muted #4F5D73, surface #FFFFFF. Dark proof surfaces use #101F40. This replaces the initial green palette hypothesis at the owner's request; green is reserved for semantic success states. Validate rendered contrast and states before approval; keep canonical logo and favicon.
 - Use existing Inter/system fallback initially. No remote font or framework dependency merely for visual polish.
 - Desktop reference: 64–80px hero, 40–48px section headings, 17–19px body, 1.5–1.65 line height, 100–140px major section spacing, ~1200px max container. Adapt fluidly to mobile and content; these are design targets, not fixed sizes.
 - Prefer solid primary buttons, clear secondary links, selective borders, few decorative surfaces and consistent icons. Reserve monospace for code and technical evidence. Avoid stock AI imagery, decorative gradients and grids of identical cards.
