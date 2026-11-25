@@ -76,7 +76,7 @@
     }
   });
 
-  window.addEventListener('talon:docs-search',event=>{
+  if(typeof window.addEventListener==='function')window.addEventListener('talon:docs-search',event=>{
     if(/^\/talon\/docs\/(?:[a-z0-9.-]+\/)?$/.test(page())&&['open','result','no-results'].includes(event.detail))track('Docs Search',{page:page(),action:event.detail});
   });
 
