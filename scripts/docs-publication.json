@@ -9,75 +9,6 @@
   },
   "errata": [
     {
-      "path": "docs/guides/cost-governance-by-agent.md",
-      "originalBlob": "168167ab436e3ac5caf9ef056eab37356ebbf716",
-      "correctedBlob": "e84b7d31f395b96164df50c958c1ab6d1ef92fd4",
-      "sourceCommit": "840a70acc862b41a98ba67f86eba6bd2bff9ce3d",
-      "review": "https://github.com/dativo-io/talon/pull/609",
-      "hunks": [
-        {
-          "startLine": 5,
-          "remove": [
-            "> You can cap AI spend before it runs away, and prove every allow/deny decision with signed evidence."
-          ],
-          "insert": [
-            "> You can deny requests before provider access using estimated-cost admission caps, and verify allow/deny decisions with signed evidence. Actual charges can exceed estimates; these are not invoice ceilings."
-          ]
-        },
-        {
-          "startLine": 7,
-          "remove": [
-            "This guide shows the fastest path to that outcome for a support-bot agent."
-          ],
-          "insert": [
-            "This guide shows that outcome for a support-bot use case. See [budget limitations](../../LIMITATIONS.md#7-coding-agent-and-orchestration-boundary) for estimation, reservation and recovery boundaries."
-          ]
-        },
-        {
-          "startLine": 11,
-          "remove": [],
-          "insert": [
-            "For first-time installation, use [connect an existing application](add-talon-to-existing-app.md) to configure `agents_dir`, credentials and the serving process. Active rules are always enforced; the legacy `gateway.mode` setting was removed in #442 and is rejected in v1.17. The abbreviated example below illustrates policy and verification, not a standalone installation procedure.",
-            ""
-          ]
-        },
-        {
-          "startLine": 13,
-          "remove": [
-            "- Hard daily/monthly spend caps for one agent (`support-slack-bot`)"
-          ],
-          "insert": [
-            "- Enforced daily/monthly estimate-based admission caps for one agent (`support-slack-bot`)"
-          ]
-        },
-        {
-          "startLine": 20,
-          "remove": [
-            "## 1. Define the agent with hard EUR caps"
-          ],
-          "insert": [
-            "## 1. Define the use case with EUR admission caps"
-          ]
-        },
-        {
-          "startLine": 54,
-          "remove": [
-            "  mode: \"enforce\""
-          ],
-          "insert": []
-        },
-        {
-          "startLine": 163,
-          "remove": [
-            "- **Hard budget caps**: deny requests that would exceed the effective daily/monthly cap before the provider call"
-          ],
-          "insert": [
-            "- **Budget admission caps**: deny requests whose estimated cost would exceed the effective daily/monthly cap before the provider call"
-          ]
-        }
-      ]
-    },
-    {
       "path": "docs/guides/mcp-2026-migration.md",
       "originalBlob": "d870d87e2486f8fc8c64844bc6559d92ae80e681",
       "correctedBlob": "5bbfd680f60b65244b4b3f684bb8e976854c4534",
@@ -109,56 +40,6 @@
           ],
           "insert": [
             "**Boundary:** The HTTP Action Gateway governs exactly the actions sent through it. Since v1.17.0, declared governed MCP tools on `POST /mcp` share the Action Gateway's bound approval, dispatch and recovery lifecycle; this HTTP fixture does not verify MCP client compatibility. See [governed MCP tools](mcp-governed-tools.md). Neither path controls direct tool or business API calls that bypass Talon."
-          ]
-        }
-      ]
-    },
-    {
-      "path": "docs/guides/add-talon-to-existing-app.md",
-      "originalBlob": "9b12ef83343fe9b31bd44f38a17c09a2e0ed01ab",
-      "correctedBlob": "b12d9dc4844cd64ffdd907ff77e53513928c340e",
-      "sourceCommit": "8e37ede5994a0f06756cabcfd4047286d8f1b6f7",
-      "review": "https://github.com/dativo-io/talon/pull/610",
-      "hunks": [
-        {
-          "startLine": 13,
-          "remove": [
-            "The quickstart proves that Talon decides and signs. It does not connect your application: it uses a synthetic identity and no company policy."
-          ],
-          "insert": [
-            "The published-image quickstart proves that Talon enforces a demonstration company policy and signs its decisions. It uses a synthetic identity and does not connect your application or exercise a live provider."
-          ]
-        },
-        {
-          "startLine": 268,
-          "remove": [],
-          "insert": [
-            "Before adding another application, send a permitted synthetic request and one containing a synthetic email address. The latter must return HTTP 400 with `pii_policy_violation` under the configured block policy; an unknown use-case key must return 401. Verify actual evidence IDs with `talon audit verify YOUR_EVIDENCE_ID` and check `talon agents show customer-support --effective`. Working alone does not prove a provider was reached.",
-            ""
-          ]
-        },
-        {
-          "startLine": 274,
-          "remove": [
-            "That is the whole step. Give the application its two settings and send a request. The second application gets its own identity, key, budget accounting and evidence, and runs under the same company policy: nothing is copied into its file, the company configuration is not touched, the running Talon loads it without a restart, and the first application keeps serving meanwhile."
-          ],
-          "insert": [
-            "Give the application the same base URL and its own Talon key from its secret manager. Wait for its runtime state to be loaded, then send a permitted request and a synthetic PII request. The second application gets its own identity, key, budget accounting and evidence, and runs under the same company policy: nothing is copied into its file, the company configuration is not touched, the running Talon loads it without a restart, and the first application keeps serving meanwhile."
-          ]
-        },
-        {
-          "startLine": 288,
-          "remove": [],
-          "insert": [
-            "Verify each application separately:",
-            "",
-            "```bash",
-            "talon agents show customer-support --effective",
-            "talon agents show hr-copilot --effective",
-            "```",
-            "",
-            "Acceptance: both applications are loaded and have authenticated traffic under the current company policy, distinct evidence and cost attribution. The second application is denied by the same PII rule, and the first continues serving. No company policy change or restart is required. For a provider-free engineering test, run `make test-onboarding` in the matching release checkout (Go, Node, npm, curl and OpenSSL required). The [acceptance script](../../scripts/onboarding-acceptance.sh) checks actual upstream counts and credential lifecycle; a source-build pass does not establish your deployed binary or client compatibility.",
-            ""
           ]
         }
       ]
@@ -394,6 +275,480 @@
           ],
           "insert": [
             "TALON_IMAGE=ghcr.io/dativo-io/talon:1.17.0 docker compose -f docker-compose.yml -f docker-compose.published.yml down -v"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/tutorials/evidence-integrity-demo.md",
+      "originalBlob": "20938efbfbaff550ee5df6f8f0090723c1b3e059",
+      "correctedBlob": "cde67c3e621d8eb79fb4392aa7f9fbf094f26ff9",
+      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 17,
+          "remove": [
+            "- Talon running locally (for example via `examples/docker-compose`)",
+            "- `talon` CLI available in the environment where you run verification"
+          ],
+          "insert": [
+            "- A dedicated local test installation of the released Talon version, with one authenticated use case and a working model route. Follow [connect an existing application](../guides/add-talon-to-existing-app.md) or the optional Compose walkthrough in [try Talon](quickstart-demo.md).",
+            "- `curl`, `jq`, and the matching `talon` CLI with access to that same installation's evidence store and signing key. An unrelated host CLI cannot verify the container's records.",
+            "- Load the use-case key as `TALON_USE_CASE_KEY` and the operator key as `TALON_ADMIN_KEY` from their approved secret sources. Only for the loopback-only Compose fixture, use `TALON_USE_CASE_KEY=talon-demo-key`; its admin key is unset. Never use that fixture for production.",
+            "- Use an otherwise idle synthetic installation so the newest record belongs to this test. Do not export or edit production evidence."
+          ]
+        },
+        {
+          "startLine": 25,
+          "remove": [],
+          "insert": [
+            "  -H \"Authorization: Bearer $TALON_USE_CASE_KEY\" \\"
+          ]
+        },
+        {
+          "startLine": 31,
+          "remove": [],
+          "insert": [
+            "Confirm the response succeeds before continuing; HTTP 401 means the use-case key is missing or invalid. A model denial is a different test, not proof of a successful upstream request.",
+            ""
+          ]
+        },
+        {
+          "startLine": 44,
+          "remove": [],
+          "insert": [
+            "Run the CLI commands below in the same installation, with the same configuration and signing key. For the optional Compose fixture, use the release-matched Compose command prefix from the [quickstart](quickstart-demo.md) (`exec talon /usr/local/bin/talon`); the export path is then inside that container. Copy the file out for the tamper exercise and back to a separate test path for verification, or use a local CLI installation instead.",
+            ""
+          ]
+        },
+        {
+          "startLine": 62,
+          "remove": [
+            "Edit `signed-evidence.json` and change one value in a record, for example:"
+          ],
+          "insert": [
+            "Copy `signed-evidence.json` to `tampered-evidence.json`, then edit only the copy and change one signed value, for example:"
+          ]
+        },
+        {
+          "startLine": 74,
+          "remove": [
+            "talon audit verify --file signed-evidence.json"
+          ],
+          "insert": [
+            "talon audit verify --file tampered-evidence.json"
+          ]
+        },
+        {
+          "startLine": 86,
+          "remove": [
+            "Use this during audits or buyer calls:"
+          ],
+          "insert": [
+            "Use this as a description of integrity verification, not a certification or proof of downstream effects. A signing-key compromise can forge records."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/tutorials/action-gateway-proof.md",
+      "originalBlob": "388293c3b2ab555a8befe2cb28d4facfe1ab9301",
+      "correctedBlob": "b4e6bcb8649fbcd2b92fb39407e4865d6de52d4d",
+      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [
+            "**Five-minute evaluator proof (no provider API key).** This exercises the HTTP Action Gateway **implemented on Talon main**, not MCP `tools/call` or native tool-execution convergence. Check [releases](https://github.com/dativo-io/talon/releases/latest) before assuming a prebuilt tagged binary includes the feature. It uses an in-process counting mock as the downstream business API; no real refund or mutation is performed."
+          ],
+          "insert": [
+            "**Evaluator proof (no provider API key).** The HTTP Action Gateway and declared governed MCP tools on `POST /mcp` share the released v1.17.0 Action Gateway. This specific smoke exercise builds and tests the HTTP adapter only; it is not a test of MCP client compatibility or native tool execution. For distributed artifact acceptance, see the [v1.17.0 release run](https://github.com/dativo-io/talon/actions/runs/45429574176). It uses an in-process counting mock as the downstream business API; no real refund or mutation is performed."
+          ]
+        },
+        {
+          "startLine": 7,
+          "remove": [
+            "From the Talon repository root, with Go and the dependencies needed to build the binary:"
+          ],
+          "insert": [
+            "From a clean checkout of the release matching your installation, with Go and the dependencies needed to build the binary (for v1.17.0, check out tag `v1.17.0`):"
+          ]
+        },
+        {
+          "startLine": 38,
+          "remove": [
+            "**Current limits:** only the `talon_forwarded` HTTP adapter has bound approvals and at-most-once Talon dispatch. MCP-discovered definitions are catalogued but not executable by that adapter. MCP/native action convergence, Tasks continuation, SSO reviewer identities, external execution profiles and operator reconciliation of `unknown` are not shipped. Read [LIMITATIONS §10](../../LIMITATIONS.md)."
+          ],
+          "insert": [
+            "**Current limits:** HTTP actions and declared MCP tools use the same bound approval and dispatch lifecycle, with distinct adapters. MCP definitions are executed by the governed MCP dispatcher, not the HTTP adapter; see [governed MCP tools](../guides/mcp-governed-tools.md). Native runner and Plan Review convergence and MCP Tasks continuation are not shipped. An ambiguous post-dispatch outcome is not automatically replayed; reconcile with independent downstream records. Read [LIMITATIONS §10](../../LIMITATIONS.md)."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/cost-governance-by-agent.md",
+      "originalBlob": "168167ab436e3ac5caf9ef056eab37356ebbf716",
+      "correctedBlob": "af71d7b15b94f1625eb16939afe44c4ceb953fee",
+      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 5,
+          "remove": [
+            "> You can cap AI spend before it runs away, and prove every allow/deny decision with signed evidence."
+          ],
+          "insert": [
+            "> You can deny requests before provider access using estimated-cost admission caps, and verify allow/deny decisions with signed evidence. Actual charges can exceed estimates; these are not invoice ceilings."
+          ]
+        },
+        {
+          "startLine": 7,
+          "remove": [
+            "This guide shows the fastest path to that outcome for a support-bot agent."
+          ],
+          "insert": [
+            "This guide shows that outcome for a support-bot use case. See [budget limitations](../../LIMITATIONS.md#7-coding-agent-and-orchestration-boundary) for estimation, reservation and recovery boundaries."
+          ]
+        },
+        {
+          "startLine": 11,
+          "remove": [],
+          "insert": [
+            "For first-time installation, use [connect an existing application](add-talon-to-existing-app.md) to configure `agents_dir`, credentials and the serving process. Active rules are always enforced; the legacy `gateway.mode` setting was removed in #442 and is rejected in v1.17. The abbreviated example below illustrates policy and verification, not a standalone installation procedure.",
+            ""
+          ]
+        },
+        {
+          "startLine": 13,
+          "remove": [
+            "- Hard daily/monthly spend caps for one agent (`support-slack-bot`)"
+          ],
+          "insert": [
+            "- Enforced daily/monthly estimate-based admission caps for one agent (`support-slack-bot`)"
+          ]
+        },
+        {
+          "startLine": 16,
+          "remove": [
+            "- CLI + API visibility for today/month, by agent/model/provider"
+          ],
+          "insert": [
+            "- CLI + API visibility for today/month, by agent/model/provider; session caps use estimate reservation, not a guarantee of final provider charges"
+          ]
+        },
+        {
+          "startLine": 20,
+          "remove": [
+            "## 1. Define the agent with hard EUR caps"
+          ],
+          "insert": [
+            "## 1. Define the use case with admission caps"
+          ]
+        },
+        {
+          "startLine": 38,
+          "remove": [
+            "    input_scan: true            # scan-only → PII action \"warn\" for this agent"
+          ],
+          "insert": [
+            "    input_scan: true            # scan-only does not override the company PII floor"
+          ]
+        },
+        {
+          "startLine": 45,
+          "remove": [
+            "talon secrets set support-slack-bot-talon-key \"$AGENT_KEY\""
+          ],
+          "insert": [
+            "printf '%s' \"$AGENT_KEY\" | talon secrets set support-slack-bot-talon-key"
+          ]
+        },
+        {
+          "startLine": 54,
+          "remove": [
+            "  mode: \"enforce\""
+          ],
+          "insert": []
+        },
+        {
+          "startLine": 71,
+          "remove": [
+            "For a demo, temporarily lower the agent's `cost_limits.daily` (for example `0.01`) so you can trigger a denial quickly."
+          ],
+          "insert": [
+            "The amounts are in the installation's configured cost currency; inspect the `currency` field in `talon costs --agent support-slack-bot --json`. Historical `_eur` field names are not a currency guarantee. Use a dedicated synthetic installation for denial testing."
+          ]
+        },
+        {
+          "startLine": 95,
+          "remove": [
+            "1. Configure a very low `cost_limits.daily` for `support-slack-bot`",
+            "2. Send one request that is allowed",
+            "3. Send a second request that would exceed budget"
+          ],
+          "insert": [
+            "1. Start with a cap sufficient for a permitted synthetic request and confirm the configured pricing and effective caps.",
+            "2. Send one request and inspect settled usage and signed evidence.",
+            "3. In the test installation, lower the positive admission cap below the already settled spend (or below the next known estimate); wait for the new agent generation to load and verify it using `talon agents show support-slack-bot --effective`. Send a request again."
+          ]
+        },
+        {
+          "startLine": 102,
+          "remove": [
+            "Example calls — the bot authenticates with its **agent key** (`$AGENT_KEY` from step 1):"
+          ],
+          "insert": [
+            "Example calls — the bot authenticates with its **agent key** (`$AGENT_KEY` from step 1). These calls are illustrative; two identical requests alone do not guarantee one allow and one deny. Use a deterministic mock for a reproducible test and inspect an independent upstream count. For released implementation coverage, see `internal/gateway/budget_enforcement_test.go` and `internal/gateway/session_budget_test.go` in the matching checkout."
+          ]
+        },
+        {
+          "startLine": 111,
+          "remove": [
+            "# Denied request (second call, over cap)"
+          ],
+          "insert": [
+            "# After the lower cap is active: repeat and check the actual decision"
+          ]
+        },
+        {
+          "startLine": 118,
+          "remove": [
+            "Expected deny characteristics:"
+          ],
+          "insert": [
+            "Expected deny characteristics when the binding cap is exceeded (missing pricing or unavailable budget state are distinct errors):"
+          ]
+        },
+        {
+          "startLine": 163,
+          "remove": [
+            "- **Hard budget caps**: deny requests that would exceed the effective daily/monthly cap before the provider call"
+          ],
+          "insert": [
+            "- **Budget admission caps**: deny requests whose estimated cost would exceed the effective daily/monthly cap before the provider call"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/add-talon-to-existing-app.md",
+      "originalBlob": "9b12ef83343fe9b31bd44f38a17c09a2e0ed01ab",
+      "correctedBlob": "3740455154408f4fedc2446c7de1a5031ab64cec",
+      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 13,
+          "remove": [
+            "The quickstart proves that Talon decides and signs. It does not connect your application: it uses a synthetic identity and no company policy."
+          ],
+          "insert": [
+            "The published-image quickstart proves that Talon enforces a demonstration company policy and signs its decisions. It uses a synthetic identity and does not connect your application or exercise a live provider."
+          ]
+        },
+        {
+          "startLine": 143,
+          "remove": [],
+          "insert": [
+            "The displayed registration output uses a shorthand about tightening policy. The actual precedence is field-specific: positive daily/monthly/session budget overrides can replace defaults (including raising a default), but any configured company ceiling remains binding. PII overrides can only tighten the company floor; attachment policy is company-owned. See [configuration and precedence](../reference/configuration.md) and inspect `talon agents show customer-support --effective`. Do not treat a default budget as a hard maximum.",
+            ""
+          ]
+        },
+        {
+          "startLine": 268,
+          "remove": [],
+          "insert": [
+            "Before adding another application, send a permitted synthetic request and one containing a synthetic email address. The latter must return HTTP 400 with `pii_policy_violation` under the configured block policy; an unknown use-case key must return 401. Verify actual evidence IDs with `talon audit verify YOUR_EVIDENCE_ID` and check `talon agents show customer-support --effective`. Working alone does not prove a provider was reached.",
+            ""
+          ]
+        },
+        {
+          "startLine": 274,
+          "remove": [
+            "That is the whole step. Give the application its two settings and send a request. The second application gets its own identity, key, budget accounting and evidence, and runs under the same company policy: nothing is copied into its file, the company configuration is not touched, the running Talon loads it without a restart, and the first application keeps serving meanwhile."
+          ],
+          "insert": [
+            "Give the application the same base URL and its own Talon key from its secret manager. Wait for its runtime state to be loaded, then send a permitted request and a synthetic PII request. The second application gets its own identity, key, budget accounting and evidence, and runs under the same company policy: nothing is copied into its file, the company configuration is not touched, the running Talon loads it without a restart, and the first application keeps serving meanwhile."
+          ]
+        },
+        {
+          "startLine": 288,
+          "remove": [],
+          "insert": [
+            "Verify each application separately:",
+            "",
+            "```bash",
+            "talon agents show customer-support --effective",
+            "talon agents show hr-copilot --effective",
+            "```",
+            "",
+            "Acceptance: both applications are loaded and have authenticated traffic under the current company policy, distinct evidence and cost attribution. The second application is denied by the same PII rule, and the first continues serving. No company policy change or restart is required. For a provider-free engineering test, run `make test-onboarding` in the matching release checkout (Go, Node, npm, curl and OpenSSL required). The [acceptance script](../../scripts/onboarding-acceptance.sh) checks actual upstream counts and credential lifecycle; a source-build pass does not establish your deployed binary or client compatibility.",
+            ""
+          ]
+        },
+        {
+          "startLine": 292,
+          "remove": [
+            "To tighten the policy for one application, edit its `agent.talon.yaml` (for example `policies.cost_limits.daily`). Company constraints cannot be lifted there."
+          ],
+          "insert": [
+            "To change the policy for one application, edit its `agent.talon.yaml` (for example `policies.cost_limits.daily`). Positive budget overrides replace the baseline, while company ceilings still bind; PII can only tighten. Company constraints cannot be lifted there."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reference/object-model.md",
+      "originalBlob": "6d9cd97333ee531eb908c87fcb081545f99f1539",
+      "correctedBlob": "1b98e5df5759bd3ce899df300f6559183f3ca9f8",
+      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 47,
+          "remove": [
+            "> **Status.** The session vocabulary in this section (`status` with `open | completed`, `managed_by`) is the settled target contract of [#401](https://github.com/dativo-io/talon/issues/401). The shipped store still exposes the older status vocabulary and no `managed_by` field; the architecture reference lists it as a retained surface pending migration ([Control-plane boundaries](control-plane-boundaries.md))."
+          ],
+          "insert": [
+            "> **Released behavior (v1.17.0).** The session store exposes `status` values `active`, `pending_approval`, `executing`, `completed`, `failed`, `timed_out` and source values `talon`, `client_asserted`, `vendor_asserted`. The stored external identity is scoped to the authenticated use case and tenant. There is no `managed_by` field in this release. See [manual session inspection](../tutorials/manual-governed-session.md) and [control-plane boundaries](control-plane-boundaries.md).",
+            ">",
+            "> **Target design only.** The following session status, manager and transition descriptions are the proposed #401 contract, not a client API contract for the released store. Do not implement clients against `open` or `managed_by` yet. [Track #401](https://github.com/dativo-io/talon/issues/401)."
+          ]
+        },
+        {
+          "startLine": 63,
+          "remove": [
+            "A session has exactly two statuses:"
+          ],
+          "insert": [
+            "Under the target design, a session has exactly two statuses:"
+          ]
+        },
+        {
+          "startLine": 244,
+          "remove": [
+            "Example session view:"
+          ],
+          "insert": [
+            "Illustrative target session view (not current CLI output):"
+          ]
+        },
+        {
+          "startLine": 266,
+          "remove": [],
+          "insert": [
+            "These are architectural rules and target lifecycle behavior; manager attribution and explicit completion in the #401 design are not a shipped session API. For released external integrations, use the stable asserted session ID and authenticated use-case key documented for the chosen route. Do not send a `managed_by` field or assume an external completion endpoint.",
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/incident-response-playbook.md",
+      "originalBlob": "8a9907980e987db9ee87f89db07aeadd9a5c4c89",
+      "correctedBlob": "05c09e53322334e3157a3689ffbd57be0ea1996f",
+      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 5,
+          "remove": [
+            "> **Note on CLI commands:** Some CLI commands referenced below (marked with *planned*) are not yet implemented. Where a CLI command is planned, the equivalent Go API is available. See the code references for programmatic access."
+          ],
+          "insert": [
+            "> **Scope first:** the run-control, pause, kill and in-memory override endpoints below describe native Talon run controls. Do not assume they cancel external workflows, prevent every model-gateway request, or stop an Action Gateway operation already dispatched. For external use cases, stop new work in the owning runtime, use `talon agents disable <name>` where supported, verify the active generation and denial with a synthetic request, and isolate bypass routes. Disabling is not instantaneous and does not recall in-flight effects. If a reload is rejected, the previous generation can remain active; see [operate AI use cases](operate-ai-use-cases.md). For a dispatched action with unknown outcome, reconcile with the downstream system; never blindly replay. See [Action Gateway](../reference/action-gateway.md) and [control-plane boundaries](../reference/control-plane-boundaries.md)."
+          ]
+        },
+        {
+          "startLine": 13,
+          "remove": [
+            "**Immediate containment:**"
+          ],
+          "insert": [
+            "**Immediate containment (native runs only):**"
+          ]
+        },
+        {
+          "startLine": 102,
+          "remove": [
+            "1. Escalate the `response_pii_action` in the agent's policy:"
+          ],
+          "insert": [
+            "1. For gateway traffic, tighten the company `gateway.organization_policy.defaults.response_pii_action` (restart-required) or use the supported monotonic use-case data-classification override; inspect the effective response policy. See [configuration](../reference/configuration.md#response-pii-actions-and-streaming):"
+          ]
+        },
+        {
+          "startLine": 119,
+          "remove": [
+            "**Immediate containment (no restart required):**"
+          ],
+          "insert": [
+            "**Immediate containment (native run overrides only; not an external gateway admission cap):**"
+          ]
+        },
+        {
+          "startLine": 141,
+          "remove": [
+            "2. Agent-file `cost_limits` edits are hot-reloaded by the periodic reload within `agents_reload_interval` (default 30s), so a restart is optional. For immediate effect, use the runtime overrides above, or restart Talon:"
+          ],
+          "insert": [
+            "2. Agent-file `cost_limits` edits are hot-reloaded by the periodic reload within `agents_reload_interval` (default 30s), so a restart is optional. For an external use case, stop or isolate traffic if immediate containment is required; verify the new generation before resuming. If a restart is needed, restart the existing service with its original configuration, keys and serving flags (do not switch modes):"
+          ]
+        },
+        {
+          "startLine": 143,
+          "remove": [
+            "```bash",
+            "talon serve --config <path>",
+            "```"
+          ],
+          "insert": [
+            "3. For model gateway traffic, use the documented admission caps and policy-valid fallback configuration. Do not assume native cost-degradation settings automatically route gateway requests to cheaper models. [Cost governance](cost-governance-by-agent.md) explains estimate-based limits and the [configuration reference](../reference/configuration.md) explains provider fallback."
+          ]
+        },
+        {
+          "startLine": 147,
+          "remove": [
+            "3. For gradual degradation instead of hard cutoffs, enable cost degradation:",
+            "",
+            "```yaml",
+            "policies:",
+            "  degradation:",
+            "    enabled: true",
+            "```",
+            "",
+            "This automatically routes to cheaper models as budget thresholds are approached.",
+            ""
+          ],
+          "insert": []
+        },
+        {
+          "startLine": 172,
+          "remove": [
+            "1. In the agent's `tool_policies`, switch the specific tool from redaction to audit-only:"
+          ],
+          "insert": [
+            "1. The following describes a legacy tool-policy configuration, not the governed MCP action contract. Do not weaken PII prevention merely to restore functionality. In an isolated test, establish the applicable boundary, required data and company constraints; obtain approval for any policy change. A tool-level audit-only setting cannot lift a binding company policy. See [governed MCP tools](mcp-governed-tools.md)."
+          ]
+        },
+        {
+          "startLine": 180,
+          "remove": [
+            "2. Verify that evidence still records the PII finding — `pii_action: \"audit\"` logs the detection without altering the data, preserving the compliance trail."
+          ],
+          "insert": [
+            "2. Verify the actual data sent to the synthetic downstream destination and the signed decision. Observation is not prevention. If the required data cannot be sent under company policy, leave the operation blocked."
+          ]
+        },
+        {
+          "startLine": 189,
+          "remove": [
+            "**Diagnose:**"
+          ],
+          "insert": [
+            "**Diagnose (native runtime circuit breaker):**"
           ]
         }
       ]
