@@ -1331,6 +1331,249 @@
           ]
         }
       ]
+    },
+    {
+      "path": "docs/guides/governing-coding-agents.md",
+      "originalBlob": "58b860db9c48ea441db1dba0bebb8eba947be934",
+      "correctedBlob": "88f4a2a817fa8eaf1a41aaa6d9e64455929da899",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 79,
+          "remove": [
+            "talon secrets set anthropic-api-key \"sk-ant-...\"",
+            "talon secrets set openai-api-key \"sk-...\""
+          ],
+          "insert": [
+            "printf '%s' \"$ANTHROPIC_API_KEY\" | talon secrets set anthropic-api-key",
+            "printf '%s' \"$OPENAI_API_KEY\" | talon secrets set openai-api-key"
+          ]
+        },
+        {
+          "startLine": 83,
+          "remove": [
+            "talon secrets set claude-code-talon-key \"$(openssl rand -hex 24)\"",
+            "talon secrets set codex-talon-key       \"$(openssl rand -hex 24)\""
+          ],
+          "insert": [
+            "CLAUDE_CODE_TALON_KEY=\"$(openssl rand -hex 24)\"",
+            "# Save this value securely for the intended caller before leaving the shell.",
+            "printf '%s' \"$CLAUDE_CODE_TALON_KEY\" | talon secrets set claude-code-talon-key",
+            "CODEX_TALON_KEY=\"$(openssl rand -hex 24)\"",
+            "# Save this value securely for the intended caller before leaving the shell.",
+            "printf '%s' \"$CODEX_TALON_KEY\" | talon secrets set codex-talon-key"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/multi-tenant-msp.md",
+      "originalBlob": "5d63e7ba77bb26e3ab5f04bdddb9b757b3a65112",
+      "correctedBlob": "0593e71e20835515d09ed143f2624347a5c5bc35",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 37,
+          "remove": [
+            "talon secrets set customer-acme-api-talon-key   \"$(openssl rand -hex 24)\"",
+            "talon secrets set customer-globex-api-talon-key \"$(openssl rand -hex 24)\""
+          ],
+          "insert": [
+            "CUSTOMER_ACME_API_TALON_KEY=\"$(openssl rand -hex 24)\"",
+            "# Save this value securely for the intended caller before leaving the shell.",
+            "printf '%s' \"$CUSTOMER_ACME_API_TALON_KEY\" | talon secrets set customer-acme-api-talon-key",
+            "CUSTOMER_GLOBEX_API_TALON_KEY=\"$(openssl rand -hex 24)\"",
+            "# Save this value securely for the intended caller before leaving the shell.",
+            "printf '%s' \"$CUSTOMER_GLOBEX_API_TALON_KEY\" | talon secrets set customer-globex-api-talon-key"
+          ]
+        },
+        {
+          "startLine": 85,
+          "remove": [
+            "talon secrets set acme-openai-key \"sk-...\" --tenant acme"
+          ],
+          "insert": [
+            "printf '%s' \"$ACME_PROVIDER_API_KEY\" | talon secrets set acme-openai-key --tenant acme"
+          ]
+        },
+        {
+          "startLine": 88,
+          "remove": [
+            "talon secrets set acme-sales-key \"sk-...\" --tenant acme --agent \"sales-*\""
+          ],
+          "insert": [
+            "printf '%s' \"$ACME_PROVIDER_API_KEY\" | talon secrets set acme-sales-key --tenant acme --agent \"sales-*\""
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/local-scanner-engines.md",
+      "originalBlob": "eb726793efadad8ee63c8189ed4f4d97a3a8352a",
+      "correctedBlob": "be71ee06aaf65f686b208d8ebfbd7fa9e13e8fbf",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 57,
+          "remove": [
+            "talon secrets set openai-api-key \"sk-proj-...\"   # real key; vault-encrypted"
+          ],
+          "insert": [
+            "printf '%s' \"$OPENAI_API_KEY\" | talon secrets set openai-api-key   # real key; vault-encrypted"
+          ]
+        },
+        {
+          "startLine": 71,
+          "remove": [
+            "  mode: \"enforce\""
+          ],
+          "insert": []
+        },
+        {
+          "startLine": 83,
+          "remove": [
+            "talon secrets set me-talon-key \"talon-drive-key\""
+          ],
+          "insert": [
+            "printf '%s' 'talon-drive-key' | talon secrets set me-talon-key # public local fixture key only"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/plan-review-operators.md",
+      "originalBlob": "197eb6107ce4cfc6317e00d21e7016b75e8bb1de",
+      "correctedBlob": "4fc6c027d214162721f1e893d0d345176d8afd82",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 48,
+          "remove": [
+            "talon secrets set openai-api-key \"$OPENAI_API_KEY\""
+          ],
+          "insert": [
+            "printf '%s' \"$OPENAI_API_KEY\" | talon secrets set openai-api-key"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/plan-review-e2e-testcase.md",
+      "originalBlob": "d7e56aa8452c370f5c0304bce115f26e173b47c0",
+      "correctedBlob": "2bae9a5f805e7e34235dfd8f22bae2a4b0af4b9d",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 64,
+          "remove": [
+            "[[ -n \"${OPENAI_API_KEY:-}\" ]] && talon secrets set openai-api-key \"$OPENAI_API_KEY\""
+          ],
+          "insert": [
+            "[[ -n \"${OPENAI_API_KEY:-}\" ]] && printf '%s' \"$OPENAI_API_KEY\" | talon secrets set openai-api-key"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/cicd-pipeline-governance.md",
+      "originalBlob": "cc00d8ff687fe901c8a3808dd17c99c7b641d758",
+      "correctedBlob": "7f2b41e7fcf3d3dabc91150979ee943adef3646d",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 30,
+          "remove": [
+            "talon secrets set ci-openai-talon-key \"$(openssl rand -hex 24)\""
+          ],
+          "insert": [
+            "CI_OPENAI_TALON_KEY=\"$(openssl rand -hex 24)\"",
+            "# Save this value securely for the intended caller before leaving the shell.",
+            "printf '%s' \"$CI_OPENAI_TALON_KEY\" | talon secrets set ci-openai-talon-key"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/internal-support-agent.md",
+      "originalBlob": "a04767780f8e514e9a483456708cb64fb0cafc62",
+      "correctedBlob": "90b5b5a9291ddf6c89e1486fdff0aa4579f2115a",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 48,
+          "remove": [
+            "talon secrets set support-incoming-webhook \"$(openssl rand -hex 24)\""
+          ],
+          "insert": [
+            "SUPPORT_INCOMING_WEBHOOK=\"$(openssl rand -hex 24)\"",
+            "# Save this value securely for the intended caller before leaving the shell.",
+            "printf '%s' \"$SUPPORT_INCOMING_WEBHOOK\" | talon secrets set support-incoming-webhook"
+          ]
+        }
+      ]
     }
   ]
 }
