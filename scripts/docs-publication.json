@@ -752,6 +752,271 @@
           ]
         }
       ]
+    },
+    {
+      "path": "docs/guides/policy-cookbook.md",
+      "originalBlob": "2b31cbc070aadc797f86f5d526b03f77ce8c516e",
+      "correctedBlob": "aea58909e9608b47c27a7537a4b18ca2b37408b8",
+      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 248,
+          "remove": [],
+          "insert": [
+            "**Boundary:** This is legacy native Plan Review, not exact-action authorization and not an approval gate for external tool execution. For current HTTP and MCP actions, use [Action Gateway](../reference/action-gateway.md) and [governed MCP tools](mcp-governed-tools.md) with a separate reviewer credential.",
+            ""
+          ]
+        },
+        {
+          "startLine": 263,
+          "remove": [],
+          "insert": [
+            "**Historical native planning recipe:** v1.17.0 removed the in-process customer-tool registry and native tool execution loop. This section describes legacy planning configuration and intent classification, not a supported mechanism to intercept external tool execution. Use declared actions and exact-action rules for HTTP/MCP.",
+            ""
+          ]
+        },
+        {
+          "startLine": 286,
+          "remove": [],
+          "insert": [
+            "**Historical native tool recipe:** the native in-process tool loop was removed. This is not a runnable v1.17 gateway or governed MCP recipe. Implement validation in the trusted downstream service and use the [Action Gateway](../reference/action-gateway.md) for bound authorization of catalogued actions.",
+            ""
+          ]
+        },
+        {
+          "startLine": 361,
+          "remove": [],
+          "insert": [
+            "**Legacy native planning only:** this does not authorize or dispatch external tools; the current exact-action lifecycle is separate.",
+            ""
+          ]
+        },
+        {
+          "startLine": 379,
+          "remove": [],
+          "insert": [
+            "**Historical native tool configuration:** this is not the idempotency contract of the v1.17 HTTP or MCP Action Gateway. Use stable logical operation IDs, bound arguments and the documented attempt lifecycle; an unknown outcome requires reconciliation, not blind replay. See [Action Gateway](../reference/action-gateway.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 433,
+          "remove": [
+            "    secret_name: claude-code-talon-key   # mint: talon secrets set claude-code-talon-key \"$(openssl rand -hex 24)\""
+          ],
+          "insert": [
+            "    secret_name: claude-code-talon-key   # vault reference; generate/store the secret via stdin as in the onboarding guide"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/explanation/what-talon-does-to-your-request.md",
+      "originalBlob": "c33298454650efcb363fce8d3fcbfc95181180af",
+      "correctedBlob": "1e519e3f5ec90ca0a8d4a986b3b38c87712c6054",
+      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 188,
+          "remove": [
+            "**Streaming (SSE):** Talon detects `text/event-stream` in the response",
+            "`Content-Type` and enters streaming mode. SSE chunks are forwarded as received",
+            "using a `bufio.Scanner` with 512KB buffer. Each chunk is flushed immediately.",
+            "Token usage is extracted incrementally from `data:` lines. The client sees the",
+            "first token at the same time it would without Talon (minus the ~15ms pipeline",
+            "overhead on the initial request)."
+          ],
+          "insert": [
+            "**Streaming (SSE):** Talon detects `text/event-stream`. Delivery depends on the effective response rule: `allow` and `warn` stream as received; `warn` observes after delivery. Preventive `redact` and `block` hold the response until a verdict. See Step 11 for the exact response contract. Token usage is extracted from provider usage events where available. Measure time to first token in your environment."
+          ]
+        },
+        {
+          "startLine": 199,
+          "remove": [
+            "- **Latency:** Network RTT to provider (pass-through, no additional buffering",
+            "  for streaming responses)"
+          ],
+          "insert": [
+            "- **Latency:** Upstream latency plus policy-dependent processing; preventive response rules buffer streams."
+          ]
+        },
+        {
+          "startLine": 272,
+          "remove": [
+            "| 10 | Forward | Network RTT | No buffering for streams |",
+            "| 11 | Response PII scan | 2-5ms | Non-streaming only |"
+          ],
+          "insert": [
+            "| 10 | Forward | Upstream-dependent | Preventive response rules buffer streams |",
+            "| 11 | Response PII scan | Payload/engine-dependent | Non-streaming and applicable streaming rules |"
+          ]
+        },
+        {
+          "startLine": 275,
+          "remove": [
+            "| **Total overhead** | | **<15ms** | **Excluding network RTT** |"
+          ],
+          "insert": [
+            "| **Small non-streaming mock benchmark target** | | **<15ms** | **Not a streaming, concurrency or production SLA** |"
+          ]
+        },
+        {
+          "startLine": 316,
+          "remove": [
+            "- **Does not buffer streaming responses.** SSE chunks are forwarded to the",
+            "  client as they arrive from the provider. There is no full-response buffering",
+            "  for streaming requests."
+          ],
+          "insert": [
+            "- **Does not buffer streaming responses under `allow` or `warn`.** Preventive `redact` and `block` buffer until the verdict; `warn` cannot recall already delivered bytes."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reference/benchmarks.md",
+      "originalBlob": "d1a8ae081463a728b84e3a4f22131308d8150784",
+      "correctedBlob": "be5058566698f8841783f74dfa648fc7b97300e4",
+      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 5,
+          "remove": [
+            "The README states that pipeline overhead is typically **under 15 ms excluding upstream",
+            "latency**. This document defines how to reproduce the micro-benchmarks behind that claim,"
+          ],
+          "insert": [
+            "The README's **under 15 ms excluding upstream latency** target applies to the small-payload, non-streaming mock-upstream benchmark; it is not a production performance guarantee. This document defines how to reproduce the micro-benchmarks behind that claim,"
+          ]
+        },
+        {
+          "startLine": 45,
+          "remove": [
+            "- **Retry / fallback routing** — not benchmarked until Epic #113 ([#138](https://github.com/dativo-io/talon/issues/138) / [#139](https://github.com/dativo-io/talon/issues/139)) lands."
+          ],
+          "insert": [
+            "- **Retry / fallback routing** — shipped, but excluded from this benchmark. Measure it independently under representative failure conditions."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/explanation/control-plane.md",
+      "originalBlob": "e31ae0963dffae2da087d6de2721ec508037f88f",
+      "correctedBlob": "e6a70fdd4a48f080e5250974dbcdf14a63c29c56",
+      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 29,
+          "remove": [
+            "Per-agent cost caps (deny before the provider call) + hard session caps (atomic reservation, #144)"
+          ],
+          "insert": [
+            "Estimated-cost admission caps per agent and session (atomic reservation, not invoice ceilings, #144)"
+          ]
+        },
+        {
+          "startLine": 33,
+          "remove": [
+            "MCP tool-call interception; tool schema filtering"
+          ],
+          "insert": [
+            "Declared governed MCP tool calls via POST /mcp; model-request tool schema filtering (distinct boundaries)"
+          ]
+        },
+        {
+          "startLine": 39,
+          "remove": [
+            "Cost warning thresholds as signed evidence + one org cost webhook; hard session caps by atomic reservation (#144)"
+          ],
+          "insert": [
+            "Cost warning thresholds as signed evidence + one org cost webhook; session admission reservation (#144)"
+          ]
+        },
+        {
+          "startLine": 43,
+          "remove": [],
+          "insert": [
+            "CLI-primary fleet operations and read-only Operations Console (#533)"
+          ]
+        },
+        {
+          "startLine": 45,
+          "remove": [
+            "Exact governed actions over the public Action Gateway: immutable operation, approver-only decision, at most one Talon-forwarded effect, signed lifecycle evidence (#458)"
+          ],
+          "insert": [
+            "Exact governed HTTP and MCP actions via the shared Action Gateway: bound operation, approver-only decision, separate dispatch, signed lifecycle evidence (#458/#431)"
+          ]
+        },
+        {
+          "startLine": 52,
+          "remove": [
+            "MCP governance convergence onto ActionGovernance and one canonical POST /mcp (#431), Tasks continuation (#448)"
+          ],
+          "insert": [
+            "MCP Tasks continuation (#448)"
+          ]
+        },
+        {
+          "startLine": 55,
+          "remove": [
+            "CLI-primary fleet operations; read-only OSS operations console as a projection of the same semantics (#533)"
+          ],
+          "insert": [
+            ""
+          ]
+        },
+        {
+          "startLine": 87,
+          "remove": [
+            "`managed_by` is the single session field that names the concrete runtime or orchestrator responsible for the session lifecycle—for example `talon`, `n8n`, `claude-code` or `codex`. The separate `source` field records only how Talon obtained the session identity. Neither field authenticates authority or changes policy, and Talon does not expose a separate `lifecycle_owner` concept."
+          ],
+          "insert": [
+            "In the target #401 design (not the released session store), `managed_by` is the single session field that names the concrete runtime or orchestrator responsible for the session lifecycle—for example `talon`, `n8n`, `claude-code` or `codex`. The separate `source` field records only how Talon obtained the session identity. Neither field authenticates authority or changes policy, and Talon does not expose a separate `lifecycle_owner` concept."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reference/configuration.md",
+      "originalBlob": "daff626f347d8dd0f7e59837ca7c6e0f1f1a4993",
+      "correctedBlob": "3c2b727eac3dcad9a53e5d92701a27e416f5b8ec",
+      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 13,
+          "remove": [
+            "| **Contains** | Agent identity (name, tenant, vault-bound traffic key), capabilities (allowed tools, forbidden patterns), memory governance, triggers (cron + webhooks), secrets ACL, attachment handling, compliance framework declarations, cost limits, audit settings | LLM provider connections (endpoint, key env var, region, timeout), gateway settings (providers, organization baseline policy, mode, rate limits), data directory, secrets encryption key, evidence storage path, observability |"
+          ],
+          "insert": [
+            "| **Contains** | Agent identity (name, tenant, vault-bound traffic key), capabilities (allowed tools, forbidden patterns), memory governance, triggers (cron + webhooks), secrets ACL, attachment handling, compliance framework declarations, cost limits, audit settings | LLM provider connections (endpoint, key env var, region, timeout), gateway settings (providers, organization baseline policy, rate limits), data directory, secrets encryption key, evidence storage path, observability |"
+          ]
+        },
+        {
+          "startLine": 410,
+          "remove": [
+            "| `gateway.organization_policy` | The organization policy every agent inherits, split into two explicit classes (#287): `defaults:` — per-agent starting values an agent override may **replace** (`pii_action`, `response_pii_action`, `daily_cost` / `monthly_cost` / `session_cost`, `tool_policy_action`, `attachment_policy`) — and `constraints:` — organization-wide **hard bounds** an agent may only tighten within, never escape (`allowed_providers`, `allowed_models` / `blocked_models`, `allowed_tools`, `forbidden_tools`, `action_approvals` — the company action policy for catalogued actions, #425, see [Action Gateway](action-gateway.md#company-action-policy-talonconfigyaml-425) — `max_daily_cost` / `max_monthly_cost` / `max_session_cost`, `max_data_tier`, `egress`). Org-owned observability scalars stay top-level: `log_prompts` / `log_responses` / `log_response_preview_chars`, `scan_tool_content`. Renamed from `default_policy` (#266). |"
+          ],
+          "insert": [
+            "| `gateway.organization_policy` | The organization policy every agent inherits, split into two explicit classes (#287): `defaults:` — per-agent starting values with field-specific precedence (positive budget overrides replace defaults; PII and tool-policy action overrides can only tighten; attachment policy is company-owned) — and `constraints:` — organization-wide **hard bounds** an agent may only tighten within, never escape (`allowed_providers`, `allowed_models` / `blocked_models`, `allowed_tools`, `forbidden_tools`, `action_approvals` — the company action policy for catalogued actions, #425, see [Action Gateway](action-gateway.md#company-action-policy-talonconfigyaml-425) — `max_daily_cost` / `max_monthly_cost` / `max_session_cost`, `max_data_tier`, `egress`). Org-owned observability scalars stay top-level: `log_prompts` / `log_responses` / `log_response_preview_chars`, `scan_tool_content`. Renamed from `default_policy` (#266). |"
+          ]
+        },
+        {
+          "startLine": 424,
+          "remove": [
+            "**Hot vs restart-required.** Hot-reloadable: agent file contents (`enabled`, identity metadata, key binding *name*, policy overrides) and `agents_dir` membership. Restart-required: the company action policy (`gateway.organization_policy.constraints.forbidden_tools` / `.action_approvals`, #425 — loaded once at start and frozen into every generation; a restart activates the change as a new effective generation and invalidates approvals established under the old one), trigger/webhook **definitions** and webhook secret values (#297, #479 — dispatch still re-resolves the current generation, so `enabled` and policy edits govern the next firing), `gateway:` block (organization policy, providers, mode), listeners/ports, scanner infrastructure, pricing and sovereignty. **Key rotation** via `talon secrets set` alone is not detected (the file digest is unchanged) — rotate = set the secret + restart, or touch the agent file. **Secret deletion/revocation of an *enabled* agent is likewise NOT a hot revocation:** the reload cannot build a valid registry for that agent, so the whole generation is rejected and last-known-good keeps the old key serving. To revoke access, **disable** the agent — that IS hot: the disabled generation activates with the prior key carried forward as a *denial-only* identity (the gateway returns an attributed 403; the tenant-API surface rejects it), so the old credential authorizes nothing — or restart."
+          ],
+          "insert": [
+            "**Hot vs restart-required.** Hot-reloadable: agent file contents (`enabled`, identity metadata, key binding *name*, policy overrides) and `agents_dir` membership. Restart-required: the company action policy (`gateway.organization_policy.constraints.forbidden_tools` / `.action_approvals`, #425 — loaded once at start and frozen into every generation; a restart activates the change as a new effective generation and invalidates approvals established under the old one), trigger/webhook **definitions** and webhook secret values (#297, #479 — dispatch still re-resolves the current generation, so `enabled` and policy edits govern the next firing), `gateway:` block (organization policy, providers), listeners/ports, scanner infrastructure, pricing and sovereignty. **Key rotation** via `talon secrets set` alone is not detected (the file digest is unchanged) — rotate = set the secret + restart, or touch the agent file. **Secret deletion/revocation of an *enabled* agent is likewise NOT a hot revocation:** the reload cannot build a valid registry for that agent, so the whole generation is rejected and last-known-good keeps the old key serving. To revoke access, **disable** the agent — that IS hot: the disabled generation activates with the prior key carried forward as a *denial-only* identity (the gateway returns an attributed 403; the tenant-API surface rejects it), so the old credential authorizes nothing — or restart."
+          ]
+        }
+      ]
     }
   ]
 }
