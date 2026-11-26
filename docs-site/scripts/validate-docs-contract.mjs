@@ -17,6 +17,7 @@ const talonRoot = explicitTalonRepoPath ?? siblingTalonRepoPath;
 
 const localOwnedDocs = new Map([
   ['index', 'index.md'],
+  ['compatibility', 'compatibility.md'],
   ['technical-evaluation', 'technical-evaluation.md'],
   ['coding-agents-demo', 'coding-agents-demo.md'],
   ['use-case-playbooks', 'use-case-playbooks.md'],
@@ -117,6 +118,7 @@ if (!sourcesOnly) {
 
   const requiredFirstClassDocs = [
     'technical-evaluation',
+    'compatibility',
     'product-demo',
     'use-case-playbooks',
     'evaluation-checklist',

@@ -53,7 +53,7 @@ Review architecture, security, evidence, deployment and editions before a pilot.
 - [Claude Code](./claude-code-integration.md)
 - [Codex CLI](./codex-cli-integration.md)
 - [Governed MCP tools](./mcp-governed-tools.md)
-- [All integration paths](./choosing-integration-path.md)
+- [Compatibility and all integration paths](./compatibility.md)
 
 </div>
 
