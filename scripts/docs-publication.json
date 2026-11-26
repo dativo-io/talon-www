@@ -283,7 +283,7 @@
       "path": "docs/tutorials/evidence-integrity-demo.md",
       "originalBlob": "20938efbfbaff550ee5df6f8f0090723c1b3e059",
       "correctedBlob": "cde67c3e621d8eb79fb4392aa7f9fbf094f26ff9",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -355,7 +355,7 @@
       "path": "docs/tutorials/action-gateway-proof.md",
       "originalBlob": "388293c3b2ab555a8befe2cb28d4facfe1ab9301",
       "correctedBlob": "b4e6bcb8649fbcd2b92fb39407e4865d6de52d4d",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -391,7 +391,7 @@
       "path": "docs/guides/cost-governance-by-agent.md",
       "originalBlob": "168167ab436e3ac5caf9ef056eab37356ebbf716",
       "correctedBlob": "af71d7b15b94f1625eb16939afe44c4ceb953fee",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -536,7 +536,7 @@
       "path": "docs/guides/add-talon-to-existing-app.md",
       "originalBlob": "9b12ef83343fe9b31bd44f38a17c09a2e0ed01ab",
       "correctedBlob": "3740455154408f4fedc2446c7de1a5031ab64cec",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -603,7 +603,7 @@
       "path": "docs/reference/object-model.md",
       "originalBlob": "6d9cd97333ee531eb908c87fcb081545f99f1539",
       "correctedBlob": "1b98e5df5759bd3ce899df300f6559183f3ca9f8",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -649,7 +649,7 @@
       "path": "docs/guides/incident-response-playbook.md",
       "originalBlob": "8a9907980e987db9ee87f89db07aeadd9a5c4c89",
       "correctedBlob": "05c09e53322334e3157a3689ffbd57be0ea1996f",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -757,7 +757,7 @@
       "path": "docs/guides/policy-cookbook.md",
       "originalBlob": "2b31cbc070aadc797f86f5d526b03f77ce8c516e",
       "correctedBlob": "aea58909e9608b47c27a7537a4b18ca2b37408b8",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -815,7 +815,7 @@
       "path": "docs/explanation/what-talon-does-to-your-request.md",
       "originalBlob": "c33298454650efcb363fce8d3fcbfc95181180af",
       "correctedBlob": "1e519e3f5ec90ca0a8d4a986b3b38c87712c6054",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -879,7 +879,7 @@
       "path": "docs/reference/benchmarks.md",
       "originalBlob": "d1a8ae081463a728b84e3a4f22131308d8150784",
       "correctedBlob": "be5058566698f8841783f74dfa648fc7b97300e4",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -1004,15 +1004,15 @@
     {
       "path": "docs/guides/slack-bot-integration.md",
       "originalBlob": "de054c7962e48b19f9344a5f7ed7666f8e3d9491",
-      "correctedBlob": "ca95573e35d9a3bcd704430bd7279a0548dd6b3d",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "correctedBlob": "b3626861a650f7b01311b259a3ab294307c625f8",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
           "startLine": 3,
           "remove": [],
           "insert": [
-            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            "**Credential handling:** Load `OPENAI_API_KEY` on the Talon host. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
             ""
           ]
         },
@@ -1453,15 +1453,15 @@
     {
       "path": "docs/guides/plan-review-operators.md",
       "originalBlob": "197eb6107ce4cfc6317e00d21e7016b75e8bb1de",
-      "correctedBlob": "4fc6c027d214162721f1e893d0d345176d8afd82",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "correctedBlob": "b4fa6dc46d087b0c3d7bc246961f57796d360ef6",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
           "startLine": 3,
           "remove": [],
           "insert": [
-            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            "**Credential handling:** Load `OPENAI_API_KEY` for the OpenAI example. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
             ""
           ]
         },
@@ -1479,15 +1479,15 @@
     {
       "path": "docs/guides/plan-review-e2e-testcase.md",
       "originalBlob": "d7e56aa8452c370f5c0304bce115f26e173b47c0",
-      "correctedBlob": "2bae9a5f805e7e34235dfd8f22bae2a4b0af4b9d",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "correctedBlob": "dd6df262d766ee74d47fa2966bdd6715f5db4684",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
           "startLine": 3,
           "remove": [],
           "insert": [
-            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            "**Credential handling:** Load `OPENAI_API_KEY` only if using the optional live provider path. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
             ""
           ]
         },
@@ -1561,15 +1561,15 @@
     {
       "path": "docs/reference/configuration.md",
       "originalBlob": "daff626f347d8dd0f7e59837ca7c6e0f1f1a4993",
-      "correctedBlob": "688766b1d1a41c72e2d7ee2f693621b92c5fccf0",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "correctedBlob": "06ef0781a14470c484297d117029361863a1d1d5",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
           "startLine": 3,
           "remove": [],
           "insert": [
-            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](../guides/add-talon-to-existing-app.md).",
+            "**Credential handling:** For provider examples, use the environment variable named by the provider configuration (for example `OPENAI_API_KEY`). Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](../guides/add-talon-to-existing-app.md).",
             ""
           ]
         },
@@ -1635,7 +1635,7 @@
       "path": "docs/tutorials/manual-governed-session.md",
       "originalBlob": "4bd178e5510a31c9a2ee411d1c517f59a509f8c6",
       "correctedBlob": "ce5435947015d68cfcfafd116571153009081353",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -1653,7 +1653,7 @@
       "path": "docs/tutorials/first-governed-agent.md",
       "originalBlob": "3210b5b83c9698dea4fd7ccd8d593b289cfc220f",
       "correctedBlob": "23a4117e0085a5c1b0a821278d243b3480b50769",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
