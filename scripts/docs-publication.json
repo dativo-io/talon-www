@@ -283,7 +283,7 @@
       "path": "docs/tutorials/evidence-integrity-demo.md",
       "originalBlob": "20938efbfbaff550ee5df6f8f0090723c1b3e059",
       "correctedBlob": "cde67c3e621d8eb79fb4392aa7f9fbf094f26ff9",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -355,7 +355,7 @@
       "path": "docs/tutorials/action-gateway-proof.md",
       "originalBlob": "388293c3b2ab555a8befe2cb28d4facfe1ab9301",
       "correctedBlob": "b4e6bcb8649fbcd2b92fb39407e4865d6de52d4d",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -391,7 +391,7 @@
       "path": "docs/guides/cost-governance-by-agent.md",
       "originalBlob": "168167ab436e3ac5caf9ef056eab37356ebbf716",
       "correctedBlob": "af71d7b15b94f1625eb16939afe44c4ceb953fee",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -536,7 +536,7 @@
       "path": "docs/guides/add-talon-to-existing-app.md",
       "originalBlob": "9b12ef83343fe9b31bd44f38a17c09a2e0ed01ab",
       "correctedBlob": "3740455154408f4fedc2446c7de1a5031ab64cec",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -603,7 +603,7 @@
       "path": "docs/reference/object-model.md",
       "originalBlob": "6d9cd97333ee531eb908c87fcb081545f99f1539",
       "correctedBlob": "1b98e5df5759bd3ce899df300f6559183f3ca9f8",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -649,7 +649,7 @@
       "path": "docs/guides/incident-response-playbook.md",
       "originalBlob": "8a9907980e987db9ee87f89db07aeadd9a5c4c89",
       "correctedBlob": "7f1ac2b22a571faca48931a36162e76a4016bbf1",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -780,7 +780,7 @@
       "path": "docs/guides/policy-cookbook.md",
       "originalBlob": "2b31cbc070aadc797f86f5d526b03f77ce8c516e",
       "correctedBlob": "aea58909e9608b47c27a7537a4b18ca2b37408b8",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -838,7 +838,7 @@
       "path": "docs/explanation/what-talon-does-to-your-request.md",
       "originalBlob": "c33298454650efcb363fce8d3fcbfc95181180af",
       "correctedBlob": "1e519e3f5ec90ca0a8d4a986b3b38c87712c6054",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -902,7 +902,7 @@
       "path": "docs/reference/benchmarks.md",
       "originalBlob": "d1a8ae081463a728b84e3a4f22131308d8150784",
       "correctedBlob": "49ed777c3cc0ef2f42bea01b4240015d71cfb03c",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -939,7 +939,7 @@
       "path": "docs/explanation/control-plane.md",
       "originalBlob": "e31ae0963dffae2da087d6de2721ec508037f88f",
       "correctedBlob": "668f1294002e051126208a45403d24a2961fbce6",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -1037,7 +1037,7 @@
       "path": "docs/guides/slack-bot-integration.md",
       "originalBlob": "de054c7962e48b19f9344a5f7ed7666f8e3d9491",
       "correctedBlob": "b3626861a650f7b01311b259a3ab294307c625f8",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -1074,7 +1074,7 @@
       "path": "docs/guides/openclaw-integration.md",
       "originalBlob": "1a66b5c04f05e8a0d87da2243f750d942323d69e",
       "correctedBlob": "0e6ac17e8b8ce009dfafceafe7bac481530e1128",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -1129,7 +1129,7 @@
       "path": "docs/guides/openclaw-talon-primer/docker-openclaw-talon-primer.md",
       "originalBlob": "34292f58f50e587890c024d8df53bca0d6612177",
       "correctedBlob": "b8ff7fdbb7322b75c74c9c7befd4df7e7092bb6d",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -1164,7 +1164,7 @@
       "path": "docs/guides/copaw-integration.md",
       "originalBlob": "f3d25f0cad4cf0fbff1fac99ff22af1061dc293a",
       "correctedBlob": "9ad82519ad92b8ed3f4a4eb7c527d32d84dc0f86",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -1210,7 +1210,7 @@
       "path": "docs/guides/copaw-talon-primer/docker-copaw-talon-primer.md",
       "originalBlob": "ac1a40356a19cb5ce08fe65f12609dbca034146b",
       "correctedBlob": "b1cf6209c0ea9048b6f8243d5e256283195787a9",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -1236,7 +1236,7 @@
       "path": "docs/guides/codex-cli-integration.md",
       "originalBlob": "d6e76d9fc01b364e61f076904004ff8b906d342e",
       "correctedBlob": "8447d0ffbc9c63f84fc8f489dba069104a6242c6",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -1289,7 +1289,7 @@
       "path": "docs/guides/claude-code-integration.md",
       "originalBlob": "69a22a45281ad1cf9a46ad0057c8d469188b2289",
       "correctedBlob": "cadd0c47d3e639a4305a92185eff2a9a54712168",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -1351,7 +1351,7 @@
       "path": "docs/guides/governing-coding-agents.md",
       "originalBlob": "58b860db9c48ea441db1dba0bebb8eba947be934",
       "correctedBlob": "8d0075fd3036d8edb66db003b6bb6249f0657c3c",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -1394,7 +1394,7 @@
       "path": "docs/guides/multi-tenant-msp.md",
       "originalBlob": "5d63e7ba77bb26e3ab5f04bdddb9b757b3a65112",
       "correctedBlob": "d4b94ff17ba6f54ea3dbab78b074a06555dc62aa",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -1444,7 +1444,7 @@
       "path": "docs/guides/local-scanner-engines.md",
       "originalBlob": "eb726793efadad8ee63c8189ed4f4d97a3a8352a",
       "correctedBlob": "1d3f57e499497c6917366e11b08d14b7a0fdc2a4",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -1486,7 +1486,7 @@
       "path": "docs/guides/plan-review-operators.md",
       "originalBlob": "197eb6107ce4cfc6317e00d21e7016b75e8bb1de",
       "correctedBlob": "b4fa6dc46d087b0c3d7bc246961f57796d360ef6",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -1512,7 +1512,7 @@
       "path": "docs/guides/plan-review-e2e-testcase.md",
       "originalBlob": "d7e56aa8452c370f5c0304bce115f26e173b47c0",
       "correctedBlob": "dd6df262d766ee74d47fa2966bdd6715f5db4684",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -1538,7 +1538,7 @@
       "path": "docs/guides/cicd-pipeline-governance.md",
       "originalBlob": "cc00d8ff687fe901c8a3808dd17c99c7b641d758",
       "correctedBlob": "2c35c853c1953807ea4e0cc97901c6670d0fd7fa",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -1566,7 +1566,7 @@
       "path": "docs/guides/internal-support-agent.md",
       "originalBlob": "a04767780f8e514e9a483456708cb64fb0cafc62",
       "correctedBlob": "e4e26f7365b8cbff47f14840e147103b8307fefd",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -1594,7 +1594,7 @@
       "path": "docs/reference/configuration.md",
       "originalBlob": "daff626f347d8dd0f7e59837ca7c6e0f1f1a4993",
       "correctedBlob": "06ef0781a14470c484297d117029361863a1d1d5",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -1667,7 +1667,7 @@
       "path": "docs/tutorials/manual-governed-session.md",
       "originalBlob": "4bd178e5510a31c9a2ee411d1c517f59a509f8c6",
       "correctedBlob": "ce5435947015d68cfcfafd116571153009081353",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -1685,7 +1685,7 @@
       "path": "docs/tutorials/first-governed-agent.md",
       "originalBlob": "3210b5b83c9698dea4fd7ccd8d593b289cfc220f",
       "correctedBlob": "bc2e76c0b6134475b9d851dd80e6369bbba64e57",
-      "sourceCommit": "6e17a072dc0149e3a7e62cc920de9aeb008ab33e",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
