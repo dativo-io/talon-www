@@ -1017,6 +1017,320 @@
           ]
         }
       ]
+    },
+    {
+      "path": "docs/guides/slack-bot-integration.md",
+      "originalBlob": "de054c7962e48b19f9344a5f7ed7666f8e3d9491",
+      "correctedBlob": "ca95573e35d9a3bcd704430bd7279a0548dd6b3d",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 24,
+          "remove": [
+            "talon secrets set openai-api-key"
+          ],
+          "insert": [
+            "printf '%s' \"$OPENAI_API_KEY\" | talon secrets set openai-api-key"
+          ]
+        },
+        {
+          "startLine": 58,
+          "remove": [
+            "talon secrets set support-slack-bot-talon-key \"$(openssl rand -hex 24)\""
+          ],
+          "insert": [
+            "SUPPORT_SLACK_BOT_TALON_KEY=\"$(openssl rand -hex 24)\"",
+            "# Save this value securely for the intended caller before leaving the shell.",
+            "printf '%s' \"$SUPPORT_SLACK_BOT_TALON_KEY\" | talon secrets set support-slack-bot-talon-key"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/openclaw-integration.md",
+      "originalBlob": "1a66b5c04f05e8a0d87da2243f750d942323d69e",
+      "correctedBlob": "e9e60ac5d86b41b0c21327f7c9d26ea03fbf8ae4",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 41,
+          "remove": [
+            "talon secrets set openai-api-key \"sk-your-openai-key\"",
+            "# Or: talon secrets set openai-api-key \"$OPENAI_API_KEY\""
+          ],
+          "insert": [
+            "printf '%s' \"$OPENAI_API_KEY\" | talon secrets set openai-api-key",
+            "# Or: printf '%s' \"$OPENAI_API_KEY\" | talon secrets set openai-api-key"
+          ]
+        },
+        {
+          "startLine": 47,
+          "remove": [
+            "talon secrets set openclaw-gateway-talon-key \"$OPENCLAW_KEY\""
+          ],
+          "insert": [
+            "printf '%s' \"$OPENCLAW_KEY\" | talon secrets set openclaw-gateway-talon-key"
+          ]
+        },
+        {
+          "startLine": 60,
+          "remove": [
+            "| **Agent key** (`$OPENCLAW_KEY`) | Workload identity OpenClaw sends in `Authorization: Bearer ...`; resolves to the `openclaw-gateway` agent and its derived tenant. Not used for encryption. | Vault secret `openclaw-gateway-talon-key` (referenced by `agent.key.secret_name` in `agent.talon.yaml`), and the same value in OpenClaw's `openclaw.json` as `models.providers.openai.apiKey`. Rotate with `talon secrets set openclaw-gateway-talon-key <new>` + restart — one active key, never two. |"
+          ],
+          "insert": [
+            "| **Agent key** (`$OPENCLAW_KEY`) | Workload identity OpenClaw sends in `Authorization: Bearer ...`; resolves to the `openclaw-gateway` agent and its derived tenant. Not used for encryption. | Vault secret `openclaw-gateway-talon-key` (referenced by `agent.key.secret_name` in `agent.talon.yaml`), and the same value in OpenClaw's `openclaw.json` as `models.providers.openai.apiKey`. Rotate with the stdin-based `talon secrets set openclaw-gateway-talon-key` procedure + restart — one active key, never two. |"
+          ]
+        },
+        {
+          "startLine": 135,
+          "remove": [
+            "- **`gateway_secret_get_failed` / \"cipher: message authentication failed\"** — Talon can't decrypt the stored OpenAI key. Use the **same** `TALON_SECRETS_KEY` when running `talon secrets set` and `talon serve`. If you lost the key, set a new one and run `talon secrets set openai-api-key \"sk-...\"` again."
+          ],
+          "insert": [
+            "- **`gateway_secret_get_failed` / \"cipher: message authentication failed\"** — Talon can't decrypt the stored OpenAI key. Use the **same** `TALON_SECRETS_KEY` when running `talon secrets set` and `talon serve`. If you lost the key, set a new one and run the stdin-based `talon secrets set openai-api-key` procedure again."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/openclaw-talon-primer/docker-openclaw-talon-primer.md",
+      "originalBlob": "34292f58f50e587890c024d8df53bca0d6612177",
+      "correctedBlob": "79fa375ad08d61b00e676d702ef9c4d77078c963",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](../add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 18,
+          "remove": [
+            "| **API key** (in `Authorization: Bearer ...`) | Set the **OpenAI provider API key** to the primer agent's **Talon agent key** — the value minted into the vault secret referenced by `agent.key.secret_name` in this primer's `agent.talon.yaml` (`talon secrets set gateway-primer-talon-key \"$(openssl rand -hex 24)\"`). Do **not** put your real OpenAI key here. Talon resolves the agent by this key; it then adds the real OpenAI key when forwarding. |"
+          ],
+          "insert": [
+            "| **API key** (in `Authorization: Bearer ...`) | Set the **OpenAI provider API key** to the primer agent's **Talon agent key** — the value minted into the vault secret referenced by `agent.key.secret_name` in this primer's `agent.talon.yaml` (`gateway-primer-talon-key` vault entry; generate a random value, retain it in the intended secret manager and supply it via stdin). Do **not** put your real OpenAI key here. Talon resolves the agent by this key; it then adds the real OpenAI key when forwarding. |"
+          ]
+        },
+        {
+          "startLine": 23,
+          "remove": [
+            "- **Agent key** (the value in the `gateway-primer-talon-key` vault secret, and in OpenClaw's `apiKey`) — The workload identity OpenClaw presents; it resolves to exactly one agent and its tenant. Not used for encryption. The vault value and OpenClaw's `openclaw.json` must match. Rotate with `talon secrets set gateway-primer-talon-key <new>` + restart — one active key per agent, never two."
+          ],
+          "insert": [
+            "- **Agent key** (the value in the `gateway-primer-talon-key` vault secret, and in OpenClaw's `apiKey`) — The workload identity OpenClaw presents; it resolves to exactly one agent and its tenant. Not used for encryption. The vault value and OpenClaw's `openclaw.json` must match. Rotate with the stdin-based `talon secrets set gateway-primer-talon-key` procedure + restart — one active key per agent, never two."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/copaw-integration.md",
+      "originalBlob": "f3d25f0cad4cf0fbff1fac99ff22af1061dc293a",
+      "correctedBlob": "1e63d60aafd17da61a37b294f70860961cdbcee5",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 30,
+          "remove": [
+            "talon secrets set openai-api-key \"sk-your-openai-key\"",
+            "# Or for DashScope: talon secrets set dashscope-api-key \"sk-your-dashscope-key\""
+          ],
+          "insert": [
+            "printf '%s' \"$OPENAI_API_KEY\" | talon secrets set openai-api-key",
+            "# Or for DashScope: printf '%s' \"$DASHSCOPE_API_KEY\" | talon secrets set dashscope-api-key"
+          ]
+        },
+        {
+          "startLine": 35,
+          "remove": [
+            "talon secrets set copaw-gateway-talon-key \"$COPAW_KEY\""
+          ],
+          "insert": [
+            "printf '%s' \"$COPAW_KEY\" | talon secrets set copaw-gateway-talon-key"
+          ]
+        },
+        {
+          "startLine": 82,
+          "remove": [
+            "- Rotation: `talon secrets set copaw-gateway-talon-key <new>` + restart Talon, then update CoPaw — one active key per agent, never two."
+          ],
+          "insert": [
+            "- Rotation: the stdin-based `talon secrets set copaw-gateway-talon-key` procedure + restart Talon, then update CoPaw — one active key per agent, never two."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/copaw-talon-primer/docker-copaw-talon-primer.md",
+      "originalBlob": "ac1a40356a19cb5ce08fe65f12609dbca034146b",
+      "correctedBlob": "a4b98aa33d94e8cf4dd2b7e8939ff3872f1a4771",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](../add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 8,
+          "remove": [
+            "- **API Key** in CoPaw: the primer agent's **Talon agent key** — the value minted into the vault secret referenced by `agent.key.secret_name` in this directory's `agent.talon.yaml` (`talon secrets set gateway-copaw-primer-talon-key \"$(openssl rand -hex 24)\"`). Not your real OpenAI/DashScope key."
+          ],
+          "insert": [
+            "- **API Key** in CoPaw: the primer agent's **Talon agent key** — the value minted into the vault secret referenced by `agent.key.secret_name` in this directory's `agent.talon.yaml` (`gateway-copaw-primer-talon-key` vault entry; generate a random value, retain it in the intended secret manager and supply it via stdin). Not your real OpenAI/DashScope key."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/codex-cli-integration.md",
+      "originalBlob": "d6e76d9fc01b364e61f076904004ff8b906d342e",
+      "correctedBlob": "53a086daa50802da770c4005be43b2bb08a7577e",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 44,
+          "remove": [
+            "talon secrets set openai-api-key \"sk-your-openai-key\""
+          ],
+          "insert": [
+            "printf '%s' \"$OPENAI_API_KEY\" | talon secrets set openai-api-key"
+          ]
+        },
+        {
+          "startLine": 49,
+          "remove": [
+            "talon secrets set codex-talon-key \"$CODEX_KEY\""
+          ],
+          "insert": [
+            "printf '%s' \"$CODEX_KEY\" | talon secrets set codex-talon-key"
+          ]
+        },
+        {
+          "startLine": 64,
+          "remove": [
+            "| **Agent key** (`$CODEX_KEY`) | Workload identity Codex sends to Talon as its \"OpenAI API key\"; resolves to the `codex` agent and its derived tenant. Not used for encryption. | Vault secret `codex-talon-key` (referenced by `agent.key.secret_name`), and in Codex's environment via the provider's `env_key` (step 4). Rotate with `talon secrets set codex-talon-key <new>` + restart — one active key, never two. |"
+          ],
+          "insert": [
+            "| **Agent key** (`$CODEX_KEY`) | Workload identity Codex sends to Talon as its \"OpenAI API key\"; resolves to the `codex` agent and its derived tenant. Not used for encryption. | Vault secret `codex-talon-key` (referenced by `agent.key.secret_name`), and in Codex's environment via the provider's `env_key` (step 4). Rotate with the stdin-based `talon secrets set codex-talon-key` procedure + restart — one active key, never two. |"
+          ]
+        },
+        {
+          "startLine": 171,
+          "remove": [
+            "- **`gateway_secret_get_failed` / \"cipher: message authentication failed\" / \"Service configuration error\"** — Vault decryption failed. Use the **same** `TALON_SECRETS_KEY` for `talon secrets set` and `talon serve`. If you lost it, set a new one and re-run `talon secrets set openai-api-key \"sk-...\"`."
+          ],
+          "insert": [
+            "- **`gateway_secret_get_failed` / \"cipher: message authentication failed\" / \"Service configuration error\"** — Vault decryption failed. Use the **same** `TALON_SECRETS_KEY` for `talon secrets set` and `talon serve`. If you lost it, set a new one and re-run the stdin-based `talon secrets set openai-api-key` procedure."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/claude-code-integration.md",
+      "originalBlob": "69a22a45281ad1cf9a46ad0057c8d469188b2289",
+      "correctedBlob": "34d310d8cf465ee236a7230b22052638be41018b",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 40,
+          "remove": [
+            "talon secrets set anthropic-api-key \"sk-ant-your-key\""
+          ],
+          "insert": [
+            "printf '%s' \"$ANTHROPIC_API_KEY\" | talon secrets set anthropic-api-key"
+          ]
+        },
+        {
+          "startLine": 45,
+          "remove": [
+            "talon secrets set claude-code-talon-key \"$CLAUDE_CODE_KEY\""
+          ],
+          "insert": [
+            "printf '%s' \"$CLAUDE_CODE_KEY\" | talon secrets set claude-code-talon-key"
+          ]
+        },
+        {
+          "startLine": 64,
+          "remove": [
+            "| **Agent key** (`$CLAUDE_CODE_KEY`) | Workload identity Claude Code sends to Talon; resolves to the `claude-code` agent and its derived tenant. Not used for encryption. | Vault secret `claude-code-talon-key` (referenced by `agent.key.secret_name`), and in Claude Code's environment as `ANTHROPIC_AUTH_TOKEN`. Rotate with `talon secrets set claude-code-talon-key <new>` + restart — one active key, never two. |"
+          ],
+          "insert": [
+            "| **Agent key** (`$CLAUDE_CODE_KEY`) | Workload identity Claude Code sends to Talon; resolves to the `claude-code` agent and its derived tenant. Not used for encryption. | Vault secret `claude-code-talon-key` (referenced by `agent.key.secret_name`), and in Claude Code's environment as `ANTHROPIC_AUTH_TOKEN`. Rotate with the stdin-based `talon secrets set claude-code-talon-key` procedure + restart — one active key, never two. |"
+          ]
+        },
+        {
+          "startLine": 139,
+          "remove": [
+            "- **`gateway_secret_get_failed` / \"cipher: message authentication failed\" / \"Service configuration error\"** — Vault decryption failed. Use the **same** `TALON_SECRETS_KEY` for `talon secrets set` and `talon serve`. If you lost it, set a new one and re-run `talon secrets set anthropic-api-key \"sk-ant-...\"`."
+          ],
+          "insert": [
+            "- **`gateway_secret_get_failed` / \"cipher: message authentication failed\" / \"Service configuration error\"** — Vault decryption failed. Use the **same** `TALON_SECRETS_KEY` for `talon secrets set` and `talon serve`. If you lost it, set a new one and re-run the stdin-based `talon secrets set anthropic-api-key` procedure."
+          ]
+        },
+        {
+          "startLine": 203,
+          "remove": [
+            "| Agent loop burns budget inside one session | Soft session cap denies the next request with `session_budget_exceeded` + structured `session_budget` evidence | `session_limits.max_cost` (`TestSessionBudget_*`) |"
+          ],
+          "insert": [
+            "| Agent loop burns budget inside one session | Estimated-cost session admission denies the next request with `session_budget_exceeded` + structured `session_budget` evidence | `session_limits.max_cost` (`TestSessionBudget_*`) |"
+          ]
+        }
+      ]
     }
   ]
 }
