@@ -23,7 +23,3 @@ Run Production site health with full=true after the merged site is deployed. Che
 Static GFM task lists render their checked/unchecked state as text for accessible reading; source exports preserve task-list syntax. Lighthouse diagnostics and report upload run before strict assertions so failure evidence remains available.
 
 The QA preview negotiates gzip for eligible static text assets, matching the normal compressed delivery model rather than benchmarking an uncompressed Python server. Tests verify decoded response bytes, identity fallback, HEAD, redirects and missing routes. The deployable files, mobile throttling, three-run aggregation and strict thresholds are unchanged. Local gzip is not proof of actual Cloudflare compression; verify live Content-Encoding separately.
-
-## Documentation 2.1 — technical correction review
-
-The stable v1.17.0 release pin is unchanged. The Step 1 errata are based on the exact product PR #612 commit; this website PR must not merge before that product PR is approved and merged. If the product PR changes, regenerate and reverify patches against the approved bytes. Existing release hash checks apply to every correction. The product regression script is targeted; it does not replace execution of every developer example or semantic review of every page. No new routes or runtime features.
