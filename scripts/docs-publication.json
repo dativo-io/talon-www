@@ -906,8 +906,8 @@
     {
       "path": "docs/explanation/control-plane.md",
       "originalBlob": "e31ae0963dffae2da087d6de2721ec508037f88f",
-      "correctedBlob": "e6a70fdd4a48f080e5250974dbcdf14a63c29c56",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "correctedBlob": "668f1294002e051126208a45403d24a2961fbce6",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -925,7 +925,7 @@
             "MCP tool-call interception; tool schema filtering"
           ],
           "insert": [
-            "Declared governed MCP tool calls via POST /mcp; model-request tool schema filtering (distinct boundaries)"
+            "MCP tool execution governed through POST /mcp; tool schema filtering on model requests"
           ]
         },
         {
@@ -954,6 +954,17 @@
           ]
         },
         {
+          "startLine": 48,
+          "remove": [
+            "Active MVP direction",
+            "────────────────────"
+          ],
+          "insert": [
+            "Active development direction",
+            "────────────────────────────"
+          ]
+        },
+        {
           "startLine": 52,
           "remove": [
             "MCP governance convergence onto ActionGovernance and one canonical POST /mcp (#431), Tasks continuation (#448)"
@@ -973,11 +984,19 @@
         },
         {
           "startLine": 87,
+          "remove": [],
+          "insert": [
+            "The following describes the session lifecycle design tracked in #401; see the [object model](../reference/object-model.md) for fields available in the current release.",
+            ""
+          ]
+        },
+        {
+          "startLine": 93,
           "remove": [
-            "`managed_by` is the single session field that names the concrete runtime or orchestrator responsible for the session lifecycle—for example `talon`, `n8n`, `claude-code` or `codex`. The separate `source` field records only how Talon obtained the session identity. Neither field authenticates authority or changes policy, and Talon does not expose a separate `lifecycle_owner` concept."
+            "Talon currently ships no browser UI: the legacy dashboards were removed, and the replacement OSS operations console (#533) is a **read-only projection** of the same backend semantics for inspection, filtering, verification and export. A focused approval inbox (#433) is an explicit narrow exception for authorized human decisions; it does not turn the console into a generic workflow system."
           ],
           "insert": [
-            "In the target #401 design (not the released session store), `managed_by` is the single session field that names the concrete runtime or orchestrator responsible for the session lifecycle—for example `talon`, `n8n`, `claude-code` or `codex`. The separate `source` field records only how Talon obtained the session identity. Neither field authenticates authority or changes policy, and Talon does not expose a separate `lifecycle_owner` concept."
+            "Talon ships a read-only Operations Console (#533). The legacy dashboards were removed; the console is a **read-only projection** of the same backend semantics for inspection, filtering, verification and export. A focused approval inbox (#433) is an explicit narrow exception for authorized human decisions; it does not turn the console into a generic workflow system."
           ]
         }
       ]
@@ -1112,15 +1131,15 @@
     {
       "path": "docs/guides/copaw-integration.md",
       "originalBlob": "f3d25f0cad4cf0fbff1fac99ff22af1061dc293a",
-      "correctedBlob": "1e63d60aafd17da61a37b294f70860961cdbcee5",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "correctedBlob": "9ad82519ad92b8ed3f4a4eb7c527d32d84dc0f86",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
           "startLine": 3,
           "remove": [],
           "insert": [
-            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            "**Credential handling:** Load `OPENAI_API_KEY` or `DASHSCOPE_API_KEY`, depending on your provider. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
             ""
           ]
         },
@@ -1158,15 +1177,15 @@
     {
       "path": "docs/guides/copaw-talon-primer/docker-copaw-talon-primer.md",
       "originalBlob": "ac1a40356a19cb5ce08fe65f12609dbca034146b",
-      "correctedBlob": "a4b98aa33d94e8cf4dd2b7e8939ff3872f1a4771",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "correctedBlob": "b1cf6209c0ea9048b6f8243d5e256283195787a9",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
           "startLine": 3,
           "remove": [],
           "insert": [
-            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](../add-talon-to-existing-app.md).",
+            "**Credential handling:** Set `OPENAI_API_KEY` in the local `.env` as shown below; keep the file out of version control. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](../add-talon-to-existing-app.md).",
             ""
           ]
         },
@@ -1184,15 +1203,15 @@
     {
       "path": "docs/guides/codex-cli-integration.md",
       "originalBlob": "d6e76d9fc01b364e61f076904004ff8b906d342e",
-      "correctedBlob": "53a086daa50802da770c4005be43b2bb08a7577e",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "correctedBlob": "8447d0ffbc9c63f84fc8f489dba069104a6242c6",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
           "startLine": 3,
           "remove": [],
           "insert": [
-            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            "**Credential handling:** Load the real OpenAI key as `OPENAI_API_KEY` on the Talon host. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
             ""
           ]
         },
@@ -1237,15 +1256,15 @@
     {
       "path": "docs/guides/claude-code-integration.md",
       "originalBlob": "69a22a45281ad1cf9a46ad0057c8d469188b2289",
-      "correctedBlob": "34d310d8cf465ee236a7230b22052638be41018b",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "correctedBlob": "cadd0c47d3e639a4305a92185eff2a9a54712168",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
           "startLine": 3,
           "remove": [],
           "insert": [
-            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            "**Credential handling:** Load the real Anthropic key as `ANTHROPIC_API_KEY` on the Talon host. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
             ""
           ]
         },
@@ -1486,15 +1505,15 @@
     {
       "path": "docs/guides/cicd-pipeline-governance.md",
       "originalBlob": "cc00d8ff687fe901c8a3808dd17c99c7b641d758",
-      "correctedBlob": "7f2b41e7fcf3d3dabc91150979ee943adef3646d",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "correctedBlob": "2c35c853c1953807ea4e0cc97901c6670d0fd7fa",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
           "startLine": 3,
           "remove": [],
           "insert": [
-            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            "**Credential handling:** Keep the real upstream provider credential in the Talon vault; the CI job receives only its Talon use-case key. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
             ""
           ]
         },
