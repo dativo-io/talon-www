@@ -283,7 +283,7 @@
       "path": "docs/tutorials/evidence-integrity-demo.md",
       "originalBlob": "20938efbfbaff550ee5df6f8f0090723c1b3e059",
       "correctedBlob": "cde67c3e621d8eb79fb4392aa7f9fbf094f26ff9",
-      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -355,7 +355,7 @@
       "path": "docs/tutorials/action-gateway-proof.md",
       "originalBlob": "388293c3b2ab555a8befe2cb28d4facfe1ab9301",
       "correctedBlob": "b4e6bcb8649fbcd2b92fb39407e4865d6de52d4d",
-      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -391,7 +391,7 @@
       "path": "docs/guides/cost-governance-by-agent.md",
       "originalBlob": "168167ab436e3ac5caf9ef056eab37356ebbf716",
       "correctedBlob": "af71d7b15b94f1625eb16939afe44c4ceb953fee",
-      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -536,7 +536,7 @@
       "path": "docs/guides/add-talon-to-existing-app.md",
       "originalBlob": "9b12ef83343fe9b31bd44f38a17c09a2e0ed01ab",
       "correctedBlob": "3740455154408f4fedc2446c7de1a5031ab64cec",
-      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -603,7 +603,7 @@
       "path": "docs/reference/object-model.md",
       "originalBlob": "6d9cd97333ee531eb908c87fcb081545f99f1539",
       "correctedBlob": "1b98e5df5759bd3ce899df300f6559183f3ca9f8",
-      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -649,7 +649,7 @@
       "path": "docs/guides/incident-response-playbook.md",
       "originalBlob": "8a9907980e987db9ee87f89db07aeadd9a5c4c89",
       "correctedBlob": "05c09e53322334e3157a3689ffbd57be0ea1996f",
-      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -757,7 +757,7 @@
       "path": "docs/guides/policy-cookbook.md",
       "originalBlob": "2b31cbc070aadc797f86f5d526b03f77ce8c516e",
       "correctedBlob": "aea58909e9608b47c27a7537a4b18ca2b37408b8",
-      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -815,7 +815,7 @@
       "path": "docs/explanation/what-talon-does-to-your-request.md",
       "originalBlob": "c33298454650efcb363fce8d3fcbfc95181180af",
       "correctedBlob": "1e519e3f5ec90ca0a8d4a986b3b38c87712c6054",
-      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -879,7 +879,7 @@
       "path": "docs/reference/benchmarks.md",
       "originalBlob": "d1a8ae081463a728b84e3a4f22131308d8150784",
       "correctedBlob": "be5058566698f8841783f74dfa648fc7b97300e4",
-      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -907,7 +907,7 @@
       "path": "docs/explanation/control-plane.md",
       "originalBlob": "e31ae0963dffae2da087d6de2721ec508037f88f",
       "correctedBlob": "e6a70fdd4a48f080e5250974dbcdf14a63c29c56",
-      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
@@ -978,42 +978,6 @@
           ],
           "insert": [
             "In the target #401 design (not the released session store), `managed_by` is the single session field that names the concrete runtime or orchestrator responsible for the session lifecycle—for example `talon`, `n8n`, `claude-code` or `codex`. The separate `source` field records only how Talon obtained the session identity. Neither field authenticates authority or changes policy, and Talon does not expose a separate `lifecycle_owner` concept."
-          ]
-        }
-      ]
-    },
-    {
-      "path": "docs/reference/configuration.md",
-      "originalBlob": "daff626f347d8dd0f7e59837ca7c6e0f1f1a4993",
-      "correctedBlob": "3c2b727eac3dcad9a53e5d92701a27e416f5b8ec",
-      "sourceCommit": "2b825e6a1781fcd96a8101efdd4190a543ff21e8",
-      "review": "https://github.com/dativo-io/talon/pull/612",
-      "hunks": [
-        {
-          "startLine": 13,
-          "remove": [
-            "| **Contains** | Agent identity (name, tenant, vault-bound traffic key), capabilities (allowed tools, forbidden patterns), memory governance, triggers (cron + webhooks), secrets ACL, attachment handling, compliance framework declarations, cost limits, audit settings | LLM provider connections (endpoint, key env var, region, timeout), gateway settings (providers, organization baseline policy, mode, rate limits), data directory, secrets encryption key, evidence storage path, observability |"
-          ],
-          "insert": [
-            "| **Contains** | Agent identity (name, tenant, vault-bound traffic key), capabilities (allowed tools, forbidden patterns), memory governance, triggers (cron + webhooks), secrets ACL, attachment handling, compliance framework declarations, cost limits, audit settings | LLM provider connections (endpoint, key env var, region, timeout), gateway settings (providers, organization baseline policy, rate limits), data directory, secrets encryption key, evidence storage path, observability |"
-          ]
-        },
-        {
-          "startLine": 410,
-          "remove": [
-            "| `gateway.organization_policy` | The organization policy every agent inherits, split into two explicit classes (#287): `defaults:` — per-agent starting values an agent override may **replace** (`pii_action`, `response_pii_action`, `daily_cost` / `monthly_cost` / `session_cost`, `tool_policy_action`, `attachment_policy`) — and `constraints:` — organization-wide **hard bounds** an agent may only tighten within, never escape (`allowed_providers`, `allowed_models` / `blocked_models`, `allowed_tools`, `forbidden_tools`, `action_approvals` — the company action policy for catalogued actions, #425, see [Action Gateway](action-gateway.md#company-action-policy-talonconfigyaml-425) — `max_daily_cost` / `max_monthly_cost` / `max_session_cost`, `max_data_tier`, `egress`). Org-owned observability scalars stay top-level: `log_prompts` / `log_responses` / `log_response_preview_chars`, `scan_tool_content`. Renamed from `default_policy` (#266). |"
-          ],
-          "insert": [
-            "| `gateway.organization_policy` | The organization policy every agent inherits, split into two explicit classes (#287): `defaults:` — per-agent starting values with field-specific precedence (positive budget overrides replace defaults; PII and tool-policy action overrides can only tighten; attachment policy is company-owned) — and `constraints:` — organization-wide **hard bounds** an agent may only tighten within, never escape (`allowed_providers`, `allowed_models` / `blocked_models`, `allowed_tools`, `forbidden_tools`, `action_approvals` — the company action policy for catalogued actions, #425, see [Action Gateway](action-gateway.md#company-action-policy-talonconfigyaml-425) — `max_daily_cost` / `max_monthly_cost` / `max_session_cost`, `max_data_tier`, `egress`). Org-owned observability scalars stay top-level: `log_prompts` / `log_responses` / `log_response_preview_chars`, `scan_tool_content`. Renamed from `default_policy` (#266). |"
-          ]
-        },
-        {
-          "startLine": 424,
-          "remove": [
-            "**Hot vs restart-required.** Hot-reloadable: agent file contents (`enabled`, identity metadata, key binding *name*, policy overrides) and `agents_dir` membership. Restart-required: the company action policy (`gateway.organization_policy.constraints.forbidden_tools` / `.action_approvals`, #425 — loaded once at start and frozen into every generation; a restart activates the change as a new effective generation and invalidates approvals established under the old one), trigger/webhook **definitions** and webhook secret values (#297, #479 — dispatch still re-resolves the current generation, so `enabled` and policy edits govern the next firing), `gateway:` block (organization policy, providers, mode), listeners/ports, scanner infrastructure, pricing and sovereignty. **Key rotation** via `talon secrets set` alone is not detected (the file digest is unchanged) — rotate = set the secret + restart, or touch the agent file. **Secret deletion/revocation of an *enabled* agent is likewise NOT a hot revocation:** the reload cannot build a valid registry for that agent, so the whole generation is rejected and last-known-good keeps the old key serving. To revoke access, **disable** the agent — that IS hot: the disabled generation activates with the prior key carried forward as a *denial-only* identity (the gateway returns an attributed 403; the tenant-API surface rejects it), so the old credential authorizes nothing — or restart."
-          ],
-          "insert": [
-            "**Hot vs restart-required.** Hot-reloadable: agent file contents (`enabled`, identity metadata, key binding *name*, policy overrides) and `agents_dir` membership. Restart-required: the company action policy (`gateway.organization_policy.constraints.forbidden_tools` / `.action_approvals`, #425 — loaded once at start and frozen into every generation; a restart activates the change as a new effective generation and invalidates approvals established under the old one), trigger/webhook **definitions** and webhook secret values (#297, #479 — dispatch still re-resolves the current generation, so `enabled` and policy edits govern the next firing), `gateway:` block (organization policy, providers), listeners/ports, scanner infrastructure, pricing and sovereignty. **Key rotation** via `talon secrets set` alone is not detected (the file digest is unchanged) — rotate = set the secret + restart, or touch the agent file. **Secret deletion/revocation of an *enabled* agent is likewise NOT a hot revocation:** the reload cannot build a valid registry for that agent, so the whole generation is rejected and last-known-good keeps the old key serving. To revoke access, **disable** the agent — that IS hot: the disabled generation activates with the prior key carried forward as a *denial-only* identity (the gateway returns an attributed 403; the tenant-API surface rejects it), so the old credential authorizes nothing — or restart."
           ]
         }
       ]
@@ -1571,6 +1535,115 @@
             "SUPPORT_INCOMING_WEBHOOK=\"$(openssl rand -hex 24)\"",
             "# Save this value securely for the intended caller before leaving the shell.",
             "printf '%s' \"$SUPPORT_INCOMING_WEBHOOK\" | talon secrets set support-incoming-webhook"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reference/configuration.md",
+      "originalBlob": "daff626f347d8dd0f7e59837ca7c6e0f1f1a4993",
+      "correctedBlob": "688766b1d1a41c72e2d7ee2f693621b92c5fccf0",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](../guides/add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 13,
+          "remove": [
+            "| **Contains** | Agent identity (name, tenant, vault-bound traffic key), capabilities (allowed tools, forbidden patterns), memory governance, triggers (cron + webhooks), secrets ACL, attachment handling, compliance framework declarations, cost limits, audit settings | LLM provider connections (endpoint, key env var, region, timeout), gateway settings (providers, organization baseline policy, mode, rate limits), data directory, secrets encryption key, evidence storage path, observability |"
+          ],
+          "insert": [
+            "| **Contains** | Agent identity (name, tenant, vault-bound traffic key), capabilities (allowed tools, forbidden patterns), memory governance, triggers (cron + webhooks), secrets ACL, attachment handling, compliance framework declarations, cost limits, audit settings | LLM provider connections (endpoint, key env var, region, timeout), gateway settings (providers, organization baseline policy, rate limits), data directory, secrets encryption key, evidence storage path, observability |"
+          ]
+        },
+        {
+          "startLine": 70,
+          "remove": [
+            "talon secrets set support-triage-talon-key \"$(openssl rand -hex 24)\""
+          ],
+          "insert": [
+            "SUPPORT_TRIAGE_TALON_KEY=\"$(openssl rand -hex 24)\"",
+            "# Save this value securely for the intended caller before leaving the shell.",
+            "printf '%s' \"$SUPPORT_TRIAGE_TALON_KEY\" | talon secrets set support-triage-talon-key"
+          ]
+        },
+        {
+          "startLine": 73,
+          "remove": [
+            "**Rotation:** write a new value to the same secret name (`talon secrets set support-triage-talon-key <new>`) and restart `talon serve` (a secret-only change is not digest-detected, so rotation still needs a restart or a file-touch even with periodic reload running). There is never a window with two concurrently-active keys — one agent, one key."
+          ],
+          "insert": [
+            "**Rotation:** write a new value to the same secret name (the stdin-based `talon secrets set support-triage-talon-key` procedure) and restart `talon serve` (a secret-only change is not digest-detected, so rotation still needs a restart or a file-touch even with periodic reload running). There is never a window with two concurrently-active keys — one agent, one key."
+          ]
+        },
+        {
+          "startLine": 89,
+          "remove": [
+            "- **Webhooks are authenticated by their own secret (#479).** `secret_name` is required; it names a vault entry (`talon secrets set support-incoming-webhook \"$(openssl rand -hex 24)\"`), and the sender presents that value as `Authorization: Bearer <value>`. The value must be at least 32 bytes (serve refuses to start otherwise): the route has no per-webhook rate limit, so the secret's length is what makes online guessing infeasible — use the mint above, never a chosen password. No other credential opens a webhook: agent keys and the admin key get `401 unauthorized`, and there is no dev-open rule. A denied request is never parsed, never runs, and writes no evidence. The body is read whole, bounded at 512 KiB, and must be exactly one JSON value (trailing data is `400`). Zendesk (\"Bearer token\" webhook authentication) and Freshdesk (custom `Authorization` header on the trigger-webhook action) can send this directly; senders that only sign the body (GitHub, Slack) are not supported — see the [authentication matrix](authentication-and-key-scopes.md)."
+          ],
+          "insert": [
+            "- **Webhooks are authenticated by their own secret (#479).** `secret_name` is required; it names a vault entry (`support-incoming-webhook` vault entry; generate a random value, retain it in the intended secret manager and supply it via stdin), and the sender presents that value as `Authorization: Bearer <value>`. The value must be at least 32 bytes (serve refuses to start otherwise): the route has no per-webhook rate limit, so the secret's length is what makes online guessing infeasible — use the mint above, never a chosen password. No other credential opens a webhook: agent keys and the admin key get `401 unauthorized`, and there is no dev-open rule. A denied request is never parsed, never runs, and writes no evidence. The body is read whole, bounded at 512 KiB, and must be exactly one JSON value (trailing data is `400`). Zendesk (\"Bearer token\" webhook authentication) and Freshdesk (custom `Authorization` header on the trigger-webhook action) can send this directly; senders that only sign the body (GitHub, Slack) are not supported — see the [authentication matrix](authentication-and-key-scopes.md)."
+          ]
+        },
+        {
+          "startLine": 410,
+          "remove": [
+            "| `gateway.organization_policy` | The organization policy every agent inherits, split into two explicit classes (#287): `defaults:` — per-agent starting values an agent override may **replace** (`pii_action`, `response_pii_action`, `daily_cost` / `monthly_cost` / `session_cost`, `tool_policy_action`, `attachment_policy`) — and `constraints:` — organization-wide **hard bounds** an agent may only tighten within, never escape (`allowed_providers`, `allowed_models` / `blocked_models`, `allowed_tools`, `forbidden_tools`, `action_approvals` — the company action policy for catalogued actions, #425, see [Action Gateway](action-gateway.md#company-action-policy-talonconfigyaml-425) — `max_daily_cost` / `max_monthly_cost` / `max_session_cost`, `max_data_tier`, `egress`). Org-owned observability scalars stay top-level: `log_prompts` / `log_responses` / `log_response_preview_chars`, `scan_tool_content`. Renamed from `default_policy` (#266). |"
+          ],
+          "insert": [
+            "| `gateway.organization_policy` | The organization policy every agent inherits, split into two explicit classes (#287): `defaults:` — per-agent starting values with field-specific precedence (positive budget overrides replace defaults; PII and tool-policy action overrides can only tighten; attachment policy is company-owned) — and `constraints:` — organization-wide **hard bounds** an agent may only tighten within, never escape (`allowed_providers`, `allowed_models` / `blocked_models`, `allowed_tools`, `forbidden_tools`, `action_approvals` — the company action policy for catalogued actions, #425, see [Action Gateway](action-gateway.md#company-action-policy-talonconfigyaml-425) — `max_daily_cost` / `max_monthly_cost` / `max_session_cost`, `max_data_tier`, `egress`). Org-owned observability scalars stay top-level: `log_prompts` / `log_responses` / `log_response_preview_chars`, `scan_tool_content`. Renamed from `default_policy` (#266). |"
+          ]
+        },
+        {
+          "startLine": 424,
+          "remove": [
+            "**Hot vs restart-required.** Hot-reloadable: agent file contents (`enabled`, identity metadata, key binding *name*, policy overrides) and `agents_dir` membership. Restart-required: the company action policy (`gateway.organization_policy.constraints.forbidden_tools` / `.action_approvals`, #425 — loaded once at start and frozen into every generation; a restart activates the change as a new effective generation and invalidates approvals established under the old one), trigger/webhook **definitions** and webhook secret values (#297, #479 — dispatch still re-resolves the current generation, so `enabled` and policy edits govern the next firing), `gateway:` block (organization policy, providers, mode), listeners/ports, scanner infrastructure, pricing and sovereignty. **Key rotation** via `talon secrets set` alone is not detected (the file digest is unchanged) — rotate = set the secret + restart, or touch the agent file. **Secret deletion/revocation of an *enabled* agent is likewise NOT a hot revocation:** the reload cannot build a valid registry for that agent, so the whole generation is rejected and last-known-good keeps the old key serving. To revoke access, **disable** the agent — that IS hot: the disabled generation activates with the prior key carried forward as a *denial-only* identity (the gateway returns an attributed 403; the tenant-API surface rejects it), so the old credential authorizes nothing — or restart."
+          ],
+          "insert": [
+            "**Hot vs restart-required.** Hot-reloadable: agent file contents (`enabled`, identity metadata, key binding *name*, policy overrides) and `agents_dir` membership. Restart-required: the company action policy (`gateway.organization_policy.constraints.forbidden_tools` / `.action_approvals`, #425 — loaded once at start and frozen into every generation; a restart activates the change as a new effective generation and invalidates approvals established under the old one), trigger/webhook **definitions** and webhook secret values (#297, #479 — dispatch still re-resolves the current generation, so `enabled` and policy edits govern the next firing), `gateway:` block (organization policy, providers), listeners/ports, scanner infrastructure, pricing and sovereignty. **Key rotation** via `talon secrets set` alone is not detected (the file digest is unchanged) — rotate = set the secret + restart, or touch the agent file. **Secret deletion/revocation of an *enabled* agent is likewise NOT a hot revocation:** the reload cannot build a valid registry for that agent, so the whole generation is rejected and last-known-good keeps the old key serving. To revoke access, **disable** the agent — that IS hot: the disabled generation activates with the prior key carried forward as a *denial-only* identity (the gateway returns an attributed 403; the tenant-API surface rejects it), so the old credential authorizes nothing — or restart."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/tutorials/manual-governed-session.md",
+      "originalBlob": "4bd178e5510a31c9a2ee411d1c517f59a509f8c6",
+      "correctedBlob": "ce5435947015d68cfcfafd116571153009081353",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 41,
+          "remove": [
+            "git clone https://github.com/dativo-io/talon.git"
+          ],
+          "insert": [
+            "git clone --depth 1 --branch v1.17.0 https://github.com/dativo-io/talon.git"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/tutorials/first-governed-agent.md",
+      "originalBlob": "3210b5b83c9698dea4fd7ccd8d593b289cfc220f",
+      "correctedBlob": "23a4117e0085a5c1b0a821278d243b3480b50769",
+      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 15,
+          "remove": [
+            "git clone https://github.com/dativo-io/talon.git && cd talon"
+          ],
+          "insert": [
+            "git clone --depth 1 --branch v1.17.0 https://github.com/dativo-io/talon.git && cd talon"
           ]
         }
       ]
