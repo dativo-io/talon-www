@@ -19,6 +19,7 @@ const sidebars = {
       label: 'Integrations',
       collapsed: true,
       items: [
+        doc('compatibility', 'Compatibility'),
         doc('choosing-integration-path', 'Choose your integration'),
         doc('proxy-quickstart', 'Model API gateway'),
         doc('n8n-refund-approvals', 'n8n refund approval'),

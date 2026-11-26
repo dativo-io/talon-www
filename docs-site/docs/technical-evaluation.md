@@ -48,6 +48,8 @@ Reproduce the release verifier using the exact tag's [verification script](https
 
 ## 3. Check compatibility before integration
 
+Start with the [compatibility center](./compatibility.md) for exact client profiles, supported boundaries and verification evidence. The table below summarizes the evaluation considerations.
+
 | Surface | Verified or documented scope | Validate in your environment |
 | --- | --- | --- |
 | OpenAI-compatible model traffic | Node SDK 7.59.0 in release acceptance | Client version, endpoint, credentials, model and streaming mode |
