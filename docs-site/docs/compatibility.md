@@ -19,7 +19,7 @@ Keep your existing application or workflow. Select the integration boundary firs
 
 ## How to read the results
 
-The [canonical compatibility inventory](./choosing-integration-path.md#compatibility-for-v1170) separates the product support boundary from verification in a particular test environment. A documented integration is not necessarily release verified. A verified synthetic workload is not a production capacity or real-provider guarantee. Unsupported or untested combinations require qualification before adoption.
+The [canonical compatibility inventory](./choosing-integration-path.md#compatibility-for-v1170) separates the product support boundary from verification in a particular test environment. A documented integration is not necessarily release verified. A verified synthetic workload is not a production capacity or real-provider guarantee. Untested combinations require qualification before adoption. Unsupported capabilities remain outside the support contract; passing a local test does not make them supported.
 
 ## What to do next
 
