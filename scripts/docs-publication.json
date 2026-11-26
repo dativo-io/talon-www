@@ -1041,15 +1041,15 @@
     {
       "path": "docs/guides/openclaw-integration.md",
       "originalBlob": "1a66b5c04f05e8a0d87da2243f750d942323d69e",
-      "correctedBlob": "e9e60ac5d86b41b0c21327f7c9d26ea03fbf8ae4",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "correctedBlob": "0e6ac17e8b8ce009dfafceafe7bac481530e1128",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
           "startLine": 3,
           "remove": [],
           "insert": [
-            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            "**Credential handling:** Load `OPENAI_API_KEY` on the Talon host for the OpenAI example. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
             ""
           ]
         },
@@ -1096,15 +1096,15 @@
     {
       "path": "docs/guides/openclaw-talon-primer/docker-openclaw-talon-primer.md",
       "originalBlob": "34292f58f50e587890c024d8df53bca0d6612177",
-      "correctedBlob": "79fa375ad08d61b00e676d702ef9c4d77078c963",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "correctedBlob": "b8ff7fdbb7322b75c74c9c7befd4df7e7092bb6d",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
           "startLine": 3,
           "remove": [],
           "insert": [
-            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](../add-talon-to-existing-app.md).",
+            "**Credential handling:** Set `OPENAI_API_KEY` in the local `.env` as shown below; keep the file out of version control. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](../add-talon-to-existing-app.md).",
             ""
           ]
         },
@@ -1318,15 +1318,15 @@
     {
       "path": "docs/guides/governing-coding-agents.md",
       "originalBlob": "58b860db9c48ea441db1dba0bebb8eba947be934",
-      "correctedBlob": "88f4a2a817fa8eaf1a41aaa6d9e64455929da899",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "correctedBlob": "8d0075fd3036d8edb66db003b6bb6249f0657c3c",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
           "startLine": 3,
           "remove": [],
           "insert": [
-            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            "**Credential handling:** Load `ANTHROPIC_API_KEY` and `OPENAI_API_KEY` on the Talon host for the providers you use. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
             ""
           ]
         },
@@ -1361,15 +1361,15 @@
     {
       "path": "docs/guides/multi-tenant-msp.md",
       "originalBlob": "5d63e7ba77bb26e3ab5f04bdddb9b757b3a65112",
-      "correctedBlob": "0593e71e20835515d09ed143f2624347a5c5bc35",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "correctedBlob": "d4b94ff17ba6f54ea3dbab78b074a06555dc62aa",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
           "startLine": 3,
           "remove": [],
           "insert": [
-            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            "**Credential handling:** Load `ACME_PROVIDER_API_KEY` for the scoped vault example. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
             ""
           ]
         },
@@ -1411,15 +1411,15 @@
     {
       "path": "docs/guides/local-scanner-engines.md",
       "originalBlob": "eb726793efadad8ee63c8189ed4f4d97a3a8352a",
-      "correctedBlob": "be71ee06aaf65f686b208d8ebfbd7fa9e13e8fbf",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "correctedBlob": "1d3f57e499497c6917366e11b08d14b7a0fdc2a4",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
           "startLine": 3,
           "remove": [],
           "insert": [
-            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            "**Credential handling:** Load `OPENAI_API_KEY` for the OpenAI example. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
             ""
           ]
         },
@@ -1533,15 +1533,15 @@
     {
       "path": "docs/guides/internal-support-agent.md",
       "originalBlob": "a04767780f8e514e9a483456708cb64fb0cafc62",
-      "correctedBlob": "90b5b5a9291ddf6c89e1486fdff0aa4579f2115a",
-      "sourceCommit": "d254ddb45f1607e7dc1f1e9499b8442f8ce6c8ad",
+      "correctedBlob": "e4e26f7365b8cbff47f14840e147103b8307fefd",
+      "sourceCommit": "058a4c2fa5d9c887c94455a023634b497fce301a",
       "review": "https://github.com/dativo-io/talon/pull/612",
       "hunks": [
         {
           "startLine": 3,
           "remove": [],
           "insert": [
-            "**Credential handling:** Load real provider keys from your secret manager into the environment before these commands; pass values to `talon secrets set` on stdin. Generated caller keys must be saved securely for the intended caller. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            "**Credential handling:** Load `SUPPORT_INCOMING_WEBHOOK` for the notification example. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
             ""
           ]
         },
