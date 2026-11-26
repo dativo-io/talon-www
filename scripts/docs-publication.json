@@ -9,75 +9,6 @@
   },
   "errata": [
     {
-      "path": "docs/guides/cost-governance-by-agent.md",
-      "originalBlob": "168167ab436e3ac5caf9ef056eab37356ebbf716",
-      "correctedBlob": "e84b7d31f395b96164df50c958c1ab6d1ef92fd4",
-      "sourceCommit": "840a70acc862b41a98ba67f86eba6bd2bff9ce3d",
-      "review": "https://github.com/dativo-io/talon/pull/609",
-      "hunks": [
-        {
-          "startLine": 5,
-          "remove": [
-            "> You can cap AI spend before it runs away, and prove every allow/deny decision with signed evidence."
-          ],
-          "insert": [
-            "> You can deny requests before provider access using estimated-cost admission caps, and verify allow/deny decisions with signed evidence. Actual charges can exceed estimates; these are not invoice ceilings."
-          ]
-        },
-        {
-          "startLine": 7,
-          "remove": [
-            "This guide shows the fastest path to that outcome for a support-bot agent."
-          ],
-          "insert": [
-            "This guide shows that outcome for a support-bot use case. See [budget limitations](../../LIMITATIONS.md#7-coding-agent-and-orchestration-boundary) for estimation, reservation and recovery boundaries."
-          ]
-        },
-        {
-          "startLine": 11,
-          "remove": [],
-          "insert": [
-            "For first-time installation, use [connect an existing application](add-talon-to-existing-app.md) to configure `agents_dir`, credentials and the serving process. Active rules are always enforced; the legacy `gateway.mode` setting was removed in #442 and is rejected in v1.17. The abbreviated example below illustrates policy and verification, not a standalone installation procedure.",
-            ""
-          ]
-        },
-        {
-          "startLine": 13,
-          "remove": [
-            "- Hard daily/monthly spend caps for one agent (`support-slack-bot`)"
-          ],
-          "insert": [
-            "- Enforced daily/monthly estimate-based admission caps for one agent (`support-slack-bot`)"
-          ]
-        },
-        {
-          "startLine": 20,
-          "remove": [
-            "## 1. Define the agent with hard EUR caps"
-          ],
-          "insert": [
-            "## 1. Define the use case with EUR admission caps"
-          ]
-        },
-        {
-          "startLine": 54,
-          "remove": [
-            "  mode: \"enforce\""
-          ],
-          "insert": []
-        },
-        {
-          "startLine": 163,
-          "remove": [
-            "- **Hard budget caps**: deny requests that would exceed the effective daily/monthly cap before the provider call"
-          ],
-          "insert": [
-            "- **Budget admission caps**: deny requests whose estimated cost would exceed the effective daily/monthly cap before the provider call"
-          ]
-        }
-      ]
-    },
-    {
       "path": "docs/guides/mcp-2026-migration.md",
       "originalBlob": "d870d87e2486f8fc8c64844bc6559d92ae80e681",
       "correctedBlob": "5bbfd680f60b65244b4b3f684bb8e976854c4534",
@@ -109,56 +40,6 @@
           ],
           "insert": [
             "**Boundary:** The HTTP Action Gateway governs exactly the actions sent through it. Since v1.17.0, declared governed MCP tools on `POST /mcp` share the Action Gateway's bound approval, dispatch and recovery lifecycle; this HTTP fixture does not verify MCP client compatibility. See [governed MCP tools](mcp-governed-tools.md). Neither path controls direct tool or business API calls that bypass Talon."
-          ]
-        }
-      ]
-    },
-    {
-      "path": "docs/guides/add-talon-to-existing-app.md",
-      "originalBlob": "9b12ef83343fe9b31bd44f38a17c09a2e0ed01ab",
-      "correctedBlob": "b12d9dc4844cd64ffdd907ff77e53513928c340e",
-      "sourceCommit": "8e37ede5994a0f06756cabcfd4047286d8f1b6f7",
-      "review": "https://github.com/dativo-io/talon/pull/610",
-      "hunks": [
-        {
-          "startLine": 13,
-          "remove": [
-            "The quickstart proves that Talon decides and signs. It does not connect your application: it uses a synthetic identity and no company policy."
-          ],
-          "insert": [
-            "The published-image quickstart proves that Talon enforces a demonstration company policy and signs its decisions. It uses a synthetic identity and does not connect your application or exercise a live provider."
-          ]
-        },
-        {
-          "startLine": 268,
-          "remove": [],
-          "insert": [
-            "Before adding another application, send a permitted synthetic request and one containing a synthetic email address. The latter must return HTTP 400 with `pii_policy_violation` under the configured block policy; an unknown use-case key must return 401. Verify actual evidence IDs with `talon audit verify YOUR_EVIDENCE_ID` and check `talon agents show customer-support --effective`. Working alone does not prove a provider was reached.",
-            ""
-          ]
-        },
-        {
-          "startLine": 274,
-          "remove": [
-            "That is the whole step. Give the application its two settings and send a request. The second application gets its own identity, key, budget accounting and evidence, and runs under the same company policy: nothing is copied into its file, the company configuration is not touched, the running Talon loads it without a restart, and the first application keeps serving meanwhile."
-          ],
-          "insert": [
-            "Give the application the same base URL and its own Talon key from its secret manager. Wait for its runtime state to be loaded, then send a permitted request and a synthetic PII request. The second application gets its own identity, key, budget accounting and evidence, and runs under the same company policy: nothing is copied into its file, the company configuration is not touched, the running Talon loads it without a restart, and the first application keeps serving meanwhile."
-          ]
-        },
-        {
-          "startLine": 288,
-          "remove": [],
-          "insert": [
-            "Verify each application separately:",
-            "",
-            "```bash",
-            "talon agents show customer-support --effective",
-            "talon agents show hr-copilot --effective",
-            "```",
-            "",
-            "Acceptance: both applications are loaded and have authenticated traffic under the current company policy, distinct evidence and cost attribution. The second application is denied by the same PII rule, and the first continues serving. No company policy change or restart is required. For a provider-free engineering test, run `make test-onboarding` in the matching release checkout (Go, Node, npm, curl and OpenSSL required). The [acceptance script](../../scripts/onboarding-acceptance.sh) checks actual upstream counts and credential lifecycle; a source-build pass does not establish your deployed binary or client compatibility.",
-            ""
           ]
         }
       ]
@@ -394,6 +275,1482 @@
           ],
           "insert": [
             "TALON_IMAGE=ghcr.io/dativo-io/talon:1.17.0 docker compose -f docker-compose.yml -f docker-compose.published.yml down -v"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/tutorials/evidence-integrity-demo.md",
+      "originalBlob": "20938efbfbaff550ee5df6f8f0090723c1b3e059",
+      "correctedBlob": "cde67c3e621d8eb79fb4392aa7f9fbf094f26ff9",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 17,
+          "remove": [
+            "- Talon running locally (for example via `examples/docker-compose`)",
+            "- `talon` CLI available in the environment where you run verification"
+          ],
+          "insert": [
+            "- A dedicated local test installation of the released Talon version, with one authenticated use case and a working model route. Follow [connect an existing application](../guides/add-talon-to-existing-app.md) or the optional Compose walkthrough in [try Talon](quickstart-demo.md).",
+            "- `curl`, `jq`, and the matching `talon` CLI with access to that same installation's evidence store and signing key. An unrelated host CLI cannot verify the container's records.",
+            "- Load the use-case key as `TALON_USE_CASE_KEY` and the operator key as `TALON_ADMIN_KEY` from their approved secret sources. Only for the loopback-only Compose fixture, use `TALON_USE_CASE_KEY=talon-demo-key`; its admin key is unset. Never use that fixture for production.",
+            "- Use an otherwise idle synthetic installation so the newest record belongs to this test. Do not export or edit production evidence."
+          ]
+        },
+        {
+          "startLine": 25,
+          "remove": [],
+          "insert": [
+            "  -H \"Authorization: Bearer $TALON_USE_CASE_KEY\" \\"
+          ]
+        },
+        {
+          "startLine": 31,
+          "remove": [],
+          "insert": [
+            "Confirm the response succeeds before continuing; HTTP 401 means the use-case key is missing or invalid. A model denial is a different test, not proof of a successful upstream request.",
+            ""
+          ]
+        },
+        {
+          "startLine": 44,
+          "remove": [],
+          "insert": [
+            "Run the CLI commands below in the same installation, with the same configuration and signing key. For the optional Compose fixture, use the release-matched Compose command prefix from the [quickstart](quickstart-demo.md) (`exec talon /usr/local/bin/talon`); the export path is then inside that container. Copy the file out for the tamper exercise and back to a separate test path for verification, or use a local CLI installation instead.",
+            ""
+          ]
+        },
+        {
+          "startLine": 62,
+          "remove": [
+            "Edit `signed-evidence.json` and change one value in a record, for example:"
+          ],
+          "insert": [
+            "Copy `signed-evidence.json` to `tampered-evidence.json`, then edit only the copy and change one signed value, for example:"
+          ]
+        },
+        {
+          "startLine": 74,
+          "remove": [
+            "talon audit verify --file signed-evidence.json"
+          ],
+          "insert": [
+            "talon audit verify --file tampered-evidence.json"
+          ]
+        },
+        {
+          "startLine": 86,
+          "remove": [
+            "Use this during audits or buyer calls:"
+          ],
+          "insert": [
+            "Use this as a description of integrity verification, not a certification or proof of downstream effects. A signing-key compromise can forge records."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/tutorials/action-gateway-proof.md",
+      "originalBlob": "388293c3b2ab555a8befe2cb28d4facfe1ab9301",
+      "correctedBlob": "b4e6bcb8649fbcd2b92fb39407e4865d6de52d4d",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [
+            "**Five-minute evaluator proof (no provider API key).** This exercises the HTTP Action Gateway **implemented on Talon main**, not MCP `tools/call` or native tool-execution convergence. Check [releases](https://github.com/dativo-io/talon/releases/latest) before assuming a prebuilt tagged binary includes the feature. It uses an in-process counting mock as the downstream business API; no real refund or mutation is performed."
+          ],
+          "insert": [
+            "**Evaluator proof (no provider API key).** The HTTP Action Gateway and declared governed MCP tools on `POST /mcp` share the released v1.17.0 Action Gateway. This specific smoke exercise builds and tests the HTTP adapter only; it is not a test of MCP client compatibility or native tool execution. For distributed artifact acceptance, see the [v1.17.0 release run](https://github.com/dativo-io/talon/actions/runs/45429574176). It uses an in-process counting mock as the downstream business API; no real refund or mutation is performed."
+          ]
+        },
+        {
+          "startLine": 7,
+          "remove": [
+            "From the Talon repository root, with Go and the dependencies needed to build the binary:"
+          ],
+          "insert": [
+            "From a clean checkout of the release matching your installation, with Go and the dependencies needed to build the binary (for v1.17.0, check out tag `v1.17.0`):"
+          ]
+        },
+        {
+          "startLine": 38,
+          "remove": [
+            "**Current limits:** only the `talon_forwarded` HTTP adapter has bound approvals and at-most-once Talon dispatch. MCP-discovered definitions are catalogued but not executable by that adapter. MCP/native action convergence, Tasks continuation, SSO reviewer identities, external execution profiles and operator reconciliation of `unknown` are not shipped. Read [LIMITATIONS §10](../../LIMITATIONS.md)."
+          ],
+          "insert": [
+            "**Current limits:** HTTP actions and declared MCP tools use the same bound approval and dispatch lifecycle, with distinct adapters. MCP definitions are executed by the governed MCP dispatcher, not the HTTP adapter; see [governed MCP tools](../guides/mcp-governed-tools.md). Native runner and Plan Review convergence and MCP Tasks continuation are not shipped. An ambiguous post-dispatch outcome is not automatically replayed; reconcile with independent downstream records. Read [LIMITATIONS §10](../../LIMITATIONS.md)."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/cost-governance-by-agent.md",
+      "originalBlob": "168167ab436e3ac5caf9ef056eab37356ebbf716",
+      "correctedBlob": "af71d7b15b94f1625eb16939afe44c4ceb953fee",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 5,
+          "remove": [
+            "> You can cap AI spend before it runs away, and prove every allow/deny decision with signed evidence."
+          ],
+          "insert": [
+            "> You can deny requests before provider access using estimated-cost admission caps, and verify allow/deny decisions with signed evidence. Actual charges can exceed estimates; these are not invoice ceilings."
+          ]
+        },
+        {
+          "startLine": 7,
+          "remove": [
+            "This guide shows the fastest path to that outcome for a support-bot agent."
+          ],
+          "insert": [
+            "This guide shows that outcome for a support-bot use case. See [budget limitations](../../LIMITATIONS.md#7-coding-agent-and-orchestration-boundary) for estimation, reservation and recovery boundaries."
+          ]
+        },
+        {
+          "startLine": 11,
+          "remove": [],
+          "insert": [
+            "For first-time installation, use [connect an existing application](add-talon-to-existing-app.md) to configure `agents_dir`, credentials and the serving process. Active rules are always enforced; the legacy `gateway.mode` setting was removed in #442 and is rejected in v1.17. The abbreviated example below illustrates policy and verification, not a standalone installation procedure.",
+            ""
+          ]
+        },
+        {
+          "startLine": 13,
+          "remove": [
+            "- Hard daily/monthly spend caps for one agent (`support-slack-bot`)"
+          ],
+          "insert": [
+            "- Enforced daily/monthly estimate-based admission caps for one agent (`support-slack-bot`)"
+          ]
+        },
+        {
+          "startLine": 16,
+          "remove": [
+            "- CLI + API visibility for today/month, by agent/model/provider"
+          ],
+          "insert": [
+            "- CLI + API visibility for today/month, by agent/model/provider; session caps use estimate reservation, not a guarantee of final provider charges"
+          ]
+        },
+        {
+          "startLine": 20,
+          "remove": [
+            "## 1. Define the agent with hard EUR caps"
+          ],
+          "insert": [
+            "## 1. Define the use case with admission caps"
+          ]
+        },
+        {
+          "startLine": 38,
+          "remove": [
+            "    input_scan: true            # scan-only → PII action \"warn\" for this agent"
+          ],
+          "insert": [
+            "    input_scan: true            # scan-only does not override the company PII floor"
+          ]
+        },
+        {
+          "startLine": 45,
+          "remove": [
+            "talon secrets set support-slack-bot-talon-key \"$AGENT_KEY\""
+          ],
+          "insert": [
+            "printf '%s' \"$AGENT_KEY\" | talon secrets set support-slack-bot-talon-key"
+          ]
+        },
+        {
+          "startLine": 54,
+          "remove": [
+            "  mode: \"enforce\""
+          ],
+          "insert": []
+        },
+        {
+          "startLine": 71,
+          "remove": [
+            "For a demo, temporarily lower the agent's `cost_limits.daily` (for example `0.01`) so you can trigger a denial quickly."
+          ],
+          "insert": [
+            "The amounts are in the installation's configured cost currency; inspect the `currency` field in `talon costs --agent support-slack-bot --json`. Historical `_eur` field names are not a currency guarantee. Use a dedicated synthetic installation for denial testing."
+          ]
+        },
+        {
+          "startLine": 95,
+          "remove": [
+            "1. Configure a very low `cost_limits.daily` for `support-slack-bot`",
+            "2. Send one request that is allowed",
+            "3. Send a second request that would exceed budget"
+          ],
+          "insert": [
+            "1. Start with a cap sufficient for a permitted synthetic request and confirm the configured pricing and effective caps.",
+            "2. Send one request and inspect settled usage and signed evidence.",
+            "3. In the test installation, lower the positive admission cap below the already settled spend (or below the next known estimate); wait for the new agent generation to load and verify it using `talon agents show support-slack-bot --effective`. Send a request again."
+          ]
+        },
+        {
+          "startLine": 102,
+          "remove": [
+            "Example calls — the bot authenticates with its **agent key** (`$AGENT_KEY` from step 1):"
+          ],
+          "insert": [
+            "Example calls — the bot authenticates with its **agent key** (`$AGENT_KEY` from step 1). These calls are illustrative; two identical requests alone do not guarantee one allow and one deny. Use a deterministic mock for a reproducible test and inspect an independent upstream count. For released implementation coverage, see `internal/gateway/budget_enforcement_test.go` and `internal/gateway/session_budget_test.go` in the matching checkout."
+          ]
+        },
+        {
+          "startLine": 111,
+          "remove": [
+            "# Denied request (second call, over cap)"
+          ],
+          "insert": [
+            "# After the lower cap is active: repeat and check the actual decision"
+          ]
+        },
+        {
+          "startLine": 118,
+          "remove": [
+            "Expected deny characteristics:"
+          ],
+          "insert": [
+            "Expected deny characteristics when the binding cap is exceeded (missing pricing or unavailable budget state are distinct errors):"
+          ]
+        },
+        {
+          "startLine": 163,
+          "remove": [
+            "- **Hard budget caps**: deny requests that would exceed the effective daily/monthly cap before the provider call"
+          ],
+          "insert": [
+            "- **Budget admission caps**: deny requests whose estimated cost would exceed the effective daily/monthly cap before the provider call"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/add-talon-to-existing-app.md",
+      "originalBlob": "9b12ef83343fe9b31bd44f38a17c09a2e0ed01ab",
+      "correctedBlob": "3740455154408f4fedc2446c7de1a5031ab64cec",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 13,
+          "remove": [
+            "The quickstart proves that Talon decides and signs. It does not connect your application: it uses a synthetic identity and no company policy."
+          ],
+          "insert": [
+            "The published-image quickstart proves that Talon enforces a demonstration company policy and signs its decisions. It uses a synthetic identity and does not connect your application or exercise a live provider."
+          ]
+        },
+        {
+          "startLine": 143,
+          "remove": [],
+          "insert": [
+            "The displayed registration output uses a shorthand about tightening policy. The actual precedence is field-specific: positive daily/monthly/session budget overrides can replace defaults (including raising a default), but any configured company ceiling remains binding. PII overrides can only tighten the company floor; attachment policy is company-owned. See [configuration and precedence](../reference/configuration.md) and inspect `talon agents show customer-support --effective`. Do not treat a default budget as a hard maximum.",
+            ""
+          ]
+        },
+        {
+          "startLine": 268,
+          "remove": [],
+          "insert": [
+            "Before adding another application, send a permitted synthetic request and one containing a synthetic email address. The latter must return HTTP 400 with `pii_policy_violation` under the configured block policy; an unknown use-case key must return 401. Verify actual evidence IDs with `talon audit verify YOUR_EVIDENCE_ID` and check `talon agents show customer-support --effective`. Working alone does not prove a provider was reached.",
+            ""
+          ]
+        },
+        {
+          "startLine": 274,
+          "remove": [
+            "That is the whole step. Give the application its two settings and send a request. The second application gets its own identity, key, budget accounting and evidence, and runs under the same company policy: nothing is copied into its file, the company configuration is not touched, the running Talon loads it without a restart, and the first application keeps serving meanwhile."
+          ],
+          "insert": [
+            "Give the application the same base URL and its own Talon key from its secret manager. Wait for its runtime state to be loaded, then send a permitted request and a synthetic PII request. The second application gets its own identity, key, budget accounting and evidence, and runs under the same company policy: nothing is copied into its file, the company configuration is not touched, the running Talon loads it without a restart, and the first application keeps serving meanwhile."
+          ]
+        },
+        {
+          "startLine": 288,
+          "remove": [],
+          "insert": [
+            "Verify each application separately:",
+            "",
+            "```bash",
+            "talon agents show customer-support --effective",
+            "talon agents show hr-copilot --effective",
+            "```",
+            "",
+            "Acceptance: both applications are loaded and have authenticated traffic under the current company policy, distinct evidence and cost attribution. The second application is denied by the same PII rule, and the first continues serving. No company policy change or restart is required. For a provider-free engineering test, run `make test-onboarding` in the matching release checkout (Go, Node, npm, curl and OpenSSL required). The [acceptance script](../../scripts/onboarding-acceptance.sh) checks actual upstream counts and credential lifecycle; a source-build pass does not establish your deployed binary or client compatibility.",
+            ""
+          ]
+        },
+        {
+          "startLine": 292,
+          "remove": [
+            "To tighten the policy for one application, edit its `agent.talon.yaml` (for example `policies.cost_limits.daily`). Company constraints cannot be lifted there."
+          ],
+          "insert": [
+            "To change the policy for one application, edit its `agent.talon.yaml` (for example `policies.cost_limits.daily`). Positive budget overrides replace the baseline, while company ceilings still bind; PII can only tighten. Company constraints cannot be lifted there."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reference/object-model.md",
+      "originalBlob": "6d9cd97333ee531eb908c87fcb081545f99f1539",
+      "correctedBlob": "1b98e5df5759bd3ce899df300f6559183f3ca9f8",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 47,
+          "remove": [
+            "> **Status.** The session vocabulary in this section (`status` with `open | completed`, `managed_by`) is the settled target contract of [#401](https://github.com/dativo-io/talon/issues/401). The shipped store still exposes the older status vocabulary and no `managed_by` field; the architecture reference lists it as a retained surface pending migration ([Control-plane boundaries](control-plane-boundaries.md))."
+          ],
+          "insert": [
+            "> **Released behavior (v1.17.0).** The session store exposes `status` values `active`, `pending_approval`, `executing`, `completed`, `failed`, `timed_out` and source values `talon`, `client_asserted`, `vendor_asserted`. The stored external identity is scoped to the authenticated use case and tenant. There is no `managed_by` field in this release. See [manual session inspection](../tutorials/manual-governed-session.md) and [control-plane boundaries](control-plane-boundaries.md).",
+            ">",
+            "> **Target design only.** The following session status, manager and transition descriptions are the proposed #401 contract, not a client API contract for the released store. Do not implement clients against `open` or `managed_by` yet. [Track #401](https://github.com/dativo-io/talon/issues/401)."
+          ]
+        },
+        {
+          "startLine": 63,
+          "remove": [
+            "A session has exactly two statuses:"
+          ],
+          "insert": [
+            "Under the target design, a session has exactly two statuses:"
+          ]
+        },
+        {
+          "startLine": 244,
+          "remove": [
+            "Example session view:"
+          ],
+          "insert": [
+            "Illustrative target session view (not current CLI output):"
+          ]
+        },
+        {
+          "startLine": 266,
+          "remove": [],
+          "insert": [
+            "These are architectural rules and target lifecycle behavior; manager attribution and explicit completion in the #401 design are not a shipped session API. For released external integrations, use the stable asserted session ID and authenticated use-case key documented for the chosen route. Do not send a `managed_by` field or assume an external completion endpoint.",
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/incident-response-playbook.md",
+      "originalBlob": "8a9907980e987db9ee87f89db07aeadd9a5c4c89",
+      "correctedBlob": "7f1ac2b22a571faca48931a36162e76a4016bbf1",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 5,
+          "remove": [
+            "> **Note on CLI commands:** Some CLI commands referenced below (marked with *planned*) are not yet implemented. Where a CLI command is planned, the equivalent Go API is available. See the code references for programmatic access."
+          ],
+          "insert": [
+            "> **Scope first:** the run-control, pause, kill and in-memory override endpoints below describe native Talon run controls. Do not assume they cancel external workflows, prevent every model-gateway request, or stop an Action Gateway operation already dispatched. For external use cases, stop new work in the owning runtime, use `talon agents disable <name>` where supported, verify the active generation and denial with a synthetic request, and isolate bypass routes. Disabling is not instantaneous and does not recall in-flight effects. If a reload is rejected, the previous generation can remain active; see [operate AI use cases](operate-ai-use-cases.md). For a dispatched action with unknown outcome, reconcile with the downstream system; never blindly replay. See [Action Gateway](../reference/action-gateway.md) and [control-plane boundaries](../reference/control-plane-boundaries.md)."
+          ]
+        },
+        {
+          "startLine": 13,
+          "remove": [
+            "**Immediate containment:**"
+          ],
+          "insert": [
+            "**Immediate containment (native runs only):**"
+          ]
+        },
+        {
+          "startLine": 102,
+          "remove": [
+            "1. Escalate the `response_pii_action` in the agent's policy:"
+          ],
+          "insert": [
+            "1. For gateway traffic, tighten the company `gateway.organization_policy.defaults.response_pii_action` (restart-required) or use the supported monotonic use-case data-classification override; inspect the effective response policy. See [configuration](../reference/configuration.md#response-pii-actions-and-streaming):"
+          ]
+        },
+        {
+          "startLine": 119,
+          "remove": [
+            "**Immediate containment (no restart required):**"
+          ],
+          "insert": [
+            "**Immediate containment (native run overrides only; not an external gateway admission cap):**"
+          ]
+        },
+        {
+          "startLine": 141,
+          "remove": [
+            "2. Agent-file `cost_limits` edits are hot-reloaded by the periodic reload within `agents_reload_interval` (default 30s), so a restart is optional. For immediate effect, use the runtime overrides above, or restart Talon:",
+            "",
+            "```bash",
+            "talon serve --config <path>",
+            "```",
+            "",
+            "3. For gradual degradation instead of hard cutoffs, enable cost degradation:",
+            "",
+            "```yaml",
+            "policies:",
+            "  degradation:",
+            "    enabled: true",
+            "```"
+          ],
+          "insert": [
+            "2. Agent-file `cost_limits` edits are hot-reloaded by the periodic reload within `agents_reload_interval` (default 30s), so a restart is optional. For an external use case, stop or isolate traffic if immediate containment is required; verify the new generation before resuming. If a restart is needed, restart the existing service with its original configuration, keys and serving flags (do not switch modes)."
+          ]
+        },
+        {
+          "startLine": 155,
+          "remove": [
+            "This automatically routes to cheaper models as budget thresholds are approached."
+          ],
+          "insert": [
+            "3. For model gateway traffic, use the documented admission caps and policy-valid fallback configuration. Do not assume native cost-degradation settings automatically route gateway requests to cheaper models. [Cost governance](cost-governance-by-agent.md) explains estimate-based limits and the [configuration reference](../reference/configuration.md) explains provider fallback."
+          ]
+        },
+        {
+          "startLine": 172,
+          "remove": [
+            "1. In the agent's `tool_policies`, switch the specific tool from redaction to audit-only:"
+          ],
+          "insert": [
+            "1. The following describes a legacy tool-policy configuration, not the governed MCP action contract. Do not weaken PII prevention merely to restore functionality. In an isolated test, establish the applicable boundary, required data and company constraints; obtain approval for any policy change. A tool-level audit-only setting cannot lift a binding company policy. See [governed MCP tools](mcp-governed-tools.md)."
+          ]
+        },
+        {
+          "startLine": 180,
+          "remove": [
+            "2. Verify that evidence still records the PII finding — `pii_action: \"audit\"` logs the detection without altering the data, preserving the compliance trail."
+          ],
+          "insert": [
+            "2. Verify the actual data sent to the synthetic downstream destination and the signed decision. Observation is not prevention. If the required data cannot be sent under company policy, leave the operation blocked."
+          ]
+        },
+        {
+          "startLine": 189,
+          "remove": [
+            "**Diagnose:**"
+          ],
+          "insert": [
+            "**Diagnose (native runtime circuit breaker):**"
+          ]
+        },
+        {
+          "startLine": 214,
+          "remove": [
+            "| Agent looping or excessive tool calls | [Runaway Agent](#scenario-1-runaway-agent) | `POST /v1/runs/{id}/kill` or `POST /v1/overrides/{tenant}/lockdown` |"
+          ],
+          "insert": [
+            "| Agent looping or excessive tool calls | [Runaway Agent](#scenario-1-runaway-agent) | Native runs: kill/lockdown; external use cases: stop new work in the owning runtime and verify containment |"
+          ]
+        },
+        {
+          "startLine": 216,
+          "remove": [
+            "| Budget alerts or unexpected spend | [Cost Overrun](#scenario-3-cost-overrun) | `POST /v1/overrides/{tenant}/policy` with `max_cost_per_run` |"
+          ],
+          "insert": [
+            "| Budget alerts or unexpected spend | [Cost Overrun](#scenario-3-cost-overrun) | Inspect spend; native overrides apply to native runs only; isolate external traffic if immediate containment is needed |"
+          ]
+        },
+        {
+          "startLine": 219,
+          "remove": [
+            "| Need to pause an agent mid-execution | [Operational Control](#operational-control-plane) | `POST /v1/runs/{id}/pause` |",
+            "| Tool causing problems across agents | [Operational Control](#operational-control-plane) | `POST /v1/overrides/{tenant}/tools/disable` |"
+          ],
+          "insert": [
+            "| Need to pause a native run mid-execution | [Operational Control](../reference/operational-control-plane.md) | `POST /v1/runs/{id}/pause` |",
+            "| Tool causing problems across native runs | [Operational Control](../reference/operational-control-plane.md) | `POST /v1/overrides/{tenant}/tools/disable` |"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/policy-cookbook.md",
+      "originalBlob": "2b31cbc070aadc797f86f5d526b03f77ce8c516e",
+      "correctedBlob": "aea58909e9608b47c27a7537a4b18ca2b37408b8",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 248,
+          "remove": [],
+          "insert": [
+            "**Boundary:** This is legacy native Plan Review, not exact-action authorization and not an approval gate for external tool execution. For current HTTP and MCP actions, use [Action Gateway](../reference/action-gateway.md) and [governed MCP tools](mcp-governed-tools.md) with a separate reviewer credential.",
+            ""
+          ]
+        },
+        {
+          "startLine": 263,
+          "remove": [],
+          "insert": [
+            "**Historical native planning recipe:** v1.17.0 removed the in-process customer-tool registry and native tool execution loop. This section describes legacy planning configuration and intent classification, not a supported mechanism to intercept external tool execution. Use declared actions and exact-action rules for HTTP/MCP.",
+            ""
+          ]
+        },
+        {
+          "startLine": 286,
+          "remove": [],
+          "insert": [
+            "**Historical native tool recipe:** the native in-process tool loop was removed. This is not a runnable v1.17 gateway or governed MCP recipe. Implement validation in the trusted downstream service and use the [Action Gateway](../reference/action-gateway.md) for bound authorization of catalogued actions.",
+            ""
+          ]
+        },
+        {
+          "startLine": 361,
+          "remove": [],
+          "insert": [
+            "**Legacy native planning only:** this does not authorize or dispatch external tools; the current exact-action lifecycle is separate.",
+            ""
+          ]
+        },
+        {
+          "startLine": 379,
+          "remove": [],
+          "insert": [
+            "**Historical native tool configuration:** this is not the idempotency contract of the v1.17 HTTP or MCP Action Gateway. Use stable logical operation IDs, bound arguments and the documented attempt lifecycle; an unknown outcome requires reconciliation, not blind replay. See [Action Gateway](../reference/action-gateway.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 433,
+          "remove": [
+            "    secret_name: claude-code-talon-key   # mint: talon secrets set claude-code-talon-key \"$(openssl rand -hex 24)\""
+          ],
+          "insert": [
+            "    secret_name: claude-code-talon-key   # vault reference; generate/store the secret via stdin as in the onboarding guide"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/explanation/what-talon-does-to-your-request.md",
+      "originalBlob": "c33298454650efcb363fce8d3fcbfc95181180af",
+      "correctedBlob": "1e519e3f5ec90ca0a8d4a986b3b38c87712c6054",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 188,
+          "remove": [
+            "**Streaming (SSE):** Talon detects `text/event-stream` in the response",
+            "`Content-Type` and enters streaming mode. SSE chunks are forwarded as received",
+            "using a `bufio.Scanner` with 512KB buffer. Each chunk is flushed immediately.",
+            "Token usage is extracted incrementally from `data:` lines. The client sees the",
+            "first token at the same time it would without Talon (minus the ~15ms pipeline",
+            "overhead on the initial request)."
+          ],
+          "insert": [
+            "**Streaming (SSE):** Talon detects `text/event-stream`. Delivery depends on the effective response rule: `allow` and `warn` stream as received; `warn` observes after delivery. Preventive `redact` and `block` hold the response until a verdict. See Step 11 for the exact response contract. Token usage is extracted from provider usage events where available. Measure time to first token in your environment."
+          ]
+        },
+        {
+          "startLine": 199,
+          "remove": [
+            "- **Latency:** Network RTT to provider (pass-through, no additional buffering",
+            "  for streaming responses)"
+          ],
+          "insert": [
+            "- **Latency:** Upstream latency plus policy-dependent processing; preventive response rules buffer streams."
+          ]
+        },
+        {
+          "startLine": 272,
+          "remove": [
+            "| 10 | Forward | Network RTT | No buffering for streams |",
+            "| 11 | Response PII scan | 2-5ms | Non-streaming only |"
+          ],
+          "insert": [
+            "| 10 | Forward | Upstream-dependent | Preventive response rules buffer streams |",
+            "| 11 | Response PII scan | Payload/engine-dependent | Non-streaming and applicable streaming rules |"
+          ]
+        },
+        {
+          "startLine": 275,
+          "remove": [
+            "| **Total overhead** | | **<15ms** | **Excluding network RTT** |"
+          ],
+          "insert": [
+            "| **Small non-streaming mock benchmark target** | | **<15ms** | **Not a streaming, concurrency or production SLA** |"
+          ]
+        },
+        {
+          "startLine": 316,
+          "remove": [
+            "- **Does not buffer streaming responses.** SSE chunks are forwarded to the",
+            "  client as they arrive from the provider. There is no full-response buffering",
+            "  for streaming requests."
+          ],
+          "insert": [
+            "- **Does not buffer streaming responses under `allow` or `warn`.** Preventive `redact` and `block` buffer until the verdict; `warn` cannot recall already delivered bytes."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reference/benchmarks.md",
+      "originalBlob": "d1a8ae081463a728b84e3a4f22131308d8150784",
+      "correctedBlob": "49ed777c3cc0ef2f42bea01b4240015d71cfb03c",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 5,
+          "remove": [
+            "The README states that pipeline overhead is typically **under 15 ms excluding upstream",
+            "latency**. This document defines how to reproduce the micro-benchmarks behind that claim,"
+          ],
+          "insert": [
+            "The README's **under 15 ms excluding upstream latency** target applies to the small-payload, non-streaming mock-upstream benchmark; it is not a production performance guarantee. This document defines how to reproduce the micro-benchmarks behind that claim,"
+          ]
+        },
+        {
+          "startLine": 25,
+          "remove": [
+            "Requirements: Go 1.22+ (project pins 1.25.x in CI), CGO enabled (SQLite), repo root checkout."
+          ],
+          "insert": [
+            "Requirements: the Go toolchain specified by the matching release's `go.mod` (Go 1.26.11 for v1.17.0; CI uses `go-version-file: go.mod`), CGO enabled (SQLite), repo root checkout."
+          ]
+        },
+        {
+          "startLine": 45,
+          "remove": [
+            "- **Retry / fallback routing** — not benchmarked until Epic #113 ([#138](https://github.com/dativo-io/talon/issues/138) / [#139](https://github.com/dativo-io/talon/issues/139)) lands."
+          ],
+          "insert": [
+            "- **Retry / fallback routing** — shipped, but excluded from this benchmark. Measure it independently under representative failure conditions."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/explanation/control-plane.md",
+      "originalBlob": "e31ae0963dffae2da087d6de2721ec508037f88f",
+      "correctedBlob": "668f1294002e051126208a45403d24a2961fbce6",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 29,
+          "remove": [
+            "Per-agent cost caps (deny before the provider call) + hard session caps (atomic reservation, #144)"
+          ],
+          "insert": [
+            "Estimated-cost admission caps per agent and session (atomic reservation, not invoice ceilings, #144)"
+          ]
+        },
+        {
+          "startLine": 33,
+          "remove": [
+            "MCP tool-call interception; tool schema filtering"
+          ],
+          "insert": [
+            "MCP tool execution governed through POST /mcp; tool schema filtering on model requests"
+          ]
+        },
+        {
+          "startLine": 39,
+          "remove": [
+            "Cost warning thresholds as signed evidence + one org cost webhook; hard session caps by atomic reservation (#144)"
+          ],
+          "insert": [
+            "Cost warning thresholds as signed evidence + one org cost webhook; session admission reservation (#144)"
+          ]
+        },
+        {
+          "startLine": 43,
+          "remove": [],
+          "insert": [
+            "CLI-primary fleet operations and read-only Operations Console (#533)"
+          ]
+        },
+        {
+          "startLine": 45,
+          "remove": [
+            "Exact governed actions over the public Action Gateway: immutable operation, approver-only decision, at most one Talon-forwarded effect, signed lifecycle evidence (#458)"
+          ],
+          "insert": [
+            "Exact governed HTTP and MCP actions via the shared Action Gateway: bound operation, approver-only decision, separate dispatch, signed lifecycle evidence (#458/#431)"
+          ]
+        },
+        {
+          "startLine": 48,
+          "remove": [
+            "Active MVP direction",
+            "────────────────────"
+          ],
+          "insert": [
+            "Active development direction",
+            "────────────────────────────"
+          ]
+        },
+        {
+          "startLine": 52,
+          "remove": [
+            "MCP governance convergence onto ActionGovernance and one canonical POST /mcp (#431), Tasks continuation (#448)"
+          ],
+          "insert": [
+            "MCP Tasks continuation (#448)"
+          ]
+        },
+        {
+          "startLine": 55,
+          "remove": [
+            "CLI-primary fleet operations; read-only OSS operations console as a projection of the same semantics (#533)"
+          ],
+          "insert": [
+            ""
+          ]
+        },
+        {
+          "startLine": 87,
+          "remove": [],
+          "insert": [
+            "The following describes the session lifecycle design tracked in #401; see the [object model](../reference/object-model.md) for fields available in the current release.",
+            ""
+          ]
+        },
+        {
+          "startLine": 93,
+          "remove": [
+            "Talon currently ships no browser UI: the legacy dashboards were removed, and the replacement OSS operations console (#533) is a **read-only projection** of the same backend semantics for inspection, filtering, verification and export. A focused approval inbox (#433) is an explicit narrow exception for authorized human decisions; it does not turn the console into a generic workflow system."
+          ],
+          "insert": [
+            "Talon ships a read-only Operations Console (#533). The legacy dashboards were removed; the console is a **read-only projection** of the same backend semantics for inspection, filtering, verification and export. A focused approval inbox (#433) is an explicit narrow exception for authorized human decisions; it does not turn the console into a generic workflow system."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/slack-bot-integration.md",
+      "originalBlob": "de054c7962e48b19f9344a5f7ed7666f8e3d9491",
+      "correctedBlob": "b3626861a650f7b01311b259a3ab294307c625f8",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load `OPENAI_API_KEY` on the Talon host. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 24,
+          "remove": [
+            "talon secrets set openai-api-key"
+          ],
+          "insert": [
+            "printf '%s' \"$OPENAI_API_KEY\" | talon secrets set openai-api-key"
+          ]
+        },
+        {
+          "startLine": 58,
+          "remove": [
+            "talon secrets set support-slack-bot-talon-key \"$(openssl rand -hex 24)\""
+          ],
+          "insert": [
+            "SUPPORT_SLACK_BOT_TALON_KEY=\"$(openssl rand -hex 24)\"",
+            "# Save this value securely for the intended caller before leaving the shell.",
+            "printf '%s' \"$SUPPORT_SLACK_BOT_TALON_KEY\" | talon secrets set support-slack-bot-talon-key"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/openclaw-integration.md",
+      "originalBlob": "1a66b5c04f05e8a0d87da2243f750d942323d69e",
+      "correctedBlob": "0e6ac17e8b8ce009dfafceafe7bac481530e1128",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load `OPENAI_API_KEY` on the Talon host for the OpenAI example. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 41,
+          "remove": [
+            "talon secrets set openai-api-key \"sk-your-openai-key\"",
+            "# Or: talon secrets set openai-api-key \"$OPENAI_API_KEY\""
+          ],
+          "insert": [
+            "printf '%s' \"$OPENAI_API_KEY\" | talon secrets set openai-api-key",
+            "# Or: printf '%s' \"$OPENAI_API_KEY\" | talon secrets set openai-api-key"
+          ]
+        },
+        {
+          "startLine": 47,
+          "remove": [
+            "talon secrets set openclaw-gateway-talon-key \"$OPENCLAW_KEY\""
+          ],
+          "insert": [
+            "printf '%s' \"$OPENCLAW_KEY\" | talon secrets set openclaw-gateway-talon-key"
+          ]
+        },
+        {
+          "startLine": 60,
+          "remove": [
+            "| **Agent key** (`$OPENCLAW_KEY`) | Workload identity OpenClaw sends in `Authorization: Bearer ...`; resolves to the `openclaw-gateway` agent and its derived tenant. Not used for encryption. | Vault secret `openclaw-gateway-talon-key` (referenced by `agent.key.secret_name` in `agent.talon.yaml`), and the same value in OpenClaw's `openclaw.json` as `models.providers.openai.apiKey`. Rotate with `talon secrets set openclaw-gateway-talon-key <new>` + restart — one active key, never two. |"
+          ],
+          "insert": [
+            "| **Agent key** (`$OPENCLAW_KEY`) | Workload identity OpenClaw sends in `Authorization: Bearer ...`; resolves to the `openclaw-gateway` agent and its derived tenant. Not used for encryption. | Vault secret `openclaw-gateway-talon-key` (referenced by `agent.key.secret_name` in `agent.talon.yaml`), and the same value in OpenClaw's `openclaw.json` as `models.providers.openai.apiKey`. Rotate with the stdin-based `talon secrets set openclaw-gateway-talon-key` procedure + restart — one active key, never two. |"
+          ]
+        },
+        {
+          "startLine": 135,
+          "remove": [
+            "- **`gateway_secret_get_failed` / \"cipher: message authentication failed\"** — Talon can't decrypt the stored OpenAI key. Use the **same** `TALON_SECRETS_KEY` when running `talon secrets set` and `talon serve`. If you lost the key, set a new one and run `talon secrets set openai-api-key \"sk-...\"` again."
+          ],
+          "insert": [
+            "- **`gateway_secret_get_failed` / \"cipher: message authentication failed\"** — Talon can't decrypt the stored OpenAI key. Use the **same** `TALON_SECRETS_KEY` when running `talon secrets set` and `talon serve`. If you lost the key, set a new one and run the stdin-based `talon secrets set openai-api-key` procedure again."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/openclaw-talon-primer/docker-openclaw-talon-primer.md",
+      "originalBlob": "34292f58f50e587890c024d8df53bca0d6612177",
+      "correctedBlob": "b8ff7fdbb7322b75c74c9c7befd4df7e7092bb6d",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Set `OPENAI_API_KEY` in the local `.env` as shown below; keep the file out of version control. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](../add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 18,
+          "remove": [
+            "| **API key** (in `Authorization: Bearer ...`) | Set the **OpenAI provider API key** to the primer agent's **Talon agent key** — the value minted into the vault secret referenced by `agent.key.secret_name` in this primer's `agent.talon.yaml` (`talon secrets set gateway-primer-talon-key \"$(openssl rand -hex 24)\"`). Do **not** put your real OpenAI key here. Talon resolves the agent by this key; it then adds the real OpenAI key when forwarding. |"
+          ],
+          "insert": [
+            "| **API key** (in `Authorization: Bearer ...`) | Set the **OpenAI provider API key** to the primer agent's **Talon agent key** — the value minted into the vault secret referenced by `agent.key.secret_name` in this primer's `agent.talon.yaml` (`gateway-primer-talon-key` vault entry; generate a random value, retain it in the intended secret manager and supply it via stdin). Do **not** put your real OpenAI key here. Talon resolves the agent by this key; it then adds the real OpenAI key when forwarding. |"
+          ]
+        },
+        {
+          "startLine": 23,
+          "remove": [
+            "- **Agent key** (the value in the `gateway-primer-talon-key` vault secret, and in OpenClaw's `apiKey`) — The workload identity OpenClaw presents; it resolves to exactly one agent and its tenant. Not used for encryption. The vault value and OpenClaw's `openclaw.json` must match. Rotate with `talon secrets set gateway-primer-talon-key <new>` + restart — one active key per agent, never two."
+          ],
+          "insert": [
+            "- **Agent key** (the value in the `gateway-primer-talon-key` vault secret, and in OpenClaw's `apiKey`) — The workload identity OpenClaw presents; it resolves to exactly one agent and its tenant. Not used for encryption. The vault value and OpenClaw's `openclaw.json` must match. Rotate with the stdin-based `talon secrets set gateway-primer-talon-key` procedure + restart — one active key per agent, never two."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/copaw-integration.md",
+      "originalBlob": "f3d25f0cad4cf0fbff1fac99ff22af1061dc293a",
+      "correctedBlob": "9ad82519ad92b8ed3f4a4eb7c527d32d84dc0f86",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load `OPENAI_API_KEY` or `DASHSCOPE_API_KEY`, depending on your provider. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 30,
+          "remove": [
+            "talon secrets set openai-api-key \"sk-your-openai-key\"",
+            "# Or for DashScope: talon secrets set dashscope-api-key \"sk-your-dashscope-key\""
+          ],
+          "insert": [
+            "printf '%s' \"$OPENAI_API_KEY\" | talon secrets set openai-api-key",
+            "# Or for DashScope: printf '%s' \"$DASHSCOPE_API_KEY\" | talon secrets set dashscope-api-key"
+          ]
+        },
+        {
+          "startLine": 35,
+          "remove": [
+            "talon secrets set copaw-gateway-talon-key \"$COPAW_KEY\""
+          ],
+          "insert": [
+            "printf '%s' \"$COPAW_KEY\" | talon secrets set copaw-gateway-talon-key"
+          ]
+        },
+        {
+          "startLine": 82,
+          "remove": [
+            "- Rotation: `talon secrets set copaw-gateway-talon-key <new>` + restart Talon, then update CoPaw — one active key per agent, never two."
+          ],
+          "insert": [
+            "- Rotation: the stdin-based `talon secrets set copaw-gateway-talon-key` procedure + restart Talon, then update CoPaw — one active key per agent, never two."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/copaw-talon-primer/docker-copaw-talon-primer.md",
+      "originalBlob": "ac1a40356a19cb5ce08fe65f12609dbca034146b",
+      "correctedBlob": "b1cf6209c0ea9048b6f8243d5e256283195787a9",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Set `OPENAI_API_KEY` in the local `.env` as shown below; keep the file out of version control. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](../add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 8,
+          "remove": [
+            "- **API Key** in CoPaw: the primer agent's **Talon agent key** — the value minted into the vault secret referenced by `agent.key.secret_name` in this directory's `agent.talon.yaml` (`talon secrets set gateway-copaw-primer-talon-key \"$(openssl rand -hex 24)\"`). Not your real OpenAI/DashScope key."
+          ],
+          "insert": [
+            "- **API Key** in CoPaw: the primer agent's **Talon agent key** — the value minted into the vault secret referenced by `agent.key.secret_name` in this directory's `agent.talon.yaml` (`gateway-copaw-primer-talon-key` vault entry; generate a random value, retain it in the intended secret manager and supply it via stdin). Not your real OpenAI/DashScope key."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/codex-cli-integration.md",
+      "originalBlob": "d6e76d9fc01b364e61f076904004ff8b906d342e",
+      "correctedBlob": "8447d0ffbc9c63f84fc8f489dba069104a6242c6",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load the real OpenAI key as `OPENAI_API_KEY` on the Talon host. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 44,
+          "remove": [
+            "talon secrets set openai-api-key \"sk-your-openai-key\""
+          ],
+          "insert": [
+            "printf '%s' \"$OPENAI_API_KEY\" | talon secrets set openai-api-key"
+          ]
+        },
+        {
+          "startLine": 49,
+          "remove": [
+            "talon secrets set codex-talon-key \"$CODEX_KEY\""
+          ],
+          "insert": [
+            "printf '%s' \"$CODEX_KEY\" | talon secrets set codex-talon-key"
+          ]
+        },
+        {
+          "startLine": 64,
+          "remove": [
+            "| **Agent key** (`$CODEX_KEY`) | Workload identity Codex sends to Talon as its \"OpenAI API key\"; resolves to the `codex` agent and its derived tenant. Not used for encryption. | Vault secret `codex-talon-key` (referenced by `agent.key.secret_name`), and in Codex's environment via the provider's `env_key` (step 4). Rotate with `talon secrets set codex-talon-key <new>` + restart — one active key, never two. |"
+          ],
+          "insert": [
+            "| **Agent key** (`$CODEX_KEY`) | Workload identity Codex sends to Talon as its \"OpenAI API key\"; resolves to the `codex` agent and its derived tenant. Not used for encryption. | Vault secret `codex-talon-key` (referenced by `agent.key.secret_name`), and in Codex's environment via the provider's `env_key` (step 4). Rotate with the stdin-based `talon secrets set codex-talon-key` procedure + restart — one active key, never two. |"
+          ]
+        },
+        {
+          "startLine": 171,
+          "remove": [
+            "- **`gateway_secret_get_failed` / \"cipher: message authentication failed\" / \"Service configuration error\"** — Vault decryption failed. Use the **same** `TALON_SECRETS_KEY` for `talon secrets set` and `talon serve`. If you lost it, set a new one and re-run `talon secrets set openai-api-key \"sk-...\"`."
+          ],
+          "insert": [
+            "- **`gateway_secret_get_failed` / \"cipher: message authentication failed\" / \"Service configuration error\"** — Vault decryption failed. Use the **same** `TALON_SECRETS_KEY` for `talon secrets set` and `talon serve`. If you lost it, set a new one and re-run the stdin-based `talon secrets set openai-api-key` procedure."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/claude-code-integration.md",
+      "originalBlob": "69a22a45281ad1cf9a46ad0057c8d469188b2289",
+      "correctedBlob": "cadd0c47d3e639a4305a92185eff2a9a54712168",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load the real Anthropic key as `ANTHROPIC_API_KEY` on the Talon host. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 40,
+          "remove": [
+            "talon secrets set anthropic-api-key \"sk-ant-your-key\""
+          ],
+          "insert": [
+            "printf '%s' \"$ANTHROPIC_API_KEY\" | talon secrets set anthropic-api-key"
+          ]
+        },
+        {
+          "startLine": 45,
+          "remove": [
+            "talon secrets set claude-code-talon-key \"$CLAUDE_CODE_KEY\""
+          ],
+          "insert": [
+            "printf '%s' \"$CLAUDE_CODE_KEY\" | talon secrets set claude-code-talon-key"
+          ]
+        },
+        {
+          "startLine": 64,
+          "remove": [
+            "| **Agent key** (`$CLAUDE_CODE_KEY`) | Workload identity Claude Code sends to Talon; resolves to the `claude-code` agent and its derived tenant. Not used for encryption. | Vault secret `claude-code-talon-key` (referenced by `agent.key.secret_name`), and in Claude Code's environment as `ANTHROPIC_AUTH_TOKEN`. Rotate with `talon secrets set claude-code-talon-key <new>` + restart — one active key, never two. |"
+          ],
+          "insert": [
+            "| **Agent key** (`$CLAUDE_CODE_KEY`) | Workload identity Claude Code sends to Talon; resolves to the `claude-code` agent and its derived tenant. Not used for encryption. | Vault secret `claude-code-talon-key` (referenced by `agent.key.secret_name`), and in Claude Code's environment as `ANTHROPIC_AUTH_TOKEN`. Rotate with the stdin-based `talon secrets set claude-code-talon-key` procedure + restart — one active key, never two. |"
+          ]
+        },
+        {
+          "startLine": 139,
+          "remove": [
+            "- **`gateway_secret_get_failed` / \"cipher: message authentication failed\" / \"Service configuration error\"** — Vault decryption failed. Use the **same** `TALON_SECRETS_KEY` for `talon secrets set` and `talon serve`. If you lost it, set a new one and re-run `talon secrets set anthropic-api-key \"sk-ant-...\"`."
+          ],
+          "insert": [
+            "- **`gateway_secret_get_failed` / \"cipher: message authentication failed\" / \"Service configuration error\"** — Vault decryption failed. Use the **same** `TALON_SECRETS_KEY` for `talon secrets set` and `talon serve`. If you lost it, set a new one and re-run the stdin-based `talon secrets set anthropic-api-key` procedure."
+          ]
+        },
+        {
+          "startLine": 203,
+          "remove": [
+            "| Agent loop burns budget inside one session | Soft session cap denies the next request with `session_budget_exceeded` + structured `session_budget` evidence | `session_limits.max_cost` (`TestSessionBudget_*`) |"
+          ],
+          "insert": [
+            "| Agent loop burns budget inside one session | Estimated-cost session admission denies the next request with `session_budget_exceeded` + structured `session_budget` evidence | `session_limits.max_cost` (`TestSessionBudget_*`) |"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/governing-coding-agents.md",
+      "originalBlob": "58b860db9c48ea441db1dba0bebb8eba947be934",
+      "correctedBlob": "8d0075fd3036d8edb66db003b6bb6249f0657c3c",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load `ANTHROPIC_API_KEY` and `OPENAI_API_KEY` on the Talon host for the providers you use. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 79,
+          "remove": [
+            "talon secrets set anthropic-api-key \"sk-ant-...\"",
+            "talon secrets set openai-api-key \"sk-...\""
+          ],
+          "insert": [
+            "printf '%s' \"$ANTHROPIC_API_KEY\" | talon secrets set anthropic-api-key",
+            "printf '%s' \"$OPENAI_API_KEY\" | talon secrets set openai-api-key"
+          ]
+        },
+        {
+          "startLine": 83,
+          "remove": [
+            "talon secrets set claude-code-talon-key \"$(openssl rand -hex 24)\"",
+            "talon secrets set codex-talon-key       \"$(openssl rand -hex 24)\""
+          ],
+          "insert": [
+            "CLAUDE_CODE_TALON_KEY=\"$(openssl rand -hex 24)\"",
+            "# Save this value securely for the intended caller before leaving the shell.",
+            "printf '%s' \"$CLAUDE_CODE_TALON_KEY\" | talon secrets set claude-code-talon-key",
+            "CODEX_TALON_KEY=\"$(openssl rand -hex 24)\"",
+            "# Save this value securely for the intended caller before leaving the shell.",
+            "printf '%s' \"$CODEX_TALON_KEY\" | talon secrets set codex-talon-key"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/multi-tenant-msp.md",
+      "originalBlob": "5d63e7ba77bb26e3ab5f04bdddb9b757b3a65112",
+      "correctedBlob": "d4b94ff17ba6f54ea3dbab78b074a06555dc62aa",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load `ACME_PROVIDER_API_KEY` for the scoped vault example. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 37,
+          "remove": [
+            "talon secrets set customer-acme-api-talon-key   \"$(openssl rand -hex 24)\"",
+            "talon secrets set customer-globex-api-talon-key \"$(openssl rand -hex 24)\""
+          ],
+          "insert": [
+            "CUSTOMER_ACME_API_TALON_KEY=\"$(openssl rand -hex 24)\"",
+            "# Save this value securely for the intended caller before leaving the shell.",
+            "printf '%s' \"$CUSTOMER_ACME_API_TALON_KEY\" | talon secrets set customer-acme-api-talon-key",
+            "CUSTOMER_GLOBEX_API_TALON_KEY=\"$(openssl rand -hex 24)\"",
+            "# Save this value securely for the intended caller before leaving the shell.",
+            "printf '%s' \"$CUSTOMER_GLOBEX_API_TALON_KEY\" | talon secrets set customer-globex-api-talon-key"
+          ]
+        },
+        {
+          "startLine": 85,
+          "remove": [
+            "talon secrets set acme-openai-key \"sk-...\" --tenant acme"
+          ],
+          "insert": [
+            "printf '%s' \"$ACME_PROVIDER_API_KEY\" | talon secrets set acme-openai-key --tenant acme"
+          ]
+        },
+        {
+          "startLine": 88,
+          "remove": [
+            "talon secrets set acme-sales-key \"sk-...\" --tenant acme --agent \"sales-*\""
+          ],
+          "insert": [
+            "printf '%s' \"$ACME_PROVIDER_API_KEY\" | talon secrets set acme-sales-key --tenant acme --agent \"sales-*\""
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/local-scanner-engines.md",
+      "originalBlob": "eb726793efadad8ee63c8189ed4f4d97a3a8352a",
+      "correctedBlob": "1d3f57e499497c6917366e11b08d14b7a0fdc2a4",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load `OPENAI_API_KEY` for the OpenAI example. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 57,
+          "remove": [
+            "talon secrets set openai-api-key \"sk-proj-...\"   # real key; vault-encrypted"
+          ],
+          "insert": [
+            "printf '%s' \"$OPENAI_API_KEY\" | talon secrets set openai-api-key   # real key; vault-encrypted"
+          ]
+        },
+        {
+          "startLine": 71,
+          "remove": [
+            "  mode: \"enforce\""
+          ],
+          "insert": []
+        },
+        {
+          "startLine": 83,
+          "remove": [
+            "talon secrets set me-talon-key \"talon-drive-key\""
+          ],
+          "insert": [
+            "printf '%s' 'talon-drive-key' | talon secrets set me-talon-key # public local fixture key only"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/plan-review-operators.md",
+      "originalBlob": "197eb6107ce4cfc6317e00d21e7016b75e8bb1de",
+      "correctedBlob": "b4fa6dc46d087b0c3d7bc246961f57796d360ef6",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load `OPENAI_API_KEY` for the OpenAI example. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 48,
+          "remove": [
+            "talon secrets set openai-api-key \"$OPENAI_API_KEY\""
+          ],
+          "insert": [
+            "printf '%s' \"$OPENAI_API_KEY\" | talon secrets set openai-api-key"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/plan-review-e2e-testcase.md",
+      "originalBlob": "d7e56aa8452c370f5c0304bce115f26e173b47c0",
+      "correctedBlob": "dd6df262d766ee74d47fa2966bdd6715f5db4684",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load `OPENAI_API_KEY` only if using the optional live provider path. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 64,
+          "remove": [
+            "[[ -n \"${OPENAI_API_KEY:-}\" ]] && talon secrets set openai-api-key \"$OPENAI_API_KEY\""
+          ],
+          "insert": [
+            "[[ -n \"${OPENAI_API_KEY:-}\" ]] && printf '%s' \"$OPENAI_API_KEY\" | talon secrets set openai-api-key"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/cicd-pipeline-governance.md",
+      "originalBlob": "cc00d8ff687fe901c8a3808dd17c99c7b641d758",
+      "correctedBlob": "2c35c853c1953807ea4e0cc97901c6670d0fd7fa",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Keep the real upstream provider credential in the Talon vault; the CI job receives only its Talon use-case key. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 30,
+          "remove": [
+            "talon secrets set ci-openai-talon-key \"$(openssl rand -hex 24)\""
+          ],
+          "insert": [
+            "CI_OPENAI_TALON_KEY=\"$(openssl rand -hex 24)\"",
+            "# Save this value securely for the intended caller before leaving the shell.",
+            "printf '%s' \"$CI_OPENAI_TALON_KEY\" | talon secrets set ci-openai-talon-key"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/internal-support-agent.md",
+      "originalBlob": "a04767780f8e514e9a483456708cb64fb0cafc62",
+      "correctedBlob": "e4e26f7365b8cbff47f14840e147103b8307fefd",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** Load `SUPPORT_INCOMING_WEBHOOK` for the notification example. Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 48,
+          "remove": [
+            "talon secrets set support-incoming-webhook \"$(openssl rand -hex 24)\""
+          ],
+          "insert": [
+            "SUPPORT_INCOMING_WEBHOOK=\"$(openssl rand -hex 24)\"",
+            "# Save this value securely for the intended caller before leaving the shell.",
+            "printf '%s' \"$SUPPORT_INCOMING_WEBHOOK\" | talon secrets set support-incoming-webhook"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reference/configuration.md",
+      "originalBlob": "daff626f347d8dd0f7e59837ca7c6e0f1f1a4993",
+      "correctedBlob": "06ef0781a14470c484297d117029361863a1d1d5",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 3,
+          "remove": [],
+          "insert": [
+            "**Credential handling:** For provider examples, use the environment variable named by the provider configuration (for example `OPENAI_API_KEY`). Load real credentials from your secret manager; pass values to `talon secrets set` on stdin. Keep generated Talon use-case keys in the intended application's secret store. For authenticated remote deployments, follow the secure installation procedure in the [existing application guide](../guides/add-talon-to-existing-app.md).",
+            ""
+          ]
+        },
+        {
+          "startLine": 13,
+          "remove": [
+            "| **Contains** | Agent identity (name, tenant, vault-bound traffic key), capabilities (allowed tools, forbidden patterns), memory governance, triggers (cron + webhooks), secrets ACL, attachment handling, compliance framework declarations, cost limits, audit settings | LLM provider connections (endpoint, key env var, region, timeout), gateway settings (providers, organization baseline policy, mode, rate limits), data directory, secrets encryption key, evidence storage path, observability |"
+          ],
+          "insert": [
+            "| **Contains** | Agent identity (name, tenant, vault-bound traffic key), capabilities (allowed tools, forbidden patterns), memory governance, triggers (cron + webhooks), secrets ACL, attachment handling, compliance framework declarations, cost limits, audit settings | LLM provider connections (endpoint, key env var, region, timeout), gateway settings (providers, organization baseline policy, rate limits), data directory, secrets encryption key, evidence storage path, observability |"
+          ]
+        },
+        {
+          "startLine": 70,
+          "remove": [
+            "talon secrets set support-triage-talon-key \"$(openssl rand -hex 24)\""
+          ],
+          "insert": [
+            "SUPPORT_TRIAGE_TALON_KEY=\"$(openssl rand -hex 24)\"",
+            "# Save this value securely for the intended caller before leaving the shell.",
+            "printf '%s' \"$SUPPORT_TRIAGE_TALON_KEY\" | talon secrets set support-triage-talon-key"
+          ]
+        },
+        {
+          "startLine": 73,
+          "remove": [
+            "**Rotation:** write a new value to the same secret name (`talon secrets set support-triage-talon-key <new>`) and restart `talon serve` (a secret-only change is not digest-detected, so rotation still needs a restart or a file-touch even with periodic reload running). There is never a window with two concurrently-active keys — one agent, one key."
+          ],
+          "insert": [
+            "**Rotation:** write a new value to the same secret name (the stdin-based `talon secrets set support-triage-talon-key` procedure) and restart `talon serve` (a secret-only change is not digest-detected, so rotation still needs a restart or a file-touch even with periodic reload running). There is never a window with two concurrently-active keys — one agent, one key."
+          ]
+        },
+        {
+          "startLine": 89,
+          "remove": [
+            "- **Webhooks are authenticated by their own secret (#479).** `secret_name` is required; it names a vault entry (`talon secrets set support-incoming-webhook \"$(openssl rand -hex 24)\"`), and the sender presents that value as `Authorization: Bearer <value>`. The value must be at least 32 bytes (serve refuses to start otherwise): the route has no per-webhook rate limit, so the secret's length is what makes online guessing infeasible — use the mint above, never a chosen password. No other credential opens a webhook: agent keys and the admin key get `401 unauthorized`, and there is no dev-open rule. A denied request is never parsed, never runs, and writes no evidence. The body is read whole, bounded at 512 KiB, and must be exactly one JSON value (trailing data is `400`). Zendesk (\"Bearer token\" webhook authentication) and Freshdesk (custom `Authorization` header on the trigger-webhook action) can send this directly; senders that only sign the body (GitHub, Slack) are not supported — see the [authentication matrix](authentication-and-key-scopes.md)."
+          ],
+          "insert": [
+            "- **Webhooks are authenticated by their own secret (#479).** `secret_name` is required; it names a vault entry (`support-incoming-webhook` vault entry; generate a random value, retain it in the intended secret manager and supply it via stdin), and the sender presents that value as `Authorization: Bearer <value>`. The value must be at least 32 bytes (serve refuses to start otherwise): the route has no per-webhook rate limit, so the secret's length is what makes online guessing infeasible — use the mint above, never a chosen password. No other credential opens a webhook: agent keys and the admin key get `401 unauthorized`, and there is no dev-open rule. A denied request is never parsed, never runs, and writes no evidence. The body is read whole, bounded at 512 KiB, and must be exactly one JSON value (trailing data is `400`). Zendesk (\"Bearer token\" webhook authentication) and Freshdesk (custom `Authorization` header on the trigger-webhook action) can send this directly; senders that only sign the body (GitHub, Slack) are not supported — see the [authentication matrix](authentication-and-key-scopes.md)."
+          ]
+        },
+        {
+          "startLine": 410,
+          "remove": [
+            "| `gateway.organization_policy` | The organization policy every agent inherits, split into two explicit classes (#287): `defaults:` — per-agent starting values an agent override may **replace** (`pii_action`, `response_pii_action`, `daily_cost` / `monthly_cost` / `session_cost`, `tool_policy_action`, `attachment_policy`) — and `constraints:` — organization-wide **hard bounds** an agent may only tighten within, never escape (`allowed_providers`, `allowed_models` / `blocked_models`, `allowed_tools`, `forbidden_tools`, `action_approvals` — the company action policy for catalogued actions, #425, see [Action Gateway](action-gateway.md#company-action-policy-talonconfigyaml-425) — `max_daily_cost` / `max_monthly_cost` / `max_session_cost`, `max_data_tier`, `egress`). Org-owned observability scalars stay top-level: `log_prompts` / `log_responses` / `log_response_preview_chars`, `scan_tool_content`. Renamed from `default_policy` (#266). |"
+          ],
+          "insert": [
+            "| `gateway.organization_policy` | The organization policy every agent inherits, split into two explicit classes (#287): `defaults:` — per-agent starting values with field-specific precedence (positive budget overrides replace defaults; PII and tool-policy action overrides can only tighten; attachment policy is company-owned) — and `constraints:` — organization-wide **hard bounds** an agent may only tighten within, never escape (`allowed_providers`, `allowed_models` / `blocked_models`, `allowed_tools`, `forbidden_tools`, `action_approvals` — the company action policy for catalogued actions, #425, see [Action Gateway](action-gateway.md#company-action-policy-talonconfigyaml-425) — `max_daily_cost` / `max_monthly_cost` / `max_session_cost`, `max_data_tier`, `egress`). Org-owned observability scalars stay top-level: `log_prompts` / `log_responses` / `log_response_preview_chars`, `scan_tool_content`. Renamed from `default_policy` (#266). |"
+          ]
+        },
+        {
+          "startLine": 424,
+          "remove": [
+            "**Hot vs restart-required.** Hot-reloadable: agent file contents (`enabled`, identity metadata, key binding *name*, policy overrides) and `agents_dir` membership. Restart-required: the company action policy (`gateway.organization_policy.constraints.forbidden_tools` / `.action_approvals`, #425 — loaded once at start and frozen into every generation; a restart activates the change as a new effective generation and invalidates approvals established under the old one), trigger/webhook **definitions** and webhook secret values (#297, #479 — dispatch still re-resolves the current generation, so `enabled` and policy edits govern the next firing), `gateway:` block (organization policy, providers, mode), listeners/ports, scanner infrastructure, pricing and sovereignty. **Key rotation** via `talon secrets set` alone is not detected (the file digest is unchanged) — rotate = set the secret + restart, or touch the agent file. **Secret deletion/revocation of an *enabled* agent is likewise NOT a hot revocation:** the reload cannot build a valid registry for that agent, so the whole generation is rejected and last-known-good keeps the old key serving. To revoke access, **disable** the agent — that IS hot: the disabled generation activates with the prior key carried forward as a *denial-only* identity (the gateway returns an attributed 403; the tenant-API surface rejects it), so the old credential authorizes nothing — or restart."
+          ],
+          "insert": [
+            "**Hot vs restart-required.** Hot-reloadable: agent file contents (`enabled`, identity metadata, key binding *name*, policy overrides) and `agents_dir` membership. Restart-required: the company action policy (`gateway.organization_policy.constraints.forbidden_tools` / `.action_approvals`, #425 — loaded once at start and frozen into every generation; a restart activates the change as a new effective generation and invalidates approvals established under the old one), trigger/webhook **definitions** and webhook secret values (#297, #479 — dispatch still re-resolves the current generation, so `enabled` and policy edits govern the next firing), `gateway:` block (organization policy, providers), listeners/ports, scanner infrastructure, pricing and sovereignty. **Key rotation** via `talon secrets set` alone is not detected (the file digest is unchanged) — rotate = set the secret + restart, or touch the agent file. **Secret deletion/revocation of an *enabled* agent is likewise NOT a hot revocation:** the reload cannot build a valid registry for that agent, so the whole generation is rejected and last-known-good keeps the old key serving. To revoke access, **disable** the agent — that IS hot: the disabled generation activates with the prior key carried forward as a *denial-only* identity (the gateway returns an attributed 403; the tenant-API surface rejects it), so the old credential authorizes nothing — or restart."
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/tutorials/manual-governed-session.md",
+      "originalBlob": "4bd178e5510a31c9a2ee411d1c517f59a509f8c6",
+      "correctedBlob": "ce5435947015d68cfcfafd116571153009081353",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 41,
+          "remove": [
+            "git clone https://github.com/dativo-io/talon.git"
+          ],
+          "insert": [
+            "git clone --depth 1 --branch v1.17.0 https://github.com/dativo-io/talon.git"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/tutorials/first-governed-agent.md",
+      "originalBlob": "3210b5b83c9698dea4fd7ccd8d593b289cfc220f",
+      "correctedBlob": "bc2e76c0b6134475b9d851dd80e6369bbba64e57",
+      "sourceCommit": "7c4389dcca6728cf22edfecd395291ba649fb7f1",
+      "review": "https://github.com/dativo-io/talon/pull/612",
+      "hunks": [
+        {
+          "startLine": 5,
+          "remove": [
+            "**Prerequisites:** Go 1.22+ with CGO (or a **linux/amd64** release tarball), and an LLM API key (OpenAI or Anthropic) or a local Ollama instance for live runs. Dry-run works without an API key."
+          ],
+          "insert": [
+            "**Prerequisites:** the matching release binary, or Go 1.26.11 (as specified by v1.17.0 `go.mod`) with CGO for a source build, and an LLM API key (OpenAI or Anthropic) or a local Ollama instance for live runs. Dry-run works without an API key."
+          ]
+        },
+        {
+          "startLine": 11,
+          "remove": [
+            "See the [README install matrix](../../README.md#install) for all methods. **macOS and arm64 Linux:** use from-source or `go install` (prebuilt GitHub tarballs are **linux/amd64 only**)."
+          ],
+          "insert": [
+            "See the [README install matrix](../../README.md#install) for all methods. For v1.17.0, Linux amd64 is the verified installer profile; macOS amd64 and arm64 archives are present as best-effort assets with per-file checksums. Linux arm64 installs from source. See the [release's platform assets](https://github.com/dativo-io/talon/releases/tag/v1.17.0) for exact availability and support scope."
+          ]
+        },
+        {
+          "startLine": 14,
+          "remove": [
+            "# Recommended on macOS / arm64",
+            "git clone https://github.com/dativo-io/talon.git && cd talon"
+          ],
+          "insert": [
+            "# Source installation from the matching release",
+            "git clone --depth 1 --branch v1.17.0 https://github.com/dativo-io/talon.git && cd talon"
+          ]
+        },
+        {
+          "startLine": 18,
+          "remove": [
+            "# Or: go install github.com/dativo-io/talon/cmd/talon@latest"
+          ],
+          "insert": [
+            "# Or: go install github.com/dativo-io/talon/cmd/talon@v1.17.0"
+          ]
+        },
+        {
+          "startLine": 21,
+          "remove": [
+            "**macOS:** If linking fails with `unsupported tapi file type '!tapi-tbd'`, use `make install` or `CC=/usr/bin/clang CGO_ENABLED=1 go install github.com/dativo-io/talon/cmd/talon@latest`."
+          ],
+          "insert": [
+            "**macOS:** If linking fails with `unsupported tapi file type '!tapi-tbd'`, use `make install` or `CC=/usr/bin/clang CGO_ENABLED=1 go install github.com/dativo-io/talon/cmd/talon@v1.17.0`."
+          ]
+        },
+        {
+          "startLine": 106,
+          "remove": [
+            "Edit `agent.talon.yaml` and set a very low daily budget:"
+          ],
+          "insert": [
+            "In your isolated test installation, inspect the settled cost of the prior run. If it recorded positive spend, edit `agent.talon.yaml` and set a positive daily budget below that spend (the amount below is illustrative). Otherwise first establish positive usage; an arbitrary cap alone does not guarantee denial:"
+          ]
+        },
+        {
+          "startLine": 120,
+          "remove": [
+            "You should see:"
+          ],
+          "insert": [
+            "If the binding budget is exceeded, expect a denial such as:"
           ]
         }
       ]
